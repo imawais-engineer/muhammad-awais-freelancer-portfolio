@@ -266,11 +266,10 @@ const Index = () => {
                 </h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {group.tools.slice(0, 5).map((tool) => (
-                    <span key={tool} className="tech-tag">
-                      {tool}
-                    </span>
+                    <TechTag key={tool} label={tool} />
                   ))}
                 </div>
+
               </article>
             ))}
           </div>
