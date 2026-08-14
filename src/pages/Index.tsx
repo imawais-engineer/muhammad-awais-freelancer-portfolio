@@ -128,11 +128,13 @@ const Index = () => {
               />
               <div className="mt-4 flex items-center gap-1.5">
                 <p className="text-sm font-medium">{site.name}</p>
-                <BadgeCheck
-                  className="h-4 w-4 shrink-0 text-primary"
+                <span
+                  className="inline-flex"
                   aria-label="Identity verified"
                   title="Identity verified — government ID check and visual verification"
-                />
+                >
+                  <BadgeCheck className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                </span>
               </div>
               <p className="font-mono text-xs text-muted-foreground">{site.title}</p>
             </div>
