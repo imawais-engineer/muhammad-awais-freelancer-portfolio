@@ -3,87 +3,101 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Maps a platform / tool label to the brand's primary domain so we can render
- * the real logo instead of a generic dot. Keys are matched loosely (lowercase,
- * substring) so "OpenAI GPT-4o-mini" still resolves to openai.com.
+ * Maps a platform / tool label to the brand's primary domain and (when
+ * available) its Simple Icons slug, so we render the real brand mark instead of
+ * a generic dot. Keys are matched loosely (lowercase, substring) so
+ * "OpenAI GPT-4o-mini" still resolves to openai.com.
+ *
+ * Rendering order: official SVG brand mark (cdn.simpleicons.org) → favicon of
+ * the brand domain → nothing (text-only tag).
  */
-const BRAND_DOMAINS: Array<[match: string, domain: string]> = [
-  ["n8n", "n8n.io"],
-  ["make.com", "make.com"],
-  ["zapier", "zapier.com"],
+const BRAND_DOMAINS: Array<[match: string, domain: string, slug?: string]> = [
+  ["n8n", "n8n.io", "n8n"],
+  ["make.com", "make.com", "make"],
+  ["zapier", "zapier.com", "zapier"],
   ["openai", "openai.com"],
   ["gpt", "openai.com"],
-  ["claude", "anthropic.com"],
-  ["anthropic", "anthropic.com"],
-  ["gemini", "gemini.google.com"],
+  ["claude", "anthropic.com", "anthropic"],
+  ["anthropic", "anthropic.com", "anthropic"],
+  ["gemini", "gemini.google.com", "googlegemini"],
   ["groq", "groq.com"],
-  ["openrouter", "openrouter.ai"],
-  ["langchain", "langchain.com"],
+  ["openrouter", "openrouter.ai", "openrouter"],
+  ["langchain", "langchain.com", "langchain"],
   ["crewai", "crewai.com"],
-  ["nvidia", "nvidia.com"],
-  ["supabase", "supabase.com"],
+  ["nvidia", "nvidia.com", "nvidia"],
+  ["supabase", "supabase.com", "supabase"],
   ["pinecone", "pinecone.io"],
-  ["postgres", "postgresql.org"],
-  ["mysql", "mysql.com"],
-  ["airtable", "airtable.com"],
-  ["notion", "notion.so"],
-  ["google sheets", "sheets.google.com"],
-  ["google docs", "docs.google.com"],
-  ["google drive", "drive.google.com"],
+  ["postgres", "postgresql.org", "postgresql"],
+  ["mysql", "mysql.com", "mysql"],
+  ["airtable", "airtable.com", "airtable"],
+  ["notion", "notion.so", "notion"],
+  ["google sheets", "sheets.google.com", "googlesheets"],
+  ["google docs", "docs.google.com", "googledocs"],
+  ["google drive", "drive.google.com", "googledrive"],
   ["google workspace", "workspace.google.com"],
-  ["gmail", "gmail.com"],
+  ["gmail", "gmail.com", "gmail"],
   ["outlook", "outlook.com"],
   ["slack", "slack.com"],
-  ["telegram", "telegram.org"],
-  ["whatsapp", "whatsapp.com"],
+  ["telegram", "telegram.org", "telegram"],
+  ["whatsapp", "whatsapp.com", "whatsapp"],
   ["kapso", "kapso.ai"],
-  ["discord", "discord.com"],
-  ["youtube", "youtube.com"],
-  ["instagram", "instagram.com"],
+  ["discord", "discord.com", "discord"],
+  ["youtube", "youtube.com", "youtube"],
+  ["instagram", "instagram.com", "instagram"],
   ["linkedin", "linkedin.com"],
-  ["upwork", "upwork.com"],
-  ["fiverr", "fiverr.com"],
-  ["hubspot", "hubspot.com"],
+  ["upwork", "upwork.com", "upwork"],
+  ["fiverr", "fiverr.com", "fiverr"],
+  ["hubspot", "hubspot.com", "hubspot"],
   ["pipedrive", "pipedrive.com"],
   ["gohighlevel", "gohighlevel.com"],
-  ["clickup", "clickup.com"],
-  ["stripe", "stripe.com"],
+  ["clickup", "clickup.com", "clickup"],
+  ["stripe", "stripe.com", "stripe"],
   ["twilio", "twilio.com"],
   ["apify", "apify.com"],
   ["browseract", "browseract.com"],
   ["serpapi", "serpapi.com"],
-  ["streamlit", "streamlit.io"],
+  ["streamlit", "streamlit.io", "streamlit"],
   ["aws", "aws.amazon.com"],
   ["azure", "azure.microsoft.com"],
   ["oracle", "oracle.com"],
   ["alibaba", "alibabacloud.com"],
-  ["node", "nodejs.org"],
-  ["typescript", "typescriptlang.org"],
-  ["python", "python.org"],
+  ["node", "nodejs.org", "nodedotjs"],
+  ["typescript", "typescriptlang.org", "typescript"],
+  ["python", "python.org", "python"],
 ];
 
-export const getBrandDomain = (label: string): string | null => {
+const findBrand = (label: string) => {
   const value = label.toLowerCase();
-  const hit = BRAND_DOMAINS.find(([match]) => value.includes(match));
-  return hit ? hit[1] : null;
+  return BRAND_DOMAINS.find(([match]) => value.includes(match)) ?? null;
 };
 
-const BrandLogo = ({ label, className }: { label: string; className?: string }) => {
-  const domain = getBrandDomain(label);
-  const [failed, setFailed] = useState(false);
+export const getBrandDomain = (label: string): string | null => findBrand(label)?.[1] ?? null;
 
-  if (!domain || failed) return null;
+const BrandLogo = ({ label, className }: { label: string; className?: string }) => {
+  const brand = findBrand(label);
+  const [stage, setStage] = useState<0 | 1 | 2>(0);
+
+  if (!brand) return null;
+
+  const [, domain, slug] = brand;
+  const useSvg = Boolean(slug) && stage === 0;
+  const src = useSvg
+    ? `https://cdn.simpleicons.org/${slug}`
+    : `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+
+  if (stage === 2 || (!slug && stage === 1)) return null;
 
   return (
     <img
-      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
+      key={src}
+      src={src}
       alt=""
       aria-hidden="true"
       loading="lazy"
       decoding="async"
       width={16}
       height={16}
-      onError={() => setFailed(true)}
+      onError={() => setStage((current) => (current === 0 && slug ? 1 : 2))}
       className={cn("h-4 w-4 shrink-0 rounded-[3px] object-contain", className)}
     />
   );
