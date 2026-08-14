@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, BadgeCheck, Check } from "lucide-react";
 
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
@@ -83,7 +83,16 @@ const About = () => (
               loading="lazy"
             />
             <div className="p-5">
-              <p className="font-medium text-foreground">{site.name}</p>
+              <div className="flex items-center gap-1.5">
+                <p className="font-medium text-foreground">{site.name}</p>
+                <span
+                  className="inline-flex"
+                  aria-label="Identity verified"
+                  title="Identity verified — government ID check and visual verification"
+                >
+                  <BadgeCheck className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                </span>
+              </div>
               <p className="text-sm text-muted-foreground">{site.title}</p>
             </div>
           </div>

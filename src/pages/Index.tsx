@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Check, MapPin, Star } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BadgeCheck, Check, MapPin, Star } from "lucide-react";
 
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
@@ -126,7 +126,16 @@ const Index = () => {
                 loading="eager"
                 className="aspect-square w-full rounded-xl object-cover"
               />
-              <p className="mt-4 text-sm font-medium">{site.name}</p>
+              <div className="mt-4 flex items-center gap-1.5">
+                <p className="text-sm font-medium">{site.name}</p>
+                <span
+                  className="inline-flex"
+                  aria-label="Identity verified"
+                  title="Identity verified — government ID check and visual verification"
+                >
+                  <BadgeCheck className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                </span>
+              </div>
               <p className="font-mono text-xs text-muted-foreground">{site.title}</p>
             </div>
           </div>
