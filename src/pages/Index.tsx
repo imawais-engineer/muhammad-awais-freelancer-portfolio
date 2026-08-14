@@ -148,17 +148,16 @@ const Index = () => {
                 loading="eager"
                 className="aspect-square w-full rounded-xl object-cover"
               />
-              <div className="mt-4 flex items-center gap-1.5">
-                <p className="text-sm font-medium">{site.name}</p>
+              <div className="mt-4 flex items-center gap-2">
+                <p className="text-xl font-semibold tracking-tight text-foreground">{site.name}</p>
                 <span
                   className="inline-flex"
                   aria-label="Identity verified"
                   title="Identity verified — government ID check and visual verification"
                 >
-                  <BadgeCheck className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                  <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                 </span>
               </div>
-              <p className="font-mono text-xs text-muted-foreground">{site.title}</p>
             </div>
           </div>
 
