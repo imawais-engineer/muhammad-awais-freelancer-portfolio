@@ -304,11 +304,10 @@ const Index = () => {
                 <h3 className="mt-1 text-base font-semibold">{layer.layer}</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {layer.nodes.map((node) => (
-                    <span key={node} className="tech-tag">
-                      {node}
-                    </span>
+                    <TechTag key={node} label={node} />
                   ))}
                 </div>
+
                 {index < integrationMap.length - 1 && (
                   <ArrowRight
                     className="absolute -right-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-primary lg:block"
