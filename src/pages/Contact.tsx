@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Mail, Globe, Linkedin, ArrowUpRight } from "lucide-react";
 
 import BrandLogo from "@/components/BrandLogo";
+import ContactForms from "@/components/ContactForms";
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -72,6 +73,17 @@ const Contact = () => (
           </Button>
         </div>
       </motion.header>
+
+      <section className="mt-16">
+        <h2 className="text-2xl font-semibold tracking-tight">Send me the details</h2>
+        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+          A quick message works fine. If you already know the process you want automated, the
+          detailed brief gets you a realistic scope faster.
+        </p>
+        <div className="mt-6">
+          <ContactForms />
+        </div>
+      </section>
 
       <section className="mt-16 grid gap-4 lg:grid-cols-2">
         <article className="node-card p-6">
