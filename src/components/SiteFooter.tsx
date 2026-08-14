@@ -15,7 +15,7 @@ const SiteFooter = () => (
 
       <nav aria-label="Site" className="flex flex-col gap-2">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Site</p>
-        <Link to="/projects" className="system-link">Work</Link>
+        <Link to="/projects" className="system-link">Projects</Link>
         <Link to="/about" className="system-link">About</Link>
         <Link to="/contact" className="system-link">Contact</Link>
         <Link to="/terms" className="system-link">Terms of Service</Link>

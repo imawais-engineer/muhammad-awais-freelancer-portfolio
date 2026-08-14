@@ -333,7 +333,7 @@ const MediaKit = () => {
         </section>
 
         <section className="container space-y-5 pt-16">
-          <SectionHeading index="04" title="Selected Work" />
+          <SectionHeading index="04" title="Selected Projects" />
           <div className="grid gap-4 md:grid-cols-2">
             {work.map((project) => (
               <motion.article

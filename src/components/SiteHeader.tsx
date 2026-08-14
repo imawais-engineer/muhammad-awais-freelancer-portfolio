@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Work", to: "/projects" },
+  { label: "Projects", to: "/projects" },
   { label: "Services", to: "/#services" },
   { label: "Stack", to: "/#stack" },
   { label: "About", to: "/about" },
