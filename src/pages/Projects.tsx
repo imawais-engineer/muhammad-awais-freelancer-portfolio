@@ -41,8 +41,9 @@ const Projects = () => {
             {projects.length} automation systems, documented end to end
           </h1>
           <p className="text-lg text-muted-foreground">
-            Every build below is in production. Each case study covers the business problem, the
-            architecture, the qualification logic, and the results the client measured.
+            Split the same way as the homepage: paid client work first, then demonstration builds.
+            Each case study covers the business problem, the architecture, the workflow logic and
+            the measured results.
           </p>
         </motion.header>
 
@@ -65,11 +66,42 @@ const Projects = () => {
           ))}
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
+        {filteredClient.length > 0 && (
+          <section className="mt-12">
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+              Real client projects
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight">
+              Paid work, running in production
+            </h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {filteredClient.map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {filteredDemo.length > 0 && (
+          <section className="mt-14">
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+              Demonstration projects
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight">
+              Systems I've built to prove the patterns
+            </h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {filteredDemo.map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {filteredClient.length === 0 && filteredDemo.length === 0 && (
+          <p className="mt-10 text-muted-foreground">No case studies in this category yet.</p>
+        )}
+
       </main>
 
       <SiteFooter />
