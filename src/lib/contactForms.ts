@@ -1,10 +1,17 @@
 import { z } from "zod";
 
 /**
- * n8n webhook endpoint. Set VITE_N8N_WEBHOOK_URL in your environment
- * (production webhook URL from the n8n Webhook node).
+ * n8n Form Trigger endpoints (production URLs).
+ * Override with VITE_N8N_BASIC_FORM_URL / VITE_N8N_ADVANCED_FORM_URL.
  */
-export const N8N_WEBHOOK_URL = (import.meta.env.VITE_N8N_WEBHOOK_URL as string | undefined) ?? "";
+export const N8N_BASIC_FORM_URL =
+  (import.meta.env.VITE_N8N_BASIC_FORM_URL as string | undefined) ??
+  "https://n8nio.imawais.engineer/form/basic_query_form";
+
+export const N8N_ADVANCED_FORM_URL =
+  (import.meta.env.VITE_N8N_ADVANCED_FORM_URL as string | undefined) ??
+  "https://n8nio.imawais.engineer/form/advance_query_form";
+
 
 export const basicQuerySchema = z.object({
   full_name: z.string().trim().min(2, "Please enter your full name").max(100),
