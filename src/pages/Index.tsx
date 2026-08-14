@@ -14,6 +14,7 @@ import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ProjectCard from "@/components/ProjectCard";
+import TechTag from "@/components/TechTag";
 import { Button } from "@/components/ui/button";
 import { clientProjects, demoProjects, projects } from "@/data/projects";
 import {
