@@ -130,11 +130,10 @@ const ProjectDetail = () => {
 
         <div className="mt-6 flex flex-wrap gap-2">
           {project.tools.map((tool) => (
-            <span key={tool} className="tech-tag">
-              {tool}
-            </span>
+            <TechTag key={tool} label={tool} />
           ))}
         </div>
+
 
         <div className="mt-16 grid gap-16 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
           <div className="space-y-14">
