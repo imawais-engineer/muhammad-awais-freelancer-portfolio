@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, Check, Quote } from "lucide-react";
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import TechTag from "@/components/TechTag";
 import { Button } from "@/components/ui/button";
 import { getProject, projects } from "@/data/projects";
 import { getProjectImage } from "@/data/projectImages";
