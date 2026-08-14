@@ -40,11 +40,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
       <div className="mt-auto flex flex-wrap gap-2 pt-2">
         {project.tools.slice(0, 4).map((tool) => (
-          <span key={tool} className="tech-tag">
-            {tool}
-          </span>
+          <TechTag key={tool} label={tool} />
         ))}
         {project.tools.length > 4 && <span className="tech-tag">+{project.tools.length - 4}</span>}
+
       </div>
     </Link>
   );
