@@ -844,3 +844,5 @@ export const projectCategories: ProjectCategory[] = [
 
 export const getProject = (slug?: string) => projects.find((p) => p.slug === slug);
 export const featuredProjects = projects.filter((p) => p.featured);
+export const clientProjects = projects.filter((p) => p.clientWork);
+export const demoProjects = projects.filter((p) => !p.clientWork);
