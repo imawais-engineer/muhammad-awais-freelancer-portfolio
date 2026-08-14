@@ -47,11 +47,13 @@ const Contact = () => (
           </Button>
           <Button asChild size="lg" variant="secondary">
             <a href={site.links.upwork} target="_blank" rel="noreferrer noopener">
+              <BrandLogo label="Upwork" className="mr-2" />
               Hire on Upwork
             </a>
           </Button>
           <Button asChild size="lg" variant="secondary">
             <a href={site.links.fiverr} target="_blank" rel="noreferrer noopener">
+              <BrandLogo label="Fiverr" className="mr-2" />
               Order on Fiverr
             </a>
           </Button>
