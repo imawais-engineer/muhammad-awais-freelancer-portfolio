@@ -210,6 +210,11 @@ const Index = () => {
           eyebrow="Services"
           title="What I build"
           intro="Six areas where automation pays for itself fastest — delivered as tested, documented systems, not one-off scripts."
+          action={
+            <Button asChild variant="secondary" className="shrink-0">
+              <Link to="/contact">Discuss your process</Link>
+            </Button>
+          }
         >
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
