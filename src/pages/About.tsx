@@ -83,7 +83,14 @@ const About = () => (
               loading="lazy"
             />
             <div className="p-5">
-              <p className="font-medium text-foreground">{site.name}</p>
+              <div className="flex items-center gap-1.5">
+                <p className="font-medium text-foreground">{site.name}</p>
+                <BadgeCheck
+                  className="h-4 w-4 shrink-0 text-primary"
+                  aria-label="Identity verified"
+                  title="Identity verified — government ID check and visual verification"
+                />
+              </div>
               <p className="text-sm text-muted-foreground">{site.title}</p>
             </div>
           </div>
