@@ -43,7 +43,7 @@ const sections: Section[] = [
           services. By using the website or working with me on a project, you agree to these Terms.
         </p>
         <p className="mt-3">
-          Service provider: <span className="text-foreground">Muhammad Awais — Freelance AI Automation Engineer</span>.
+          Service provider: <span className="text-foreground">Muhammad Awais — AI Automation Engineer | n8n & Make Expert</span>.
           Website:{" "}
           <a href="https://imawais.engineer/" className="text-primary underline-offset-4 hover:underline">
             https://imawais.engineer/
@@ -324,7 +324,7 @@ const Terms = () => {
     applyMeta({
       title: "Terms of Service | Muhammad Awais",
       description:
-        "Terms of Service for Muhammad Awais, Freelance AI Automation Engineer, covering website use, professional services, projects, AI integrations, and business engagements.",
+        "Terms of Service for Muhammad Awais, AI Automation Engineer and n8n & Make expert, covering website use, professional services, projects, AI integrations, and business engagements.",
       canonicalPath: "/terms",
     });
   }, []);
@@ -349,7 +349,7 @@ const Terms = () => {
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <span className="tech-tag">Last Updated: {LAST_UPDATED}</span>
-              <span className="tech-tag">Muhammad Awais — Freelance AI Automation Engineer</span>
+              <span className="tech-tag">Muhammad Awais — AI Automation Engineer | n8n & Make Expert</span>
             </div>
           </motion.div>
         </section>
@@ -404,7 +404,7 @@ const Terms = () => {
               <p className="mt-4 text-muted-foreground">
                 <span className="text-foreground">Muhammad Awais</span>
                 <br />
-                Freelance AI Automation Engineer
+                AI Automation Engineer | n8n &amp; Make Expert
               </p>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {contactLinks.map((item) => {

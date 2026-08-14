@@ -12,7 +12,7 @@ import profileImage from "@/assets/profile.png";
 const About = () => (
   <div className="min-h-screen">
     <Seo
-      title="About Muhammad Awais | AI Automation Engineer"
+      title={`About ${site.name} — ${site.title}`}
       description="n8n-certified automation engineer and AI hackathon finalist building production workflows for agencies, SaaS teams and small businesses worldwide."
       path="/about"
     />
