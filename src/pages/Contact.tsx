@@ -7,44 +7,6 @@ import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { process, site } from "@/data/site";
 
-const channels = [
-  {
-    label: "Email",
-    value: site.email,
-    href: `mailto:${site.email}`,
-    icon: Mail,
-    note: "Best for detailed project briefs — I reply within a working day.",
-  },
-  {
-    label: "Upwork",
-    value: "5.0 / 5.0 rating",
-    href: site.links.upwork,
-    icon: ArrowUpRight,
-    note: "Hire with contract protection and escrow.",
-  },
-  {
-    label: "Fiverr",
-    value: "mawais_pk",
-    href: site.links.fiverr,
-    icon: ArrowUpRight,
-    note: "Good for smaller, well-defined automation tasks.",
-  },
-  {
-    label: "LinkedIn",
-    value: "imawais-engineer",
-    href: site.links.linkedin,
-    icon: Linkedin,
-    note: "Connect, or message me about longer-term work.",
-  },
-  {
-    label: "Website",
-    value: "imawais.engineer",
-    href: site.website,
-    icon: Globe,
-    note: "More about me and what I'm building.",
-  },
-];
-
 const briefChecklist = [
   "The process you want automated, described the way you'd explain it to a new hire.",
   "The tools already involved (CRM, spreadsheets, inbox, chat).",
@@ -88,32 +50,25 @@ const Contact = () => (
               Hire on Upwork
             </a>
           </Button>
+          <Button asChild size="lg" variant="secondary">
+            <a href={site.links.fiverr} target="_blank" rel="noreferrer noopener">
+              Order on Fiverr
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="secondary">
+            <a href={site.links.linkedin} target="_blank" rel="noreferrer noopener">
+              <Linkedin className="mr-2 h-4 w-4" />
+              LinkedIn
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="secondary">
+            <a href={site.website} target="_blank" rel="noreferrer noopener">
+              <Globe className="mr-2 h-4 w-4" />
+              Website
+            </a>
+          </Button>
         </div>
       </motion.header>
-
-      <section className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {channels.map((channel) => {
-          const Icon = channel.icon;
-          return (
-            <a
-              key={channel.label}
-              href={channel.href}
-              target={channel.href.startsWith("mailto:") ? undefined : "_blank"}
-              rel="noreferrer noopener"
-              className="node-card group flex h-full flex-col gap-2 p-6 hover:shadow-elevated"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  {channel.label}
-                </span>
-                <Icon className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
-              </div>
-              <p className="break-words text-base font-medium text-foreground">{channel.value}</p>
-              <p className="text-sm text-muted-foreground">{channel.note}</p>
-            </a>
-          );
-        })}
-      </section>
 
       <section className="mt-16 grid gap-4 lg:grid-cols-2">
         <article className="node-card p-6">
