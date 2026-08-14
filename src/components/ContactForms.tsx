@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Send } from "lucide-react";
+import { CheckCircle, Loader2, Send } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -35,9 +35,18 @@ import {
 } from "@/lib/contactForms";
 import { site } from "@/data/site";
 
-const Sent = ({ onReset }: { onReset: () => void }) => (
-  <div className="node-card p-8 text-center">
-    <h3 className="text-lg font-semibold">Message received</h3>
+const Sent = forwardRef<HTMLDivElement, { onReset: () => void }>(({ onReset }, ref) => (
+  <div
+    ref={ref}
+    className="node-card scroll-mt-28 p-8 text-center outline-none"
+    role="status"
+    aria-live="polite"
+    tabIndex={-1}
+  >
+    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+      <CheckCircle className="h-6 w-6 text-primary" aria-hidden="true" />
+    </div>
+    <h3 className="mt-4 text-lg font-semibold">Message received</h3>
     <p className="mt-2 text-sm text-muted-foreground">
       It's in my queue — I usually reply within one business day.
     </p>
@@ -45,7 +54,8 @@ const Sent = ({ onReset }: { onReset: () => void }) => (
       Send another
     </Button>
   </div>
-);
+));
+Sent.displayName = "Sent";
 
 const BasicForm = ({ onSent }: { onSent: () => void }) => {
   const form = useForm<BasicQueryValues>({
@@ -409,6 +419,14 @@ const AdvancedForm = ({ onSent }: { onSent: () => void }) => {
 
 const ContactForms = () => {
   const [sent, setSent] = useState<"basic" | "advanced" | null>(null);
+  const sentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (sent && sentRef.current) {
+      sentRef.current.focus({ preventScroll: true });
+      sentRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [sent]);
 
   return (
     <Tabs defaultValue="basic" className="w-full">
@@ -419,7 +437,7 @@ const ContactForms = () => {
 
       <TabsContent value="basic" className="mt-6">
         {sent === "basic" ? (
-          <Sent onReset={() => setSent(null)} />
+          <Sent ref={sentRef} onReset={() => setSent(null)} />
         ) : (
           <div className="node-card p-6">
             <BasicForm onSent={() => setSent("basic")} />
@@ -429,7 +447,7 @@ const ContactForms = () => {
 
       <TabsContent value="advanced" className="mt-6">
         {sent === "advanced" ? (
-          <Sent onReset={() => setSent(null)} />
+          <Sent ref={sentRef} onReset={() => setSent(null)} />
         ) : (
           <div className="node-card p-6">
             <AdvancedForm onSent={() => setSent("advanced")} />
