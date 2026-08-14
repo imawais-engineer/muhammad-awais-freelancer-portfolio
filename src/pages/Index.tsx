@@ -143,7 +143,33 @@ const Index = () => {
           </dl>
         </motion.section>
 
-        {/* 2 — Services overview */}
+        {/* 2 — Credentials */}
+        <Section
+          id="credentials"
+          eyebrow="Credentials"
+          title="Certifications & recognition"
+          intro="Verified training and competition results behind the work."
+          action={
+            <Link to="/about" className="system-link hover:text-primary">
+              Read the full background
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          }
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {about.credentials.map((credential) => (
+              <article key={credential.title} className="node-card flex gap-3 p-6">
+                <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                <div>
+                  <h3 className="text-sm font-semibold leading-snug">{credential.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{credential.detail}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        {/* 3 — Services overview */}
         <Section
           id="services"
           eyebrow="Services"
