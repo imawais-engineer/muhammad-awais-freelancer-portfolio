@@ -35,9 +35,18 @@ import {
 } from "@/lib/contactForms";
 import { site } from "@/data/site";
 
-const Sent = ({ onReset }: { onReset: () => void }) => (
-  <div className="node-card p-8 text-center">
-    <h3 className="text-lg font-semibold">Message received</h3>
+const Sent = forwardRef<HTMLDivElement, { onReset: () => void }>(({ onReset }, ref) => (
+  <div
+    ref={ref}
+    className="node-card scroll-mt-28 p-8 text-center outline-none"
+    role="status"
+    aria-live="polite"
+    tabIndex={-1}
+  >
+    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+      <CheckCircle className="h-6 w-6 text-primary" aria-hidden="true" />
+    </div>
+    <h3 className="mt-4 text-lg font-semibold">Message received</h3>
     <p className="mt-2 text-sm text-muted-foreground">
       It's in my queue — I usually reply within one business day.
     </p>
@@ -45,7 +54,8 @@ const Sent = ({ onReset }: { onReset: () => void }) => (
       Send another
     </Button>
   </div>
-);
+));
+Sent.displayName = "Sent";
 
 const BasicForm = ({ onSent }: { onSent: () => void }) => {
   const form = useForm<BasicQueryValues>({
