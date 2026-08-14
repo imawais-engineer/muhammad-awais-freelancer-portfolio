@@ -148,7 +148,7 @@ const Index = () => {
                 loading="eager"
                 className="aspect-square w-full rounded-xl object-cover"
               />
-              <div className="mt-4 flex items-center gap-2">
+              <div className="mt-4 flex items-center justify-center gap-2">
                 <p className="text-xl font-semibold tracking-tight text-foreground">{site.name}</p>
                 <span
                   className="inline-flex"
