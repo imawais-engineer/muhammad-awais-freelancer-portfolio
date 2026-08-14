@@ -2,7 +2,7 @@ import aaronAvatar from "@/assets/aaron-auf-der-maur.jpg.asset.json";
 
 export const site = {
   name: "Muhammad Awais",
-  title: "AI Automation Engineer | Business Automation Specialist | n8n & Make",
+  title: "AI Automation & Workflow Engineer",
   tagline:
     "Helping agencies, SaaS teams, and small businesses cut 20+ hours of manual work a week with smart automations.",
   positioning:
