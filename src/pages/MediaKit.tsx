@@ -207,7 +207,7 @@ const MediaKit = () => {
     applyMeta({
       title: `Media Kit | ${site.name} — ${site.title}`,
       description:
-        "Professional media and partnership profile for Muhammad Awais, AI Automation Engineer and n8n & Make expert, specializing in AI automation, workflow engineering, AI integrations, and web development.",
+        "Professional media and partnership profile for Muhammad Awais, AI Automation & Workflow Engineer, specializing in AI automation, workflow engineering, AI integrations, and web development.",
       canonicalPath: "/media-kit",
     });
   }, []);
