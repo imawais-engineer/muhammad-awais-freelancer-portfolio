@@ -182,8 +182,9 @@ const ProjectDetail = () => {
                 <Quote className="h-5 w-5 text-primary" aria-hidden="true" />
                 <blockquote className="mt-4 text-lg leading-relaxed">“{project.feedback}”</blockquote>
                 <figcaption className="mt-4 font-mono text-xs text-muted-foreground">
-                  Client rating: {project.rating}
+                  {project.clientWork ? `Client rating: ${project.rating}` : "Feedback from the build review"}
                 </figcaption>
+
               </figure>
             )}
           </div>
