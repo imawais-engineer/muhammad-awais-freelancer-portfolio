@@ -1,3 +1,5 @@
+import aaronAvatar from "@/assets/aaron-auf-der-maur.jpg.asset.json";
+
 export const site = {
   name: "Muhammad Awais",
   title: "AI Automation Engineer | n8n & Make Expert",
