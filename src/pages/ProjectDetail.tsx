@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, Check, Quote } from "lucide-react";
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import TechTag from "@/components/TechTag";
 import { Button } from "@/components/ui/button";
 import { getProject, projects } from "@/data/projects";
 import { getProjectImage } from "@/data/projectImages";
@@ -130,11 +131,10 @@ const ProjectDetail = () => {
 
         <div className="mt-6 flex flex-wrap gap-2">
           {project.tools.map((tool) => (
-            <span key={tool} className="tech-tag">
-              {tool}
-            </span>
+            <TechTag key={tool} label={tool} />
           ))}
         </div>
+
 
         <div className="mt-16 grid gap-16 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
           <div className="space-y-14">
