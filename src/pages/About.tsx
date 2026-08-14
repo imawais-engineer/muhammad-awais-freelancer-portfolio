@@ -7,7 +7,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { about, process, site } from "@/data/site";
-import profileAsset from "@/assets/profile.png.asset.json";
+import profileImage from "@/assets/profile.png";
 
 const About = () => (
   <div className="min-h-screen">
@@ -77,7 +77,7 @@ const About = () => (
         <aside className="space-y-4 lg:sticky lg:top-24">
           <div className="node-card overflow-hidden p-0">
             <img
-              src={profileAsset.url}
+              src={profileImage}
               alt="Muhammad Awais"
               className="aspect-square w-full object-cover"
               loading="lazy"
