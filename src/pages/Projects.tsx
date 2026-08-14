@@ -6,15 +6,17 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ProjectCard from "@/components/ProjectCard";
 import { cn } from "@/lib/utils";
-import { projectCategories, projects } from "@/data/projects";
+import { clientProjects, demoProjects, projectCategories, projects } from "@/data/projects";
 
 const Projects = () => {
   const [active, setActive] = useState<string>("All");
 
-  const filtered = useMemo(
-    () => (active === "All" ? projects : projects.filter((p) => p.category === active)),
-    [active],
-  );
+  const filterBy = (list: typeof projects) =>
+    active === "All" ? list : list.filter((p) => p.category === active);
+
+  const filteredClient = useMemo(() => filterBy(clientProjects), [active]);
+  const filteredDemo = useMemo(() => filterBy(demoProjects), [active]);
+
 
   const filters = ["All", ...projectCategories];
 
