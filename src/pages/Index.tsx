@@ -255,10 +255,46 @@ const Index = () => {
           <div className="grid gap-4 lg:grid-cols-3">
             {testimonials.map((t) => (
               <figure key={t.author} className="node-card flex h-full flex-col p-6">
-                <blockquote className="text-sm leading-relaxed text-foreground">“{t.quote}”</blockquote>
-                <figcaption className="mt-auto pt-6">
-                  <p className="text-sm font-medium">{t.author}</p>
-                  <p className="font-mono text-xs text-muted-foreground">{t.meta}</p>
+                <div className="flex items-center gap-1 text-primary" aria-label={`${t.rating} out of 5`}>
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                  ))}
+                </div>
+                <blockquote className="mt-4 text-sm leading-relaxed text-foreground">“{t.quote}”</blockquote>
+                <figcaption className="mt-auto flex items-center gap-3 pt-6">
+                  {"avatar" in t && t.avatar ? (
+                    <img
+                      src={t.avatar}
+                      alt={`${t.author}, ${t.role} at ${t.company}`}
+                      loading="lazy"
+                      className="h-11 w-11 shrink-0 rounded-full object-cover ring-1 ring-border"
+                    />
+                  ) : (
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-secondary font-mono text-sm text-muted-foreground">
+                      {t.author.charAt(0)}
+                    </span>
+                  )}
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium">{t.author}</p>
+                    <p className="font-mono text-xs text-muted-foreground">
+                      {t.role}
+                      {"companyUrl" in t && t.companyUrl ? (
+                        <>
+                          {" · "}
+                          <a
+                            href={t.companyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-primary"
+                          >
+                            {t.company}
+                          </a>
+                        </>
+                      ) : (
+                        t.company ? ` · ${t.company}` : null
+                      )}
+                    </p>
+                  </div>
                 </figcaption>
               </figure>
             ))}
