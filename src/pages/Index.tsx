@@ -109,15 +109,15 @@ const Index = () => {
           variants={reveal}
           className="container pt-8 md:pt-12"
         >
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-center">
+          <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
-              <h1 className="max-w-3xl text-3xl font-semibold leading-[1.1] tracking-tight md:text-5xl">
+              <h1 className="max-w-3xl text-2xl font-semibold leading-[1.1] tracking-tight md:text-4xl lg:text-5xl">
                 I build systems that cut{" "}
                 <span className="text-primary">20+ hours of manual work</span> a week.
               </h1>
-              <p className="mt-3 max-w-2xl text-base text-muted-foreground md:text-lg">{site.tagline}</p>
+              <p className="mt-2 max-w-2xl text-base text-muted-foreground md:text-lg">{site.tagline}</p>
 
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="mt-3 flex flex-wrap gap-3">
                 <Button asChild size="lg">
                   <Link to="/contact">
                     Book an automation audit
@@ -129,7 +129,7 @@ const Index = () => {
                 </Button>
               </div>
 
-              <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground">
+              <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground">
                 <span className="inline-flex items-center gap-2">
                   <MapPin className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                   {site.location}
@@ -141,7 +141,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="node-card order-first max-w-[260px] p-4 lg:order-none lg:max-w-xs">
+            <div className="node-card order-first max-w-[200px] p-3 md:order-none md:max-w-[220px] lg:max-w-[260px] lg:p-4">
               <img
                 src={profileImage}
                 alt="Portrait of Muhammad Awais, AI automation engineer"
@@ -149,7 +149,7 @@ const Index = () => {
                 className="aspect-square w-full rounded-xl object-cover"
               />
               <div className="mt-2 flex items-center justify-center gap-2">
-                <p className="text-lg font-semibold tracking-tight text-foreground md:text-xl">{site.name}</p>
+                <p className="text-base font-semibold tracking-tight text-foreground md:text-lg lg:text-xl">{site.name}</p>
                 <span
                   className="inline-flex"
                   aria-label="Identity verified"
@@ -161,7 +161,7 @@ const Index = () => {
             </div>
           </div>
 
-          <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {proofStats.map((stat) => (
               <div key={stat.label} className="node-card p-4">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
