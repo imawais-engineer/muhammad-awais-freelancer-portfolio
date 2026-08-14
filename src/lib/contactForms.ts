@@ -90,7 +90,7 @@ export async function submitToN8n(values: Record<string, unknown>, source: FormS
   const url = isBasic ? N8N_BASIC_FORM_URL : N8N_ADVANCED_FORM_URL;
   const labels: Record<string, string> = isBasic ? basicLabels : advancedLabels;
 
-  const body = new URLSearchParams();
+  const body = new FormData();
   Object.entries(values).forEach(([key, value]) => {
     const label = labels[key];
     if (!label) return; // never send anything the n8n form doesn't define
@@ -100,8 +100,7 @@ export async function submitToN8n(values: Record<string, unknown>, source: FormS
 
   const response = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: body.toString(),
+    body,
   });
 
   if (!response.ok) {
