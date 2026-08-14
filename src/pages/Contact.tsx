@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, Globe, Linkedin, ArrowUpRight } from "lucide-react";
 
+import BrandLogo from "@/components/BrandLogo";
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
