@@ -110,10 +110,7 @@ const Index = () => {
         >
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-center">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                {site.title}
-              </p>
-              <h1 className="mt-6 max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
+              <h1 className="max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
                 I build systems that cut{" "}
                 <span className="text-primary">20+ hours of manual work</span> a week.
               </h1>
