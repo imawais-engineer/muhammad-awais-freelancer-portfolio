@@ -1,14 +1,38 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, BadgeCheck, Check, MapPin, Star } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BadgeCheck,
+  Check,
+  MapPin,
+  ShieldCheck,
+  Star,
+} from "lucide-react";
 
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ProjectCard from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
-import { featuredProjects, projects } from "@/data/projects";
-import { about, methodologies, process, proofStats, services, site, techStack, testimonials } from "@/data/site";
+import { clientProjects, demoProjects, projects } from "@/data/projects";
+import {
+  about,
+  aiCapabilities,
+  architecturePatterns,
+  businessProblems,
+  deliverables,
+  integrationMap,
+  methodologies,
+  process,
+  proofStats,
+  reliability,
+  scrapingCapabilities,
+  services,
+  site,
+  techStack,
+  testimonials,
+} from "@/data/site";
 import profileImage from "@/assets/profile.png";
 
 const standardEase: [number, number, number, number] = [0.2, 0, 0, 1];
@@ -77,7 +101,7 @@ const Index = () => {
       <SiteHeader />
 
       <main className="pb-8">
-        {/* 1 — Intro */}
+        {/* 01 — Professional positioning (hero) */}
         <motion.section
           initial="hidden"
           animate="show"
@@ -152,12 +176,11 @@ const Index = () => {
           </dl>
         </motion.section>
 
-        {/* 2 — Credentials */}
+        {/* 02 — About / professional summary */}
         <Section
-          id="credentials"
-          eyebrow="Credentials"
-          title="Certifications & recognition"
-          intro="Verified training and competition results behind the work."
+          id="about"
+          eyebrow="About"
+          title="Who I am, and how I work"
           action={
             <Link to="/about" className="system-link hover:text-primary">
               Read the full background
@@ -165,20 +188,26 @@ const Index = () => {
             </Link>
           }
         >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {about.credentials.map((credential) => (
-              <article key={credential.title} className="node-card flex gap-3 p-6">
-                <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                <div>
-                  <h3 className="text-sm font-semibold leading-snug">{credential.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{credential.detail}</p>
-                </div>
-              </article>
-            ))}
+          <div className="grid gap-4 lg:grid-cols-3">
+            <article className="node-card p-6 lg:col-span-2">
+              <p className="text-base leading-relaxed text-foreground">{about.intro}</p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {about.paragraphs[0]}
+              </p>
+              <p className="mt-4 border-l-2 border-primary pl-4 text-sm italic text-muted-foreground">
+                {about.principle}
+              </p>
+            </article>
+            <article className="node-card p-6">
+              <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Who I help
+              </h3>
+              <p className="mt-3 text-sm text-muted-foreground">{about.whoIHelp}</p>
+            </article>
           </div>
         </Section>
 
-        {/* 3 — Services overview */}
+        {/* 03 — Core services */}
         <Section
           id="services"
           eyebrow="Services"
@@ -208,47 +237,24 @@ const Index = () => {
           </div>
         </Section>
 
-        {/* 3 — Featured work */}
+        {/* 04 — Business problems solved */}
         <Section
-          id="work"
-          eyebrow="Selected work"
-          title="Production systems, with the numbers"
-          intro="Every build below is running in production. Open a case study for the architecture, workflow logic and measured results."
-          action={
-            <Button asChild variant="secondary" className="shrink-0">
-              <Link to="/projects">
-                All {projects.length} case studies
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          }
+          id="problems"
+          eyebrow="Problems solved"
+          title="The bottlenecks I'm usually hired to remove"
+          intro="If two or more of these sound like your week, there is almost certainly a system worth building."
         >
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+            {businessProblems.map((problem) => (
+              <article key={problem.title} className="node-card p-6">
+                <h3 className="text-base font-semibold">{problem.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{problem.detail}</p>
+              </article>
             ))}
           </div>
         </Section>
 
-        {/* 4 — How I work */}
-        <Section
-          id="process"
-          eyebrow="Process"
-          title="From problem to production in five steps"
-          intro="You approve the system design before anything is built, and you get documentation you can actually use."
-        >
-          <ol className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
-            {process.map((p) => (
-              <li key={p.step} className="node-card flex h-full flex-col p-5">
-                <p className="font-mono text-sm text-primary">{p.step}</p>
-                <h3 className="mt-2 text-base font-semibold">{p.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{p.detail}</p>
-              </li>
-            ))}
-          </ol>
-        </Section>
-
-        {/* 5 — Stack snapshot */}
+        {/* 05 — Technology stack */}
         <Section
           id="stack"
           eyebrow="Technology"
@@ -285,8 +291,196 @@ const Index = () => {
           </div>
         </Section>
 
-        {/* 6 — Trust: testimonials + about teaser */}
-        <Section eyebrow="Proof" title="What clients say">
+        {/* 06 — Integrations (visual map) */}
+        <Section
+          id="integrations"
+          eyebrow="Integrations"
+          title="How the pieces connect"
+          intro="A typical system moves left to right: something triggers it, logic and AI process it, data is stored, and actions land in the tools your team already uses."
+        >
+          <div className="grid gap-4 lg:grid-cols-4">
+            {integrationMap.map((layer, index) => (
+              <article key={layer.layer} className="node-card relative p-5">
+                <p className="font-mono text-xs text-primary">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-1 text-base font-semibold">{layer.layer}</h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {layer.nodes.map((node) => (
+                    <span key={node} className="tech-tag">
+                      {node}
+                    </span>
+                  ))}
+                </div>
+                {index < integrationMap.length - 1 && (
+                  <ArrowRight
+                    className="absolute -right-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-primary lg:block"
+                    aria-hidden="true"
+                  />
+                )}
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        {/* 07 — Real client projects */}
+        <Section
+          id="client-work"
+          eyebrow="Real client projects"
+          title="Paid work, running in production"
+          intro="Delivered for paying clients, with ratings and measured results you can verify."
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {clientProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        </Section>
+
+        {/* 08 — Portfolio / demonstration projects */}
+        <Section
+          id="work"
+          eyebrow="Demonstration projects"
+          title="Systems I've built to prove the patterns"
+          intro="Production-grade builds covering AI agents, lead qualification, support triage, RAG and content pipelines. Open any case study for the architecture, workflow logic and results."
+          action={
+            <Button asChild variant="secondary" className="shrink-0">
+              <Link to="/projects">
+                All {projects.length} case studies
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          }
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {demoProjects.slice(0, 6).map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        </Section>
+
+        {/* 09 — Automation architecture */}
+        <Section
+          id="architecture"
+          eyebrow="Architecture"
+          title="How I engineer the workflows"
+          intro="The patterns behind every build — the reason these systems keep running after handover."
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {architecturePatterns.map((pattern) => (
+              <article key={pattern.title} className="node-card p-6">
+                <h3 className="text-base font-semibold">{pattern.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{pattern.detail}</p>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        {/* 10 — AI automation capabilities */}
+        <Section
+          id="ai"
+          eyebrow="AI capabilities"
+          title="Where AI actually earns its place"
+          intro="Used only where a rule-based step can't do the job — always with fallbacks, guardrails and a human in the loop where it matters."
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {aiCapabilities.map((capability) => (
+              <article key={capability.title} className="node-card p-6">
+                <h3 className="text-base font-semibold">{capability.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{capability.detail}</p>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        {/* 11 — Scraping & data automation */}
+        <Section
+          id="data"
+          eyebrow="Scraping & data"
+          title="Reliable data in, structured insight out"
+          intro="Collection is the easy part. The value is in cleaning, deduplicating and enriching data so the rest of the system can trust it."
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {scrapingCapabilities.map((stage) => (
+              <article key={stage.title} className="node-card p-5">
+                <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+                  {stage.title}
+                </h3>
+                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                  {stage.items.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        {/* 12 — Process / how I work */}
+        <Section
+          id="process"
+          eyebrow="Process"
+          title="From problem to production in five steps"
+          intro="You approve the system design before anything is built, and you get documentation you can actually use."
+        >
+          <ol className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
+            {process.map((p) => (
+              <li key={p.step} className="node-card flex h-full flex-col p-5">
+                <p className="font-mono text-sm text-primary">{p.step}</p>
+                <h3 className="mt-2 text-base font-semibold">{p.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{p.detail}</p>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        {/* 13 — Security, reliability & error handling */}
+        <Section
+          id="reliability"
+          eyebrow="Reliability"
+          title="Security, reliability & error handling"
+          intro="Automation is only worth having if it fails safely. This is what I build in by default, on every project."
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {reliability.map((item) => (
+              <article key={item.title} className="node-card flex gap-3 p-6">
+                <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                <div>
+                  <h3 className="text-base font-semibold leading-snug">{item.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        {/* 14 — Proof, credibility & testimonials */}
+        <Section
+          id="proof"
+          eyebrow="Proof"
+          title="Credentials and what clients say"
+          action={
+            <Link to="/about" className="system-link hover:text-primary">
+              Read the full background
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          }
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {about.credentials.map((credential) => (
+              <article key={credential.title} className="node-card flex gap-3 p-6">
+                <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                <div>
+                  <h3 className="text-sm font-semibold leading-snug">{credential.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{credential.detail}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
           <div className="grid gap-4 md:grid-cols-2">
             {testimonials.map((t) => (
               <figure key={t.author} className="node-card flex h-full flex-col p-6">
@@ -336,7 +530,24 @@ const Index = () => {
           </div>
         </Section>
 
-        {/* 7 — CTA */}
+        {/* 15 — Documentation & demo assets */}
+        <Section
+          id="documentation"
+          eyebrow="Documentation"
+          title="What you receive at handover"
+          intro="You own the system, the credentials and the documentation — no lock-in, no black boxes."
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {deliverables.map((item) => (
+              <article key={item.title} className="node-card p-6">
+                <h3 className="text-base font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        {/* 16 — Contact / call to action */}
         <section className="container pt-24">
           <div className="node-card flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between md:p-12">
             <div className="max-w-xl space-y-3">
