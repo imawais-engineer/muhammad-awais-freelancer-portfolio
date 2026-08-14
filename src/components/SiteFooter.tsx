@@ -1,22 +1,38 @@
 import { Link } from "react-router-dom";
 
+import { site } from "@/data/site";
+
 const SiteFooter = () => (
-  <footer className="mt-20 border-t border-panel-border">
-    <div className="container flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
-      <p className="font-mono text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Muhammad Awais — Freelance AI Automation Engineer
-      </p>
-      <nav aria-label="Document links" className="flex flex-wrap gap-x-6 gap-y-2">
-        <Link to="/" className="system-link">
-          Home
-        </Link>
-        <Link to="/media-kit" className="system-link">
-          Media Kit
-        </Link>
-        <Link to="/terms" className="system-link">
-          Terms of Service
-        </Link>
+  <footer className="mt-24 border-t border-panel-border">
+    <div className="container grid gap-8 py-12 md:grid-cols-3">
+      <div className="space-y-2">
+        <p className="font-mono text-sm text-foreground">{site.name}</p>
+        <p className="text-sm text-muted-foreground">{site.title}</p>
+        <a href={`mailto:${site.email}`} className="system-link">
+          {site.email}
+        </a>
+      </div>
+
+      <nav aria-label="Site" className="flex flex-col gap-2">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Site</p>
+        <Link to="/projects" className="system-link">Work</Link>
+        <Link to="/about" className="system-link">About</Link>
+        <Link to="/contact" className="system-link">Contact</Link>
+        <Link to="/terms" className="system-link">Terms of Service</Link>
       </nav>
+
+      <nav aria-label="Elsewhere" className="flex flex-col gap-2">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Elsewhere</p>
+        <a href={site.links.upwork} target="_blank" rel="noreferrer noopener" className="system-link">Upwork</a>
+        <a href={site.links.fiverr} target="_blank" rel="noreferrer noopener" className="system-link">Fiverr</a>
+        <a href={site.links.linkedin} target="_blank" rel="noreferrer noopener" className="system-link">LinkedIn</a>
+      </nav>
+    </div>
+
+    <div className="border-t border-panel-border">
+      <p className="container py-6 font-mono text-xs text-muted-foreground">
+        © {new Date().getFullYear()} {site.name} — Freelance AI Automation Engineer
+      </p>
     </div>
   </footer>
 );
