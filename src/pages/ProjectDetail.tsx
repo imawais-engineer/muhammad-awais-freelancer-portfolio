@@ -7,6 +7,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { getProject, projects } from "@/data/projects";
+import { getProjectImage } from "@/data/projectImages";
 import { site } from "@/data/site";
 
 const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
@@ -32,6 +33,8 @@ const ProjectDetail = () => {
   const project = getProject(slug);
 
   if (!project) return <Navigate to="/projects" replace />;
+
+  const image = getProjectImage(project.slug);
 
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
