@@ -61,41 +61,37 @@ export type AdvancedQueryValues = z.infer<typeof advancedQuerySchema>;
 
 export type FormSource = "Portfolio - Basic Query" | "Portfolio - Advanced Query";
 
-/** Field key -> exact n8n Form Trigger field label. Only these are sent. */
-const basicLabels: Record<keyof BasicQueryValues, string> = {
-  full_name: "Full name",
-  email: "Email",
-  subject: "Subject",
-  message: "Message",
-};
+/**
+ * n8n Form Trigger posts fields positionally as `field-0`, `field-1`, ...
+ * The order below MUST match the field order configured in each n8n form.
+ */
+const basicOrder: (keyof BasicQueryValues)[] = ["full_name", "email", "subject", "message"];
 
-const advancedLabels: Record<keyof AdvancedQueryValues, string> = {
-  full_name: "Full name",
-  email: "Email",
-  company_name: "Company",
-  manual_process_description: "The manual process",
-  time_spent_hours: "Hours per week spent on it",
-  frequency: "How often it runs",
-  current_tools: "Tools you already use",
-  api_access: "API access to those tools?",
-  data_input_source: "Where the data comes from",
-  desired_output: "Desired output",
-  volume_per_run: "Records per run",
-  needs_ai_decision: "Does it need AI decisions?",
-  ai_use_case: "AI use case",
-};
+const advancedOrder: (keyof AdvancedQueryValues)[] = [
+  "full_name",
+  "email",
+  "company_name",
+  "manual_process_description",
+  "time_spent_hours",
+  "frequency",
+  "current_tools",
+  "api_access",
+  "data_input_source",
+  "desired_output",
+  "volume_per_run",
+  "needs_ai_decision",
+  "ai_use_case",
+];
 
 export async function submitToN8n(values: Record<string, unknown>, source: FormSource) {
   const isBasic = source === "Portfolio - Basic Query";
   const url = isBasic ? N8N_BASIC_FORM_URL : N8N_ADVANCED_FORM_URL;
-  const labels: Record<string, string> = isBasic ? basicLabels : advancedLabels;
+  const order: string[] = isBasic ? basicOrder : advancedOrder;
 
   const body = new FormData();
-  Object.entries(values).forEach(([key, value]) => {
-    const label = labels[key];
-    if (!label) return; // never send anything the n8n form doesn't define
-    if (value === "" || value === undefined || value === null) return;
-    body.append(label, String(value));
+  order.forEach((key, index) => {
+    const value = values[key];
+    body.append(`field-${index}`, value === undefined || value === null ? "" : String(value));
   });
 
   const response = await fetch(url, {
@@ -109,4 +105,5 @@ export async function submitToN8n(values: Record<string, unknown>, source: FormS
 
   return Object.fromEntries(body.entries());
 }
+
 
