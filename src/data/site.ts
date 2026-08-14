@@ -229,3 +229,189 @@ export const about = {
     },
   ],
 };
+
+export const businessProblems = [
+  {
+    title: "Repetitive manual work",
+    detail:
+      "Moving data between tools, updating spreadsheets, processing forms and handling routine email by hand.",
+  },
+  {
+    title: "Disconnected tools",
+    detail:
+      "CRM, sheets, inbox and chat apps that never talk to each other, so the same record gets typed three times.",
+  },
+  {
+    title: "Slow, leaky lead handling",
+    detail:
+      "Leads arriving faster than anyone can qualify or follow up — the good ones go cold before you reach them.",
+  },
+  {
+    title: "Manual reporting",
+    detail:
+      "Hours each week rebuilding the same digest, dashboard or status update from scattered sources.",
+  },
+  {
+    title: "Human error at scale",
+    detail:
+      "Typos, duplicates and missed steps that quietly cost money once volume grows past a few dozen records a day.",
+  },
+  {
+    title: "No visibility",
+    detail:
+      "Nobody can answer \"where is this in the process right now?\" without asking three people.",
+  },
+];
+
+export const integrationMap = [
+  {
+    layer: "Triggers & intake",
+    nodes: ["Webforms", "Gmail", "Google Forms", "Webhooks", "Calendly", "Stripe", "Schedules", "WhatsApp"],
+  },
+  {
+    layer: "Processing & intelligence",
+    nodes: ["n8n", "Make.com", "Zapier", "OpenAI", "Claude", "Gemini", "Groq", "OpenRouter", "JavaScript", "Python"],
+  },
+  {
+    layer: "Data & storage",
+    nodes: ["Google Sheets", "Airtable", "Notion", "Supabase (pgvector)", "PostgreSQL", "Pinecone", "Google Drive"],
+  },
+  {
+    layer: "Delivery & action",
+    nodes: ["Slack", "Telegram", "Gmail", "WhatsApp", "HubSpot", "Pipedrive", "GoHighLevel", "ClickUp", "Twilio", "YouTube"],
+  },
+];
+
+export const architecturePatterns = [
+  {
+    title: "Event-driven triggers",
+    detail:
+      "Webhooks, inbox and sheet triggers fire the moment something happens — no polling, no waiting on a cron.",
+  },
+  {
+    title: "Conditional routing",
+    detail:
+      "IF/switch branches send each record down the right path: qualified vs. nurture, replied vs. follow-up.",
+  },
+  {
+    title: "Parallel execution",
+    detail:
+      "One trigger fans out to Slack, the CRM, the sheet and an auto-reply at the same time instead of in sequence.",
+  },
+  {
+    title: "Sub-workflow design",
+    detail:
+      "Shared logic lives in reusable sub-workflows, so systems stay readable as they grow past 20 nodes.",
+  },
+  {
+    title: "State-based locking",
+    detail:
+      "A processed flag on every record guarantees each item is handled exactly once, even if triggers double-fire.",
+  },
+  {
+    title: "Batch & loop processing",
+    detail:
+      "Iterators walk hundreds of records per run with rate-limit-aware pacing and per-item error isolation.",
+  },
+];
+
+export const aiCapabilities = [
+  {
+    title: "Classification & routing",
+    detail: "LLM-based labelling of emails, tickets and leads, with confidence thresholds and rule-based fallbacks.",
+  },
+  {
+    title: "Extraction & structuring",
+    detail: "Turning free text, documents and scraped pages into strict JSON your systems can act on.",
+  },
+  {
+    title: "Scoring & qualification",
+    detail: "AI scoring of inbound leads against your ideal-customer criteria before a human ever sees them.",
+  },
+  {
+    title: "Conversational agents",
+    detail: "WhatsApp, Slack and web assistants with memory, context windows and logged conversations.",
+  },
+  {
+    title: "RAG over your knowledge base",
+    detail: "Multi-query retrieval with Supabase pgvector or Pinecone for grounded, source-backed answers.",
+  },
+  {
+    title: "Content generation",
+    detail: "Drafted replies, summaries, SEO metadata and reports — always reviewable before they go out.",
+  },
+];
+
+export const scrapingCapabilities = [
+  {
+    title: "Collection",
+    items: ["Apify actors (pre-built & custom)", "SocialCrawl for social data", "BrowserAct web automation", "Python scrapers", "API-based ingestion"],
+  },
+  {
+    title: "Cleaning",
+    items: ["Normalisation & type coercion", "Deduplication by stable keys", "Validation & rejection rules", "Field mapping to your schema"],
+  },
+  {
+    title: "Enrichment",
+    items: ["Third-party enrichment APIs", "Median & outlier scoring", "AI summarisation of records", "Derived metrics and flags"],
+  },
+  {
+    title: "Delivery",
+    items: ["Scheduled digests", "Real-time monitoring alerts", "Google Sheets / Airtable sync", "CRM push with dedupe"],
+  },
+];
+
+export const reliability = [
+  {
+    title: "Error handling on every branch",
+    detail:
+      "Workflows continue on API failures — private accounts, rate limits and timeouts are caught, logged and skipped rather than breaking the run.",
+  },
+  {
+    title: "Retries with backoff",
+    detail: "Failed writes retry up to three times before the run is logged as failed and you are notified.",
+  },
+  {
+    title: "Idempotency",
+    detail: "State flags and stable keys guarantee each record is processed exactly once — no duplicate tasks or emails.",
+  },
+  {
+    title: "Credential hygiene",
+    detail: "Keys live in the platform's credential store or environment variables, never inside nodes, code or exports.",
+  },
+  {
+    title: "Least-privilege access",
+    detail: "Scoped OAuth and API tokens limited to the exact resources a workflow needs, and revocable independently.",
+  },
+  {
+    title: "Monitoring & logging",
+    detail: "Run logs, execution history and failure alerts so you find out before your customers do.",
+  },
+];
+
+export const deliverables = [
+  {
+    title: "Architecture diagram",
+    detail: "The full data flow, approved by you before a single node is built.",
+  },
+  {
+    title: "Annotated workflow",
+    detail: "Named, commented nodes and sticky notes so any developer can pick it up later.",
+  },
+  {
+    title: "Written documentation",
+    detail: "How it runs, what each branch does, where credentials live and how to change the logic.",
+  },
+  {
+    title: "Handover walkthrough",
+    detail: "A recorded or live session showing exactly how to operate and monitor the system.",
+  },
+  {
+    title: "Case-study breakdowns",
+    detail: "Every project on this site is documented end to end — problem, architecture, logic and measured results.",
+  },
+  {
+    title: "Live demo on request",
+    detail: "Happy to screen-share a running workflow relevant to your use case before you commit.",
+  },
+];
