@@ -135,13 +135,21 @@ export const testimonials = [
   {
     quote:
       "Everything you need. Professional, responds extremely quickly, and works in a structured and reliable manner. Top-notch! There's really nothing more to say.",
-    author: "Aaron Auf Der Maur",
+    author: "Aaron Auf der Maur",
+    role: "Managing Director",
+    company: "Brand Aktuell",
+    companyUrl: "https://brand-aktuell.ch",
+    avatar: aaronAvatar.url,
     meta: "Switzerland · Upwork 5.0/5.0",
+    rating: 5,
   },
   {
     quote: "You did amazing work again – exactly as expected. Thanks a lot!",
     author: "Diego Armandon",
+    role: "Direct client",
+    company: "Switzerland",
     meta: "Switzerland · Direct client referral 5.0/5.0",
+    rating: 5,
   },
 ];
 
