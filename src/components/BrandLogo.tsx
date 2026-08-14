@@ -50,7 +50,6 @@ const BRAND_DOMAINS: Array<[match: string, domain: string]> = [
   ["stripe", "stripe.com"],
   ["twilio", "twilio.com"],
   ["apify", "apify.com"],
-  ["socialcrawl", "socialcrawl.com"],
   ["browseract", "browseract.com"],
   ["serpapi", "serpapi.com"],
   ["streamlit", "streamlit.io"],
@@ -58,11 +57,9 @@ const BRAND_DOMAINS: Array<[match: string, domain: string]> = [
   ["azure", "azure.microsoft.com"],
   ["oracle", "oracle.com"],
   ["alibaba", "alibabacloud.com"],
-  ["javascript", "developer.mozilla.org"],
   ["node", "nodejs.org"],
   ["typescript", "typescriptlang.org"],
   ["python", "python.org"],
-  ["html", "developer.mozilla.org"],
 ];
 
 export const getBrandDomain = (label: string): string | null => {
