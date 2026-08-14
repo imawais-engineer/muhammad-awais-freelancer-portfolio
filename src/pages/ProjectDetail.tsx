@@ -88,6 +88,24 @@ const ProjectDetail = () => {
           <p className="font-mono text-lg text-primary">{project.headlineResult}</p>
         </motion.header>
 
+        {image && (
+          <figure className="mt-10">
+            <img
+              src={image}
+              alt={`n8n workflow canvas for ${project.name}`}
+              loading="eager"
+              decoding="async"
+              width={1280}
+              height={720}
+              className="w-full rounded-xl border border-border bg-secondary object-cover"
+            />
+            <figcaption className="mt-3 font-mono text-xs text-muted-foreground">
+              Actual workflow canvas from the delivered build.
+            </figcaption>
+          </figure>
+        )}
+
+
         <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {meta.map((item) => (
             <div key={item.label} className="node-card p-5">
