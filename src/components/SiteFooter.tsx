@@ -31,7 +31,7 @@ const SiteFooter = () => (
 
     <div className="border-t border-panel-border">
       <p className="container py-6 font-mono text-xs text-muted-foreground">
-        © {new Date().getFullYear()} {site.name} — Freelance AI Automation Engineer
+        © {new Date().getFullYear()} {site.name} — {site.title}
       </p>
     </div>
   </footer>

@@ -30,6 +30,7 @@ import masoftImage from "@/assets/masoft.png";
 import aiSocialMediaAutomationImage from "@/assets/ai-social-media-automation-system.png";
 import affiliateDealsImage from "@/assets/affiliate-deals-platform.png";
 import personalPortfolioImage from "@/assets/personal-portfolio-website.png";
+import { site } from "@/data/site";
 import dataScienceLearningImage from "@/assets/data-science-learning-platform.png";
 
 const standardEase: [number, number, number, number] = [0.2, 0, 0, 1];
@@ -182,7 +183,7 @@ const whyWorkWithMe = [
 
 const businessInfo = [
   { label: "Name", value: "Muhammad Awais" },
-  { label: "Professional Title", value: "Freelance AI Automation Engineer" },
+  { label: "Professional Title", value: site.title },
   { label: "Business Type", value: "Independent Professional / Solopreneur" },
   { label: "Location", value: "Pakistan" },
   { label: "Primary Website", value: "https://imawais.engineer/", url: "https://imawais.engineer/" },
@@ -204,9 +205,9 @@ const SectionHeading = ({ index, title, subtitle }: { index: string; title: stri
 const MediaKit = () => {
   useEffect(() => {
     applyMeta({
-      title: "Media Kit | Muhammad Awais — AI Automation Engineer",
+      title: `Media Kit | ${site.name} — ${site.title}`,
       description:
-        "Professional media and partnership profile for Muhammad Awais, Freelance AI Automation Engineer specializing in AI automation, workflow engineering, AI integrations, and web development.",
+        "Professional media and partnership profile for Muhammad Awais, AI Automation Engineer and n8n & Make expert, specializing in AI automation, workflow engineering, AI integrations, and web development.",
       canonicalPath: "/media-kit",
     });
   }, []);
@@ -220,7 +221,7 @@ const MediaKit = () => {
           <motion.div className="max-w-3xl space-y-6" initial="hidden" animate="show" variants={reveal}>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Media Kit</p>
             <h1 className="font-mono text-3xl font-semibold uppercase tracking-[0.2em] md:text-5xl">Muhammad Awais</h1>
-            <p className="text-xl font-medium text-foreground md:text-2xl">Freelance AI Automation Engineer</p>
+            <p className="text-xl font-medium text-foreground md:text-2xl">{site.title}</p>
             <p className="text-base text-muted-foreground md:text-lg">
               I build smart systems that automate work, connect AI with real-world workflows, and turn ideas into
               functional digital solutions.
