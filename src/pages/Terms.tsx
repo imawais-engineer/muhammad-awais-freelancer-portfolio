@@ -404,7 +404,7 @@ const Terms = () => {
               <p className="mt-4 text-muted-foreground">
                 <span className="text-foreground">Muhammad Awais</span>
                 <br />
-                AI Automation Engineer | n8n &amp; Make Expert
+                AI Automation Engineer | n8n &amp; Make
               </p>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {contactLinks.map((item) => {
