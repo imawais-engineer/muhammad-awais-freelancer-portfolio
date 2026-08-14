@@ -107,7 +107,7 @@ const Index = () => {
           initial="hidden"
           animate="show"
           variants={reveal}
-          className="container pt-16 md:pt-24"
+          className="container pt-8 md:pt-12"
         >
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-center">
             <div>
