@@ -7,6 +7,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { getProject, projects } from "@/data/projects";
+import { getProjectImage } from "@/data/projectImages";
 import { site } from "@/data/site";
 
 const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
@@ -32,6 +33,8 @@ const ProjectDetail = () => {
   const project = getProject(slug);
 
   if (!project) return <Navigate to="/projects" replace />;
+
+  const image = getProjectImage(project.slug);
 
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
@@ -87,6 +90,24 @@ const ProjectDetail = () => {
           <p className="text-lg text-muted-foreground">{project.summary}</p>
           <p className="font-mono text-lg text-primary">{project.headlineResult}</p>
         </motion.header>
+
+        {image && (
+          <figure className="mt-10">
+            <img
+              src={image}
+              alt={`n8n workflow canvas for ${project.name}`}
+              loading="eager"
+              decoding="async"
+              width={1280}
+              height={720}
+              className="w-full rounded-xl border border-border bg-secondary object-cover"
+            />
+            <figcaption className="mt-3 font-mono text-xs text-muted-foreground">
+              Actual workflow canvas from the delivered build.
+            </figcaption>
+          </figure>
+        )}
+
 
         <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {meta.map((item) => (
