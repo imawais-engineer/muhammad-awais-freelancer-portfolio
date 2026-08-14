@@ -50,13 +50,21 @@ const ProjectDetail = () => {
   };
 
   const meta = [
-    { label: "Client", value: project.clientType },
+    project.clientWork
+      ? { label: "Client", value: project.clientType }
+      : { label: "Build type", value: "Self-initiated demonstration build" },
     { label: "Industry", value: project.industry },
     { label: "Timeframe", value: project.timeframe },
     { label: "Role", value: project.role },
     { label: "Platform", value: project.platform },
-    { label: "Rating", value: project.rating },
+    project.clientWork
+      ? { label: "Rating", value: project.rating }
+      : {
+          label: "Automation depth",
+          value: `${project.workflow.length} workflow steps · ${project.tools.length} integrations`,
+        },
   ];
+
 
   return (
     <div className="min-h-screen">
