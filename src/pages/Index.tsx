@@ -161,7 +161,7 @@ const Index = () => {
             </div>
           </div>
 
-          <dl className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 md:mt-10">
             {proofStats.map((stat) => (
               <div key={stat.label} className="node-card p-5">
                 <dt className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
