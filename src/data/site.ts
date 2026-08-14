@@ -143,11 +143,6 @@ export const testimonials = [
     author: "Diego Armandon",
     meta: "Switzerland · Direct client referral 5.0/5.0",
   },
-  {
-    quote: "Great Work!",
-    author: "Several clients",
-    meta: "5.0/5.0 ratings across multiple projects",
-  },
 ];
 
 export const process = [

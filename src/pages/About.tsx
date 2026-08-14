@@ -7,6 +7,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { about, process, site } from "@/data/site";
+import profileImage from "@/assets/profile.png";
 
 const About = () => (
   <div className="min-h-screen">
@@ -74,6 +75,19 @@ const About = () => (
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
+          <div className="node-card overflow-hidden p-0">
+            <img
+              src={profileImage}
+              alt="Muhammad Awais"
+              className="aspect-square w-full object-cover"
+              loading="lazy"
+            />
+            <div className="p-5">
+              <p className="font-medium text-foreground">{site.name}</p>
+              <p className="text-sm text-muted-foreground">{site.title}</p>
+            </div>
+          </div>
+
           <div className="node-card p-6">
             <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Certifications & recognition
