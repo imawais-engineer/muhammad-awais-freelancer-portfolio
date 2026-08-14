@@ -419,6 +419,14 @@ const AdvancedForm = ({ onSent }: { onSent: () => void }) => {
 
 const ContactForms = () => {
   const [sent, setSent] = useState<"basic" | "advanced" | null>(null);
+  const sentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (sent && sentRef.current) {
+      sentRef.current.focus({ preventScroll: true });
+      sentRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [sent]);
 
   return (
     <Tabs defaultValue="basic" className="w-full">
@@ -429,7 +437,7 @@ const ContactForms = () => {
 
       <TabsContent value="basic" className="mt-6">
         {sent === "basic" ? (
-          <Sent onReset={() => setSent(null)} />
+          <Sent ref={sentRef} onReset={() => setSent(null)} />
         ) : (
           <div className="node-card p-6">
             <BasicForm onSent={() => setSent("basic")} />
@@ -439,7 +447,7 @@ const ContactForms = () => {
 
       <TabsContent value="advanced" className="mt-6">
         {sent === "advanced" ? (
-          <Sent onReset={() => setSent(null)} />
+          <Sent ref={sentRef} onReset={() => setSent(null)} />
         ) : (
           <div className="node-card p-6">
             <AdvancedForm onSent={() => setSent("advanced")} />
