@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
 import type { Project } from "@/data/projects";
+import TechTag from "@/components/TechTag";
 import { getProjectImage } from "@/data/projectImages";
 
 const ProjectCard = ({ project }: { project: Project }) => {
