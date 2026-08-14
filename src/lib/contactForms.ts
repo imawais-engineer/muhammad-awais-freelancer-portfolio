@@ -1,10 +1,17 @@
 import { z } from "zod";
 
 /**
- * n8n webhook endpoint. Set VITE_N8N_WEBHOOK_URL in your environment
- * (production webhook URL from the n8n Webhook node).
+ * n8n Form Trigger endpoints (production URLs).
+ * Override with VITE_N8N_BASIC_FORM_URL / VITE_N8N_ADVANCED_FORM_URL.
  */
-export const N8N_WEBHOOK_URL = (import.meta.env.VITE_N8N_WEBHOOK_URL as string | undefined) ?? "";
+export const N8N_BASIC_FORM_URL =
+  (import.meta.env.VITE_N8N_BASIC_FORM_URL as string | undefined) ??
+  "https://n8nio.imawais.engineer/form/basic_query_form";
+
+export const N8N_ADVANCED_FORM_URL =
+  (import.meta.env.VITE_N8N_ADVANCED_FORM_URL as string | undefined) ??
+  "https://n8nio.imawais.engineer/form/advance_query_form";
+
 
 export const basicQuerySchema = z.object({
   full_name: z.string().trim().min(2, "Please enter your full name").max(100),
@@ -54,41 +61,53 @@ export type AdvancedQueryValues = z.infer<typeof advancedQuerySchema>;
 
 export type FormSource = "Portfolio - Basic Query" | "Portfolio - Advanced Query";
 
-/** Shared system/hidden fields sent with every submission. */
-const systemFields = (source: FormSource) => ({
-  id: crypto.randomUUID(),
-  timestamp: new Date().toISOString(),
-  source,
-  status: "Initiated" as const,
-  assigned_to: "Self",
-  internal_notes: null,
-});
+/** Field key -> exact n8n Form Trigger field label. Only these are sent. */
+const basicLabels: Record<keyof BasicQueryValues, string> = {
+  full_name: "Full name",
+  email: "Email",
+  subject: "Subject",
+  message: "Message",
+};
 
-/** Empty strings become null so the n8n / Sheets side stays clean. */
-const normalise = (values: Record<string, unknown>) =>
-  Object.fromEntries(
-    Object.entries(values).map(([key, value]) => [
-      key,
-      value === "" || value === undefined ? null : value,
-    ]),
-  );
+const advancedLabels: Record<keyof AdvancedQueryValues, string> = {
+  full_name: "Full name",
+  email: "Email",
+  company_name: "Company",
+  manual_process_description: "The manual process",
+  time_spent_hours: "Hours per week spent on it",
+  frequency: "How often it runs",
+  current_tools: "Tools you already use",
+  api_access: "API access to those tools?",
+  data_input_source: "Where the data comes from",
+  desired_output: "Desired output",
+  volume_per_run: "Records per run",
+  needs_ai_decision: "Does it need AI decisions?",
+  ai_use_case: "AI use case",
+};
 
 export async function submitToN8n(values: Record<string, unknown>, source: FormSource) {
-  if (!N8N_WEBHOOK_URL) {
-    throw new Error("Webhook is not configured yet.");
-  }
+  const isBasic = source === "Portfolio - Basic Query";
+  const url = isBasic ? N8N_BASIC_FORM_URL : N8N_ADVANCED_FORM_URL;
+  const labels: Record<string, string> = isBasic ? basicLabels : advancedLabels;
 
-  const payload = { ...systemFields(source), ...normalise(values) };
+  const body = new URLSearchParams();
+  Object.entries(values).forEach(([key, value]) => {
+    const label = labels[key];
+    if (!label) return; // never send anything the n8n form doesn't define
+    if (value === "" || value === undefined || value === null) return;
+    body.append(label, String(value));
+  });
 
-  const response = await fetch(N8N_WEBHOOK_URL, {
+  const response = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: body.toString(),
   });
 
   if (!response.ok) {
     throw new Error(`Submission failed (${response.status})`);
   }
 
-  return payload;
+  return Object.fromEntries(body.entries());
 }
+
