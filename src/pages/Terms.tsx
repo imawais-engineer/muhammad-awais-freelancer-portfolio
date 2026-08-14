@@ -43,7 +43,7 @@ const sections: Section[] = [
           services. By using the website or working with me on a project, you agree to these Terms.
         </p>
         <p className="mt-3">
-          Service provider: <span className="text-foreground">Muhammad Awais — AI Automation Engineer | n8n & Make Expert</span>.
+          Service provider: <span className="text-foreground">Muhammad Awais — AI Automation Engineer | Business Automation Specialist | n8n & Make</span>.
           Website:{" "}
           <a href="https://imawais.engineer/" className="text-primary underline-offset-4 hover:underline">
             https://imawais.engineer/
@@ -349,7 +349,7 @@ const Terms = () => {
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <span className="tech-tag">Last Updated: {LAST_UPDATED}</span>
-              <span className="tech-tag">Muhammad Awais — AI Automation Engineer | n8n & Make Expert</span>
+              <span className="tech-tag">Muhammad Awais — AI Automation Engineer | Business Automation Specialist | n8n & Make</span>
             </div>
           </motion.div>
         </section>
