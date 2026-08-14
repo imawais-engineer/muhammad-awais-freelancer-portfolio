@@ -143,7 +143,33 @@ const Index = () => {
           </dl>
         </motion.section>
 
-        {/* 2 — Services overview */}
+        {/* 2 — Credentials */}
+        <Section
+          id="credentials"
+          eyebrow="Credentials"
+          title="Certifications & recognition"
+          intro="Verified training and competition results behind the work."
+          action={
+            <Link to="/about" className="system-link hover:text-primary">
+              Read the full background
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          }
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {about.credentials.map((credential) => (
+              <article key={credential.title} className="node-card flex gap-3 p-6">
+                <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                <div>
+                  <h3 className="text-sm font-semibold leading-snug">{credential.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{credential.detail}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        {/* 3 — Services overview */}
         <Section
           id="services"
           eyebrow="Services"
@@ -251,8 +277,8 @@ const Index = () => {
         </Section>
 
         {/* 6 — Trust: testimonials + about teaser */}
-        <Section eyebrow="Proof" title="What clients say, and who they're working with">
-          <div className="grid gap-4 lg:grid-cols-3">
+        <Section eyebrow="Proof" title="What clients say">
+          <div className="grid gap-4 md:grid-cols-2">
             {testimonials.map((t) => (
               <figure key={t.author} className="node-card flex h-full flex-col p-6">
                 <div className="flex items-center gap-1 text-primary" aria-label={`${t.rating} out of 5`}>
@@ -298,25 +324,6 @@ const Index = () => {
                 </figcaption>
               </figure>
             ))}
-
-            <article className="node-card flex h-full flex-col p-6">
-              <h3 className="text-lg font-semibold">Credentials</h3>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                {about.credentials.slice(0, 4).map((c) => (
-                  <li key={c.title} className="flex gap-2">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                    <span>{c.title}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to="/about"
-                className="system-link mt-auto pt-6 hover:text-primary"
-              >
-                Read the full background
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </article>
           </div>
         </Section>
 
