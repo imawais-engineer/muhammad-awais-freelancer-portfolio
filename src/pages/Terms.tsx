@@ -441,7 +441,7 @@ const Terms = () => {
             </motion.section>
 
             <div className="flex justify-end">
-              <a href="#top" className="system-link">
+              <a href="#main" className="system-link">
                 Back to top <ArrowUp className="size-4" />
               </a>
             </div>
@@ -453,7 +453,7 @@ const Terms = () => {
 
       {showTop && (
         <a
-          href="#top"
+          href="#main"
           aria-label="Back to top"
           className="fixed bottom-6 right-6 z-40 inline-flex size-11 items-center justify-center rounded-full border border-panel-border bg-panel-strong text-foreground shadow-elevated transition-colors duration-200 ease-standard hover:border-primary"
         >
