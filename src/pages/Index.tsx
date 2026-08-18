@@ -30,7 +30,7 @@ import {
 } from "@/data/site";
 
 
-import profileImage from "@/assets/profile.webp";
+const profileImage = "/profile.webp";
 
 const standardEase: [number, number, number, number] = [0.2, 0, 0, 1];
 
