@@ -131,7 +131,7 @@ const About = () => (
             </p>
             <Button asChild className="w-full">
               <Link to="/contact">
-                Get in touch
+                Start an AI automation project
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
