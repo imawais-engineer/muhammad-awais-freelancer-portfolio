@@ -206,8 +206,8 @@ const MediaKit = () => {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title={`Media Kit | ${site.name} — ${site.title}`}
-        description="Media and partnership profile for Muhammad Awais, AI Automation Engineer: brand assets, bio, focus areas across n8n workflow automation, AI integrations and web development."
+        title="Muhammad Awais Media Kit | Brand Assets & Profile"
+        description="Media and partnership profile for Muhammad Awais: official bio, brand assets, professional profile and collaboration details."
         path="/media-kit"
       />
       <SiteHeader />
