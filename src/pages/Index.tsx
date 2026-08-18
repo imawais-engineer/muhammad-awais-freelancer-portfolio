@@ -23,7 +23,6 @@ import {
   process,
   proofStats,
   reliability,
-  services,
   site,
   testimonials,
 } from "@/data/site";
