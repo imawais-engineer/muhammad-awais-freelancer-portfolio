@@ -191,26 +191,27 @@ const Index = () => {
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
               <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
-                AI Automation Engineer · n8n · AI Systems
+                Freelance AI Automation Engineer · n8n Workflow Automation
               </p>
               <h1 className="mt-2 max-w-3xl text-[1.7rem] font-semibold leading-[1.12] tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
                 I build AI-powered systems that eliminate repetitive work.
               </h1>
               <p className="mt-3 max-w-[38ch] text-base leading-relaxed text-muted-foreground sm:max-w-2xl md:text-lg">
-                I help agencies, SaaS teams, and small businesses automate operations, connect their
-                tools, and turn manual workflows into reliable systems.
+                I'm Muhammad Awais, a freelance AI Automation Engineer. I help agencies, SaaS teams
+                and small businesses automate operations with n8n workflow automation, AI agents and
+                connected business systems — turning manual workflows into reliable ones.
               </p>
 
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link to="/contact">
-                    Start an Automation Project
+                    Start an AI automation project
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
                   <Link to="/projects">
-                    View Case Studies
+                    View automation case studies
                     <ArrowUpRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -227,7 +228,7 @@ const Index = () => {
             <div className="node-card order-first mx-auto w-full max-w-[10.5rem] p-3 sm:max-w-[12.5rem] md:order-none md:mx-0 md:max-w-[13.75rem] lg:max-w-[16.25rem] lg:p-4">
               <img
                 src={profileImage}
-                alt="Portrait of Muhammad Awais, AI automation engineer"
+                alt="Portrait of Muhammad Awais, freelance AI Automation Engineer"
                 loading="eager"
                 {...{ fetchpriority: "high" }}
                 decoding="async"
@@ -266,12 +267,12 @@ const Index = () => {
         <Section
           id="work"
           eyebrow="Featured work"
-          title="Paid work, running in production"
-          intro="Delivered for paying clients, with outcomes you can verify in the case studies."
+          title="AI automation projects running in production"
+          intro="Paid client builds — lead qualification, CRM routing, AI agents and automated reporting — with outcomes you can verify in each case study."
           action={
             <Button asChild variant="secondary" className="shrink-0">
               <Link to="/projects">
-                View all projects
+                View all AI automation projects
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -288,8 +289,8 @@ const Index = () => {
         <Section
           id="services"
           eyebrow="Services"
-          title="What I build"
-          intro="The areas where automation pays for itself fastest — delivered as tested, documented systems, not one-off scripts."
+          title="AI automation and n8n workflow services"
+          intro="The areas where automation pays for itself fastest — AI agents, n8n workflow automation, CRM and lead automation, and business process automation — delivered as tested, documented systems, not one-off scripts."
           action={
             <Button asChild variant="secondary" className="shrink-0">
               <Link to="/contact">Discuss your process</Link>
@@ -298,23 +299,23 @@ const Index = () => {
         >
           <div className="grid gap-4 md:grid-cols-2">
             <HomeServiceCard
-              title="AI Automation & Agents"
+              title="AI Agents & Chatbots"
               problem="Customer questions, support tickets, and content decisions pile up faster than a small team can handle."
-              solution="LLM-powered assistants and classification workflows that answer, route, and extract on your channels."
+              solution="LLM-powered AI agents and classification workflows that answer, route, and extract on your channels — web, WhatsApp, Slack or email."
               outcome="Faster first replies, fewer manual decisions, and 24/7 handling of routine requests."
               tools="OpenAI · Claude · Gemini · n8n"
             />
             <HomeServiceCard
-              title="Workflow & Process Automation"
-              problem="Teams waste hours moving data between spreadsheets, inboxes, and disconnected apps."
-              solution="End-to-end pipelines that connect your tools and run on triggers, schedules, or webhooks."
-              outcome="Repetitive work disappears, errors drop, and operations scale without hiring."
-              tools="n8n · Make · Zapier · APIs · Webhooks"
+              title="n8n Workflow & Process Automation"
+              problem="Teams waste hours moving data between spreadsheets, inboxes, Google Workspace and disconnected apps."
+              solution="End-to-end n8n and Make.com pipelines that connect your tools and run on triggers, schedules, or webhooks."
+              outcome="Repetitive business processes disappear, errors drop, and operations scale without hiring."
+              tools="n8n · Make · Zapier · Google Workspace · APIs"
             />
             <HomeServiceCard
               title="CRM & Lead Automation"
               problem="Leads arrive faster than they can be qualified, routed, and followed up."
-              solution="Capture → score → route → book meetings and trigger follow-ups automatically."
+              solution="Lead qualification automation that captures, scores, routes and syncs every enquiry to your CRM, then books meetings and triggers follow-ups."
               outcome="Good leads never go cold; sales time is spent on qualified calls."
               tools="HubSpot · Pipedrive · GoHighLevel · Airtable"
             />
@@ -322,7 +323,7 @@ const Index = () => {
               title="Data & Scraping Automation"
               problem="Market tracking, reporting, and data collection are rebuilt by hand every week."
               solution="Scheduled scraping, enrichment, and structured delivery to sheets, dashboards, or CRMs."
-              outcome="Reliable data feeds and reports without the manual copy-paste."
+              outcome="Reliable data feeds and automated reporting without the manual copy-paste."
               tools="Apify · Python · REST APIs · Google Sheets"
             />
           </div>
@@ -394,10 +395,10 @@ const Index = () => {
         <Section
           id="about"
           eyebrow="About"
-          title="Who I am, and how I work"
+          title="Muhammad Awais, AI Automation Engineer"
           action={
             <Link to="/about" className="system-link hover:text-primary">
-              Read the full background
+              About Muhammad Awais
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           }
@@ -529,7 +530,7 @@ const Index = () => {
             </div>
             <Button asChild size="lg" className="w-full shrink-0 sm:w-auto">
               <Link to="/contact">
-                Start a conversation
+                Start an AI automation project
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

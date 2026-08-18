@@ -26,7 +26,10 @@ const About = () => (
         className="max-w-3xl space-y-5"
       >
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">About</p>
-        <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">{about.intro}</h1>
+        <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
+          About Muhammad Awais — AI Automation Engineer
+        </h1>
+        <p className="text-lg text-muted-foreground">{about.intro}</p>
         <p className="font-mono text-sm text-muted-foreground">{site.location}</p>
       </motion.header>
 
@@ -36,6 +39,12 @@ const About = () => (
             {about.paragraphs.map((p) => (
               <p key={p.slice(0, 40)}>{p}</p>
             ))}
+            <p>
+              I work as a freelance AI Automation Engineer, and the work draws on a software
+              engineering background: I build with TypeScript, Python and REST APIs, so I'm equally
+              comfortable being briefed as an AI developer, full stack developer or AI solutions
+              engineer when a project needs custom code alongside n8n workflow automation.
+            </p>
           </section>
 
           <section className="space-y-4">
@@ -78,7 +87,7 @@ const About = () => (
           <div className="node-card overflow-hidden p-0">
             <img
               src={profileImage}
-              alt="Portrait of Muhammad Awais"
+              alt="Portrait of Muhammad Awais, freelance AI Automation Engineer"
               className="aspect-square w-full object-cover"
               loading="lazy"
               decoding="async"
@@ -122,7 +131,7 @@ const About = () => (
             </p>
             <Button asChild className="w-full">
               <Link to="/contact">
-                Get in touch
+                Start an AI automation project
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

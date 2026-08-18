@@ -70,3 +70,30 @@ author name in sync with `site.name`.
   Re-run happens automatically whenever a project is added.
 - **robots.txt**: allows crawlers and rendering assets, advertises
   `https://imawais.engineer/sitemap.xml`.
+
+## Phase 2 SEO — page-to-topic map (on-page keyword architecture)
+
+Each page owns one primary intent. Terms are integrated into real copy (H1, opening
+paragraph, section headings, link text, alt text) — never listed, repeated or hidden.
+
+| Page | Primary intent | Supporting terms used naturally |
+| --- | --- | --- |
+| `/` | Muhammad Awais · AI Automation Engineer | freelance AI Automation Engineer, n8n workflow automation, AI agents, CRM & lead automation, business process automation |
+| `/projects` | AI automation projects · n8n automation projects | AI workflow automation, AI agents, CRM automation, lead automation, reporting |
+| `/projects/:slug` | The project's own topic (lead qualification, RAG, WhatsApp assistant, reporting…) | project tools and platform only — no forced terms |
+| `/about` | About Muhammad Awais · AI Automation Engineer | software engineer, AI developer, full stack developer, n8n expert (secondary identities only) |
+| `/contact` | Hire / start an AI automation project | freelance AI Automation Engineer, n8n workflow automation, AI agents |
+| `/media-kit` | Muhammad Awais media kit | brand assets, bio, partnerships — no service keywords |
+
+Conventions:
+
+- **Entity consistency**: visible copy always uses "Muhammad Awais" + "AI Automation Engineer".
+  Aliases (`imawais`, `Awais`) live only in JSON-LD `alternateName`.
+- **Anchor text**: descriptive and semantic — "View all AI automation projects",
+  "About Muhammad Awais", "Start an AI automation project".
+- **Image alt**: describes the actual image plus its topic, e.g.
+  `` `${project.platform} workflow canvas for ${project.name}` `` (ProjectCard,
+  FeaturedProjectCard, ProjectDetail) and "Portrait of Muhammad Awais, freelance
+  AI Automation Engineer".
+- **Site title token**: `site.title` in `src/data/site.ts` is the canonical professional title
+  ("AI Automation Engineer — n8n Workflow Automation") used by the footer and media kit.

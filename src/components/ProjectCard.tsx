@@ -17,7 +17,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         <div className="-mx-2 -mt-2 overflow-hidden rounded-lg border border-border bg-secondary">
           <img
             src={image}
-            alt={`n8n workflow canvas for ${project.name}`}
+            alt={`${project.platform} workflow canvas for ${project.name}`}
             loading="lazy"
             decoding="async"
             width={1280}

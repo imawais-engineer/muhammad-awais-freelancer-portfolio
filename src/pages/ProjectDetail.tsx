@@ -109,7 +109,7 @@ const ProjectDetail = () => {
           <figure className="mt-10">
             <img
               src={image}
-              alt={`n8n workflow canvas for ${project.name}`}
+              alt={`${project.platform} workflow canvas for ${project.name}`}
               loading="eager"
               decoding="async"
               width={1280}

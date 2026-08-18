@@ -19,8 +19,8 @@ const briefChecklist = [
 const Contact = () => (
   <div className="min-h-screen">
     <Seo
-      title="Start an Automation Project | Contact Muhammad Awais"
-      description="Tell Muhammad Awais which process is still manual and get an honest view on automating it with n8n, Make.com or AI agents. Email, Upwork, Fiverr and LinkedIn."
+      title="Hire an AI Automation Engineer | Contact Muhammad Awais"
+      description="Start an AI automation project with Muhammad Awais, a freelance AI Automation Engineer. Tell him which process is still manual and get an honest scope for n8n, Make.com or AI agents."
       path="/contact"
     />
     <SiteHeader />
@@ -34,11 +34,12 @@ const Contact = () => (
       >
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Contact</p>
         <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-          Let's build something great together.
+          Start an AI automation project
         </h1>
         <p className="text-lg text-muted-foreground">
-          Ready to automate your business processes, save time, and scale with confidence? I'm one
-          message away — {site.location.toLowerCase()}.
+          Hire a freelance AI Automation Engineer to automate your business processes with n8n
+          workflow automation, AI agents and CRM integrations. I'm one message away —{" "}
+          {site.location.toLowerCase()}.
         </p>
         <div className="flex flex-wrap gap-3">
           <Button asChild size="lg">
