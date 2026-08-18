@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { getProject, projects } from "@/data/projects";
 import { getProjectImage } from "@/data/projectImages";
 import { site } from "@/data/site";
+import { SITE_URL, absoluteUrl } from "@/lib/seo";
 
 const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <section className="space-y-4">
@@ -40,14 +41,18 @@ const ProjectDetail = () => {
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
 
+  const image = getProjectImage(project.slug);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
+    "@id": `${SITE_URL}/projects/${project.slug}#case-study`,
+    url: `${SITE_URL}/projects/${project.slug}`,
     name: project.name,
     description: project.summary,
-    author: { "@type": "Person", name: site.name },
+    author: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name },
     keywords: project.tools.join(", "),
     dateCreated: project.timeframe,
+    ...(image ? { image: absoluteUrl(image) } : {}),
   };
 
   const meta = [
@@ -71,8 +76,9 @@ const ProjectDetail = () => {
     <div className="min-h-screen">
       <Seo
         title={`${project.shortName} — Automation Case Study | Muhammad Awais`}
-        description={project.summary}
+        description={project.summary.slice(0, 158)}
         path={`/projects/${project.slug}`}
+        image={image}
         jsonLd={jsonLd}
       />
       <SiteHeader />
