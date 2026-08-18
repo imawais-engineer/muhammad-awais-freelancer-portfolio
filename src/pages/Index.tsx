@@ -92,6 +92,7 @@ const Section = ({
  * for reuse in case studies and inner pages in later phases.
  */
 const Index = () => {
+  const reduceMotion = useReducedMotion();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -150,7 +151,7 @@ const Index = () => {
       <main className="pb-8">
         {/* 01 — Hero */}
         <motion.section
-          initial="hidden"
+          initial={reduceMotion ? false : "hidden"}
           animate="show"
           variants={reveal}
           className="container pt-8 md:pt-12"
