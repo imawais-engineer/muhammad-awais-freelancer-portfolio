@@ -16,7 +16,7 @@ export default function EngineeringValueCard({
       <h3 className="text-sm font-semibold leading-snug sm:text-base">{title}</h3>
       <p className="text-sm leading-relaxed text-foreground">{benefit}</p>
       <p className="text-xs leading-relaxed text-muted-foreground">{mechanism}</p>
-      <p className="mt-auto pt-2 font-mono text-[11px] uppercase tracking-[0.12em] break-words text-primary">
+      <p className="mt-auto pt-2 font-mono text-[0.6875rem] uppercase tracking-[0.12em] break-words text-primary">
         {label}
       </p>
     </article>

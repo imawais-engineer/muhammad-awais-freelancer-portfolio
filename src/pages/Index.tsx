@@ -65,7 +65,7 @@ const Section = ({
   >
     <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div className="max-w-2xl space-y-3">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
+        <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
           {eyebrow}
         </p>
         <h2 className="text-xl font-semibold sm:text-2xl md:text-3xl">{title}</h2>
@@ -158,7 +158,7 @@ const Index = () => {
         >
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
+              <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
                 AI Automation Engineer · n8n · AI Systems
               </p>
               <h1 className="mt-2 max-w-3xl text-[1.7rem] font-semibold leading-[1.12] tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
@@ -184,7 +184,7 @@ const Index = () => {
                 </Button>
               </div>
 
-              <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] leading-relaxed text-muted-foreground sm:text-xs">
+              <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[0.6875rem] leading-relaxed text-muted-foreground sm:text-xs">
                 <span className="inline-flex items-start gap-2">
                   <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
                   {site.location}
@@ -192,7 +192,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="node-card order-first mx-auto w-full max-w-[168px] p-3 sm:max-w-[200px] md:order-none md:mx-0 md:max-w-[220px] lg:max-w-[260px] lg:p-4">
+            <div className="node-card order-first mx-auto w-full max-w-[10.5rem] p-3 sm:max-w-[12.5rem] md:order-none md:mx-0 md:max-w-[13.75rem] lg:max-w-[16.25rem] lg:p-4">
               <img
                 src={profileImage}
                 alt="Portrait of Muhammad Awais, AI automation engineer"
@@ -220,7 +220,7 @@ const Index = () => {
           <dl className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {proofStats.map((stat) => (
               <div key={stat.label} className="node-card p-4">
-                <dt className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.15em] text-muted-foreground sm:text-[11px] sm:tracking-[0.2em]">
+                <dt className="font-mono text-[0.625rem] uppercase leading-relaxed tracking-[0.15em] text-muted-foreground sm:text-[0.6875rem] sm:tracking-[0.2em]">
                   {stat.label}
                 </dt>
                 <dd className="mt-1 text-lg font-semibold text-foreground sm:text-xl md:text-2xl">{stat.value}</dd>
