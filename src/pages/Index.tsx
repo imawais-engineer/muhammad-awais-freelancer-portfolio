@@ -358,21 +358,22 @@ const Index = () => {
             </Link>
           }
         >
-          <div className="grid gap-4 lg:grid-cols-3">
-            <article className="node-card p-6 lg:col-span-2">
+          <div className="grid gap-4 lg:grid-cols-2">
+            <article className="node-card p-6">
               <p className="text-base leading-relaxed text-foreground">{about.intro}</p>
               <p className="mt-4 border-l-2 border-primary pl-4 text-sm italic text-muted-foreground">
                 {about.principle}
               </p>
             </article>
-            <article className="node-card p-6">
+            <article className="node-card flex flex-col p-6">
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 Who I help
               </h3>
-              <p className="mt-3 text-sm text-muted-foreground">{about.whoIHelp}</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{about.whoIHelp}</p>
             </article>
           </div>
         </Section>
+
 
         {/* 08 — Credentials & verified proof */}
         <Section
