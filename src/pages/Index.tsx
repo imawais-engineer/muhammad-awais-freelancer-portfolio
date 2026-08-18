@@ -59,16 +59,19 @@ const Section = ({
     whileInView="show"
     viewport={{ once: true, margin: "-80px" }}
     variants={reveal}
-    className="container scroll-mt-24 space-y-8 pt-24"
+    className="container scroll-mt-20 space-y-6 pt-16 md:scroll-mt-24 md:space-y-8 md:pt-24"
   >
     <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div className="max-w-2xl space-y-3">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{eyebrow}</p>
-        <h2 className="text-2xl font-semibold md:text-3xl">{title}</h2>
-        {intro && <p className="text-muted-foreground">{intro}</p>}
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
+          {eyebrow}
+        </p>
+        <h2 className="text-xl font-semibold sm:text-2xl md:text-3xl">{title}</h2>
+        {intro && <p className="text-sm text-muted-foreground sm:text-base">{intro}</p>}
       </div>
-      {action}
+      {action && <div className="[&>*]:w-full sm:[&>*]:w-auto">{action}</div>}
     </header>
+
     {children}
   </motion.section>
 );
@@ -149,27 +152,27 @@ const Index = () => {
           variants={reveal}
           className="container pt-8 md:pt-12"
         >
-          <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
+          <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
                 AI Automation Engineer · n8n · AI Systems
               </p>
-              <h1 className="mt-2 max-w-3xl text-2xl font-semibold leading-[1.1] tracking-tight md:text-4xl lg:text-5xl">
+              <h1 className="mt-2 max-w-3xl text-[1.7rem] font-semibold leading-[1.12] tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
                 I build AI-powered systems that eliminate repetitive work.
               </h1>
-              <p className="mt-3 max-w-2xl text-base text-muted-foreground md:text-lg">
+              <p className="mt-3 max-w-[38ch] text-base leading-relaxed text-muted-foreground sm:max-w-2xl md:text-lg">
                 I help agencies, SaaS teams, and small businesses automate operations, connect their
                 tools, and turn manual workflows into reliable systems.
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Button asChild size="lg">
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link to="/contact">
                     Start an Automation Project
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="secondary">
+                <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
                   <Link to="/projects">
                     View Case Studies
                     <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -177,15 +180,15 @@ const Index = () => {
                 </Button>
               </div>
 
-              <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground">
-                <span className="inline-flex items-center gap-2">
-                  <MapPin className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+              <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] leading-relaxed text-muted-foreground sm:text-xs">
+                <span className="inline-flex items-start gap-2">
+                  <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
                   {site.location}
                 </span>
               </div>
             </div>
 
-            <div className="node-card order-first max-w-[200px] p-3 md:order-none md:max-w-[220px] lg:max-w-[260px] lg:p-4">
+            <div className="node-card order-first mx-auto w-full max-w-[168px] p-3 sm:max-w-[200px] md:order-none md:mx-0 md:max-w-[220px] lg:max-w-[260px] lg:p-4">
               <img
                 src={profileImage}
                 alt="Portrait of Muhammad Awais, AI automation engineer"
@@ -193,29 +196,30 @@ const Index = () => {
                 className="aspect-square w-full rounded-xl object-cover"
               />
               <div className="mt-2 flex items-center justify-center gap-2">
-                <p className="text-base font-semibold tracking-tight text-foreground md:text-lg lg:text-xl">{site.name}</p>
+                <p className="text-sm font-semibold tracking-tight text-foreground sm:text-base md:text-lg lg:text-xl">{site.name}</p>
                 <span
                   className="inline-flex"
                   aria-label="Identity verified"
                   title="Identity verified — government ID check and visual verification"
                 >
-                  <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                  <BadgeCheck className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" aria-hidden="true" />
                 </span>
               </div>
             </div>
           </div>
 
           {/* 02 — Proof strip */}
-          <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {proofStats.map((stat) => (
               <div key={stat.label} className="node-card p-4">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                <dt className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.15em] text-muted-foreground sm:text-[11px] sm:tracking-[0.2em]">
                   {stat.label}
                 </dt>
-                <dd className="mt-1 text-xl font-semibold text-foreground md:text-2xl">{stat.value}</dd>
+                <dd className="mt-1 text-lg font-semibold text-foreground sm:text-xl md:text-2xl">{stat.value}</dd>
               </div>
             ))}
           </dl>
+
         </motion.section>
 
         {/* 03 — Featured client work */}
@@ -291,7 +295,7 @@ const Index = () => {
           title="From problem to production in five steps"
           intro="You approve the system design before anything is built, and you get documentation you can actually use."
         >
-          <ol className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             <ProcessStep
               step={process[0].step}
               title={process[0].title}
@@ -359,13 +363,13 @@ const Index = () => {
           }
         >
           <div className="grid gap-4 lg:grid-cols-2">
-            <article className="node-card p-6">
+            <article className="node-card p-5 sm:p-6">
               <p className="text-base leading-relaxed text-foreground">{about.intro}</p>
               <p className="mt-4 border-l-2 border-primary pl-4 text-sm italic text-muted-foreground">
                 {about.principle}
               </p>
             </article>
-            <article className="node-card flex flex-col p-6">
+            <article className="node-card flex flex-col p-5 sm:p-6">
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 Who I help
               </h3>
@@ -394,14 +398,14 @@ const Index = () => {
         >
           <div className="grid gap-4 md:grid-cols-2">
             {testimonials.map((t) => (
-              <figure key={t.author} className="node-card flex h-full flex-col p-6">
+              <figure key={t.author} className="node-card flex h-full flex-col p-5 sm:p-6">
                 <div className="flex items-center gap-1 text-primary" aria-label={`${t.rating} out of 5`}>
                   {Array.from({ length: t.rating }).map((_, i) => (
                     <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
                   ))}
                 </div>
-                <blockquote className="mt-4 text-base leading-relaxed text-foreground">“{t.quote}”</blockquote>
-                <figcaption className="mt-auto flex items-center gap-3 pt-6">
+                <blockquote className="mt-4 text-[0.95rem] leading-relaxed text-foreground sm:text-base">“{t.quote}”</blockquote>
+                <figcaption className="mt-auto flex flex-wrap items-center gap-3 pt-6">
                   {"avatar" in t && t.avatar ? (
                     <img
                       src={t.avatar}
@@ -415,8 +419,8 @@ const Index = () => {
                     </span>
                   )}
                   <div className="min-w-0">
-                    <p className="text-sm font-medium">{t.author}</p>
-                    <p className="font-mono text-xs text-muted-foreground">
+                    <p className="break-words text-sm font-medium">{t.author}</p>
+                    <p className="break-words font-mono text-xs leading-relaxed text-muted-foreground">
                       {t.role}
                       {"companyUrl" in t && t.companyUrl ? (
                         <>
@@ -456,7 +460,7 @@ const Index = () => {
                   ].includes(c.title)
                 )
                 .map((credential) => (
-                  <article key={credential.title} className="node-card flex gap-3 p-5">
+                  <article key={credential.title} className="node-card flex gap-3 p-4 sm:p-5">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                     <div>
                       <h4 className="text-sm font-semibold leading-snug">{credential.title}</h4>
@@ -469,10 +473,10 @@ const Index = () => {
         </Section>
 
         {/* 09 — Final CTA */}
-        <section className="container pt-24">
-          <div className="node-card flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between md:p-12">
+        <section className="container pt-16 md:pt-24">
+          <div className="node-card flex flex-col gap-6 p-6 sm:p-8 md:flex-row md:items-center md:justify-between md:p-12">
             <div className="max-w-xl space-y-3">
-              <h2 className="text-2xl font-semibold md:text-3xl">
+              <h2 className="text-xl font-semibold sm:text-2xl md:text-3xl">
                 Which part of your week is still manual?
               </h2>
               <p className="text-muted-foreground">
@@ -480,7 +484,7 @@ const Index = () => {
                 what it would take.
               </p>
             </div>
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="w-full shrink-0 sm:w-auto">
               <Link to="/contact">
                 Start a conversation
                 <ArrowRight className="ml-2 h-4 w-4" />

@@ -14,7 +14,7 @@ export default function EngineeringValueCard({
   label,
 }: EngineeringValueCardProps) {
   return (
-    <article className="node-card flex h-full flex-col gap-3 p-6">
+    <article className="node-card flex h-full flex-col gap-3 p-5 sm:p-6">
       <div className="flex items-start gap-3">
         <ShieldCheck
           className="mt-0.5 h-5 w-5 shrink-0 text-primary"
@@ -24,7 +24,7 @@ export default function EngineeringValueCard({
       </div>
       <p className="text-sm text-foreground">{benefit}</p>
       <p className="text-xs leading-relaxed text-muted-foreground">{mechanism}</p>
-      <p className="mt-auto pt-2 font-mono text-[11px] uppercase tracking-[0.15em] text-primary">
+      <p className="mt-auto pt-2 font-mono text-[11px] uppercase tracking-[0.12em] break-words text-primary">
         {label}
       </p>
     </article>
