@@ -97,3 +97,20 @@ Conventions:
   AI Automation Engineer".
 - **Site title token**: `site.title` in `src/data/site.ts` is the canonical professional title
   ("AI Automation Engineer — n8n Workflow Automation") used by the footer and media kit.
+
+## Phase 3 — case-study pages (/projects/:slug)
+
+- `src/data/projectSeo.ts` holds per-slug search-intent metadata: primary
+  topic, unique title, unique meta description, contextual CTA copy, and
+  a short list of genuinely related case studies. All values are derived
+  from the existing project data — no invented clients, metrics or dates.
+- `ProjectDetail` uses this map for `<title>`, meta description, JSON-LD
+  (`CreativeWork` with stable `@id`, `about`, `isPartOf` the site and
+  `author`/`creator` pointing at the homepage `#person` entity).
+- Page structure answers: what was built → business problem → requirements
+  → solution architecture → how the workflow runs → business logic →
+  output → outcome → tools & integrations.
+- Each page ends with a contextual CTA ("Build a similar … →" → /contact),
+  related case studies, a next-project link, and About/Contact links.
+- Screenshot alt text uses the real platform plus the project name; the
+  caption distinguishes delivered client builds from demonstration builds.
