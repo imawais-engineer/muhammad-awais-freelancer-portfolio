@@ -13,6 +13,15 @@ import { getProjectImage } from "@/data/projectImages";
 import { site } from "@/data/site";
 import { SITE_URL, absoluteUrl } from "@/lib/seo";
 
+/** Case studies whose primary subject is lead capture, qualification, CRM or follow-up. */
+const LEAD_SLUGS = new Set([
+  "ai-lead-qualification-real-estate",
+  "lead-reply-sync-gohighlevel-clickup",
+  "client-intake-onboarding-automation",
+  "real-estate-lead-generation-browseract-make",
+]);
+
+
 const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <section className="space-y-4">
     <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{title}</h2>
