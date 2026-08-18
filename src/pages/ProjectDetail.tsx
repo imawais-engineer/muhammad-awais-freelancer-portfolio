@@ -150,8 +150,8 @@ const ProjectDetail = () => {
               alt={`${project.platform} workflow canvas for the ${project.name.toLowerCase()} build`}
               loading="eager"
               decoding="async"
-              width={1280}
-              height={720}
+              width={960}
+              height={440}
               className="w-full rounded-xl border border-border bg-secondary object-cover"
             />
             <figcaption className="mt-3 font-mono text-xs text-muted-foreground">
