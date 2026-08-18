@@ -182,12 +182,7 @@ const Index = () => {
 
       <main id="main" className="pb-8">
         {/* 01 — Hero */}
-        <motion.section
-          initial={reduceMotion ? false : "hidden"}
-          animate="show"
-          variants={reveal}
-          className="container pt-8 md:pt-12"
-        >
+        <section className="container pt-8 md:pt-12">
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
               <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
@@ -227,7 +222,9 @@ const Index = () => {
 
             <div className="node-card order-first mx-auto w-full max-w-[10.5rem] p-3 sm:max-w-[12.5rem] md:order-none md:mx-0 md:max-w-[13.75rem] lg:max-w-[16.25rem] lg:p-4">
               <img
-                src={profileImage}
+                src="/profile.webp"
+                srcSet="/profile-256.webp 256w, /profile.webp 512w"
+                sizes="(max-width: 640px) 10.5rem, (max-width: 768px) 12.5rem, (max-width: 1024px) 13.75rem, 16.25rem"
                 alt="Portrait of Muhammad Awais, freelance AI Automation Engineer"
                 loading="eager"
                 {...{ fetchpriority: "high" }}
@@ -262,7 +259,7 @@ const Index = () => {
             ))}
           </dl>
 
-        </motion.section>
+        </section>
 
         {/* 03 — Featured client work */}
         <Section
