@@ -173,8 +173,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Seo
-        title={`${site.name} — ${site.title}`}
-        description="I build n8n, Make and AI automation systems that cut 20+ hours of manual work a week for agencies, SaaS teams and small businesses."
+        title="Muhammad Awais | AI Automation Engineer & n8n Workflow Automation"
+        description="Muhammad Awais is an AI Automation Engineer building n8n workflow automation and AI systems that cut 20+ hours of manual work a week for agencies, SaaS teams and small businesses."
         path="/"
         jsonLd={jsonLd}
       />
