@@ -180,7 +180,6 @@ const Services = () => {
         inLanguage: "en",
         isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
         about: { "@id": `${SITE_URL}/#person` },
-        primaryImageOfPage: undefined,
       },
       {
         "@type": "ProfessionalService",
