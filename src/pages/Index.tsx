@@ -15,6 +15,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import FeaturedProjectCard from "@/components/FeaturedProjectCard";
 import HomeServiceCard from "@/components/HomeServiceCard";
+import ProcessStep from "@/components/ProcessStep";
 import { Button } from "@/components/ui/button";
 import { clientProjects, projects } from "@/data/projects";
 import {
@@ -265,13 +266,36 @@ const Index = () => {
           intro="You approve the system design before anything is built, and you get documentation you can actually use."
         >
           <ol className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
-            {process.map((p) => (
-              <li key={p.step} className="node-card flex h-full flex-col p-5">
-                <p className="font-mono text-sm text-primary">{p.step}</p>
-                <h3 className="mt-2 text-base font-semibold">{p.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{p.detail}</p>
-              </li>
-            ))}
+            <ProcessStep
+              step={process[0].step}
+              title={process[0].title}
+              outcome="We define scope, tools, success metrics, and timeline together."
+              detail="I understand your goals, pain points, and existing stack before proposing anything."
+            />
+            <ProcessStep
+              step={process[1].step}
+              title={process[1].title}
+              outcome="You review and approve the architecture before anything is built."
+              detail="I map the data flow and logic in a clear diagram so you can validate the approach."
+            />
+            <ProcessStep
+              step={process[2].step}
+              title={process[2].title}
+              outcome="A tested workflow that handles real-world edge cases and failures."
+              detail="I build in your chosen platform and rigorously test each branch for resilience."
+            />
+            <ProcessStep
+              step={process[3].step}
+              title={process[3].title}
+              outcome="The system goes live with monitoring and a handover walkthrough."
+              detail="I deploy to production and show you exactly how to operate and monitor it."
+            />
+            <ProcessStep
+              step={process[4].step}
+              title={process[4].title}
+              outcome="Ongoing support, updates, and enhancements as your business evolves."
+              detail="You get continued help and adjustments so the system keeps delivering value."
+            />
           </ol>
         </Section>
 
