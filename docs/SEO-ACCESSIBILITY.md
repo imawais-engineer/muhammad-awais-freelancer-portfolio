@@ -114,3 +114,20 @@ Conventions:
   related case studies, a next-project link, and About/Contact links.
 - Screenshot alt text uses the real platform plus the project name; the
   caption distinguishes delivered client builds from demonstration builds.
+
+## Phase 4 — /services commercial page
+
+- New route `/services` (`src/pages/Services.tsx`), lazy-loaded in `App.tsx`.
+- IA: hero → 4 service groups (n8n workflow automation, AI automation & agents,
+  CRM & lead automation, business process & data automation) → problem →
+  automation mapping → typical system flow → grouped tools → deliverables
+  (from `site.deliverables`) → why work with me (existing verified proof only)
+  → 3 selected case studies → FAQ → final CTA.
+- Metadata: title "AI Automation Services | n8n Workflow Automation | Muhammad
+  Awais", unique description, canonical `https://imawais.engineer/services`.
+- JSON-LD: `@graph` with `WebPage` (about the `#person` entity) and
+  `ProfessionalService` + `OfferCatalog`. No prices, reviews or ratings.
+- Internal links: header nav "Services" now points at `/services` (was the
+  homepage anchor), footer "AI automation services", plus contextual links from
+  the homepage services section, About sidebar and Contact intro.
+- Sitemap: `/services` added to `scripts/generate-sitemap.ts` (priority 0.9).
