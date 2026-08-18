@@ -196,7 +196,7 @@ const Index = () => {
           id="work"
           eyebrow="Featured work"
           title="Paid work, running in production"
-          intro="Delivered for paying clients, with measured results you can verify in the case studies."
+          intro="Delivered for paying clients, with outcomes you can verify in the case studies."
           action={
             <Button asChild variant="secondary" className="shrink-0">
               <Link to="/projects">
@@ -208,7 +208,7 @@ const Index = () => {
         >
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {featuredProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+              <FeaturedProjectCard key={project.slug} project={project} />
             ))}
           </div>
         </Section>
