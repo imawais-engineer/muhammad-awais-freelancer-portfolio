@@ -59,16 +59,19 @@ const Section = ({
     whileInView="show"
     viewport={{ once: true, margin: "-80px" }}
     variants={reveal}
-    className="container scroll-mt-24 space-y-8 pt-24"
+    className="container scroll-mt-20 space-y-6 pt-16 md:scroll-mt-24 md:space-y-8 md:pt-24"
   >
     <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div className="max-w-2xl space-y-3">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{eyebrow}</p>
-        <h2 className="text-2xl font-semibold md:text-3xl">{title}</h2>
-        {intro && <p className="text-muted-foreground">{intro}</p>}
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
+          {eyebrow}
+        </p>
+        <h2 className="text-xl font-semibold sm:text-2xl md:text-3xl">{title}</h2>
+        {intro && <p className="text-sm text-muted-foreground sm:text-base">{intro}</p>}
       </div>
-      {action}
+      {action && <div className="[&>*]:w-full sm:[&>*]:w-auto">{action}</div>}
     </header>
+
     {children}
   </motion.section>
 );
