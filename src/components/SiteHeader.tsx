@@ -93,7 +93,7 @@ const SiteHeader = () => {
               onClick={() => setOpen(false)}
               className="mt-2 rounded-md border border-primary/40 bg-primary/10 flex min-h-[44px] items-center justify-center px-3 py-2 text-center font-mono text-sm text-primary"
             >
-              Start a Project
+              Contact to start a Project
             </Link>
           </div>
         </nav>
