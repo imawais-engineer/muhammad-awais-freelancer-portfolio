@@ -191,26 +191,27 @@ const Index = () => {
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
               <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
-                AI Automation Engineer · n8n · AI Systems
+                Freelance AI Automation Engineer · n8n Workflow Automation
               </p>
               <h1 className="mt-2 max-w-3xl text-[1.7rem] font-semibold leading-[1.12] tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
                 I build AI-powered systems that eliminate repetitive work.
               </h1>
               <p className="mt-3 max-w-[38ch] text-base leading-relaxed text-muted-foreground sm:max-w-2xl md:text-lg">
-                I help agencies, SaaS teams, and small businesses automate operations, connect their
-                tools, and turn manual workflows into reliable systems.
+                I'm Muhammad Awais, a freelance AI Automation Engineer. I help agencies, SaaS teams
+                and small businesses automate operations with n8n workflow automation, AI agents and
+                connected business systems — turning manual workflows into reliable ones.
               </p>
 
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link to="/contact">
-                    Start an Automation Project
+                    Start an AI automation project
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
                   <Link to="/projects">
-                    View Case Studies
+                    View automation case studies
                     <ArrowUpRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
