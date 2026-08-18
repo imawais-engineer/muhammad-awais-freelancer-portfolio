@@ -1,102 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://imawais.engineer/</loc>
+    <loc>https://www.imawais.engineer/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects</loc>
+    <loc>https://www.imawais.engineer/projects</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/services</loc>
+    <loc>https://www.imawais.engineer/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/services/n8n-workflow-automation</loc>
+    <loc>https://www.imawais.engineer/services/n8n-workflow-automation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/services/lead-qualification-crm-automation</loc>
+    <loc>https://www.imawais.engineer/services/lead-qualification-crm-automation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/about</loc>
+    <loc>https://www.imawais.engineer/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/contact</loc>
+    <loc>https://www.imawais.engineer/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/media-kit</loc>
+    <loc>https://www.imawais.engineer/media-kit</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/slack-reporting-pipeline-apify-n8n</loc>
+    <loc>https://www.imawais.engineer/projects/slack-reporting-pipeline-apify-n8n</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/instagram-reels-outlier-telegram-n8n</loc>
+    <loc>https://www.imawais.engineer/projects/instagram-reels-outlier-telegram-n8n</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/ai-lead-qualification-real-estate</loc>
+    <loc>https://www.imawais.engineer/projects/ai-lead-qualification-real-estate</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/real-estate-lead-generation-browseract-make</loc>
+    <loc>https://www.imawais.engineer/projects/real-estate-lead-generation-browseract-make</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/ai-email-labeling-agent-gmail</loc>
+    <loc>https://www.imawais.engineer/projects/ai-email-labeling-agent-gmail</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/ai-customer-support-triage</loc>
+    <loc>https://www.imawais.engineer/projects/ai-customer-support-triage</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/whatsapp-ai-assistant-google-docs</loc>
+    <loc>https://www.imawais.engineer/projects/whatsapp-ai-assistant-google-docs</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/ai-review-management-system</loc>
+    <loc>https://www.imawais.engineer/projects/ai-review-management-system</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/client-intake-onboarding-automation</loc>
+    <loc>https://www.imawais.engineer/projects/client-intake-onboarding-automation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/youtube-publishing-automation</loc>
+    <loc>https://www.imawais.engineer/projects/youtube-publishing-automation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/lead-reply-sync-gohighlevel-clickup</loc>
+    <loc>https://www.imawais.engineer/projects/lead-reply-sync-gohighlevel-clickup</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://imawais.engineer/projects/multi-query-rag-supabase-openai</loc>
+    <loc>https://www.imawais.engineer/projects/multi-query-rag-supabase-openai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

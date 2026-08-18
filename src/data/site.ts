@@ -9,7 +9,7 @@ export const site = {
     "As an AI Automation Engineer and n8n Expert, I help agencies, SaaS teams, and small businesses cut 20+ hours of manual work a week. I specialise in n8n workflow automation, AI integrations, and custom APIs — turning manual processes into clean, reliable systems that save time, reduce errors, and keep your tools connected.",
   location: "Pakistan — working remotely with clients worldwide",
   email: "alpha.se.awais@gmail.com",
-  website: "https://imawais.engineer",
+  website: "https://www.imawais.engineer",
   links: {
     upwork: "https://www.upwork.com/freelancers/awaisai",
     fiverr: "https://www.fiverr.com/mawais_pk",
