@@ -18,10 +18,22 @@ import { getProject } from "@/data/projects";
 import { deliverables, proofStats, site } from "@/data/site";
 import { SITE_URL } from "@/lib/seo";
 
-const serviceGroups = [
+interface ServiceGroup {
+  id: string;
+  title: string;
+  intro: string;
+  items: string[];
+  link?: { href: string; label: string };
+}
+
+const serviceGroups: ServiceGroup[] = [
   {
     id: "n8n-workflow-automation",
     title: "n8n Workflow Automation",
+    link: {
+      href: "/services/n8n-workflow-automation",
+      label: "More on n8n workflow automation →",
+    },
     intro:
       "Event-driven workflows that connect your tools and run the process the same way every time — built to survive real production traffic, not just a happy-path demo.",
     items: [
@@ -49,6 +61,10 @@ const serviceGroups = [
   {
     id: "crm-lead-automation",
     title: "CRM & Lead Automation",
+    link: {
+      href: "/services/lead-qualification-crm-automation",
+      label: "More on lead qualification & CRM automation →",
+    },
     intro:
       "Most businesses do not have a lead problem — they have a response-time problem. Lead qualification automation closes the gap between an inquiry arriving and someone useful acting on it.",
     items: [
@@ -269,6 +285,13 @@ const Services = () => {
               <article key={group.id} id={group.id} className="node-card flex h-full flex-col p-6">
                 <h3 className="text-lg font-semibold leading-snug">{group.title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{group.intro}</p>
+                {group.link && (
+                  <p className="mt-3 text-sm">
+                    <Link to={group.link.href} className="system-link">
+                      {group.link.label}
+                    </Link>
+                  </p>
+                )}
                 <ul className="mt-5 space-y-2.5 text-sm text-muted-foreground">
                   {group.items.map((item) => (
                     <li key={item} className="flex gap-3">

@@ -13,6 +13,15 @@ import { getProjectImage } from "@/data/projectImages";
 import { site } from "@/data/site";
 import { SITE_URL, absoluteUrl } from "@/lib/seo";
 
+/** Case studies whose primary subject is lead capture, qualification, CRM or follow-up. */
+const LEAD_SLUGS = new Set([
+  "ai-lead-qualification-real-estate",
+  "lead-reply-sync-gohighlevel-clickup",
+  "client-intake-onboarding-automation",
+  "real-estate-lead-generation-browseract-make",
+]);
+
+
 const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <section className="space-y-4">
     <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{title}</h2>
@@ -43,6 +52,21 @@ const ProjectDetail = () => {
   const related = (seo?.related ?? [])
     .map((slug) => projects.find((p) => p.slug === slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p) && p!.slug !== project.slug);
+
+  const servicePage = LEAD_SLUGS.has(project.slug)
+    ? {
+        href: "/services/lead-qualification-crm-automation",
+        label: "AI Lead Qualification & CRM Automation",
+        note: "How lead capture, scoring, routing and follow-up systems are built",
+      }
+    : project.platform.includes("n8n")
+      ? {
+          href: "/services/n8n-workflow-automation",
+          label: "n8n Workflow Automation",
+          note: "How production n8n workflows are designed, built and handed over",
+        }
+      : null;
+
 
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
@@ -296,6 +320,29 @@ const ProjectDetail = () => {
             </ul>
           </section>
         )}
+
+        {servicePage && (
+          <section className="mt-14 space-y-3">
+            <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+              Related service
+            </h2>
+            <Link
+              to={servicePage.href}
+              className="node-card group flex items-center justify-between gap-4 p-5"
+            >
+              <span>
+                <span className="block text-sm font-medium text-foreground">
+                  {servicePage.label}
+                </span>
+                <span className="mt-1 block text-xs text-muted-foreground">
+                  {servicePage.note}
+                </span>
+              </span>
+              <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+            </Link>
+          </section>
+        )}
+
 
         <div className="mt-14 border-t border-panel-border pt-8">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">

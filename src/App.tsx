@@ -11,6 +11,8 @@ const Projects = lazy(() => import("./pages/Projects.tsx"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail.tsx"));
 const About = lazy(() => import("./pages/About.tsx"));
 const Services = lazy(() => import("./pages/Services.tsx"));
+const N8nWorkflowAutomation = lazy(() => import("./pages/N8nWorkflowAutomation.tsx"));
+const LeadQualificationCrmAutomation = lazy(() => import("./pages/LeadQualificationCrmAutomation.tsx"));
 const Contact = lazy(() => import("./pages/Contact.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const Terms = lazy(() => import("./pages/Terms.tsx"));
@@ -31,6 +33,8 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/n8n-workflow-automation" element={<N8nWorkflowAutomation />} />
+          <Route path="/services/lead-qualification-crm-automation" element={<LeadQualificationCrmAutomation />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/terms" element={<Terms />} />

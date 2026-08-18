@@ -131,3 +131,41 @@ Conventions:
   homepage anchor), footer "AI automation services", plus contextual links from
   the homepage services section, About sidebar and Contact intro.
 - Sitemap: `/services` added to `scripts/generate-sitemap.ts` (priority 0.9).
+
+## Phase 5 — specialist service pages
+
+Two commercial sub-pages under `/services`, both lazy-loaded in `App.tsx` and
+built with the existing `/services` design system (`node-card`, `TechTag`,
+`Accordion`, `Button`). No new visual language, no header nav entries.
+
+### `/services/n8n-workflow-automation`
+- `src/pages/N8nWorkflowAutomation.tsx`. H1 "n8n Workflow Automation Engineer".
+- Angle: platform / engineering specialisation. IA: hero → what n8n is good for
+  → what I build → example workflow architecture → integrations → reliability
+  and engineering practice → n8n case studies → existing workflow rescue →
+  deliverables → FAQ → CTA "Discuss an n8n workflow".
+- Title "n8n Workflow Automation Engineer | Muhammad Awais"; unique description;
+  canonical `https://imawais.engineer/services/n8n-workflow-automation`.
+- JSON-LD `@graph`: `WebPage` (about `#person`) + `BreadcrumbList` + `Service`.
+  No ratings/reviews.
+
+### `/services/lead-qualification-crm-automation`
+- `src/pages/LeadQualificationCrmAutomation.tsx`. H1 "AI Lead Qualification &
+  CRM Automation".
+- Angle: business outcome / sales pipeline. IA: hero → where lead management
+  breaks → end-to-end pipeline → qualification and scoring → CRM routing →
+  follow-up → reliability and idempotency → case studies → integrations →
+  deliverables → FAQ → CTA "Automate my lead pipeline".
+- Title "AI Lead Qualification & CRM Automation | Muhammad Awais"; unique
+  description; canonical on the same path. Same JSON-LD shape as above.
+
+### Linking and indexing
+- `/services` service cards link into the matching specialist page; each
+  specialist page cross-links to the other and back to `/services`.
+- `ProjectDetail` renders a "Related service" card: lead/CRM/intake case studies
+  point at the lead page, remaining n8n-platform builds at the n8n page.
+- Footer lists both pages; header nav intentionally unchanged.
+- Both URLs added to `scripts/generate-sitemap.ts` at priority 0.9.
+- Platform accuracy: case studies keep their real platform (e.g. Real Estate
+  Lead Generation is Make.com), and client vs demonstration status is stated on
+  each project page.
