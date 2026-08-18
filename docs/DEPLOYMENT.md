@@ -54,3 +54,19 @@ Re-sync it with the script in [ASSETS.md](ASSETS.md), commit, and redeploy.
 
 Publishing from Lovable requires no configuration; it serves the CDN assets natively and the
 mirrored copies in `public/` are simply unused there.
+
+## SPA deep links on Vercel (404: NOT_FOUND)
+
+Client-side routes such as `/contact` only exist in the browser router. Without a
+fallback, Vercel looks for a `contact.html` file and returns `404: NOT_FOUND` on a
+direct URL visit or refresh (in-app navigation still works).
+
+`vercel.json` at the repo root fixes this:
+
+- `rewrites` sends every path that is not a real file (no dot in the last segment)
+  and not under `/assets` or `/__l5e` to `/index.html`, so React Router resolves it.
+- `installCommand` is `npm install --legacy-peer-deps` (Vite 8 vs `lovable-tagger`
+  peer range), `buildCommand` `npm run build`, `outputDirectory` `dist`.
+
+Dashboard overrides in Settings > Build & Development Settings take precedence over
+this file — clear them if a setting appears to be ignored.
