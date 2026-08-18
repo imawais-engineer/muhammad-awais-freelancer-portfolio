@@ -6,9 +6,9 @@ import {
   BadgeCheck,
   Check,
   MapPin,
-  ShieldCheck,
   Star,
 } from "lucide-react";
+
 
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
@@ -19,16 +19,16 @@ import HomeServiceCard from "@/components/HomeServiceCard";
 import ProcessStep from "@/components/ProcessStep";
 
 import { Button } from "@/components/ui/button";
-import { clientProjects, projects } from "@/data/projects";
+import { clientProjects } from "@/data/projects";
 import {
   about,
-  architecturePatterns,
   process,
   proofStats,
   reliability,
   site,
   testimonials,
 } from "@/data/site";
+
 import profileImage from "@/assets/profile.png";
 
 const standardEase: [number, number, number, number] = [0.2, 0, 0, 1];
