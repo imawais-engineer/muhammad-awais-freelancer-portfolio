@@ -4,6 +4,14 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install --legacy-peer-deps",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "imawais.engineer" }],
+      "destination": "https://www.imawais.engineer/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!__l5e|assets|.*\\..*).*)",
