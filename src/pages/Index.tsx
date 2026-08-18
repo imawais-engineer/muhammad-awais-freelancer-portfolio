@@ -299,23 +299,23 @@ const Index = () => {
         >
           <div className="grid gap-4 md:grid-cols-2">
             <HomeServiceCard
-              title="AI Automation & Agents"
+              title="AI Agents & Chatbots"
               problem="Customer questions, support tickets, and content decisions pile up faster than a small team can handle."
-              solution="LLM-powered assistants and classification workflows that answer, route, and extract on your channels."
+              solution="LLM-powered AI agents and classification workflows that answer, route, and extract on your channels — web, WhatsApp, Slack or email."
               outcome="Faster first replies, fewer manual decisions, and 24/7 handling of routine requests."
               tools="OpenAI · Claude · Gemini · n8n"
             />
             <HomeServiceCard
-              title="Workflow & Process Automation"
-              problem="Teams waste hours moving data between spreadsheets, inboxes, and disconnected apps."
-              solution="End-to-end pipelines that connect your tools and run on triggers, schedules, or webhooks."
-              outcome="Repetitive work disappears, errors drop, and operations scale without hiring."
-              tools="n8n · Make · Zapier · APIs · Webhooks"
+              title="n8n Workflow & Process Automation"
+              problem="Teams waste hours moving data between spreadsheets, inboxes, Google Workspace and disconnected apps."
+              solution="End-to-end n8n and Make.com pipelines that connect your tools and run on triggers, schedules, or webhooks."
+              outcome="Repetitive business processes disappear, errors drop, and operations scale without hiring."
+              tools="n8n · Make · Zapier · Google Workspace · APIs"
             />
             <HomeServiceCard
               title="CRM & Lead Automation"
               problem="Leads arrive faster than they can be qualified, routed, and followed up."
-              solution="Capture → score → route → book meetings and trigger follow-ups automatically."
+              solution="Lead qualification automation that captures, scores, routes and syncs every enquiry to your CRM, then books meetings and triggers follow-ups."
               outcome="Good leads never go cold; sales time is spent on qualified calls."
               tools="HubSpot · Pipedrive · GoHighLevel · Airtable"
             />
@@ -323,7 +323,7 @@ const Index = () => {
               title="Data & Scraping Automation"
               problem="Market tracking, reporting, and data collection are rebuilt by hand every week."
               solution="Scheduled scraping, enrichment, and structured delivery to sheets, dashboards, or CRMs."
-              outcome="Reliable data feeds and reports without the manual copy-paste."
+              outcome="Reliable data feeds and automated reporting without the manual copy-paste."
               tools="Apify · Python · REST APIs · Google Sheets"
             />
           </div>
