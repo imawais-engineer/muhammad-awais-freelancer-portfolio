@@ -328,6 +328,12 @@ const Terms = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Terms of Service | Muhammad Awais"
+        description="Terms of service covering website use and automation engagements with Muhammad Awais, AI Automation Engineer."
+        path="/terms"
+        noindex
+      />
       <SiteHeader />
 
       <main id="main">
