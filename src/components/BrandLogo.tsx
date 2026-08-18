@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
  * a generic dot. Keys are matched loosely (lowercase, substring) so
  * "OpenAI GPT-4o-mini" still resolves to openai.com.
  *
- * Rendering order: official SVG brand mark (cdn.simpleicons.org) → favicon of
- * the brand domain → nothing (text-only tag).
+ * Brand marks are self-hosted under `public/brands/<slug>.svg` (no third-party
+ * CDN, so crawlers can always fetch them). Unknown brands render nothing.
  */
 const BRAND_DOMAINS: Array<[match: string, domain: string, slug?: string]> = [
   ["n8n", "n8n.io", "n8n"],
@@ -75,17 +75,14 @@ export const getBrandDomain = (label: string): string | null => findBrand(label)
 
 const BrandLogo = ({ label, className }: { label: string; className?: string }) => {
   const brand = findBrand(label);
-  const [stage, setStage] = useState<0 | 1 | 2>(0);
+  const [failed, setFailed] = useState(false);
 
   if (!brand) return null;
 
-  const [, domain, slug] = brand;
-  const useSvg = Boolean(slug) && stage === 0;
-  const src = useSvg
-    ? `https://cdn.simpleicons.org/${slug}`
-    : `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+  const [, , slug] = brand;
+  if (!slug || failed) return null;
 
-  if (stage === 2 || (!slug && stage === 1)) return null;
+  const src = `/brands/${slug}.svg`;
 
   return (
     <img
@@ -97,7 +94,7 @@ const BrandLogo = ({ label, className }: { label: string; className?: string }) 
       decoding="async"
       width={16}
       height={16}
-      onError={() => setStage((current) => (current === 0 && slug ? 1 : 2))}
+      onError={() => setFailed(true)}
       className={cn("h-4 w-4 shrink-0 rounded-[3px] object-contain", className)}
     />
   );
