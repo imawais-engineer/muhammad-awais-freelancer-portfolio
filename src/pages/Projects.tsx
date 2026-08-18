@@ -23,8 +23,8 @@ const Projects = () => {
   return (
     <div className="min-h-screen">
       <Seo
-        title="Automation Case Studies | Muhammad Awais"
-        description="Twelve documented n8n, Make and AI automation systems — the problem, the architecture, the logic and the measured results for each build."
+        title="AI Automation Projects & n8n Case Studies | Muhammad Awais"
+        description="Documented n8n, Make.com and AI automation projects — lead qualification, CRM pipelines, AI agents and reporting: the problem, architecture and measured results."
         path="/projects"
       />
       <SiteHeader />
