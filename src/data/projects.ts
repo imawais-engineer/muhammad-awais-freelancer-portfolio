@@ -373,6 +373,7 @@ export const projects: Project[] = [
     tools: ["n8n", "OpenAI GPT-4o-mini", "Gmail API", "Slack API", "Google Sheets", "JavaScript"],
     platform: "n8n",
     featured: true,
+    clientWork: true,
     rating: "5.0 / 5.0",
     feedback: "Great Work!",
     problem: [
