@@ -232,8 +232,8 @@ const Index = () => {
                 loading="eager"
                 {...{ fetchpriority: "high" }}
                 decoding="async"
-                width={640}
-                height={640}
+                width={512}
+                height={512}
                 className="aspect-square w-full rounded-xl object-cover"
               />
               <div className="mt-2 flex items-center justify-center gap-2">

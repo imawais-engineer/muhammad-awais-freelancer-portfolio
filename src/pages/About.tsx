@@ -91,8 +91,8 @@ const About = () => (
               className="aspect-square w-full object-cover"
               loading="lazy"
               decoding="async"
-              width={640}
-              height={640}
+              width={512}
+              height={512}
             />
             <div className="p-5">
               <div className="flex items-center gap-2">
