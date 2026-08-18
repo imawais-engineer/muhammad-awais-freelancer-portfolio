@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, Globe, Linkedin, ArrowUpRight } from "lucide-react";
 
@@ -40,6 +41,13 @@ const Contact = () => (
           Hire a freelance AI Automation Engineer to automate your business processes with n8n
           workflow automation, AI agents and CRM integrations. I'm one message away —{" "}
           {site.location.toLowerCase()}.
+        </p>
+        <p className="text-muted-foreground">
+          Not sure what fits yet? Review the{" "}
+          <Link to="/services" className="system-link">
+            AI automation services
+          </Link>{" "}
+          first, including CRM and lead automation.
         </p>
         <div className="flex flex-wrap gap-3">
           <Button asChild size="lg">
