@@ -18,8 +18,8 @@ const FeaturedProjectCard = ({ project }: { project: Project }) => {
             loading="lazy"
             decoding="async"
             width={1280}
-            height={720}
-            className="aspect-[16/9] w-full object-cover object-left-top"
+            height={560}
+            className="aspect-[16/7] w-full object-cover object-left-top"
           />
         </div>
       )}
@@ -29,7 +29,7 @@ const FeaturedProjectCard = ({ project }: { project: Project }) => {
         <span className="tech-tag shrink-0">{project.category}</span>
       </div>
 
-      <p className="text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+      <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
 
       <div className="space-y-1">
         <h3 className="text-base font-semibold leading-snug">{project.name}</h3>
