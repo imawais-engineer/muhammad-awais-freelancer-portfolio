@@ -8,6 +8,7 @@ import SiteFooter from "@/components/SiteFooter";
 import TechTag from "@/components/TechTag";
 import { Button } from "@/components/ui/button";
 import { getProject, projects } from "@/data/projects";
+import { getProjectSeo } from "@/data/projectSeo";
 import { getProjectImage } from "@/data/projectImages";
 import { site } from "@/data/site";
 import { SITE_URL, absoluteUrl } from "@/lib/seo";
@@ -37,6 +38,11 @@ const ProjectDetail = () => {
   if (!project) return <Navigate to="/projects" replace />;
 
   const image = getProjectImage(project.slug);
+  const seo = getProjectSeo(project.slug);
+  const topic = seo?.topic ?? project.category.toLowerCase();
+  const related = (seo?.related ?? [])
+    .map((slug) => projects.find((p) => p.slug === slug))
+    .filter((p): p is NonNullable<typeof p> => Boolean(p) && p!.slug !== project.slug);
 
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
@@ -47,10 +53,18 @@ const ProjectDetail = () => {
     "@id": `${SITE_URL}/projects/${project.slug}#case-study`,
     url: `${SITE_URL}/projects/${project.slug}`,
     name: project.name,
-    description: project.summary,
+    headline: project.name,
+    description: seo?.description ?? project.summary,
+    abstract: project.summary,
+    about: topic,
+    genre: project.category,
+    inLanguage: "en",
+    isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/projects/${project.slug}` },
     author: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name },
-    keywords: project.tools.join(", "),
-    dateCreated: project.timeframe,
+    creator: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name },
+    keywords: [topic, ...project.tools].join(", "),
+    temporalCoverage: project.timeframe,
     ...(image ? { image: absoluteUrl(image) } : {}),
   };
 
@@ -74,8 +88,8 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen">
       <Seo
-        title={`${project.shortName} — Automation Case Study | Muhammad Awais`}
-        description={project.summary.slice(0, 158)}
+        title={`${seo?.title ?? `${project.name} — Case Study`} | Muhammad Awais`}
+        description={seo?.description ?? project.summary.slice(0, 158)}
         path={`/projects/${project.slug}`}
         image={image}
         jsonLd={jsonLd}
@@ -109,7 +123,7 @@ const ProjectDetail = () => {
           <figure className="mt-10">
             <img
               src={image}
-              alt={`${project.platform} workflow canvas for ${project.name}`}
+              alt={`${project.platform} workflow canvas for the ${project.name.toLowerCase()} build`}
               loading="eager"
               decoding="async"
               width={1280}
@@ -117,7 +131,9 @@ const ProjectDetail = () => {
               className="w-full rounded-xl border border-border bg-secondary object-cover"
             />
             <figcaption className="mt-3 font-mono text-xs text-muted-foreground">
-              Actual workflow canvas from the delivered build.
+              {project.clientWork
+                ? "Actual workflow canvas from the delivered client build."
+                : "Actual workflow canvas from this demonstration build."}
             </figcaption>
           </figure>
         )}
@@ -134,11 +150,16 @@ const ProjectDetail = () => {
           ))}
         </dl>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          {project.tools.map((tool) => (
-            <TechTag key={tool} label={tool} />
-          ))}
-        </div>
+        <section className="mt-10 space-y-4">
+          <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+            Tools &amp; integrations
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {project.tools.map((tool) => (
+              <TechTag key={tool} label={tool} />
+            ))}
+          </div>
+        </section>
 
 
         <div className="mt-16 grid gap-16 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
@@ -151,7 +172,7 @@ const ProjectDetail = () => {
               <BulletList items={project.requirements} />
             </Block>
 
-            <Block title="Architecture">
+            <Block title="Solution architecture">
               <p className="node-card p-5 font-mono text-sm leading-relaxed text-foreground">
                 {project.architecture}
               </p>
@@ -170,7 +191,7 @@ const ProjectDetail = () => {
               </ol>
             </Block>
 
-            <Block title="Qualification & business logic">
+            <Block title="Business logic & decision rules">
               <BulletList items={project.logic} />
             </Block>
 
@@ -178,7 +199,7 @@ const ProjectDetail = () => {
               <BulletList items={project.output} />
             </Block>
 
-            <Block title="Results">
+            <Block title="Outcome">
               <BulletList items={project.results} />
             </Block>
 
@@ -234,7 +255,49 @@ const ProjectDetail = () => {
           </aside>
         </div>
 
-        <div className="mt-20 border-t border-panel-border pt-8">
+        <section className="mt-20 border-t border-panel-border pt-10">
+          <h2 className="text-2xl font-semibold tracking-tight">{seo?.ctaHeading ?? "Running a similar process by hand?"}</h2>
+          <p className="mt-3 max-w-2xl text-muted-foreground">
+            I design, build and maintain systems like this one end to end. Tell me how your process
+            works today and I&apos;ll map what an automated version would look like.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button asChild>
+              <Link to="/contact">{seo?.ctaLabel ?? "Build a similar system"} →</Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link to="/projects">View all AI automation projects</Link>
+            </Button>
+          </div>
+        </section>
+
+        {related.length > 0 && (
+          <section className="mt-14 space-y-4">
+            <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+              Related case studies
+            </h2>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {related.map((r) => (
+                <li key={r.slug}>
+                  <Link
+                    to={`/projects/${r.slug}`}
+                    className="node-card group flex items-center justify-between gap-4 p-5"
+                  >
+                    <span>
+                      <span className="block text-sm font-medium text-foreground">{r.name}</span>
+                      <span className="mt-1 block text-xs text-muted-foreground">
+                        {getProjectSeo(r.slug)?.topic ?? r.category}
+                      </span>
+                    </span>
+                    <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <div className="mt-14 border-t border-panel-border pt-8">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Next case study
           </p>
@@ -245,7 +308,19 @@ const ProjectDetail = () => {
             <span className="text-xl font-semibold md:text-2xl">{next.name}</span>
             <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
           </Link>
+          <p className="mt-6 text-sm text-muted-foreground">
+            More about{" "}
+            <Link to="/about" className="system-link">
+              how I work as an AI automation engineer
+            </Link>{" "}
+            or{" "}
+            <Link to="/contact" className="system-link">
+              start an AI automation project
+            </Link>
+            .
+          </p>
         </div>
+
       </main>
 
       <SiteFooter />
