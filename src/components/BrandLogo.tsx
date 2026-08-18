@@ -75,17 +75,14 @@ export const getBrandDomain = (label: string): string | null => findBrand(label)
 
 const BrandLogo = ({ label, className }: { label: string; className?: string }) => {
   const brand = findBrand(label);
-  const [stage, setStage] = useState<0 | 1 | 2>(0);
+  const [failed, setFailed] = useState(false);
 
   if (!brand) return null;
 
-  const [, domain, slug] = brand;
-  const useSvg = Boolean(slug) && stage === 0;
-  const src = useSvg
-    ? `https://cdn.simpleicons.org/${slug}`
-    : `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+  const [, , slug] = brand;
+  if (!slug || failed) return null;
 
-  if (stage === 2 || (!slug && stage === 1)) return null;
+  const src = `/brands/${slug}.svg`;
 
   return (
     <img
