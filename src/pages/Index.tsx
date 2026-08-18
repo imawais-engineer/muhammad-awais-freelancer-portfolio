@@ -24,10 +24,10 @@ import {
   about,
   process,
   proofStats,
-  reliability,
   site,
   testimonials,
 } from "@/data/site";
+
 
 import profileImage from "@/assets/profile.png";
 
