@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -52,11 +52,13 @@ const Section = ({
   intro?: string;
   action?: React.ReactNode;
   children: React.ReactNode;
-}) => (
+}) => {
+  const reduceMotion = useReducedMotion();
+  return (
   <motion.section
     id={id}
-    initial="hidden"
-    whileInView="show"
+    initial={reduceMotion ? false : "hidden"}
+    whileInView={reduceMotion ? undefined : "show"}
     viewport={{ once: true, margin: "-80px" }}
     variants={reveal}
     className="container scroll-mt-20 space-y-6 pt-16 md:scroll-mt-24 md:space-y-8 md:pt-24"
@@ -74,7 +76,8 @@ const Section = ({
 
     {children}
   </motion.section>
-);
+  );
+};
 
 /**
  * Homepage information architecture (Phase 1):
@@ -193,6 +196,10 @@ const Index = () => {
                 src={profileImage}
                 alt="Portrait of Muhammad Awais, AI automation engineer"
                 loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width={640}
+                height={640}
                 className="aspect-square w-full rounded-xl object-cover"
               />
               <div className="mt-2 flex items-center justify-center gap-2">
@@ -411,6 +418,9 @@ const Index = () => {
                       src={t.avatar}
                       alt={`${t.author}, ${t.role} at ${t.company}`}
                       loading="lazy"
+                      decoding="async"
+                      width={44}
+                      height={44}
                       className="h-11 w-11 shrink-0 rounded-full object-cover ring-1 ring-border"
                     />
                   ) : (

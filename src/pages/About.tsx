@@ -78,9 +78,12 @@ const About = () => (
           <div className="node-card overflow-hidden p-0">
             <img
               src={profileImage}
-              alt="Muhammad Awais"
+              alt="Portrait of Muhammad Awais"
               className="aspect-square w-full object-cover"
               loading="lazy"
+              decoding="async"
+              width={640}
+              height={640}
             />
             <div className="p-5">
               <div className="flex items-center gap-2">
