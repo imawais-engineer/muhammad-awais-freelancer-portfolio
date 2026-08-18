@@ -18,25 +18,25 @@ const FeaturedProjectCard = ({ project }: { project: Project }) => {
             loading="lazy"
             decoding="async"
             width={1280}
-            height={560}
-            className="aspect-[16/7] w-full object-cover object-left-top"
+            height={720}
+            className="aspect-[16/9] w-full object-cover object-left-top"
           />
         </div>
       )}
 
       <div className="flex items-start justify-between gap-3">
-        <p className="text-xl font-semibold text-primary md:text-2xl">{project.headlineResult}</p>
-        <span className="tech-tag shrink-0">{project.category}</span>
+        <div className="min-w-0">
+          <span className="tech-tag mb-2 inline-block">{project.category}</span>
+          <h3 className="text-base font-semibold leading-snug">{project.name}</h3>
+          <p className="mt-0.5 text-xs text-muted-foreground">
+            {project.clientType} · {project.industry}
+          </p>
+        </div>
       </div>
+
+      <p className="text-xl font-semibold text-primary md:text-2xl">{project.headlineResult}</p>
 
       <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
-
-      <div className="space-y-1">
-        <h3 className="text-base font-semibold leading-snug">{project.name}</h3>
-        <p className="text-xs text-muted-foreground">
-          {project.clientType} · {project.industry}
-        </p>
-      </div>
 
       <div className="flex flex-wrap gap-2">
         <TechTag label={project.platform} />
