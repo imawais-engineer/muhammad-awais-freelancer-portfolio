@@ -7,7 +7,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { about, process, site } from "@/data/site";
-import profileImage from "@/assets/profile.png";
+import profileImage from "@/assets/profile.webp";
 
 const About = () => (
   <div className="min-h-screen">
