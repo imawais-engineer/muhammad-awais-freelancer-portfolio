@@ -14,24 +14,16 @@ import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ProjectCard from "@/components/ProjectCard";
-import TechTag from "@/components/TechTag";
 import { Button } from "@/components/ui/button";
-import { clientProjects, demoProjects, projects } from "@/data/projects";
+import { clientProjects, projects } from "@/data/projects";
 import {
   about,
-  aiCapabilities,
   architecturePatterns,
-  businessProblems,
-  deliverables,
-  integrationMap,
-  methodologies,
   process,
   proofStats,
   reliability,
-  scrapingCapabilities,
   services,
   site,
-  techStack,
   testimonials,
 } from "@/data/site";
 import profileImage from "@/assets/profile.png";
@@ -78,6 +70,18 @@ const Section = ({
   </motion.section>
 );
 
+/**
+ * Homepage information architecture (Phase 1):
+ * Hero → Proof strip → Featured client work → Services → Process →
+ * Engineering approach → About preview → Credentials & testimonials → Final CTA.
+ *
+ * Deep technical sections (technology stack, integration map, full architecture
+ * catalogue, AI capabilities, scraping & data, deliverables) intentionally live
+ * outside the homepage flow. Their data still exists in `src/data/site.ts`
+ * (`techStack`, `integrationMap`, `architecturePatterns`, `aiCapabilities`,
+ * `scrapingCapabilities`, `deliverables`, `methodologies`, `businessProblems`)
+ * for reuse in case studies and inner pages in later phases.
+ */
 const Index = () => {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -91,6 +95,15 @@ const Index = () => {
     sameAs: [site.links.upwork, site.links.fiverr, site.links.linkedin],
   };
 
+  const featuredProjects = clientProjects.slice(0, 3);
+  const engineeringHighlights = [
+    architecturePatterns[0],
+    architecturePatterns[3],
+    reliability[0],
+    reliability[2],
+    reliability[5],
+  ].filter(Boolean);
+
   return (
     <div className="min-h-screen">
       <Seo
@@ -102,7 +115,7 @@ const Index = () => {
       <SiteHeader />
 
       <main className="pb-8">
-        {/* 01 — Professional positioning (hero) */}
+        {/* 01 — Hero */}
         <motion.section
           initial="hidden"
           animate="show"
@@ -161,6 +174,7 @@ const Index = () => {
             </div>
           </div>
 
+          {/* 02 — Proof strip */}
           <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {proofStats.map((stat) => (
               <div key={stat.label} className="node-card p-4">
@@ -173,43 +187,34 @@ const Index = () => {
           </dl>
         </motion.section>
 
-        {/* 02 — About / professional summary */}
+        {/* 03 — Featured client work */}
         <Section
-          id="about"
-          eyebrow="About"
-          title="Who I am, and how I work"
+          id="work"
+          eyebrow="Featured work"
+          title="Paid work, running in production"
+          intro="Delivered for paying clients, with measured results you can verify in the case studies."
           action={
-            <Link to="/about" className="system-link hover:text-primary">
-              Read the full background
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            <Button asChild variant="secondary" className="shrink-0">
+              <Link to="/projects">
+                View all projects
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           }
         >
-          <div className="grid gap-4 lg:grid-cols-3">
-            <article className="node-card p-6 lg:col-span-2">
-              <p className="text-base leading-relaxed text-foreground">{about.intro}</p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {about.paragraphs[0]}
-              </p>
-              <p className="mt-4 border-l-2 border-primary pl-4 text-sm italic text-muted-foreground">
-                {about.principle}
-              </p>
-            </article>
-            <article className="node-card p-6">
-              <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Who I help
-              </h3>
-              <p className="mt-3 text-sm text-muted-foreground">{about.whoIHelp}</p>
-            </article>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
           </div>
         </Section>
 
-        {/* 03 — Core services */}
+        {/* 04 — What I build / services */}
         <Section
           id="services"
           eyebrow="Services"
           title="What I build"
-          intro="Six areas where automation pays for itself fastest — delivered as tested, documented systems, not one-off scripts."
+          intro="The areas where automation pays for itself fastest — delivered as tested, documented systems, not one-off scripts."
           action={
             <Button asChild variant="secondary" className="shrink-0">
               <Link to="/contact">Discuss your process</Link>
@@ -221,200 +226,12 @@ const Index = () => {
               <article key={service.title} className="node-card flex h-full flex-col p-6">
                 <h3 className="text-lg font-semibold">{service.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{service.summary}</p>
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  {service.items.slice(0, 3).map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
               </article>
             ))}
           </div>
         </Section>
 
-        {/* 04 — Business problems solved */}
-        <Section
-          id="problems"
-          eyebrow="Problems solved"
-          title="The bottlenecks I'm usually hired to remove"
-          intro="If two or more of these sound like your week, there is almost certainly a system worth building."
-        >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {businessProblems.map((problem) => (
-              <article key={problem.title} className="node-card p-6">
-                <h3 className="text-base font-semibold">{problem.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{problem.detail}</p>
-              </article>
-            ))}
-          </div>
-        </Section>
-
-        {/* 05 — Technology stack */}
-        <Section
-          id="stack"
-          eyebrow="Technology"
-          title="The stack I work in"
-          intro="Platform-agnostic by design — I pick the tool that makes your system cheapest to run and easiest to maintain."
-        >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {techStack.map((group) => (
-              <article key={group.category} className="node-card p-5">
-                <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  {group.category}
-                </h3>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {group.tools.slice(0, 5).map((tool) => (
-                    <TechTag key={tool} label={tool} />
-                  ))}
-                </div>
-
-              </article>
-            ))}
-          </div>
-          <div className="node-card p-6">
-            <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Engineering methodologies
-            </h3>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {methodologies.map((m) => (
-                <span key={m} className="tech-tag">
-                  {m}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Section>
-
-        {/* 06 — Integrations (visual map) */}
-        <Section
-          id="integrations"
-          eyebrow="Integrations"
-          title="How the pieces connect"
-          intro="A typical system moves left to right: something triggers it, logic and AI process it, data is stored, and actions land in the tools your team already uses."
-        >
-          <div className="grid gap-4 lg:grid-cols-4">
-            {integrationMap.map((layer, index) => (
-              <article key={layer.layer} className="node-card relative p-5">
-                <p className="font-mono text-xs text-primary">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-1 text-base font-semibold">{layer.layer}</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {layer.nodes.map((node) => (
-                    <TechTag key={node} label={node} />
-                  ))}
-                </div>
-
-                {index < integrationMap.length - 1 && (
-                  <ArrowRight
-                    className="absolute -right-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-primary lg:block"
-                    aria-hidden="true"
-                  />
-                )}
-              </article>
-            ))}
-          </div>
-        </Section>
-
-        {/* 07 — Real client projects */}
-        <Section
-          id="client-work"
-          eyebrow="Real client projects"
-          title="Paid work, running in production"
-          intro="Delivered for paying clients, with ratings and measured results you can verify."
-        >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {clientProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        </Section>
-
-        {/* 08 — Portfolio / demonstration projects */}
-        <Section
-          id="work"
-          eyebrow="Demonstration projects"
-          title="Systems I've built to prove the patterns"
-          intro="Production-grade builds covering AI agents, lead qualification, support triage, RAG and content pipelines. Open any case study for the architecture, workflow logic and results."
-          action={
-            <Button asChild variant="secondary" className="shrink-0">
-              <Link to="/projects">
-                All {projects.length} case studies
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          }
-        >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {demoProjects.slice(0, 6).map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        </Section>
-
-        {/* 09 — Automation architecture */}
-        <Section
-          id="architecture"
-          eyebrow="Architecture"
-          title="How I engineer the workflows"
-          intro="The patterns behind every build — the reason these systems keep running after handover."
-        >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {architecturePatterns.map((pattern) => (
-              <article key={pattern.title} className="node-card p-6">
-                <h3 className="text-base font-semibold">{pattern.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{pattern.detail}</p>
-              </article>
-            ))}
-          </div>
-        </Section>
-
-        {/* 10 — AI automation capabilities */}
-        <Section
-          id="ai"
-          eyebrow="AI capabilities"
-          title="Where AI actually earns its place"
-          intro="Used only where a rule-based step can't do the job — always with fallbacks, guardrails and a human in the loop where it matters."
-        >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {aiCapabilities.map((capability) => (
-              <article key={capability.title} className="node-card p-6">
-                <h3 className="text-base font-semibold">{capability.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{capability.detail}</p>
-              </article>
-            ))}
-          </div>
-        </Section>
-
-        {/* 11 — Scraping & data automation */}
-        <Section
-          id="data"
-          eyebrow="Scraping & data"
-          title="Reliable data in, structured insight out"
-          intro="Collection is the easy part. The value is in cleaning, deduplicating and enriching data so the rest of the system can trust it."
-        >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {scrapingCapabilities.map((stage) => (
-              <article key={stage.title} className="node-card p-5">
-                <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-                  {stage.title}
-                </h3>
-                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                  {stage.items.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </Section>
-
-        {/* 12 — Process / how I work */}
+        {/* 05 — How I work */}
         <Section
           id="process"
           eyebrow="Process"
@@ -432,15 +249,15 @@ const Index = () => {
           </ol>
         </Section>
 
-        {/* 13 — Security, reliability & error handling */}
+        {/* 06 — Why work with me / engineering approach */}
         <Section
-          id="reliability"
-          eyebrow="Reliability"
-          title="Security, reliability & error handling"
-          intro="Automation is only worth having if it fails safely. This is what I build in by default, on every project."
+          id="approach"
+          eyebrow="Why work with me"
+          title="Systems that keep running after handover"
+          intro="A short version of how these builds are engineered — the full architecture detail lives inside each case study."
         >
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {reliability.map((item) => (
+            {engineeringHighlights.map((item) => (
               <article key={item.title} className="node-card flex gap-3 p-6">
                 <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                 <div>
@@ -452,11 +269,11 @@ const Index = () => {
           </div>
         </Section>
 
-        {/* 14 — Proof, credibility & testimonials */}
+        {/* 07 — About preview */}
         <Section
-          id="proof"
-          eyebrow="Proof"
-          title="Credentials and what clients say"
+          id="about"
+          eyebrow="About"
+          title="Who I am, and how I work"
           action={
             <Link to="/about" className="system-link hover:text-primary">
               Read the full background
@@ -464,8 +281,41 @@ const Index = () => {
             </Link>
           }
         >
+          <div className="grid gap-4 lg:grid-cols-3">
+            <article className="node-card p-6 lg:col-span-2">
+              <p className="text-base leading-relaxed text-foreground">{about.intro}</p>
+              <p className="mt-4 border-l-2 border-primary pl-4 text-sm italic text-muted-foreground">
+                {about.principle}
+              </p>
+            </article>
+            <article className="node-card p-6">
+              <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Who I help
+              </h3>
+              <p className="mt-3 text-sm text-muted-foreground">{about.whoIHelp}</p>
+            </article>
+          </div>
+        </Section>
+
+        {/* 08 — Credentials & verified proof */}
+        <Section
+          id="proof"
+          eyebrow="Proof"
+          title="Credentials and what clients say"
+          action={
+            <a
+              href={site.links.upwork}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="system-link hover:text-primary"
+            >
+              View Upwork profile
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          }
+        >
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {about.credentials.map((credential) => (
+            {about.credentials.slice(0, 3).map((credential) => (
               <article key={credential.title} className="node-card flex gap-3 p-6">
                 <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                 <div>
@@ -525,24 +375,7 @@ const Index = () => {
           </div>
         </Section>
 
-        {/* 15 — Documentation & demo assets */}
-        <Section
-          id="documentation"
-          eyebrow="Documentation"
-          title="What you receive at handover"
-          intro="You own the system, the credentials and the documentation — no lock-in, no black boxes."
-        >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {deliverables.map((item) => (
-              <article key={item.title} className="node-card p-6">
-                <h3 className="text-base font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
-              </article>
-            ))}
-          </div>
-        </Section>
-
-        {/* 16 — Contact / call to action */}
+        {/* 09 — Final CTA */}
         <section className="container pt-24">
           <div className="node-card flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between md:p-12">
             <div className="max-w-xl space-y-3">
