@@ -19,68 +19,73 @@ const About = () => (
     <SiteHeader />
 
     <main id="main" className="container pt-20">
-      <motion.header
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45 }}
-        className="max-w-3xl space-y-5"
-      >
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">About</p>
-        <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-          About Muhammad Awais — AI Automation Engineer
-        </h1>
-        <p className="text-lg text-muted-foreground">{about.intro}</p>
-        <p className="font-mono text-sm text-muted-foreground">{site.location}</p>
-      </motion.header>
-
       <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
-        <div className="space-y-14">
-          <section className="max-w-3xl space-y-5 text-muted-foreground">
-            {about.paragraphs.map((p) => (
-              <p key={p.slice(0, 40)}>{p}</p>
-            ))}
-            <p>
-              I work as a freelance AI Automation Engineer, and the work draws on a software
-              engineering background: I build with TypeScript, Python and REST APIs, so I'm equally
-              comfortable being briefed as an AI developer, full stack developer or AI solutions
-              engineer when a project needs custom code alongside n8n workflow automation.
+        <div>
+          <motion.header
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="max-w-3xl space-y-5"
+          >
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">About</p>
+            <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
+              About Muhammad Awais — AI Automation Engineer
+            </h1>
+            <p className="text-lg text-muted-foreground">{about.intro}</p>
+            <p className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
+              <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
+              {site.location}
             </p>
-          </section>
+          </motion.header>
 
-          <section className="space-y-4">
-            <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Who I help</h2>
-            <p className="max-w-3xl text-muted-foreground">{about.whoIHelp}</p>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">My approach</h2>
-            <ol className="grid gap-4 md:grid-cols-3">
-              {about.approach.map((step, i) => (
-                <li key={step} className="node-card p-5">
-                  <p className="font-mono text-sm text-primary">{String(i + 1).padStart(2, "0")}</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{step}</p>
-                </li>
+          <div className="mt-14 space-y-14">
+            <section className="max-w-3xl space-y-5 text-muted-foreground">
+              {about.paragraphs.map((p) => (
+                <p key={p.slice(0, 40)}>{p}</p>
               ))}
-            </ol>
-            <p className="node-card p-5 text-foreground">{about.principle}</p>
-          </section>
+              <p>
+                I work as a freelance AI Automation Engineer, and the work draws on a software
+                engineering background: I build with TypeScript, Python and REST APIs, so I'm equally
+                comfortable being briefed as an AI developer, full stack developer or AI solutions
+                engineer when a project needs custom code alongside n8n workflow automation.
+              </p>
+            </section>
 
-          <section className="space-y-4">
-            <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
-              How I work with clients
-            </h2>
-            <ol className="space-y-3">
-              {process.map((p) => (
-                <li key={p.step} className="node-card flex gap-4 p-5">
-                  <span className="font-mono text-sm text-primary">{p.step}</span>
-                  <span>
-                    <span className="block font-medium">{p.title}</span>
-                    <span className="mt-1 block text-sm text-muted-foreground">{p.detail}</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
-          </section>
+            <section className="space-y-4">
+              <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Who I help</h2>
+              <p className="max-w-3xl text-muted-foreground">{about.whoIHelp}</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">My approach</h2>
+              <ol className="grid gap-4 md:grid-cols-3">
+                {about.approach.map((step, i) => (
+                  <li key={step} className="node-card p-5">
+                    <p className="font-mono text-sm text-primary">{String(i + 1).padStart(2, "0")}</p>
+                    <p className="mt-2 text-sm text-muted-foreground">{step}</p>
+                  </li>
+                ))}
+              </ol>
+              <p className="node-card p-5 text-foreground">{about.principle}</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+                How I work with clients
+              </h2>
+              <ol className="space-y-3">
+                {process.map((p) => (
+                  <li key={p.step} className="node-card flex gap-4 p-5">
+                    <span className="font-mono text-sm text-primary">{p.step}</span>
+                    <span>
+                      <span className="block font-medium">{p.title}</span>
+                      <span className="mt-1 block text-sm text-muted-foreground">{p.detail}</span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          </div>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
