@@ -297,6 +297,29 @@ const ProjectDetail = () => {
           </section>
         )}
 
+        {servicePage && (
+          <section className="mt-14 space-y-3">
+            <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+              Related service
+            </h2>
+            <Link
+              to={servicePage.href}
+              className="node-card group flex items-center justify-between gap-4 p-5"
+            >
+              <span>
+                <span className="block text-sm font-medium text-foreground">
+                  {servicePage.label}
+                </span>
+                <span className="mt-1 block text-xs text-muted-foreground">
+                  {servicePage.note}
+                </span>
+              </span>
+              <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+            </Link>
+          </section>
+        )}
+
+
         <div className="mt-14 border-t border-panel-border pt-8">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Next case study
