@@ -220,7 +220,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="node-card order-first mx-auto w-full max-w-[10.5rem] p-3 sm:max-w-[12.5rem] md:order-none md:mx-0 md:max-w-[13.75rem] lg:max-w-[16.25rem] lg:p-4">
+            <div className="order-first mx-auto w-full max-w-[10.5rem] p-3 sm:max-w-[12.5rem] md:order-none md:mx-0 md:max-w-[13.75rem] lg:max-w-[16.25rem] lg:p-4">
               <img
                 src="/profile.webp"
                 srcSet="/profile-256.webp 256w, /profile.webp 512w"
