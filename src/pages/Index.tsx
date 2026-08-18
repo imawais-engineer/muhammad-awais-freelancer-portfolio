@@ -152,27 +152,27 @@ const Index = () => {
           variants={reveal}
           className="container pt-8 md:pt-12"
         >
-          <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
+          <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
                 AI Automation Engineer · n8n · AI Systems
               </p>
-              <h1 className="mt-2 max-w-3xl text-2xl font-semibold leading-[1.1] tracking-tight md:text-4xl lg:text-5xl">
+              <h1 className="mt-2 max-w-3xl text-[1.7rem] font-semibold leading-[1.12] tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
                 I build AI-powered systems that eliminate repetitive work.
               </h1>
-              <p className="mt-3 max-w-2xl text-base text-muted-foreground md:text-lg">
+              <p className="mt-3 max-w-[38ch] text-base leading-relaxed text-muted-foreground sm:max-w-2xl md:text-lg">
                 I help agencies, SaaS teams, and small businesses automate operations, connect their
                 tools, and turn manual workflows into reliable systems.
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Button asChild size="lg">
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link to="/contact">
                     Start an Automation Project
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="secondary">
+                <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
                   <Link to="/projects">
                     View Case Studies
                     <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -180,15 +180,15 @@ const Index = () => {
                 </Button>
               </div>
 
-              <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground">
-                <span className="inline-flex items-center gap-2">
-                  <MapPin className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+              <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] leading-relaxed text-muted-foreground sm:text-xs">
+                <span className="inline-flex items-start gap-2">
+                  <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
                   {site.location}
                 </span>
               </div>
             </div>
 
-            <div className="node-card order-first max-w-[200px] p-3 md:order-none md:max-w-[220px] lg:max-w-[260px] lg:p-4">
+            <div className="node-card order-first mx-auto w-full max-w-[168px] p-3 sm:max-w-[200px] md:order-none md:mx-0 md:max-w-[220px] lg:max-w-[260px] lg:p-4">
               <img
                 src={profileImage}
                 alt="Portrait of Muhammad Awais, AI automation engineer"
@@ -196,29 +196,30 @@ const Index = () => {
                 className="aspect-square w-full rounded-xl object-cover"
               />
               <div className="mt-2 flex items-center justify-center gap-2">
-                <p className="text-base font-semibold tracking-tight text-foreground md:text-lg lg:text-xl">{site.name}</p>
+                <p className="text-sm font-semibold tracking-tight text-foreground sm:text-base md:text-lg lg:text-xl">{site.name}</p>
                 <span
                   className="inline-flex"
                   aria-label="Identity verified"
                   title="Identity verified — government ID check and visual verification"
                 >
-                  <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                  <BadgeCheck className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" aria-hidden="true" />
                 </span>
               </div>
             </div>
           </div>
 
           {/* 02 — Proof strip */}
-          <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {proofStats.map((stat) => (
               <div key={stat.label} className="node-card p-4">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                <dt className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.15em] text-muted-foreground sm:text-[11px] sm:tracking-[0.2em]">
                   {stat.label}
                 </dt>
-                <dd className="mt-1 text-xl font-semibold text-foreground md:text-2xl">{stat.value}</dd>
+                <dd className="mt-1 text-lg font-semibold text-foreground sm:text-xl md:text-2xl">{stat.value}</dd>
               </div>
             ))}
           </dl>
+
         </motion.section>
 
         {/* 03 — Featured client work */}
