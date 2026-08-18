@@ -228,7 +228,7 @@ const Index = () => {
             <div className="node-card order-first mx-auto w-full max-w-[10.5rem] p-3 sm:max-w-[12.5rem] md:order-none md:mx-0 md:max-w-[13.75rem] lg:max-w-[16.25rem] lg:p-4">
               <img
                 src={profileImage}
-                alt="Portrait of Muhammad Awais, AI automation engineer"
+                alt="Portrait of Muhammad Awais, freelance AI Automation Engineer"
                 loading="eager"
                 {...{ fetchpriority: "high" }}
                 decoding="async"
@@ -267,12 +267,12 @@ const Index = () => {
         <Section
           id="work"
           eyebrow="Featured work"
-          title="Paid work, running in production"
-          intro="Delivered for paying clients, with outcomes you can verify in the case studies."
+          title="AI automation projects running in production"
+          intro="Paid client builds — lead qualification, CRM routing, AI agents and automated reporting — with outcomes you can verify in each case study."
           action={
             <Button asChild variant="secondary" className="shrink-0">
               <Link to="/projects">
-                View all projects
+                View all AI automation projects
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -289,8 +289,8 @@ const Index = () => {
         <Section
           id="services"
           eyebrow="Services"
-          title="What I build"
-          intro="The areas where automation pays for itself fastest — delivered as tested, documented systems, not one-off scripts."
+          title="AI automation and n8n workflow services"
+          intro="The areas where automation pays for itself fastest — AI agents, n8n workflow automation, CRM and lead automation, and business process automation — delivered as tested, documented systems, not one-off scripts."
           action={
             <Button asChild variant="secondary" className="shrink-0">
               <Link to="/contact">Discuss your process</Link>
