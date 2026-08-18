@@ -129,6 +129,13 @@ const About = () => (
             <p className="text-sm text-muted-foreground">
               Available for automation projects, retainers, and workflow rescue work.
             </p>
+            <p className="text-sm text-muted-foreground">
+              See the full range of{" "}
+              <Link to="/services" className="system-link">
+                n8n workflow automation services
+              </Link>
+              .
+            </p>
             <Button asChild className="w-full">
               <Link to="/contact">
                 Start an AI automation project

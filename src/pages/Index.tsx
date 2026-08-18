@@ -327,6 +327,13 @@ const Index = () => {
               tools="Apify · Python · REST APIs · Google Sheets"
             />
           </div>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Full detail on scope, tools, deliverables and FAQs:{" "}
+            <Link to="/services" className="system-link">
+              AI automation services
+            </Link>
+            .
+          </p>
         </Section>
 
         {/* 05 — How I work */}
