@@ -339,7 +339,7 @@ const Terms = () => {
     <div className="min-h-screen bg-background">
       <SiteHeader />
 
-      <main id="top">
+      <main id="main">
         <section className="container py-14 md:py-20">
           <motion.div className="max-w-3xl space-y-5" initial="hidden" animate="show" variants={reveal}>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Business Documentation</p>

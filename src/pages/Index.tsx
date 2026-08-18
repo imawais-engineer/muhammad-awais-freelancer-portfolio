@@ -148,7 +148,7 @@ const Index = () => {
       />
       <SiteHeader />
 
-      <main className="pb-8">
+      <main id="main" className="pb-8">
         {/* 01 — Hero */}
         <motion.section
           initial={reduceMotion ? false : "hidden"}

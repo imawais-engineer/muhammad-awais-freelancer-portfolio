@@ -25,7 +25,7 @@ const Contact = () => (
     />
     <SiteHeader />
 
-    <main className="container pt-20">
+    <main id="main" className="container pt-20">
       <motion.header
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
