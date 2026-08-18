@@ -1,21 +1,33 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Projects", to: "/projects" },
-  { label: "Services", to: "/#services" },
-  { label: "Process", to: "/#process" },
-  { label: "About", to: "/about" },
+  { label: "Work", to: "/#work", hash: "#work" },
+  { label: "Services", to: "/#services", hash: "#services" },
+  { label: "Process", to: "/#process", hash: "#process" },
+  { label: "About", to: "/#about", hash: "#about" },
   { label: "Contact", to: "/contact" },
-];
+] as const;
 
 const SiteHeader = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash: currentHash } = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+
+  const handleNav =
+    (item: (typeof navItems)[number]) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+      setOpen(false);
+      if (!("hash" in item) || !item.hash) return;
+      if (pathname !== "/") return;
+      event.preventDefault();
+      const el = document.querySelector(item.hash);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+      if (currentHash !== item.hash) navigate(item.to, { replace: true });
+    };
 
   return (
     <header className="sticky top-0 z-40 border-b border-panel-border bg-background/90 backdrop-blur">
@@ -26,17 +38,26 @@ const SiteHeader = () => {
           <span className="hidden text-muted-foreground sm:inline">— {site.title}</span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              className={cn("system-link", pathname === item.to && "text-foreground")}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="hidden items-center gap-6 md:flex">
+          <nav aria-label="Primary" className="flex items-center gap-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                onClick={handleNav(item)}
+                className={cn("system-link", pathname === item.to && "text-foreground")}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <Link
+            to="/contact"
+            className="rounded-md border border-primary/40 bg-primary/10 px-3 py-1.5 font-mono text-xs text-primary transition-colors hover:bg-primary/20"
+          >
+            Start a Project
+          </Link>
+        </div>
 
         <button
           type="button"
@@ -56,12 +77,19 @@ const SiteHeader = () => {
               <Link
                 key={item.label}
                 to={item.to}
-                onClick={() => setOpen(false)}
+                onClick={handleNav(item)}
                 className="system-link py-2"
               >
                 {item.label}
               </Link>
             ))}
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              className="mt-2 rounded-md border border-primary/40 bg-primary/10 px-3 py-2 text-center font-mono text-xs text-primary"
+            >
+              Start a Project
+            </Link>
           </div>
         </nav>
       )}
