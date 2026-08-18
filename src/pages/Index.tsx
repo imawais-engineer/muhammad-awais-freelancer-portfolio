@@ -197,7 +197,7 @@ const Index = () => {
                 src={profileImage}
                 alt="Portrait of Muhammad Awais, AI automation engineer"
                 loading="eager"
-                fetchPriority="high"
+                {...{ fetchpriority: "high" }}
                 decoding="async"
                 width={640}
                 height={640}
