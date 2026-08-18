@@ -64,7 +64,7 @@ const SiteHeader = () => {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="rounded-md p-2 text-muted-foreground transition-colors hover:text-foreground md:hidden"
+          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground md:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -72,13 +72,13 @@ const SiteHeader = () => {
 
       {open && (
         <nav aria-label="Mobile" className="border-t border-panel-border md:hidden">
-          <div className="container flex flex-col gap-1 py-3">
+          <div className="container flex flex-col gap-1 py-3 pb-4">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.to}
                 onClick={handleNav(item)}
-                className="system-link py-2"
+                className="system-link flex min-h-[44px] items-center py-2 text-base"
               >
                 {item.label}
               </Link>
@@ -86,7 +86,7 @@ const SiteHeader = () => {
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-md border border-primary/40 bg-primary/10 px-3 py-2 text-center font-mono text-xs text-primary"
+              className="mt-2 rounded-md border border-primary/40 bg-primary/10 flex min-h-[44px] items-center justify-center px-3 py-2 text-center font-mono text-sm text-primary"
             >
               Start a Project
             </Link>

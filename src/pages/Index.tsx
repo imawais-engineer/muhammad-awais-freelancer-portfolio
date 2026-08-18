@@ -295,7 +295,7 @@ const Index = () => {
           title="From problem to production in five steps"
           intro="You approve the system design before anything is built, and you get documentation you can actually use."
         >
-          <ol className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             <ProcessStep
               step={process[0].step}
               title={process[0].title}
@@ -363,13 +363,13 @@ const Index = () => {
           }
         >
           <div className="grid gap-4 lg:grid-cols-2">
-            <article className="node-card p-6">
+            <article className="node-card p-5 sm:p-6">
               <p className="text-base leading-relaxed text-foreground">{about.intro}</p>
               <p className="mt-4 border-l-2 border-primary pl-4 text-sm italic text-muted-foreground">
                 {about.principle}
               </p>
             </article>
-            <article className="node-card flex flex-col p-6">
+            <article className="node-card flex flex-col p-5 sm:p-6">
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 Who I help
               </h3>
@@ -398,14 +398,14 @@ const Index = () => {
         >
           <div className="grid gap-4 md:grid-cols-2">
             {testimonials.map((t) => (
-              <figure key={t.author} className="node-card flex h-full flex-col p-6">
+              <figure key={t.author} className="node-card flex h-full flex-col p-5 sm:p-6">
                 <div className="flex items-center gap-1 text-primary" aria-label={`${t.rating} out of 5`}>
                   {Array.from({ length: t.rating }).map((_, i) => (
                     <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
                   ))}
                 </div>
-                <blockquote className="mt-4 text-base leading-relaxed text-foreground">“{t.quote}”</blockquote>
-                <figcaption className="mt-auto flex items-center gap-3 pt-6">
+                <blockquote className="mt-4 text-[0.95rem] leading-relaxed text-foreground sm:text-base">“{t.quote}”</blockquote>
+                <figcaption className="mt-auto flex flex-wrap items-center gap-3 pt-6">
                   {"avatar" in t && t.avatar ? (
                     <img
                       src={t.avatar}
@@ -419,8 +419,8 @@ const Index = () => {
                     </span>
                   )}
                   <div className="min-w-0">
-                    <p className="text-sm font-medium">{t.author}</p>
-                    <p className="font-mono text-xs text-muted-foreground">
+                    <p className="break-words text-sm font-medium">{t.author}</p>
+                    <p className="break-words font-mono text-xs leading-relaxed text-muted-foreground">
                       {t.role}
                       {"companyUrl" in t && t.companyUrl ? (
                         <>
@@ -460,7 +460,7 @@ const Index = () => {
                   ].includes(c.title)
                 )
                 .map((credential) => (
-                  <article key={credential.title} className="node-card flex gap-3 p-5">
+                  <article key={credential.title} className="node-card flex gap-3 p-4 sm:p-5">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                     <div>
                       <h4 className="text-sm font-semibold leading-snug">{credential.title}</h4>
@@ -473,10 +473,10 @@ const Index = () => {
         </Section>
 
         {/* 09 — Final CTA */}
-        <section className="container pt-24">
-          <div className="node-card flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between md:p-12">
+        <section className="container pt-16 md:pt-24">
+          <div className="node-card flex flex-col gap-6 p-6 sm:p-8 md:flex-row md:items-center md:justify-between md:p-12">
             <div className="max-w-xl space-y-3">
-              <h2 className="text-2xl font-semibold md:text-3xl">
+              <h2 className="text-xl font-semibold sm:text-2xl md:text-3xl">
                 Which part of your week is still manual?
               </h2>
               <p className="text-muted-foreground">
@@ -484,7 +484,7 @@ const Index = () => {
                 what it would take.
               </p>
             </div>
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="w-full shrink-0 sm:w-auto">
               <Link to="/contact">
                 Start a conversation
                 <ArrowRight className="ml-2 h-4 w-4" />
