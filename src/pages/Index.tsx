@@ -395,10 +395,10 @@ const Index = () => {
         <Section
           id="about"
           eyebrow="About"
-          title="Who I am, and how I work"
+          title="Muhammad Awais, AI Automation Engineer"
           action={
             <Link to="/about" className="system-link hover:text-primary">
-              Read the full background
+              About Muhammad Awais
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           }
@@ -530,7 +530,7 @@ const Index = () => {
             </div>
             <Button asChild size="lg" className="w-full shrink-0 sm:w-auto">
               <Link to="/contact">
-                Start a conversation
+                Start an AI automation project
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
