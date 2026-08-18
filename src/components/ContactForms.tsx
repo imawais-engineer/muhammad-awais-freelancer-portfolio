@@ -430,9 +430,9 @@ const ContactForms = () => {
 
   return (
     <Tabs defaultValue="basic" className="w-full">
-      <TabsList>
-        <TabsTrigger value="basic">Quick message</TabsTrigger>
-        <TabsTrigger value="advanced">Detailed project brief</TabsTrigger>
+      <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1 sm:inline-flex sm:h-10 sm:w-auto sm:flex-nowrap">
+        <TabsTrigger value="basic" className="flex-1 whitespace-normal sm:flex-none">Quick message</TabsTrigger>
+        <TabsTrigger value="advanced" className="flex-1 whitespace-normal sm:flex-none">Detailed project brief</TabsTrigger>
       </TabsList>
 
       <TabsContent value="basic" className="mt-6">
