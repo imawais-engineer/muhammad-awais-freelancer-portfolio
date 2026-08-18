@@ -94,7 +94,7 @@ const BrandLogo = ({ label, className }: { label: string; className?: string }) 
       decoding="async"
       width={16}
       height={16}
-      onError={() => setStage((current) => (current === 0 && slug ? 1 : 2))}
+      onError={() => setFailed(true)}
       className={cn("h-4 w-4 shrink-0 rounded-[3px] object-contain", className)}
     />
   );
