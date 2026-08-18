@@ -455,11 +455,12 @@ const Index = () => {
                   {"avatar" in t && t.avatar ? (
                     <img
                       src={t.avatar}
-                      alt={`${t.author}, ${t.role} at ${t.company}`}
+                      alt={`Client photo of ${t.author}, ${t.role} at ${t.company}`}
                       loading="lazy"
                       decoding="async"
                       width={44}
                       height={44}
+                      data-nosnippet
                       className="h-11 w-11 shrink-0 rounded-full object-cover ring-1 ring-border"
                     />
                   ) : (
