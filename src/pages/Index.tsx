@@ -220,7 +220,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="order-first mx-auto w-full max-w-[10.5rem] p-3 sm:max-w-[12.5rem] md:order-none md:mx-0 md:max-w-[13.75rem] lg:max-w-[16.25rem] lg:p-4">
+            <div className="node-card order-first mx-auto w-full max-w-[10.5rem] p-3 sm:max-w-[12.5rem] md:order-none md:mx-0 md:max-w-[13.75rem] lg:max-w-[16.25rem] lg:p-4">
               <img
                 src="/profile.webp"
                 srcSet="/profile-256.webp 256w, /profile.webp 512w"
@@ -231,7 +231,7 @@ const Index = () => {
                 decoding="async"
                 width={512}
                 height={512}
-                className="aspect-square w-full rounded-xl object-cover"
+                className="aspect-square w-full rounded-full object-cover"
               />
               <div className="mt-2 flex items-center justify-center gap-2">
                 <p className="text-sm font-semibold tracking-tight text-foreground sm:text-base md:text-lg lg:text-xl">{site.name}</p>
