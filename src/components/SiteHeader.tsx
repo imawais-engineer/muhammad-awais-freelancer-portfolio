@@ -35,11 +35,11 @@ const SiteHeader = () => {
         <Link to="/" className="flex items-center gap-2 font-mono text-sm text-foreground">
           <span className="inline-block h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
           Muhammad Awais
-          <span className="hidden text-muted-foreground sm:inline">— {site.title}</span>
+          <span className="hidden text-muted-foreground lg:inline">— {site.title}</span>
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex">
-          <nav aria-label="Primary" className="flex items-center gap-6">
+        <div className="hidden items-center gap-5 md:flex lg:gap-6">
+          <nav aria-label="Primary" className="flex items-center gap-5 lg:gap-6">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -53,7 +53,7 @@ const SiteHeader = () => {
           </nav>
           <Link
             to="/contact"
-            className="rounded-md border border-primary/40 bg-primary/10 px-3 py-1.5 font-mono text-xs text-primary transition-colors hover:bg-primary/20"
+            className="rounded-md border border-primary/40 bg-primary/10 whitespace-nowrap px-3 py-1.5 font-mono text-xs text-primary transition-colors hover:bg-primary/20"
           >
             Start a Project
           </Link>
