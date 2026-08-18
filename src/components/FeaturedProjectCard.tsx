@@ -7,6 +7,7 @@ import { getProjectImage } from "@/data/projectImages";
 
 const FeaturedProjectCard = ({ project }: { project: Project }) => {
   const image = getProjectImage(project.slug);
+  const tags = Array.from(new Set([project.platform, ...project.tools])).slice(0, 3);
 
   return (
     <article className="node-card flex h-full flex-col gap-4 p-5 sm:p-6">
@@ -24,23 +25,20 @@ const FeaturedProjectCard = ({ project }: { project: Project }) => {
         </div>
       )}
 
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <span className="tech-tag mb-2 inline-block">{project.category}</span>
-          <h3 className="text-base font-semibold leading-snug break-words">{project.name}</h3>
-          <p className="mt-0.5 text-xs text-muted-foreground">
-            {project.clientType} · {project.industry}
-          </p>
-        </div>
+      <div className="min-w-0 space-y-2">
+        <span className="tech-tag inline-block">{project.category}</span>
+        <h3 className="line-clamp-2 break-words text-base font-semibold leading-snug">{project.name}</h3>
+        <p className="line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+          {project.clientType} · {project.industry}
+        </p>
       </div>
 
-      <p className="text-lg font-semibold text-primary sm:text-xl md:text-2xl">{project.headlineResult}</p>
+      <p className="text-lg font-semibold leading-snug text-primary sm:text-xl">{project.headlineResult}</p>
 
       <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
 
       <div className="flex flex-wrap gap-2">
-        <TechTag label={project.platform} />
-        {project.tools.slice(0, 2).map((tool) => (
+        {tags.map((tool) => (
           <TechTag key={tool} label={tool} />
         ))}
       </div>

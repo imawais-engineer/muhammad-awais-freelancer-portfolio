@@ -134,6 +134,10 @@
     @apply rounded-2xl bg-panel text-card-foreground shadow-panel transition-all duration-200 ease-standard;
   }
 
+  .node-card-muted {
+    @apply rounded-2xl border border-panel-border bg-panel/40 text-card-foreground transition-colors duration-200 ease-standard;
+  }
+
   .tech-tag {
     @apply rounded-md bg-muted px-2 py-1 font-mono text-xs text-muted-foreground transition-colors duration-200 ease-standard;
   }
