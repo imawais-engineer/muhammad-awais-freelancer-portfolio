@@ -44,6 +44,21 @@ const ProjectDetail = () => {
     .map((slug) => projects.find((p) => p.slug === slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p) && p!.slug !== project.slug);
 
+  const servicePage = LEAD_SLUGS.has(project.slug)
+    ? {
+        href: "/services/lead-qualification-crm-automation",
+        label: "AI Lead Qualification & CRM Automation",
+        note: "How lead capture, scoring, routing and follow-up systems are built",
+      }
+    : project.platform.includes("n8n")
+      ? {
+          href: "/services/n8n-workflow-automation",
+          label: "n8n Workflow Automation",
+          note: "How production n8n workflows are designed, built and handed over",
+        }
+      : null;
+
+
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
 
