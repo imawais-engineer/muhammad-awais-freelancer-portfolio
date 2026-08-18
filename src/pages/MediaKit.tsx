@@ -26,12 +26,12 @@ import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { applyMeta } from "@/lib/seo";
 
-import masoftImage from "@/assets/masoft.png";
-import aiSocialMediaAutomationImage from "@/assets/ai-social-media-automation-system.png";
-import affiliateDealsImage from "@/assets/affiliate-deals-platform.png";
-import personalPortfolioImage from "@/assets/personal-portfolio-website.png";
+import masoftImage from "@/assets/masoft.webp";
+import aiSocialMediaAutomationImage from "@/assets/ai-social-media-automation-system.webp";
+import affiliateDealsImage from "@/assets/affiliate-deals-platform.webp";
+import personalPortfolioImage from "@/assets/personal-portfolio-website.webp";
 import { site } from "@/data/site";
-import dataScienceLearningImage from "@/assets/data-science-learning-platform.png";
+import dataScienceLearningImage from "@/assets/data-science-learning-platform.webp";
 
 const standardEase: [number, number, number, number] = [0.2, 0, 0, 1];
 const reveal = {
@@ -216,7 +216,7 @@ const MediaKit = () => {
     <div className="min-h-screen bg-background">
       <SiteHeader />
 
-      <main className="pb-8">
+      <main id="main" className="pb-8">
         <section className="container py-14 md:py-20">
           <motion.div className="max-w-3xl space-y-6" initial="hidden" animate="show" variants={reveal}>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Media Kit</p>

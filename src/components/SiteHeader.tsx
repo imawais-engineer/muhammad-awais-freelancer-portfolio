@@ -31,6 +31,12 @@ const SiteHeader = () => {
 
   return (
     <header className="sticky top-0 z-40 border-b border-panel-border bg-background/90 backdrop-blur">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:border focus:border-primary/40 focus:bg-background focus:px-3 focus:py-2 focus:font-mono focus:text-xs focus:text-primary"
+      >
+        Skip to content
+      </a>
       <div className="container flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2 font-mono text-sm text-foreground">
           <span className="inline-block h-2 w-2 rounded-full bg-primary" aria-hidden="true" />

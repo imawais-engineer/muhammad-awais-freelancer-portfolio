@@ -77,7 +77,7 @@ const ProjectDetail = () => {
       />
       <SiteHeader />
 
-      <main className="container pt-12">
+      <main id="main" className="container pt-12">
         <Link to="/projects" className="system-link">
           <ArrowLeft className="h-4 w-4" />
           All case studies

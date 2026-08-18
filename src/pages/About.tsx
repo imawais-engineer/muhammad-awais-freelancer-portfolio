@@ -7,7 +7,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { about, process, site } from "@/data/site";
-import profileImage from "@/assets/profile.png";
+import profileImage from "@/assets/profile.webp";
 
 const About = () => (
   <div className="min-h-screen">
@@ -18,7 +18,7 @@ const About = () => (
     />
     <SiteHeader />
 
-    <main className="container pt-20">
+    <main id="main" className="container pt-20">
       <motion.header
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -78,9 +78,12 @@ const About = () => (
           <div className="node-card overflow-hidden p-0">
             <img
               src={profileImage}
-              alt="Muhammad Awais"
+              alt="Portrait of Muhammad Awais"
               className="aspect-square w-full object-cover"
               loading="lazy"
+              decoding="async"
+              width={640}
+              height={640}
             />
             <div className="p-5">
               <div className="flex items-center gap-2">
