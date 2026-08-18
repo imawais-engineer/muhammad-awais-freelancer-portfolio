@@ -10,6 +10,7 @@ import Index from "./pages/Index.tsx";
 const Projects = lazy(() => import("./pages/Projects.tsx"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail.tsx"));
 const About = lazy(() => import("./pages/About.tsx"));
+const Services = lazy(() => import("./pages/Services.tsx"));
 const Contact = lazy(() => import("./pages/Contact.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const Terms = lazy(() => import("./pages/Terms.tsx"));
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/terms" element={<Terms />} />
