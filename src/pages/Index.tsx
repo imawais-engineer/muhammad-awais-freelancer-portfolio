@@ -471,7 +471,7 @@ const Index = () => {
                   ].includes(c.title)
                 )
                 .map((credential) => (
-                  <article key={credential.title} className="node-card flex gap-3 p-4 sm:p-5">
+                  <article key={credential.title} className="node-card-muted flex gap-3 p-5">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                     <div>
                       <h4 className="text-sm font-semibold leading-snug">{credential.title}</h4>
