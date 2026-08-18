@@ -41,7 +41,6 @@ const ProjectDetail = () => {
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
 
-  const image = getProjectImage(project.slug);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
