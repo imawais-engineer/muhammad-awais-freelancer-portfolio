@@ -38,12 +38,13 @@ const Projects = () => {
         >
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Case studies</p>
           <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-            {projects.length} automation systems, documented end to end
+            AI automation projects, documented end to end
           </h1>
           <p className="text-lg text-muted-foreground">
-            Split the same way as the homepage: paid client work first, then demonstration builds.
-            Each case study covers the business problem, the architecture, the workflow logic and
-            the measured results.
+            {projects.length} n8n and Make.com automation projects covering AI workflow automation,
+            AI agents, CRM and lead automation, reporting and business process automation. Each case
+            study covers the business problem, the architecture, the workflow logic and the measured
+            results — paid client work first, then demonstration builds.
           </p>
         </motion.header>
 
@@ -72,7 +73,7 @@ const Projects = () => {
               Real client projects
             </p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight">
-              Paid work, running in production
+              n8n automation projects delivered for paying clients
             </h2>
             <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {filteredClient.map((project) => (
