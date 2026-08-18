@@ -60,7 +60,7 @@ const SiteHeader = () => {
             to="/contact"
             className="rounded-md border border-primary/40 bg-primary/10 whitespace-nowrap px-3 py-1.5 font-mono text-xs text-primary transition-colors hover:bg-primary/20"
           >
-            Start a Project
+            Contact to start a Project
           </Link>
         </div>
 
