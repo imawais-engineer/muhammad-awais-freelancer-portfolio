@@ -14,6 +14,7 @@ import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import FeaturedProjectCard from "@/components/FeaturedProjectCard";
+import HomeServiceCard from "@/components/HomeServiceCard";
 import { Button } from "@/components/ui/button";
 import { clientProjects, projects } from "@/data/projects";
 import {
@@ -22,7 +23,6 @@ import {
   process,
   proofStats,
   reliability,
-  services,
   site,
   testimonials,
 } from "@/data/site";
@@ -225,13 +225,35 @@ const Index = () => {
             </Button>
           }
         >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => (
-              <article key={service.title} className="node-card flex h-full flex-col p-6">
-                <h3 className="text-lg font-semibold">{service.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{service.summary}</p>
-              </article>
-            ))}
+          <div className="grid gap-4 md:grid-cols-2">
+            <HomeServiceCard
+              title="AI Automation & Agents"
+              problem="Customer questions, support tickets, and content decisions pile up faster than a small team can handle."
+              solution="LLM-powered assistants and classification workflows that answer, route, and extract on your channels."
+              outcome="Faster first replies, fewer manual decisions, and 24/7 handling of routine requests."
+              tools="OpenAI · Claude · Gemini · n8n"
+            />
+            <HomeServiceCard
+              title="Workflow & Process Automation"
+              problem="Teams waste hours moving data between spreadsheets, inboxes, and disconnected apps."
+              solution="End-to-end pipelines that connect your tools and run on triggers, schedules, or webhooks."
+              outcome="Repetitive work disappears, errors drop, and operations scale without hiring."
+              tools="n8n · Make · Zapier · APIs · Webhooks"
+            />
+            <HomeServiceCard
+              title="CRM & Lead Automation"
+              problem="Leads arrive faster than they can be qualified, routed, and followed up."
+              solution="Capture → score → route → book meetings and trigger follow-ups automatically."
+              outcome="Good leads never go cold; sales time is spent on qualified calls."
+              tools="HubSpot · Pipedrive · GoHighLevel · Airtable"
+            />
+            <HomeServiceCard
+              title="Data & Scraping Automation"
+              problem="Market tracking, reporting, and data collection are rebuilt by hand every week."
+              solution="Scheduled scraping, enrichment, and structured delivery to sheets, dashboards, or CRMs."
+              outcome="Reliable data feeds and reports without the manual copy-paste."
+              tools="Apify · Python · REST APIs · Google Sheets"
+            />
           </div>
         </Section>
 
