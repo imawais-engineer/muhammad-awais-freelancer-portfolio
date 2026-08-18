@@ -99,13 +99,37 @@ const Index = () => {
   };
 
   const featuredProjects = clientProjects.slice(0, 3);
-  const engineeringHighlights = [
-    architecturePatterns[0],
-    architecturePatterns[3],
-    reliability[0],
-    reliability[2],
-    reliability[5],
-  ].filter(Boolean);
+  const engineeringValues = [
+    {
+      title: "Resilient execution",
+      benefit: "API failures, rate limits, and timeouts don't silently break your workflow.",
+      mechanism:
+        "Errors are caught on every branch, and failed writes retry with backoff before the run is logged as failed.",
+      label: "Error handling · retries",
+    },
+    {
+      title: "No duplicate work",
+      benefit: "Duplicate triggers are controlled so the same record isn't processed twice.",
+      mechanism:
+        "State flags and stable keys guarantee each item is handled exactly once, even if a trigger double-fires.",
+      label: "Idempotency · state",
+    },
+    {
+      title: "Secure integrations",
+      benefit: "Credentials stay out of workflow logic and exports.",
+      mechanism:
+        "Keys live in platform credential stores or environment variables, with scoped, revocable tokens limited to what each workflow needs.",
+      label: "Credential hygiene · least privilege",
+    },
+    {
+      title: "Visible failures",
+      benefit: "You find out about problems before your customers do.",
+      mechanism:
+        "Run logs, execution history, and failure alerts give clear visibility into what happened and where.",
+      label: "Monitoring · logging",
+    },
+  ];
+
 
   return (
     <div className="min-h-screen">
@@ -305,21 +329,22 @@ const Index = () => {
         <Section
           id="approach"
           eyebrow="Why work with me"
-          title="Systems that keep running after handover"
-          intro="A short version of how these builds are engineered — the full architecture detail lives inside each case study."
+          title="Built to run, not just connect"
+          intro="The engineering priorities behind every build — full architecture detail lives inside each case study."
         >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {engineeringHighlights.map((item) => (
-              <article key={item.title} className="node-card flex gap-3 p-6">
-                <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                <div>
-                  <h3 className="text-base font-semibold leading-snug">{item.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
-                </div>
-              </article>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {engineeringValues.map((item) => (
+              <EngineeringValueCard
+                key={item.title}
+                title={item.title}
+                benefit={item.benefit}
+                mechanism={item.mechanism}
+                label={item.label}
+              />
             ))}
           </div>
         </Section>
+
 
         {/* 07 — About preview */}
         <Section
