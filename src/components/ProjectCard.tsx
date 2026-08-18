@@ -20,8 +20,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
             alt={`${project.platform} workflow canvas for ${project.name}`}
             loading="lazy"
             decoding="async"
-            width={1280}
-            height={720}
+            width={960}
+            height={440}
             className="aspect-[16/9] w-full object-cover object-left-top transition-transform duration-300 group-hover:scale-[1.02]"
           />
         </div>
