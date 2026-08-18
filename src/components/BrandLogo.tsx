@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
  * a generic dot. Keys are matched loosely (lowercase, substring) so
  * "OpenAI GPT-4o-mini" still resolves to openai.com.
  *
- * Rendering order: official SVG brand mark (cdn.simpleicons.org) → favicon of
- * the brand domain → nothing (text-only tag).
+ * Brand marks are self-hosted under `public/brands/<slug>.svg` (no third-party
+ * CDN, so crawlers can always fetch them). Unknown brands render nothing.
  */
 const BRAND_DOMAINS: Array<[match: string, domain: string, slug?: string]> = [
   ["n8n", "n8n.io", "n8n"],
