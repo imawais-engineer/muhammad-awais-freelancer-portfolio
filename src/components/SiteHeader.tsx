@@ -10,7 +10,6 @@ const navItems = [
   { label: "Services", to: "/services" },
   { label: "Process", to: "/#process", hash: "#process" },
   { label: "About", to: "/#about", hash: "#about" },
-  { label: "Contact", to: "/contact" },
 ] as const;
 
 const SiteHeader = () => {
