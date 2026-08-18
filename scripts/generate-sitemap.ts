@@ -18,6 +18,8 @@ const entries: SitemapEntry[] = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/projects", changefreq: "weekly", priority: "0.9" },
   { path: "/services", changefreq: "monthly", priority: "0.9" },
+  { path: "/services/n8n-workflow-automation", changefreq: "monthly", priority: "0.9" },
+  { path: "/services/lead-qualification-crm-automation", changefreq: "monthly", priority: "0.9" },
   { path: "/about", changefreq: "monthly", priority: "0.8" },
   { path: "/contact", changefreq: "monthly", priority: "0.8" },
   { path: "/media-kit", changefreq: "monthly", priority: "0.5" },
