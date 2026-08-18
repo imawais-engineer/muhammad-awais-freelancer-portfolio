@@ -14,6 +14,7 @@ import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import FeaturedProjectCard from "@/components/FeaturedProjectCard";
+import HomeServiceCard from "@/components/HomeServiceCard";
 import { Button } from "@/components/ui/button";
 import { clientProjects, projects } from "@/data/projects";
 import {
