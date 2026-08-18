@@ -113,7 +113,7 @@ export const projectSeo: Record<string, ProjectSeo> = {
   },
   "lead-reply-sync-gohighlevel-clickup": {
     topic: "automated lead follow-up",
-    title: "Automated Lead Reply & Follow-Up System (GoHighLevel + ClickUp)",
+    title: "Automated Lead Follow-Up System with GoHighLevel & ClickUp",
     description:
       "Case study: an automated lead follow-up workflow that updates GoHighLevel for engaged leads and creates ClickUp tasks for silent ones, with idempotent logic so nothing runs twice.",
     ctaHeading: "Leads going cold between replies?",
