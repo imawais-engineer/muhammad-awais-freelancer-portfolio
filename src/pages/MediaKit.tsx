@@ -21,10 +21,10 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
-import { applyMeta } from "@/lib/seo";
 
 import masoftImage from "@/assets/masoft.webp";
 import aiSocialMediaAutomationImage from "@/assets/ai-social-media-automation-system.webp";
