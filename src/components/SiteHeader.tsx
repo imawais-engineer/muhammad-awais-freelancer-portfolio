@@ -10,7 +10,6 @@ const navItems = [
   { label: "Services", to: "/services" },
   { label: "Process", to: "/#process", hash: "#process" },
   { label: "About", to: "/#about", hash: "#about" },
-  { label: "Contact", to: "/contact" },
 ] as const;
 
 const SiteHeader = () => {
@@ -61,7 +60,7 @@ const SiteHeader = () => {
             to="/contact"
             className="rounded-md border border-primary/40 bg-primary/10 whitespace-nowrap px-3 py-1.5 font-mono text-xs text-primary transition-colors hover:bg-primary/20"
           >
-            Start a Project
+            Contact to start a Project
           </Link>
         </div>
 
@@ -94,7 +93,7 @@ const SiteHeader = () => {
               onClick={() => setOpen(false)}
               className="mt-2 rounded-md border border-primary/40 bg-primary/10 flex min-h-[44px] items-center justify-center px-3 py-2 text-center font-mono text-sm text-primary"
             >
-              Start a Project
+              Contact to start a Project
             </Link>
           </div>
         </nav>
