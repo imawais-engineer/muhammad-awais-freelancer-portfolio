@@ -240,6 +240,7 @@ const Index = () => {
                 <p className="text-sm font-semibold tracking-tight text-foreground sm:text-base md:text-lg lg:text-xl">{site.name}</p>
                 <span
                   className="inline-flex"
+                  role="img"
                   aria-label="Identity verified"
                   title="Identity verified — government ID check and visual verification"
                 >
@@ -447,7 +448,7 @@ const Index = () => {
           <div className="grid gap-4 md:grid-cols-2">
             {testimonials.map((t) => (
               <figure key={t.author} className="node-card flex h-full flex-col p-5 sm:p-6">
-                <div className="flex items-center gap-1 text-primary" aria-label={`${t.rating} out of 5`}>
+                <div className="flex items-center gap-1 text-primary" role="img" aria-label={`${t.rating} out of 5`}>
                   {Array.from({ length: t.rating }).map((_, i) => (
                     <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
                   ))}

@@ -99,6 +99,7 @@ const About = () => (
                 <p className="text-xl font-semibold tracking-tight text-foreground">{site.name}</p>
                 <span
                   className="inline-flex"
+                  role="img"
                   aria-label="Identity verified"
                   title="Identity verified — government ID check and visual verification"
                 >

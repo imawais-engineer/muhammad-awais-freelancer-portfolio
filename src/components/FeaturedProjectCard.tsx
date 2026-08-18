@@ -46,6 +46,7 @@ const FeaturedProjectCard = ({ project }: { project: Project }) => {
       <div className="mt-auto pt-2">
         <Link
           to={`/projects/${project.slug}`}
+          aria-label={`View case study: ${project.name}`}
           className="system-link inline-flex min-h-[44px] items-center hover:text-primary"
         >
           View Case Study
