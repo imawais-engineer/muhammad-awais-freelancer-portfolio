@@ -19,6 +19,7 @@ import HomeServiceCard from "@/components/HomeServiceCard";
 import ProcessStep from "@/components/ProcessStep";
 
 import { Button } from "@/components/ui/button";
+import { SITE_URL, absoluteUrl } from "@/lib/seo";
 import { clientProjects } from "@/data/projects";
 import {
   about,
@@ -105,7 +106,7 @@ const Index = () => {
         description: site.positioning,
         email: `mailto:${site.email}`,
         url: `${SITE_URL}/`,
-        image: absoluteUrl(profileImage.url),
+        image: absoluteUrl(profileImage),
         knowsAbout: [
           "AI automation",
           "n8n workflow automation",
