@@ -1,12 +1,17 @@
 import { useEffect } from "react";
 
 import { site } from "@/data/site";
+import { SITE_URL, absoluteUrl } from "@/lib/seo";
 
 interface SeoProps {
   title: string;
   description: string;
   path: string;
-  jsonLd?: Record<string, unknown>;
+  /** Absolute or root-relative image used for social previews. */
+  image?: string;
+  /** Set for thin/utility pages that should stay out of the index. */
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const setMeta = (selector: string, attr: string, key: string, content: string) => {
@@ -19,7 +24,7 @@ const setMeta = (selector: string, attr: string, key: string, content: string) =
   tag.setAttribute("content", content);
 };
 
-const Seo = ({ title, description, path, jsonLd }: SeoProps) => {
+const Seo = ({ title, description, path, image, noindex, jsonLd }: SeoProps) => {
   useEffect(() => {
     document.title = title;
     setMeta('meta[name="description"]', "name", "description", description);
@@ -30,9 +35,20 @@ const Seo = ({ title, description, path, jsonLd }: SeoProps) => {
     setMeta('meta[property="og:site_name"]', "property", "og:site_name", site.name);
     setMeta('meta[name="twitter:title"]', "name", "twitter:title", title);
     setMeta('meta[name="twitter:description"]', "name", "twitter:description", description);
+    setMeta(
+      'meta[name="robots"]',
+      "name",
+      "robots",
+      noindex ? "noindex, follow" : "index, follow, max-image-preview:large",
+    );
 
-    const base = site.website.replace(/\/$/, "");
-    const href = `${base}${path === "/" ? "/" : path}`;
+    if (image) {
+      const imageUrl = absoluteUrl(image);
+      setMeta('meta[property="og:image"]', "property", "og:image", imageUrl);
+      setMeta('meta[name="twitter:image"]', "name", "twitter:image", imageUrl);
+    }
+
+    const href = `${SITE_URL}${path === "/" ? "/" : path}`;
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement("link");
@@ -52,7 +68,7 @@ const Seo = ({ title, description, path, jsonLd }: SeoProps) => {
       document.head.appendChild(script);
     }
     return () => document.getElementById(scriptId)?.remove();
-  }, [title, description, path, jsonLd]);
+  }, [title, description, path, image, noindex, jsonLd]);
 
   return null;
 };
