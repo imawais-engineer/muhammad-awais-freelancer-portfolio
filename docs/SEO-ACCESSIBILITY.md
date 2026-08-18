@@ -52,7 +52,7 @@ author name in sync with `site.name`.
 
 ## Phase 1 SEO foundation (technical + entity)
 
-- **Canonical domain**: `https://imawais.engineer` (no www, HTTPS). Single source:
+- **Canonical domain**: `https://www.imawais.engineer` (no www, HTTPS). Single source:
   `SITE_URL` in `src/lib/seo.ts`; `Seo.tsx` builds every canonical and `og:url` from it.
 - **Static head** (`index.html`): homepage title, description, canonical, OG/Twitter, and a
   `Person` + `WebSite` JSON-LD graph so crawlers see them before JS runs.
@@ -69,7 +69,7 @@ author name in sync with `site.name`.
   `/media-kit`, and every project slug. `/terms`, 404s and preview URLs are excluded.
   Re-run happens automatically whenever a project is added.
 - **robots.txt**: allows crawlers and rendering assets, advertises
-  `https://imawais.engineer/sitemap.xml`.
+  `https://www.imawais.engineer/sitemap.xml`.
 
 ## Phase 2 SEO — page-to-topic map (on-page keyword architecture)
 
@@ -124,7 +124,7 @@ Conventions:
   (from `site.deliverables`) → why work with me (existing verified proof only)
   → 3 selected case studies → FAQ → final CTA.
 - Metadata: title "AI Automation Services | n8n Workflow Automation | Muhammad
-  Awais", unique description, canonical `https://imawais.engineer/services`.
+  Awais", unique description, canonical `https://www.imawais.engineer/services`.
 - JSON-LD: `@graph` with `WebPage` (about the `#person` entity) and
   `ProfessionalService` + `OfferCatalog`. No prices, reviews or ratings.
 - Internal links: header nav "Services" now points at `/services` (was the
@@ -145,7 +145,7 @@ built with the existing `/services` design system (`node-card`, `TechTag`,
   and engineering practice → n8n case studies → existing workflow rescue →
   deliverables → FAQ → CTA "Discuss an n8n workflow".
 - Title "n8n Workflow Automation Engineer | Muhammad Awais"; unique description;
-  canonical `https://imawais.engineer/services/n8n-workflow-automation`.
+  canonical `https://www.imawais.engineer/services/n8n-workflow-automation`.
 - JSON-LD `@graph`: `WebPage` (about `#person`) + `BreadcrumbList` + `Service`.
   No ratings/reviews.
 

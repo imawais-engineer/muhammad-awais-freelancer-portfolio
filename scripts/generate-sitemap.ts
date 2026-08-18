@@ -6,7 +6,7 @@ import { resolve } from "path";
 
 import { projects } from "../src/data/projects";
 
-const BASE_URL = "https://imawais.engineer";
+const BASE_URL = "https://www.imawais.engineer";
 
 interface SitemapEntry {
   path: string;

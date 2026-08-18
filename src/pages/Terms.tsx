@@ -45,8 +45,8 @@ const sections: Section[] = [
         <p className="mt-3">
           Service provider: <span className="text-foreground">Muhammad Awais — AI Automation & Workflow Engineer</span>.
           Website:{" "}
-          <a href="https://imawais.engineer/" className="text-primary underline-offset-4 hover:underline">
-            https://imawais.engineer/
+          <a href="https://www.imawais.engineer/" className="text-primary underline-offset-4 hover:underline">
+            https://www.imawais.engineer/
           </a>
           .
         </p>
@@ -312,7 +312,7 @@ const sections: Section[] = [
 ];
 
 const contactLinks = [
-  { icon: Globe, label: "Website", value: "imawais.engineer", url: "https://imawais.engineer/" },
+  { icon: Globe, label: "Website", value: "imawais.engineer", url: "https://www.imawais.engineer/" },
   { icon: Linkedin, label: "LinkedIn", value: "se-muhammad-awais", url: "https://linkedin.com/in/se-muhammad-awais/" },
   { icon: Github, label: "GitHub", value: "Think-Gleam", url: "https://github.com/Think-Gleam" },
 ];

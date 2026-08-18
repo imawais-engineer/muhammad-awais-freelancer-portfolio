@@ -94,7 +94,7 @@ const work = [
     stack: ["HTML", "CSS", "JavaScript"],
     status: "Live",
     image: personalPortfolioImage,
-    links: [{ label: "imawais.engineer", url: "https://imawais.engineer/" }],
+    links: [{ label: "imawais.engineer", url: "https://www.imawais.engineer/" }],
   },
   {
     name: "Data Science Learning Platform",
@@ -130,7 +130,7 @@ const partnerships = [
 ];
 
 const channels = [
-  { icon: Globe, label: "Website", value: "imawais.engineer", url: "https://imawais.engineer/" },
+  { icon: Globe, label: "Website", value: "imawais.engineer", url: "https://www.imawais.engineer/" },
   { icon: Linkedin, label: "LinkedIn", value: "se-muhammad-awais", url: "https://linkedin.com/in/se-muhammad-awais/" },
   { icon: Github, label: "GitHub", value: "Think-Gleam", url: "https://github.com/Think-Gleam" },
   { icon: Youtube, label: "YouTube", value: "@imengineerawais", url: "https://youtube.com/@imengineerawais" },
@@ -186,7 +186,7 @@ const businessInfo = [
   { label: "Professional Title", value: site.title },
   { label: "Business Type", value: "Independent Professional / Solopreneur" },
   { label: "Location", value: "Pakistan" },
-  { label: "Primary Website", value: "https://imawais.engineer/", url: "https://imawais.engineer/" },
+  { label: "Primary Website", value: "https://www.imawais.engineer/", url: "https://www.imawais.engineer/" },
   { label: "Focus", value: "AI Automation • AI Integrations • Workflow Engineering • Web Development" },
   {
     label: "Availability",
