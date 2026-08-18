@@ -23,7 +23,7 @@ const HomeServiceCard = ({
         <div key={row.label}>
           <dt
             className={
-              "font-mono text-[10px] uppercase tracking-[0.16em] " +
+              "font-mono text-[0.625rem] uppercase tracking-[0.16em] " +
               (row.accent ? "text-primary" : "text-muted-foreground")
             }
           >
