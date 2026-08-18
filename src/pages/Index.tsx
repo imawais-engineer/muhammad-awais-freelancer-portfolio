@@ -327,7 +327,7 @@ const Index = () => {
         <Section
           id="proof"
           eyebrow="Proof"
-          title="Credentials and what clients say"
+          title="Trusted by clients. Built with discipline."
           action={
             <a
               href={site.links.upwork}
@@ -340,18 +340,6 @@ const Index = () => {
             </a>
           }
         >
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {about.credentials.slice(0, 3).map((credential) => (
-              <article key={credential.title} className="node-card flex gap-3 p-6">
-                <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                <div>
-                  <h3 className="text-sm font-semibold leading-snug">{credential.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{credential.detail}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-
           <div className="grid gap-4 md:grid-cols-2">
             {testimonials.map((t) => (
               <figure key={t.author} className="node-card flex h-full flex-col p-6">
@@ -360,7 +348,7 @@ const Index = () => {
                     <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
                   ))}
                 </div>
-                <blockquote className="mt-4 text-sm leading-relaxed text-foreground">“{t.quote}”</blockquote>
+                <blockquote className="mt-4 text-base leading-relaxed text-foreground">“{t.quote}”</blockquote>
                 <figcaption className="mt-auto flex items-center gap-3 pt-6">
                   {"avatar" in t && t.avatar ? (
                     <img
@@ -394,10 +382,37 @@ const Index = () => {
                         t.company ? ` · ${t.company}` : null
                       )}
                     </p>
+                    {t.meta && <p className="mt-0.5 text-xs text-muted-foreground">{t.meta}</p>}
                   </div>
                 </figcaption>
               </figure>
             ))}
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              Recognition & credentials
+            </h3>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {about.credentials
+                .filter((c) =>
+                  [
+                    "n8n Certified — Essentials & APIs",
+                    "GenAI Workflow Orchestration — DeepLearning.AI",
+                    "USAII Global AI Hackathon 2026 — Finalist",
+                    "Upwork — 5.0/5.0 rating",
+                  ].includes(c.title)
+                )
+                .map((credential) => (
+                  <article key={credential.title} className="node-card flex gap-3 p-5">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                    <div>
+                      <h4 className="text-sm font-semibold leading-snug">{credential.title}</h4>
+                      <p className="mt-1 text-xs text-muted-foreground">{credential.detail}</p>
+                    </div>
+                  </article>
+                ))}
+            </div>
           </div>
         </Section>
 
