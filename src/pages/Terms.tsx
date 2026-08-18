@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUp, ArrowUpRight, Github, Globe, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
-import { applyMeta } from "@/lib/seo";
 
 const LAST_UPDATED = "11 August 2026";
 
@@ -321,15 +321,6 @@ const Terms = () => {
   const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
-    applyMeta({
-      title: "Terms of Service | Muhammad Awais",
-      description:
-        "Terms of Service for Muhammad Awais, AI Automation & Workflow Engineer, covering website use, professional services, projects, AI integrations, and business engagements.",
-      canonicalPath: "/terms",
-    });
-  }, []);
-
-  useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 600);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -337,6 +328,12 @@ const Terms = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Terms of Service | Muhammad Awais"
+        description="Terms of service covering website use and automation engagements with Muhammad Awais, AI Automation Engineer."
+        path="/terms"
+        noindex
+      />
       <SiteHeader />
 
       <main id="main">

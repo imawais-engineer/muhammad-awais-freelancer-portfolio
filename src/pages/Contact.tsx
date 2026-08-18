@@ -19,8 +19,8 @@ const briefChecklist = [
 const Contact = () => (
   <div className="min-h-screen">
     <Seo
-      title={`Contact ${site.name} — ${site.title}`}
-      description="Tell me which process is still manual and I'll tell you honestly whether automating it is worth it. Email, Upwork, Fiverr and LinkedIn."
+      title="Start an Automation Project | Contact Muhammad Awais"
+      description="Tell Muhammad Awais which process is still manual and get an honest view on automating it with n8n, Make.com or AI agents. Email, Upwork, Fiverr and LinkedIn."
       path="/contact"
     />
     <SiteHeader />

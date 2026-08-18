@@ -21,10 +21,10 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
-import { applyMeta } from "@/lib/seo";
 
 import masoftImage from "@/assets/masoft.webp";
 import aiSocialMediaAutomationImage from "@/assets/ai-social-media-automation-system.webp";
@@ -203,18 +203,15 @@ const SectionHeading = ({ index, title, subtitle }: { index: string; title: stri
 );
 
 const MediaKit = () => {
-  useEffect(() => {
-    applyMeta({
-      title: `Media Kit | ${site.name} — ${site.title}`,
-      description:
-        "Professional media and partnership profile for Muhammad Awais, AI Automation & Workflow Engineer, specializing in AI automation, workflow engineering, AI integrations, and web development.",
-      canonicalPath: "/media-kit",
-    });
-  }, []);
-
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`Media Kit | ${site.name} — ${site.title}`}
+        description="Media and partnership profile for Muhammad Awais, AI Automation Engineer: brand assets, bio, focus areas across n8n workflow automation, AI integrations and web development."
+        path="/media-kit"
+      />
       <SiteHeader />
+
 
       <main id="main" className="pb-8">
         <section className="container py-14 md:py-20">

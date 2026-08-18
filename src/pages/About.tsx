@@ -12,8 +12,8 @@ import profileImage from "@/assets/profile.webp";
 const About = () => (
   <div className="min-h-screen">
     <Seo
-      title={`About ${site.name} — ${site.title}`}
-      description="n8n-certified automation engineer and AI hackathon finalist building production workflows for agencies, SaaS teams and small businesses worldwide."
+      title="About Muhammad Awais | AI Automation Engineer & n8n Expert"
+      description="Background, credentials and working approach of Muhammad Awais — an AI Automation Engineer building production n8n and AI workflow automation for clients worldwide."
       path="/about"
     />
     <SiteHeader />
