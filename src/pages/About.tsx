@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, BadgeCheck, Check } from "lucide-react";
+import { ArrowRight, BadgeCheck, Check, MapPin } from "lucide-react";
 
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
