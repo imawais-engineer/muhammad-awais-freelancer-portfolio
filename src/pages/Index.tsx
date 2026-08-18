@@ -124,21 +124,29 @@ const Index = () => {
         >
           <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
-              <h1 className="max-w-3xl text-2xl font-semibold leading-[1.1] tracking-tight md:text-4xl lg:text-5xl">
-                I build systems that cut{" "}
-                <span className="text-primary">20+ hours of manual work</span> a week.
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+                AI Automation Engineer · n8n · AI Systems
+              </p>
+              <h1 className="mt-2 max-w-3xl text-2xl font-semibold leading-[1.1] tracking-tight md:text-4xl lg:text-5xl">
+                I build AI-powered systems that eliminate repetitive work.
               </h1>
-              <p className="mt-2 max-w-2xl text-base text-muted-foreground md:text-lg">{site.tagline}</p>
+              <p className="mt-3 max-w-2xl text-base text-muted-foreground md:text-lg">
+                I help agencies, SaaS teams, and small businesses automate operations, connect their
+                tools, and turn manual workflows into reliable systems.
+              </p>
 
-              <div className="mt-3 flex flex-wrap gap-3">
+              <div className="mt-4 flex flex-wrap gap-3">
                 <Button asChild size="lg">
                   <Link to="/contact">
-                    Book an automation audit
+                    Start an Automation Project
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="secondary">
-                  <Link to="/projects">See {projects.length} case studies</Link>
+                  <Link to="/projects">
+                    View Case Studies
+                    <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </Button>
               </div>
 
@@ -146,10 +154,6 @@ const Index = () => {
                 <span className="inline-flex items-center gap-2">
                   <MapPin className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                   {site.location}
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <Star className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                  5.0 / 5.0 on Upwork
                 </span>
               </div>
             </div>
