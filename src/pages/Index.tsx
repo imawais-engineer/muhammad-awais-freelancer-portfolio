@@ -95,14 +95,45 @@ const Index = () => {
   const reduceMotion = useReducedMotion();
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: site.name,
-    jobTitle: site.title,
-    description: site.positioning,
-    email: `mailto:${site.email}`,
-    url: site.website,
-    knowsAbout: ["n8n", "Make.com", "Zapier", "AI Agents", "Workflow Automation", "RAG"],
-    sameAs: [site.links.upwork, site.links.fiverr, site.links.linkedin],
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${SITE_URL}/#person`,
+        name: site.name,
+        alternateName: ["Awais", "imawais", "imawais.engineer"],
+        jobTitle: "AI Automation Engineer",
+        description: site.positioning,
+        email: `mailto:${site.email}`,
+        url: `${SITE_URL}/`,
+        image: absoluteUrl(profileImage.url),
+        knowsAbout: [
+          "AI automation",
+          "n8n workflow automation",
+          "business process automation",
+          "AI integrations",
+          "lead qualification automation",
+          "CRM automation",
+          "software engineering",
+        ],
+        sameAs: [site.links.upwork, site.links.fiverr, site.links.linkedin],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: `${site.name} — AI Automation Engineer`,
+        inLanguage: "en",
+        publisher: { "@id": `${SITE_URL}/#person` },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/#webpage`,
+        url: `${SITE_URL}/`,
+        name: "Muhammad Awais | AI Automation Engineer & n8n Workflow Automation",
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: { "@id": `${SITE_URL}/#person` },
+      },
+    ],
   };
 
   const featuredProjects = clientProjects.slice(0, 3);
