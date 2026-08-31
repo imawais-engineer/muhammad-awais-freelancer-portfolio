@@ -8,6 +8,7 @@ import leadReplyShot from "@/assets/projects/Automated_Lead_Reply_Follow-Up_Syst
 import slackReportingShot from "@/assets/projects/Automated_Slack_Reporting_Pipeline_with_Apify_and_n8n.webp.asset.json";
 import clientIntakeShot from "@/assets/projects/End-to-End_Client_Intake_Onboarding_Automation.webp.asset.json";
 import instagramOutlierShot from "@/assets/projects/Instagram_Reels_Outlier_Detection_Telegram_Reporting.webp.asset.json";
+import linkedinJobSearchShot from "@/assets/projects/LinkedIn_Job_Search_Automation_with_OpenAI_and_Telegram_Alerts.webp.asset.json";
 import realEstateLeadGenShot from "@/assets/projects/Real_Estate_Lead_Generation_Property_Monitoring.webp.asset.json";
 import whatsappShot from "@/assets/projects/Smart_WhatsApp_AI_Assistant_with_a_Google_Docs_Knowledge_Base.webp.asset.json";
 
@@ -23,6 +24,7 @@ export const projectImages: Record<string, string> = {
   "slack-reporting-pipeline-apify-n8n": slackReportingShot.url,
   "client-intake-onboarding-automation": clientIntakeShot.url,
   "instagram-reels-outlier-telegram-n8n": instagramOutlierShot.url,
+  "linkedin-job-search-automation-openai-telegram": linkedinJobSearchShot.url,
   "real-estate-lead-generation-browseract-make": realEstateLeadGenShot.url,
   "whatsapp-ai-assistant-google-docs": whatsappShot.url,
 };
