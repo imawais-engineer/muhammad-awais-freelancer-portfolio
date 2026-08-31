@@ -21,6 +21,15 @@ export interface ProjectSeo {
 }
 
 export const projectSeo: Record<string, ProjectSeo> = {
+  "linkedin-job-search-automation-openai-telegram": {
+    topic: "LinkedIn job search automation",
+    title: "Automated LinkedIn Job Search with OpenAI & Telegram Alerts",
+    description:
+      "Case study: an n8n workflow that scrapes LinkedIn jobs daily, matches them against a resume with Gemini or OpenAI, generates tailored cover letters, and delivers matches to Google Sheets and Telegram.",
+    ctaHeading: "Ready to automate your job search?",
+    ctaLabel: "Build a similar job search automation",
+    related: ["ai-email-labeling-agent-gmail", "slack-reporting-pipeline-apify-n8n"],
+  },
   "slack-reporting-pipeline-apify-n8n": {
     topic: "automated reporting with n8n",
     title: "Automated Slack Reporting with n8n and Apify",
