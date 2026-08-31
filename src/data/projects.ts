@@ -41,6 +41,69 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "linkedin-job-search-automation-openai-telegram",
+    name: "Automated LinkedIn Job Search Automation with OpenAI & Telegram Alerts",
+    shortName: "LinkedIn Job Search Automation",
+    summary:
+      "Scrapes LinkedIn jobs daily, matches them against a resume with Gemini or OpenAI, writes a tailored cover letter for each match, and delivers everything to Google Sheets and Telegram — cutting 3+ hours of daily job hunting to under 5 minutes.",
+    headlineResult: "3+ hrs/day → under 5 min",
+    category: "AI Agents",
+    clientType: "Job seekers / professionals",
+    industry: "Career / Recruitment Automation",
+    timeframe: "Published Aug 31, 2026",
+    role: "AI Workflow Automation Specialist | n8n Developer",
+    tools: ["n8n", "LinkedIn", "OpenAI", "Google Gemini", "Google Sheets", "Google Drive", "Telegram Bot", "Web Scraping"],
+    platform: "n8n",
+    clientWork: false,
+    rating: "",
+    problem: [
+      "Job seekers spend hours scrolling LinkedIn, reading endless job descriptions, and guessing which roles are worth applying to.",
+      "Writing a tailored cover letter for each application is the most time-consuming part — so resume fits get missed and opportunities slip through.",
+      "3+ hours a day went to job hunting instead of networking, upskilling, or actually applying.",
+    ],
+    requirements: [
+      "Read a PDF resume from Google Drive and extract skills, experience, and education.",
+      "Let the user define search filters in a Google Sheet: keywords, location, remote type, job type, easy-apply preference.",
+      "Scrape LinkedIn for jobs matching those criteria on a daily schedule.",
+      "Score each job against the resume with AI and generate a tailored cover letter.",
+      "Log everything to Google Sheets and send daily Telegram alerts with links and cover letter drafts.",
+    ],
+    architecture:
+      "Schedule → Drive (resume) → Sheets (criteria) → LinkedIn scrape → AI match & cover letter → Sheets log → Telegram alerts",
+    workflow: [
+      "A cron trigger fires daily to start the run.",
+      "The workflow downloads the PDF resume from Google Drive and extracts its text.",
+      "Search criteria (keywords, location, remote type, job type) are read from a Google Sheet.",
+      "LinkedIn is scraped for job postings matching the configured filters.",
+      "Each job description is sent to Gemini or OpenAI, which compares it against the resume, returns a match score, and writes a tailored cover letter.",
+      "Matched jobs are logged to Google Sheets with title, company, link, match percentage, cover letter, and application status.",
+      "A Telegram bot sends a daily digest with new matched listings, direct apply links, and ready-to-use cover letter drafts.",
+    ],
+    scale: [
+      { label: "Jobs evaluated", value: "Every new match, daily" },
+      { label: "Frequency", value: "Daily (cron)" },
+      { label: "Workflow steps", value: "8–10" },
+      { label: "Integrations", value: "5" },
+    ],
+    logic: [
+      "Multi-AI support — Gemini or OpenAI selectable per preference and cost.",
+      "Custom filters for keywords, locations, remote work, and job types.",
+      "Match scoring keeps only relevant jobs in the digest.",
+      "Cover letters highlight the user's most relevant experience for each role.",
+    ],
+    output: [
+      "Google Sheets dashboard: job title, company, link, match %, cover letter, application status.",
+      "Daily Telegram alerts with matched listings, apply links, and cover letter drafts.",
+    ],
+    results: [
+      "Job search time cut from 3+ hours daily to under 5 minutes of review.",
+      "Cover letter writing time eliminated — AI generates drafts instantly.",
+      "Match accuracy: only relevant jobs reach the user.",
+      "No missed postings — every fitting opportunity is captured daily.",
+    ],
+    proof: ["Live production workflow", "Demonstration build"],
+  },
+  {
     slug: "slack-reporting-pipeline-apify-n8n",
     name: "Automated Slack Reporting Pipeline with Apify and n8n",
     shortName: "Slack Reporting Pipeline",
