@@ -19,80 +19,6 @@ import { getProject } from "@/data/projects";
 import { deliverables, proofStats, site } from "@/data/site";
 import { SITE_URL } from "@/lib/seo";
 
-interface ServiceGroup {
-  id: string;
-  title: string;
-  intro: string;
-  items: string[];
-  link?: { href: string; label: string };
-}
-
-const serviceGroups: ServiceGroup[] = [
-  {
-    id: "n8n-workflow-automation",
-    title: "n8n Workflow Automation",
-    link: {
-      href: "/services/n8n-workflow-automation",
-      label: "More on n8n workflow automation →",
-    },
-    intro:
-      "Event-driven workflows that connect your tools and run the process the same way every time — built to survive real production traffic, not just a happy-path demo.",
-    items: [
-      "Webhook and event-driven workflows triggered by forms, apps or incoming data",
-      "REST API integrations, including tools without a ready-made connector",
-      "Multi-step business processes split into readable, maintainable sub-workflows",
-      "Error handling, retries and fallback branches on every external call",
-      "Scheduled and cron-based automation for recurring work",
-      "Self-hosted n8n set-up where data control or volume makes it the better fit",
-    ],
-  },
-  {
-    id: "ai-automation-ai-agents",
-    title: "AI Automation & AI Agents",
-    intro:
-      "AI used where it genuinely beats a rule — reading messy input, classifying it, and deciding what happens next inside a workflow you can audit.",
-    items: [
-      "AI agents that answer, classify and take action inside your workflows",
-      "Classification, extraction and summarisation of emails, tickets and documents",
-      "Decision support: the AI drafts or scores, a rule or a human approves",
-      "RAG knowledge assistants answering from your own documents and data",
-      "WhatsApp, Slack and web assistants with conversation memory",
-    ],
-  },
-  {
-    id: "crm-lead-automation",
-    title: "CRM & Lead Automation",
-    link: {
-      href: "/services/lead-qualification-crm-automation",
-      label: "More on lead qualification & CRM automation →",
-    },
-    intro:
-      "Most businesses do not have a lead problem — they have a response-time problem. Lead qualification automation closes the gap between an inquiry arriving and someone useful acting on it.",
-    items: [
-      "Lead capture from web forms, landing pages, email and social channels",
-      "Lead qualification automation that enriches and scores each inquiry before it reaches sales",
-      "Lead routing to the right owner, channel or pipeline stage automatically",
-      "CRM synchronisation across HubSpot, Pipedrive, GoHighLevel, Airtable and Notion",
-      "Pipeline management: stage updates, task creation and owner notifications",
-      "Follow-up automation, appointment booking, reminders and re-engagement sequences",
-    ],
-  },
-  {
-    id: "business-process-data-automation",
-    title: "Business Process & Data Automation",
-    intro:
-      "The unglamorous work that eats the week: copying data, chasing numbers, assembling the same report. Automated once, documented, and left running.",
-    items: [
-      "Google Workspace automation — Sheets, Docs, Drive and Gmail",
-      "Operational and management reporting delivered to Slack, Telegram or email",
-      "Data synchronisation between apps, sheets and databases",
-      "Scraping and enrichment pipelines for monitoring and research",
-      "Notification and alerting workflows so exceptions surface immediately",
-      "Document workflows: generation, routing, storage and approvals",
-    ],
-  },
-];
-
 const problemMap = [
   {
     problem: "Leads arrive but nobody follows up fast enough",
@@ -142,37 +68,6 @@ const whyItems = [
   "Repeat and referral work from clients who came back for the next system",
   "Production-minded workflows: error handling, retries, logging and monitoring",
   "n8n, AI integration and custom API engineering in the same pair of hands",
-];
-
-const faqs = [
-  {
-    q: "What kinds of business processes can you automate?",
-    a: "Anything that follows a repeatable rule and touches a tool with an API or a webhook: lead capture and qualification, CRM updates, client intake and onboarding, support triage, review and reputation workflows, reporting, scraping and enrichment, document generation, and content publishing. The projects on this site are real examples across all of those categories.",
-  },
-  {
-    q: "When should I use n8n instead of Make.com or Zapier?",
-    a: "Zapier is fine for simple, linear task-to-task automation. Make.com suits visual multi-branch scenarios with moderate logic. n8n is the better fit when you need custom code inside the flow, real error handling and retries, sub-workflows, heavier data volume, or self-hosting for data control. I will tell you honestly if your use case does not need n8n.",
-  },
-  {
-    q: "Can you connect my CRM and existing tools?",
-    a: "Yes. HubSpot, Pipedrive, GoHighLevel, Airtable, Notion, Google Workspace, Slack, Telegram and WhatsApp are all systems I have integrated in delivered work. Where no native connector exists, I integrate through the REST API or webhooks directly.",
-  },
-  {
-    q: "Can AI qualify and route my leads?",
-    a: "Yes — that is one of the most common builds. An inquiry is enriched, scored against your own criteria, and either routed to sales as qualified or logged and placed into a nurture path. The scoring rules stay yours and remain visible, so you can see why a lead was scored the way it was.",
-  },
-  {
-    q: "Do you build and document the workflow?",
-    a: "Both. You get an approved architecture before nodes are built, an annotated workflow with named and commented nodes, written documentation covering each branch and where credentials live, and a handover walkthrough.",
-  },
-  {
-    q: "Can you work with an existing n8n workflow?",
-    a: "Yes. Debugging, cleaning up and extending existing n8n, Make or Zapier automations is regular work — often the fastest way to get value if a workflow already exists but keeps breaking.",
-  },
-  {
-    q: "What happens after deployment?",
-    a: "The system ships with run logs, execution history and failure alerts so problems surface before your customers notice. After handover you can run it yourself with the documentation, or keep me on for maintenance and changes as your process evolves.",
-  },
 ];
 
 const caseStudySlugs = [

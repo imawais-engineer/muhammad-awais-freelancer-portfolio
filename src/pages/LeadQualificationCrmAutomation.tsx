@@ -99,33 +99,6 @@ const toolGroups = [
   { label: "Notifications", tools: ["Slack", "Telegram", "Email"] },
 ];
 
-const faqs = [
-  {
-    q: "How are inbound leads captured automatically?",
-    a: "Every source posts into one entry point — a webhook from your form or landing page, an inbox watcher for emailed enquiries, or an API poll where a platform offers no webhook. From there a single pipeline handles all of them, so no channel has its own private process.",
-  },
-  {
-    q: "How does AI lead qualification stay reliable?",
-    a: "AI is scoped to the part it is good at: reading free text and extracting intent. Thresholds, routing and CRM writes stay deterministic. If the model fails or returns something unexpected, the fallback branch sends the lead to a human rather than dropping it — the pipeline never depends on the AI being correct to keep moving.",
-  },
-  {
-    q: "Can it work with my existing CRM?",
-    a: "Yes. HubSpot, Pipedrive, GoHighLevel, Airtable, Notion and ClickUp are systems already integrated in work documented on this site. Anything with a REST API can be connected even without a native connector.",
-  },
-  {
-    q: "How do you stop duplicate leads and double replies?",
-    a: "Inbound payloads are keyed on a stable identifier and checked before processing, and the CRM is searched for an existing contact before a record is created. Repeated webhook deliveries hit an already-seen key and stop there.",
-  },
-  {
-    q: "Do I lose control over what sales sees?",
-    a: "No. The scoring criteria are yours, visible and editable, and the reasoning is stored on each record. You can also keep an approval step in front of any outbound message so nothing is sent in your name without a human seeing it.",
-  },
-  {
-    q: "How long does a lead pipeline take to build?",
-    a: "Most single workflows are usually delivered within 48 hours. Complex builds never take longer than a week. You get a clear scope and timeline before any work starts.",
-  },
-];
-
 const caseStudySlugs = [
   "ai-lead-qualification-real-estate",
   "lead-reply-sync-gohighlevel-clickup",
