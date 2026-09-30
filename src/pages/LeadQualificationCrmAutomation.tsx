@@ -122,7 +122,7 @@ const faqs = [
   },
   {
     q: "How long does a lead pipeline take to build?",
-    a: "It depends on how many sources, how many CRM objects and how much follow-up logic are involved. The sequence is always the same: map the current process, agree the architecture, build in stages, then run live traffic through it before handover.",
+    a: "Most single workflows are usually delivered within 48 hours. Complex builds never take longer than a week. You get a clear scope and timeline before any work starts.",
   },
 ];
 
