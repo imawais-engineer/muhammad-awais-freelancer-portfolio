@@ -11,6 +11,11 @@ import instagramOutlierShot from "@/assets/projects/Instagram_Reels_Outlier_Dete
 import linkedinJobSearchShot from "@/assets/projects/LinkedIn_Job_Search_Automation_with_OpenAI_and_Telegram_Alerts.webp.asset.json";
 import realEstateLeadGenShot from "@/assets/projects/Real_Estate_Lead_Generation_Property_Monitoring.webp.asset.json";
 import whatsappShot from "@/assets/projects/Smart_WhatsApp_AI_Assistant_with_a_Google_Docs_Knowledge_Base.webp.asset.json";
+import newShot0 from "@/assets/projects/Automated-Business-KPI-Analysis---AI-Powered-Growth-Insights.webp.asset.json";
+import newShot1 from "@/assets/projects/Automated-Offer-Letter---Response-Tracking-System.webp.asset.json";
+import newShot2 from "@/assets/projects/Dynamic-HubSpot-Lead-Routing-with-GPT-4---Airtable-Sales-Team-Distribution.webp.asset.json";
+import newShot3 from "@/assets/projects/Lead-Meeting-Scheduling-with-Zoho-CRM--Google-Calendar---Gemini.webp.asset.json";
+import newShot4 from "@/assets/projects/Voice-Based-Appointment-Booking-System-with-ElevenLabs-AI---Cal-com.webp.asset.json";
 
 /** Real n8n / Make workflow screenshots, keyed by project slug. */
 export const projectImages: Record<string, string> = {
@@ -27,6 +32,11 @@ export const projectImages: Record<string, string> = {
   "linkedin-job-search-automation-openai-telegram": linkedinJobSearchShot.url,
   "real-estate-lead-generation-browseract-make": realEstateLeadGenShot.url,
   "whatsapp-ai-assistant-google-docs": whatsappShot.url,
+  "automated-business-kpi-analysis-growth-insights": newShot0.url,
+  "automated-offer-letter-response-tracking": newShot1.url,
+  "hubspot-lead-routing-gpt4-airtable": newShot2.url,
+  "ai-lead-meeting-scheduling-zoho-gemini": newShot3.url,
+  "voice-ai-appointment-booking-elevenlabs-calcom": newShot4.url,
 };
 
 export const getProjectImage = (slug: string): string | undefined => projectImages[slug];
