@@ -103,7 +103,7 @@ const Services = () => {
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
             Services
           </p>
-          <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
             AI Automation Services for Businesses That Want Less Manual Work
           </h1>
           <p className="text-lg text-muted-foreground">

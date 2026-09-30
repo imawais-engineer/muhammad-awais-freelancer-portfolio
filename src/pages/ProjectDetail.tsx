@@ -124,7 +124,7 @@ const ProjectDetail = () => {
             <span className="tech-tag">{project.category}</span>
             {project.clientWork && <span className="tech-tag">Real client engagement</span>}
           </div>
-          <h1 className="text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
+          <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">
             {project.name}
           </h1>
           <p className="text-lg text-muted-foreground">{project.summary}</p>

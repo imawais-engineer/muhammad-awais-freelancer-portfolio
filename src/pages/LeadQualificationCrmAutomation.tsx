@@ -131,7 +131,7 @@ const LeadQualificationCrmAutomation = () => {
             </Link>{" "}
             / Lead &amp; CRM
           </p>
-          <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
             AI Lead Qualification &amp; CRM Automation
           </h1>
           <p className="text-lg text-muted-foreground">

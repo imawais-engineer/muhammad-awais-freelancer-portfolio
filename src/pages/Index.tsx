@@ -191,7 +191,7 @@ const Index = () => {
               <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
                 Freelance AI Automation Engineer · n8n Workflow Automation
               </p>
-              <h1 className="mt-2 max-w-3xl text-[1.7rem] font-semibold leading-[1.12] tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
+              <h1 className="mt-2 max-w-3xl text-[1.7rem] font-semibold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
                 I build AI-powered systems that eliminate repetitive work.
               </h1>
               <p className="mt-3 max-w-[38ch] text-base leading-relaxed text-muted-foreground sm:max-w-2xl md:text-lg">

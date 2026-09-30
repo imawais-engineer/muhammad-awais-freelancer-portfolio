@@ -90,6 +90,7 @@ const BrandLogo = ({ label, className }: { label: string; className?: string }) 
       src={src}
       alt=""
       aria-hidden="true"
+      aria-hidden="true"
       loading="lazy"
       decoding="async"
       width={16}

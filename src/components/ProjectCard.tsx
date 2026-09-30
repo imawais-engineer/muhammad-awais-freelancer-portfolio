@@ -11,7 +11,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <Link
       to={`/projects/${project.slug}`}
-      className="node-card group flex h-full flex-col gap-4 p-6 hover:shadow-elevated"
+      className="node-card card-interactive group flex h-full flex-col gap-4 p-6"
     >
       {image && (
         <div className="-mx-2 -mt-2 overflow-hidden rounded-lg border border-border bg-secondary">
@@ -37,7 +37,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         <p className="text-base text-muted-foreground">{project.summary}</p>
       </div>
 
-      <p className="font-mono text-sm text-primary">{project.headlineResult}</p>
+      <p className="font-mono text-sm tabular-nums text-primary">{project.headlineResult}</p>
 
       <div className="mt-auto flex flex-wrap gap-2 pt-2">
         {project.tools.slice(0, 4).map((tool) => (

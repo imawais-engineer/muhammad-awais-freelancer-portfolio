@@ -150,7 +150,7 @@ const N8nWorkflowAutomation = () => {
             </Link>{" "}
             / n8n
           </p>
-          <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
             n8n Workflow Automation Engineer
           </h1>
           <p className="text-lg text-muted-foreground">
