@@ -3,7 +3,7 @@
 // Only canonical, indexable URLs. /terms is intentionally excluded (noindex utility page).
 // <lastmod> is emitted only for case studies, from their real build/update dates in routeMeta.
 
-import { writeFileSync } from "fs";
+import { statSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { projects } from "../src/data/projects";
@@ -94,7 +94,7 @@ writeFileSync(
         `      <pubDate>${new Date(m.article!.publishedTime).toUTCString()}</pubDate>`,
         `      <category>${esc(p.category)}</category>`,
         `      <description>${esc(m.description)}</description>`,
-        `      <enclosure url="${BASE_URL}${m.ogImage}" type="image/jpeg" length="0" />`,
+        `      <enclosure url="${BASE_URL}${m.ogImage}" type="image/jpeg" length="${statSync(resolve(`public${m.ogImage}`)).size}" />`,
         `    </item>`,
       ].join("\n"),
     ),

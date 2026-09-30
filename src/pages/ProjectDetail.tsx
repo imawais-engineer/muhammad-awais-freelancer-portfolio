@@ -11,7 +11,10 @@ import { getProject, projects } from "@/data/projects";
 import { getProjectSeo } from "@/data/projectSeo";
 import { getProjectImage } from "@/data/projectImages";
 import { site } from "@/data/site";
-import { SITE_URL, absoluteUrl } from "@/lib/seo";
+import { SITE_URL, absoluteUrl, faqPageJsonLd } from "@/lib/seo";
+import { getRouteMeta } from "@/data/routeMeta";
+import { projectFaqs } from "@/data/faqs";
+import FaqSection from "@/components/FaqSection";
 
 /** Case studies whose primary subject is lead capture, qualification, CRM or follow-up. */
 const LEAD_SLUGS = new Set([
@@ -71,25 +74,42 @@ const ProjectDetail = () => {
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
 
+  const route = getRouteMeta(`/projects/${project.slug}`);
+  const faqs = projectFaqs(project);
+  const url = `${SITE_URL}/projects/${project.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "@id": `${SITE_URL}/projects/${project.slug}#case-study`,
-    url: `${SITE_URL}/projects/${project.slug}`,
-    name: project.name,
-    headline: project.name,
-    description: seo?.description ?? project.summary,
-    abstract: project.summary,
-    about: topic,
-    genre: project.category,
-    inLanguage: "en",
-    isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
-    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/projects/${project.slug}` },
-    author: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name },
-    creator: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name },
-    keywords: [topic, ...project.tools].join(", "),
-    temporalCoverage: project.timeframe,
-    ...(image ? { image: absoluteUrl(image) } : {}),
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${url}#case-study`,
+        url,
+        headline: project.name,
+        name: project.name,
+        description: seo?.description ?? project.summary,
+        abstract: project.summary,
+        about: topic,
+        articleSection: project.category,
+        inLanguage: "en",
+        datePublished: route?.article?.publishedTime,
+        dateModified: route?.article?.modifiedTime,
+        isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+        author: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name, url: `${SITE_URL}/` },
+        publisher: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name },
+        keywords: [topic, ...project.tools].join(", "),
+        image: absoluteUrl(route?.ogImage ?? image ?? "/og/projects.jpg"),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: "Projects", item: `${SITE_URL}/projects` },
+          { "@type": "ListItem", position: 3, name: project.name, item: url },
+        ],
+      },
+      faqPageJsonLd(faqs),
+    ],
   };
 
   const meta = [
@@ -278,6 +298,8 @@ const ProjectDetail = () => {
             </div>
           </aside>
         </div>
+
+        <FaqSection faqs={faqs} title={`${project.shortName}: common questions`} className="mt-20 max-w-4xl" />
 
         <section className="mt-20 border-t border-panel-border pt-10">
           <h2 className="text-2xl font-semibold tracking-tight">{seo?.ctaHeading ?? "Running a similar process by hand?"}</h2>
