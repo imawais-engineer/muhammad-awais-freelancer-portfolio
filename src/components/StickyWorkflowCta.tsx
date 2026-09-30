@@ -14,7 +14,12 @@ const StickyWorkflowCta = () => {
   useEffect(() => {
     const target = document.getElementById("outcome");
     if (!target) return;
-    const onScroll = () => setVisible(target.getBoundingClientRect().bottom < 0);
+    // Visible between the end of OUTCOME and the footer, so it never covers the footer.
+    const onScroll = () => {
+      const footer = document.querySelector("footer");
+      const footerInView = footer ? footer.getBoundingClientRect().top < window.innerHeight : false;
+      setVisible(target.getBoundingClientRect().bottom < 0 && !footerInView);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);

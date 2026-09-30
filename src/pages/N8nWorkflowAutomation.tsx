@@ -137,7 +137,7 @@ const N8nWorkflowAutomation = () => {
       <Seo title={TITLE} description={DESCRIPTION} path={PATH} jsonLd={jsonLd} />
       <SiteHeader />
 
-      <main id="main" className="container pt-16 md:pt-20">
+      <main id="main" tabIndex={-1} className="container pt-16 md:pt-20">
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

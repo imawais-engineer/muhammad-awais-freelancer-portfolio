@@ -31,7 +31,7 @@ const Projects = () => {
       />
       <SiteHeader />
 
-      <main id="main" className="container pt-20">
+      <main id="main" tabIndex={-1} className="container pt-20">
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

@@ -18,8 +18,8 @@ const About = () => (
     />
     <SiteHeader />
 
-    <main id="main" className="container pt-20">
-      <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
+    <main id="main" tabIndex={-1} className="container pt-20">
+      <div className="mt-14 grid grid-cols-[minmax(0,1fr)] gap-14 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
         <div>
           <motion.header
             initial={{ opacity: 0, y: 16 }}

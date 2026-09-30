@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
+import { Analytics } from "@vercel/analytics/react";
 import Index from "./pages/Index.tsx";
 
 const Projects = lazy(() => import("./pages/Projects.tsx"));
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
+        <Analytics />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
