@@ -18,6 +18,8 @@ import {
 import { getProject } from "@/data/projects";
 import { deliverables, site } from "@/data/site";
 import { SITE_URL } from "@/lib/seo";
+import { getPageJsonLd } from "@/data/structuredData";
+import { n8nFaqs as faqs } from "@/data/serviceContent";
 
 const TITLE = "n8n Workflow Automation Engineer | Muhammad Awais";
 const DESCRIPTION =
@@ -116,33 +118,6 @@ const toolGroups = [
   { label: "Messaging", tools: ["Slack", "Telegram", "WhatsApp", "Gmail"] },
 ];
 
-const faqs = [
-  {
-    q: "What is n8n workflow automation?",
-    a: "n8n is a workflow automation platform where each step is a node on a canvas: a trigger starts the run, and the following nodes call APIs, transform data, branch on conditions, run code or call an AI model. Because it supports custom code, sub-workflows, real error handling and self-hosting, it behaves closer to a small integration service than to a simple task-connector tool.",
-  },
-  {
-    q: "When is n8n a better fit than Zapier or Make.com?",
-    a: "Zapier is a reasonable choice for short linear task automation. Make.com works well for visual multi-branch scenarios with moderate logic. n8n becomes the better fit when you need code inside the flow, deliberate error handling and retries, reusable sub-workflows, larger data volumes, or self-hosting for data control. If your process genuinely does not need that, I will say so — one of the projects on this site was built on Make.com because it was the right tool for that job.",
-  },
-  {
-    q: "Can you work with an existing n8n workflow?",
-    a: "Yes. Debugging, restructuring, documenting and extending existing n8n workflows is regular work, and it is often the fastest route to value when something already exists but keeps failing or nobody understands it any more.",
-  },
-  {
-    q: "Do you set up self-hosted n8n?",
-    a: "Yes, where data control, credential handling or execution volume makes it the better option. If n8n Cloud is enough for your case, I will recommend that instead rather than adding infrastructure you would have to maintain.",
-  },
-  {
-    q: "How do you handle credentials and access?",
-    a: "Credentials stay in your own n8n credential store, connected to your accounts rather than mine. The documentation records which credential each node uses so access can be rotated or revoked without breaking the flow.",
-  },
-  {
-    q: "What does delivery and handover look like?",
-    a: "An agreed architecture before building starts, then the workflow itself with named and annotated nodes, error handling and logging in place, written documentation of each branch, and a walkthrough call. After that you can run it yourself, or keep me on for changes as the process evolves.",
-  },
-];
-
 const caseStudySlugs = [
   "slack-reporting-pipeline-apify-n8n",
   "ai-customer-support-triage",
@@ -155,43 +130,7 @@ const caseStudySlugs = [
 const N8nWorkflowAutomation = () => {
   const caseStudies = caseStudySlugs.map((slug) => getProject(slug)).filter(Boolean);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": `${SITE_URL}${PATH}#webpage`,
-        url: `${SITE_URL}${PATH}`,
-        name: "n8n Workflow Automation Engineer",
-        description: DESCRIPTION,
-        inLanguage: "en",
-        isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
-        about: { "@id": `${SITE_URL}/#person` },
-        breadcrumb: { "@id": `${SITE_URL}${PATH}#breadcrumb` },
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": `${SITE_URL}${PATH}#breadcrumb`,
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
-          { "@type": "ListItem", position: 3, name: "n8n Workflow Automation", item: `${SITE_URL}${PATH}` },
-        ],
-      },
-      {
-        "@type": "Service",
-        "@id": `${SITE_URL}${PATH}#service`,
-        name: "n8n Workflow Automation",
-        url: `${SITE_URL}${PATH}`,
-        description:
-          "Design, build, documentation and rescue of production n8n workflows: webhook and API integrations, AI-assisted steps, error handling, retries, sub-workflows and logging.",
-        serviceType: "n8n workflow automation",
-        provider: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name },
-        areaServed: "Worldwide",
-      },
-      faqPageJsonLd(faqs),
-    ],
-  };
+  const jsonLd = getPageJsonLd(PATH);
 
   return (
     <div className="min-h-screen">

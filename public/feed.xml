@@ -13,7 +13,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/automated-business-kpi-analysis-growth-insights</guid>
       <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
       <category>Reporting</category>
-      <description>Case study: an n8n workflow that pulls business metrics on a schedule, normalises them into Google Sheets, flags period-over-period anomalies and writes an AI growth summary.</description>
+      <description>n8n KPI automation that pulls business metrics on a schedule into Google Sheets, flags period-over-period anomalies and writes an AI growth summary.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/automated-business-kpi-analysis-growth-insights.jpg" type="image/jpeg" length="84730" />
     </item>
     <item>
@@ -22,7 +22,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/voice-ai-appointment-booking-elevenlabs-calcom</guid>
       <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
-      <description>Case study: a voice AI booking system where an ElevenLabs agent calls an n8n webhook to check live Cal.com availability and book appointments before the call ends.</description>
+      <description>Voice AI booking system: an ElevenLabs agent calls an n8n webhook to check live Cal.com availability and books the appointment before the call ends.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/voice-ai-appointment-booking-elevenlabs-calcom.jpg" type="image/jpeg" length="66997" />
     </item>
     <item>
@@ -31,7 +31,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/ai-lead-meeting-scheduling-zoho-gemini</guid>
       <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
       <category>Lead &amp; CRM</category>
-      <description>Case study: an n8n workflow that turns new Zoho CRM leads into conflict-free meetings with timezone detection, Zoom links, Gemini-written invites and CRM logging.</description>
+      <description>n8n workflow turning new Zoho CRM leads into conflict-free meetings with timezone detection, Zoom links, Gemini-written invites and CRM logging.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/ai-lead-meeting-scheduling-zoho-gemini.jpg" type="image/jpeg" length="69686" />
     </item>
     <item>
@@ -40,7 +40,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/hubspot-lead-routing-gpt4-airtable</guid>
       <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
       <category>Lead &amp; CRM</category>
-      <description>Case study: an n8n AI lead routing workflow where a GPT-4 agent scores every new HubSpot contact against an Airtable team database and assigns the right rep in seconds.</description>
+      <description>n8n AI lead routing: a GPT-4 agent scores each new HubSpot contact against an Airtable team database and assigns the right sales rep in seconds.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/hubspot-lead-routing-gpt4-airtable.jpg" type="image/jpeg" length="79721" />
     </item>
     <item>
@@ -49,7 +49,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/linkedin-job-search-automation-openai-telegram</guid>
       <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
-      <description>Case study: an n8n workflow that scrapes LinkedIn jobs daily, matches them against a resume with Gemini or OpenAI, generates tailored cover letters, and delivers matches to Google Sheets and Telegram.</description>
+      <description>n8n LinkedIn job automation that scrapes jobs daily, matches them to a resume with AI, writes tailored cover letters and sends matches to Telegram.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/linkedin-job-search-automation-openai-telegram.jpg" type="image/jpeg" length="69828" />
     </item>
     <item>
@@ -58,7 +58,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/instagram-reels-outlier-telegram-n8n</guid>
       <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
       <category>Scraping</category>
-      <description>Case study: an n8n Instagram analytics automation that monitors 50+ business accounts, scores each Reel against its account median, and reports genuine outliers to Telegram.</description>
+      <description>n8n Instagram analytics automation that monitors 50+ accounts, scores every Reel against its account median and reports true outliers to Telegram.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/instagram-reels-outlier-telegram-n8n.jpg" type="image/jpeg" length="62824" />
     </item>
     <item>
@@ -67,7 +67,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/ai-lead-qualification-real-estate</guid>
       <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
       <category>Lead &amp; CRM</category>
-      <description>Case study: an AI lead qualification automation that enriches web-form inquiries, scores them 0–100, routes qualified buyers to the sales team, and logs every lead to Airtable.</description>
+      <description>AI lead qualification automation that enriches web-form inquiries, scores them 0–100, routes qualified buyers to sales and logs every lead in Airtable.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/ai-lead-qualification-real-estate.jpg" type="image/jpeg" length="58842" />
     </item>
     <item>
@@ -76,7 +76,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/client-intake-onboarding-automation</guid>
       <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
       <category>Lead &amp; CRM</category>
-      <description>Case study: a client intake and onboarding automation of four connected workflows covering form submission, booking, reminders, payment and a generated Notion onboarding checklist.</description>
+      <description>Client onboarding automation: four linked workflows for intake forms, booking, reminders, payment and an auto-generated Notion onboarding checklist.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/client-intake-onboarding-automation.jpg" type="image/jpeg" length="82206" />
     </item>
     <item>
@@ -85,7 +85,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/slack-reporting-pipeline-apify-n8n</guid>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
       <category>Reporting</category>
-      <description>Case study: an automated reporting workflow built with Apify, Make.com and n8n that scrapes web sources daily and posts a formatted Slack digest, replacing hours of manual reporting.</description>
+      <description>Automated Slack reporting pipeline built with Apify, Make.com and n8n that scrapes web sources daily and posts a formatted digest, saving 10+ hrs/week.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/slack-reporting-pipeline-apify-n8n.jpg" type="image/jpeg" length="89670" />
     </item>
     <item>
@@ -94,7 +94,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/automated-offer-letter-response-tracking</guid>
       <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
       <category>Content</category>
-      <description>Case study: an n8n HR automation that generates offer letters from Google Docs templates, emails PDFs with Accept/Decline buttons and tracks every candidate response in Google Sheets.</description>
+      <description>n8n HR automation that generates offer letters from Google Docs, emails PDFs with Accept/Decline buttons and tracks every response in Google Sheets.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/automated-offer-letter-response-tracking.jpg" type="image/jpeg" length="66871" />
     </item>
     <item>
@@ -103,7 +103,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/ai-review-management-system</guid>
       <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
-      <description>Case study: an AI review management automation that collects Google Maps reviews daily, deduplicates them, drafts a reply per review, and routes positive and negative feedback separately.</description>
+      <description>AI review management automation that collects Google Maps reviews daily, deduplicates them, drafts a reply to each and routes good and bad feedback.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/ai-review-management-system.jpg" type="image/jpeg" length="69504" />
     </item>
     <item>
@@ -112,7 +112,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/whatsapp-ai-assistant-google-docs</guid>
       <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
-      <description>Case study: a document-aware WhatsApp AI assistant that answers customers 24/7 from a live Google Doc knowledge base while keeping conversation memory per contact.</description>
+      <description>WhatsApp AI assistant that answers customers 24/7 from a live Google Doc knowledge base, with conversation memory kept separately for each contact.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/whatsapp-ai-assistant-google-docs.jpg" type="image/jpeg" length="77252" />
     </item>
     <item>
@@ -121,7 +121,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/multi-query-rag-supabase-openai</guid>
       <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
-      <description>Case study: a multi-query RAG system on Supabase and OpenAI that decomposes complex questions into sub-queries, filters retrieved chunks by relevance, and reasons before answering.</description>
+      <description>Multi-query RAG system on Supabase and OpenAI that splits complex questions into sub-queries, filters retrieved chunks by relevance, then answers.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/multi-query-rag-supabase-openai.jpg" type="image/jpeg" length="69860" />
     </item>
     <item>
@@ -130,7 +130,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/ai-customer-support-triage</guid>
       <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
       <category>Support</category>
-      <description>Case study: an AI customer support automation that normalises multi-channel tickets, classifies topic, urgency and sentiment, then routes them to Slack and Sheets with an instant auto-reply.</description>
+      <description>AI customer support triage that classifies multi-channel tickets by topic, urgency and sentiment, routes them to Slack and Sheets and auto-replies.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/ai-customer-support-triage.jpg" type="image/jpeg" length="101739" />
     </item>
     <item>
@@ -139,7 +139,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/ai-email-labeling-agent-gmail</guid>
       <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
-      <description>Case study: an AI email classification automation that reads every incoming Gmail message and applies the right label — sponsorship, collaboration, business inquiry or other.</description>
+      <description>AI email labeling agent that reads every incoming Gmail message and applies the right label: sponsorship, collaboration, business inquiry or other.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/ai-email-labeling-agent-gmail.jpg" type="image/jpeg" length="67133" />
     </item>
     <item>
@@ -148,7 +148,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/youtube-publishing-automation</guid>
       <pubDate>Sun, 14 Jun 2026 00:00:00 GMT</pubDate>
       <category>Content</category>
-      <description>Case study: a YouTube publishing automation that reads pending videos from a sheet, pulls files from Drive, generates SEO metadata with AI, uploads in batches and reports back.</description>
+      <description>YouTube publishing automation that reads pending videos from a sheet, pulls files from Drive, writes SEO metadata with AI and uploads in batches.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/youtube-publishing-automation.jpg" type="image/jpeg" length="93666" />
     </item>
     <item>
@@ -157,7 +157,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/lead-reply-sync-gohighlevel-clickup</guid>
       <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
       <category>Lead &amp; CRM</category>
-      <description>Case study: an automated lead follow-up workflow that updates GoHighLevel for engaged leads and creates ClickUp tasks for silent ones, with idempotent logic so nothing runs twice.</description>
+      <description>Lead follow-up automation that updates GoHighLevel for engaged leads and creates ClickUp tasks for silent ones, with idempotent logic so nothing repeats.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/lead-reply-sync-gohighlevel-clickup.jpg" type="image/jpeg" length="65455" />
     </item>
     <item>
@@ -166,7 +166,7 @@
       <guid isPermaLink="true">https://www.imawais.engineer/projects/real-estate-lead-generation-browseract-make</guid>
       <pubDate>Sat, 06 Jun 2026 00:00:00 GMT</pubDate>
       <category>Scraping</category>
-      <description>Case study: a marketplace monitoring automation that tracks property listings against custom criteria and pushes every new match to Telegram, email and the CRM in real time.</description>
+      <description>Real estate lead generation automation that tracks property listings against custom criteria and pushes each new match to Telegram, email and the CRM.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/real-estate-lead-generation-browseract-make.jpg" type="image/jpeg" length="86880" />
     </item>
   </channel>

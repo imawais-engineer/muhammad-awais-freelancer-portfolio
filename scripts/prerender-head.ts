@@ -11,6 +11,7 @@ import { dirname, join } from "node:path";
 
 import { OG_HEIGHT, OG_WIDTH, routeMeta } from "../src/data/routeMeta";
 import { SITE_URL } from "../src/lib/seo";
+import { getPageJsonLd } from "../src/data/structuredData";
 
 const DIST = join(process.cwd(), "dist");
 const template = readFileSync(join(DIST, "index.html"), "utf8");
@@ -62,6 +63,8 @@ for (const [path, m] of Object.entries(routeMeta)) {
       ...m.article.tags.map((t) => `<meta property="article:tag" content="${esc(t)}">`),
     );
   }
+  const ld = getPageJsonLd(path);
+  if (ld) tags.push(`<script type="application/ld+json" id="page-json-ld">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`);
   const html = strip(template).replace(/(<meta charset[^>]*>)/i, `$1\n    ${tags.join("\n    ")}`);
   const file = path === "/" ? join(DIST, "index.html") : join(DIST, `${path.slice(1)}.html`);
   mkdirSync(dirname(file), { recursive: true });
