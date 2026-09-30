@@ -34,7 +34,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
       <div className="space-y-2">
         <h3 className="text-lg font-semibold leading-snug">{project.name}</h3>
-        <p className="text-sm text-muted-foreground">{project.summary}</p>
+        <p className="text-base text-muted-foreground">{project.summary}</p>
       </div>
 
       <p className="font-mono text-sm text-primary">{project.headlineResult}</p>

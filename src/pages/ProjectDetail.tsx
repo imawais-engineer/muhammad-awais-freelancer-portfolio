@@ -117,7 +117,7 @@ const ProjectDetail = () => {
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
+          transition={{ duration: 0.22, ease: [0.2, 0, 0, 1] }}
           className="mt-8 max-w-4xl space-y-5"
         >
           <div className="flex flex-wrap gap-2">
@@ -157,7 +157,7 @@ const ProjectDetail = () => {
               <dt className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 {item.label}
               </dt>
-              <dd className="mt-2 text-sm text-foreground">{item.value}</dd>
+              <dd className="mt-2 text-base text-foreground">{item.value}</dd>
             </div>
           ))}
         </dl>
@@ -236,7 +236,7 @@ const ProjectDetail = () => {
                 {project.scale.map((item) => (
                   <div key={item.label}>
                     <dt className="text-xs text-muted-foreground">{item.label}</dt>
-                    <dd className="text-sm font-medium text-foreground">{item.value}</dd>
+                    <dd className="text-base font-medium text-foreground">{item.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -246,7 +246,7 @@ const ProjectDetail = () => {
               <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 Proof
               </h2>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <ul className="mt-4 space-y-2 text-base text-muted-foreground">
                 {project.proof.map((p) => (
                   <li key={p} className="flex gap-2">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
@@ -257,7 +257,7 @@ const ProjectDetail = () => {
             </div>
 
             <div className="node-card space-y-4 p-6">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Running a similar process by hand? I can tell you what it would take to automate it.
               </p>
               <Button asChild className="w-full">
@@ -345,7 +345,7 @@ const ProjectDetail = () => {
             <span className="text-xl font-semibold md:text-2xl">{next.name}</span>
             <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
           </Link>
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-6 text-base text-muted-foreground">
             More about{" "}
             <Link to="/about" className="system-link">
               how I work as an AI automation engineer

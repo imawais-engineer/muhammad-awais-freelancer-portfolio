@@ -47,7 +47,7 @@ const Sent = forwardRef<HTMLDivElement, { onReset: () => void }>(({ onReset }, r
       <CheckCircle className="h-6 w-6 text-primary" aria-hidden="true" />
     </div>
     <h3 className="mt-4 text-lg font-semibold">Message received</h3>
-    <p className="mt-2 text-sm text-muted-foreground">
+    <p className="mt-2 text-base text-muted-foreground">
       It's in my queue — I usually reply within one business day.
     </p>
     <Button variant="secondary" className="mt-5" onClick={onReset}>

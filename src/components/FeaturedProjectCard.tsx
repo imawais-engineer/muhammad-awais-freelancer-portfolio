@@ -28,14 +28,14 @@ const FeaturedProjectCard = ({ project }: { project: Project }) => {
       <div className="min-w-0 space-y-2">
         <span className="tech-tag inline-block">{project.category}</span>
         <h3 className="line-clamp-2 break-words text-base font-semibold leading-snug">{project.name}</h3>
-        <p className="line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+        <p className="line-clamp-2 text-base leading-relaxed text-muted-foreground">
           {project.clientType} · {project.industry}
         </p>
       </div>
 
       <p className="text-lg font-semibold leading-snug text-primary sm:text-xl">{project.headlineResult}</p>
 
-      <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+      <p className="line-clamp-3 text-base leading-relaxed text-muted-foreground">{project.summary}</p>
 
       <div className="flex flex-wrap gap-2">
         {tags.map((tool) => (

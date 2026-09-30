@@ -7,7 +7,7 @@ const SiteFooter = () => (
     <div className="container grid gap-8 py-12 md:grid-cols-3">
       <div className="space-y-2">
         <p className="font-mono text-sm text-foreground">{site.name}</p>
-        <p className="text-sm text-muted-foreground">{site.title}</p>
+        <p className="text-base text-muted-foreground">{site.title}</p>
         <a href={`mailto:${site.email}`} className="system-link">
           {site.email}
         </a>

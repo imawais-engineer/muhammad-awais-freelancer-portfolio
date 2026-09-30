@@ -141,7 +141,7 @@ const N8nWorkflowAutomation = () => {
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
+          transition={{ duration: 0.22, ease: [0.2, 0, 0, 1] }}
           className="max-w-3xl space-y-5"
         >
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
@@ -188,7 +188,7 @@ const N8nWorkflowAutomation = () => {
             {goodFor.map((item) => (
               <article key={item.title} className="node-card flex h-full flex-col p-6">
                 <h3 className="text-lg font-semibold leading-snug">{item.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{item.body}</p>
+                <p className="mt-3 text-base text-muted-foreground">{item.body}</p>
               </article>
             ))}
           </div>
@@ -206,11 +206,11 @@ const N8nWorkflowAutomation = () => {
             {builds.map((item) => (
               <article key={item.title} className="node-card flex h-full flex-col p-5">
                 <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
+                <p className="mt-2 text-base text-muted-foreground">{item.body}</p>
               </article>
             ))}
           </div>
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-6 text-base text-muted-foreground">
             Lead-side work is covered in more depth on the{" "}
             <Link to="/services/lead-qualification-crm-automation" className="system-link">
               lead qualification and CRM automation
@@ -259,7 +259,7 @@ const N8nWorkflowAutomation = () => {
               </div>
             ))}
           </div>
-          <p className="mt-6 max-w-3xl text-sm text-muted-foreground">
+          <p className="mt-6 max-w-3xl text-base text-muted-foreground">
             Where a tool has no native node, the integration goes through its REST API or an
             incoming webhook instead — the same approach used in the builds below.
           </p>
@@ -275,7 +275,7 @@ const N8nWorkflowAutomation = () => {
           </p>
           <ul className="mt-8 grid gap-3 md:grid-cols-2">
             {reliability.map((item) => (
-              <li key={item} className="node-card flex gap-3 p-5 text-sm text-muted-foreground">
+              <li key={item} className="node-card flex gap-3 p-5 text-base text-muted-foreground">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                 <span>{item}</span>
               </li>
@@ -296,7 +296,7 @@ const N8nWorkflowAutomation = () => {
               (project) => project && <ProjectCard key={project.slug} project={project} />,
             )}
           </div>
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-6 text-base text-muted-foreground">
             <Link to="/projects" className="system-link">
               View all AI automation projects
             </Link>
@@ -313,7 +313,7 @@ const N8nWorkflowAutomation = () => {
           </p>
           <ul className="mt-8 grid gap-3 md:grid-cols-2">
             {rescue.map((item) => (
-              <li key={item} className="node-card flex gap-3 p-5 text-sm text-muted-foreground">
+              <li key={item} className="node-card flex gap-3 p-5 text-base text-muted-foreground">
                 <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                 <span>{item}</span>
               </li>
@@ -329,7 +329,7 @@ const N8nWorkflowAutomation = () => {
             {deliverables.map((item) => (
               <div key={item.title} className="node-card p-5">
                 <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
+                <p className="mt-2 text-base text-muted-foreground">{item.detail}</p>
               </div>
             ))}
           </div>

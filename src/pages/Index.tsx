@@ -72,7 +72,7 @@ const Section = ({
           {eyebrow}
         </p>
         <h2 className="text-xl font-semibold sm:text-2xl md:text-3xl">{title}</h2>
-        {intro && <p className="text-sm text-muted-foreground sm:text-base">{intro}</p>}
+        {intro && <p className="text-base text-muted-foreground">{intro}</p>}
       </div>
       {action && <div className="[&>*]:w-full sm:[&>*]:w-auto">{action}</div>}
     </header>
@@ -328,7 +328,7 @@ const Index = () => {
               tools="Apify · Python · REST APIs · Google Sheets"
             />
           </div>
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-6 text-base text-muted-foreground">
             Full detail on scope, tools, deliverables and FAQs:{" "}
             <Link to="/services" className="system-link">
               AI automation services
@@ -414,7 +414,7 @@ const Index = () => {
           <div className="grid gap-4 lg:grid-cols-2">
             <article className="node-card p-5 sm:p-6">
               <p className="text-base leading-relaxed text-foreground">{about.intro}</p>
-              <p className="mt-4 border-l-2 border-primary pl-4 text-sm italic text-muted-foreground">
+              <p className="mt-4 border-l-2 border-primary pl-4 text-base italic text-muted-foreground">
                 {about.principle}
               </p>
             </article>
@@ -422,7 +422,7 @@ const Index = () => {
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 Who I help
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{about.whoIHelp}</p>
+              <p className="mt-3 text-base leading-relaxed text-muted-foreground">{about.whoIHelp}</p>
             </article>
           </div>
         </Section>
@@ -472,7 +472,7 @@ const Index = () => {
                     </span>
                   )}
                   <div className="min-w-0">
-                    <p className="break-words text-sm font-medium">{t.author}</p>
+                    <p className="break-words text-base font-medium">{t.author}</p>
                     <p className="break-words font-mono text-xs leading-relaxed text-muted-foreground">
                       {t.role}
                       {"companyUrl" in t && t.companyUrl ? (
