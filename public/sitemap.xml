@@ -105,4 +105,29 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.imawais.engineer/projects/automated-business-kpi-analysis-growth-insights</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/projects/automated-offer-letter-response-tracking</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/projects/hubspot-lead-routing-gpt4-airtable</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/projects/ai-lead-meeting-scheduling-zoho-gemini</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/projects/voice-ai-appointment-booking-elevenlabs-calcom</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
