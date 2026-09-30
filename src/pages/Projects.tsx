@@ -6,6 +6,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ProjectCard from "@/components/ProjectCard";
 import { cn } from "@/lib/utils";
+import { SITE_URL } from "@/lib/seo";
 import { clientProjects, demoProjects, projectCategories, projects } from "@/data/projects";
 
 const Projects = () => {
@@ -26,6 +27,36 @@ const Projects = () => {
         title="AI Automation Projects & n8n Case Studies | Muhammad Awais"
         description="Documented n8n, Make.com and AI automation projects — lead qualification, CRM pipelines, AI agents and reporting: the problem, architecture and measured results."
         path="/projects"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "CollectionPage",
+              "@id": `${SITE_URL}/projects#collection`,
+              url: `${SITE_URL}/projects`,
+              name: "AI Automation Projects & n8n Case Studies",
+              isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
+              author: { "@type": "Person", "@id": `${SITE_URL}/#person` },
+              mainEntity: {
+                "@type": "ItemList",
+                numberOfItems: projects.length,
+                itemListElement: projects.map((p, i) => ({
+                  "@type": "ListItem",
+                  position: i + 1,
+                  url: `${SITE_URL}/projects/${p.slug}`,
+                  name: p.name,
+                })),
+              },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+                { "@type": "ListItem", position: 2, name: "Projects", item: `${SITE_URL}/projects` },
+              ],
+            },
+          ],
+        }}
       />
       <SiteHeader />
 

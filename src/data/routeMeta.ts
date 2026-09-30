@@ -14,6 +14,51 @@ import { projectSeo } from "./projectSeo";
 export const OG_WIDTH = 1200;
 export const OG_HEIGHT = 630;
 
+/** Real build dates per case study (article:published_time). */
+export const projectPublished: Record<string, string> = {
+  "real-estate-lead-generation-browseract-make": "2026-06-06",
+  "lead-reply-sync-gohighlevel-clickup": "2026-06-08",
+  "youtube-publishing-automation": "2026-06-14",
+  "ai-email-labeling-agent-gmail": "2026-06-16",
+  "ai-customer-support-triage": "2026-06-23",
+  "multi-query-rag-supabase-openai": "2026-06-23",
+  "whatsapp-ai-assistant-google-docs": "2026-06-24",
+  "ai-review-management-system": "2026-06-24",
+  "automated-offer-letter-response-tracking": "2026-06-24",
+  "slack-reporting-pipeline-apify-n8n": "2026-06-26",
+  "client-intake-onboarding-automation": "2026-06-28",
+  "ai-lead-qualification-real-estate": "2026-06-30",
+  "instagram-reels-outlier-telegram-n8n": "2026-08-14",
+  "linkedin-job-search-automation-openai-telegram": "2026-08-18",
+  "hubspot-lead-routing-gpt4-airtable": "2026-08-20",
+  "ai-lead-meeting-scheduling-zoho-gemini": "2026-08-20",
+  "voice-ai-appointment-booking-elevenlabs-calcom": "2026-08-20",
+  "automated-business-kpi-analysis-growth-insights": "2026-08-25",
+};
+export const PROJECT_MODIFIED = "2026-09-30";
+
+/** Titles kept under 60 characters where the default pattern ran long. */
+const titleOverrides: Record<string, string> = {
+  "/": "Muhammad Awais | AI Automation Engineer & n8n Expert",
+  "/services": "AI & n8n Automation Services | Muhammad Awais",
+  "/projects/linkedin-job-search-automation-openai-telegram": "LinkedIn Job Search Automation with OpenAI & Telegram",
+  "/projects/slack-reporting-pipeline-apify-n8n": "Automated Slack Reporting with n8n & Apify | Muhammad Awais",
+  "/projects/instagram-reels-outlier-telegram-n8n": "Instagram Reels Outlier Detection & Telegram Reports",
+  "/projects/ai-lead-qualification-real-estate": "AI Lead Qualification for Real Estate Inquiries",
+  "/projects/real-estate-lead-generation-browseract-make": "Real Estate Lead Generation & Property Monitoring",
+  "/projects/ai-email-labeling-agent-gmail": "AI Email Labeling Agent for Gmail | Muhammad Awais",
+  "/projects/ai-customer-support-triage": "AI Customer Support Triage System | Muhammad Awais",
+  "/projects/whatsapp-ai-assistant-google-docs": "WhatsApp AI Assistant with Google Docs Knowledge Base",
+  "/projects/client-intake-onboarding-automation": "Client Intake & Onboarding Automation | Muhammad Awais",
+  "/projects/lead-reply-sync-gohighlevel-clickup": "Lead Reply & Follow-Up Sync: GoHighLevel + ClickUp",
+  "/projects/multi-query-rag-supabase-openai": "Multi-Query RAG System with Supabase & OpenAI",
+  "/projects/automated-business-kpi-analysis-growth-insights": "Automated KPI Analysis & AI Growth Insights with n8n",
+  "/projects/automated-offer-letter-response-tracking": "Offer Letter & Response Tracking Automation with n8n",
+  "/projects/hubspot-lead-routing-gpt4-airtable": "HubSpot Lead Routing with GPT-4, Airtable & n8n",
+  "/projects/ai-lead-meeting-scheduling-zoho-gemini": "AI Meeting Scheduling with Zoho CRM & Gemini",
+  "/projects/voice-ai-appointment-booking-elevenlabs-calcom": "Voice AI Appointment Booking: ElevenLabs & Cal.com",
+};
+
 export interface RouteMeta {
   title: string;
   description: string;
@@ -107,8 +152,8 @@ const projectRoutes: Record<string, RouteMeta> = Object.fromEntries(
         ogImage: `/og/projects/${p.slug}.jpg`,
         ogImageAlt: `${p.platform} workflow canvas for the ${p.name} automation — ${p.headlineResult}`,
         article: {
-          publishedTime: "2026-08-18T00:00:00Z",
-          modifiedTime: "2026-09-30T00:00:00Z",
+          publishedTime: `${projectPublished[p.slug] ?? PROJECT_MODIFIED}T00:00:00Z`,
+          modifiedTime: `${PROJECT_MODIFIED}T00:00:00Z`,
           section: p.category,
           tags: [seo?.topic ?? p.category, ...p.tools],
         },
@@ -117,6 +162,11 @@ const projectRoutes: Record<string, RouteMeta> = Object.fromEntries(
   }),
 );
 
-export const routeMeta: Record<string, RouteMeta> = { ...staticRoutes, ...projectRoutes };
+export const routeMeta: Record<string, RouteMeta> = Object.fromEntries(
+  Object.entries({ ...staticRoutes, ...projectRoutes }).map(([path, m]) => [
+    path,
+    titleOverrides[path] ? { ...m, title: titleOverrides[path] } : m,
+  ]),
+);
 
 export const getRouteMeta = (path: string): RouteMeta | undefined => routeMeta[path];

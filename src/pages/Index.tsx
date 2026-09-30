@@ -11,6 +11,8 @@ import {
 
 
 import Seo from "@/components/Seo";
+import FaqSection from "@/components/FaqSection";
+import { homeFaqs } from "@/data/faqs";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import EngineeringValueCard from "@/components/EngineeringValueCard";
@@ -19,7 +21,7 @@ import HomeServiceCard from "@/components/HomeServiceCard";
 import ProcessStep from "@/components/ProcessStep";
 
 import { Button } from "@/components/ui/button";
-import { SITE_URL, absoluteUrl } from "@/lib/seo";
+import { SITE_URL, absoluteUrl, faqPageJsonLd } from "@/lib/seo";
 import { clientProjects } from "@/data/projects";
 import {
   about,
@@ -134,6 +136,7 @@ const Index = () => {
         isPartOf: { "@id": `${SITE_URL}/#website` },
         about: { "@id": `${SITE_URL}/#person` },
       },
+      faqPageJsonLd(homeFaqs),
     ],
   };
 
@@ -521,6 +524,8 @@ const Index = () => {
             </div>
           </div>
         </Section>
+
+        <FaqSection faqs={homeFaqs} className="container max-w-4xl pt-16 md:pt-24" />
 
         {/* 09 — Final CTA */}
         <section className="container pt-16 md:pt-24">
