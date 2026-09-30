@@ -18,6 +18,8 @@ import {
 import { getProject } from "@/data/projects";
 import { deliverables, proofStats, site } from "@/data/site";
 import { SITE_URL } from "@/lib/seo";
+import { getPageJsonLd } from "@/data/structuredData";
+import { serviceGroups, servicesFaqs as faqs } from "@/data/serviceContent";
 
 const problemMap = [
   {
@@ -79,51 +81,7 @@ const caseStudySlugs = [
 const Services = () => {
   const caseStudies = caseStudySlugs.map((slug) => getProject(slug)).filter(Boolean);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": `${SITE_URL}/services#webpage`,
-        url: `${SITE_URL}/services`,
-        name: "AI Automation Services",
-        description:
-          "AI automation services by Muhammad Awais: n8n workflow automation, AI agents, CRM and lead automation, and business process automation.",
-        inLanguage: "en",
-        isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
-        about: { "@id": `${SITE_URL}/#person` },
-      },
-      {
-        "@type": "ProfessionalService",
-        "@id": `${SITE_URL}/services#service`,
-        name: "AI Automation Services — Muhammad Awais",
-        url: `${SITE_URL}/services`,
-        description:
-          "Freelance AI automation engineering: n8n workflow automation, AI agents and assistants, CRM and lead qualification automation, and business process and data automation.",
-        provider: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name },
-        areaServed: "Worldwide",
-        serviceType: [
-          "AI automation services",
-          "n8n workflow automation",
-          "AI workflow automation",
-          "Business process automation",
-          "CRM automation",
-          "Lead qualification automation",
-          "AI agents and integrations",
-          "Make.com automation",
-        ],
-        hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: "Automation services",
-          itemListElement: serviceGroups.map((group) => ({
-            "@type": "Offer",
-            itemOffered: { "@type": "Service", name: group.title, description: group.intro },
-          })),
-        },
-      },
-      faqPageJsonLd(faqs),
-    ],
-  };
+  const jsonLd = getPageJsonLd("/services");
 
   return (
     <div className="min-h-screen">

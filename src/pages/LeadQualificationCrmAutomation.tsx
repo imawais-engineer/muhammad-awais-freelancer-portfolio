@@ -18,6 +18,8 @@ import {
 import { getProject } from "@/data/projects";
 import { deliverables, site } from "@/data/site";
 import { SITE_URL } from "@/lib/seo";
+import { getPageJsonLd } from "@/data/structuredData";
+import { leadFaqs as faqs } from "@/data/serviceContent";
 
 const TITLE = "AI Lead Qualification & CRM Automation | Muhammad Awais";
 const DESCRIPTION =
@@ -109,48 +111,7 @@ const caseStudySlugs = [
 const LeadQualificationCrmAutomation = () => {
   const caseStudies = caseStudySlugs.map((slug) => getProject(slug)).filter(Boolean);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": `${SITE_URL}${PATH}#webpage`,
-        url: `${SITE_URL}${PATH}`,
-        name: "AI Lead Qualification & CRM Automation",
-        description: DESCRIPTION,
-        inLanguage: "en",
-        isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
-        about: { "@id": `${SITE_URL}/#person` },
-        breadcrumb: { "@id": `${SITE_URL}${PATH}#breadcrumb` },
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": `${SITE_URL}${PATH}#breadcrumb`,
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: "Lead Qualification & CRM Automation",
-            item: `${SITE_URL}${PATH}`,
-          },
-        ],
-      },
-      {
-        "@type": "Service",
-        "@id": `${SITE_URL}${PATH}#service`,
-        name: "Lead Qualification & CRM Automation",
-        url: `${SITE_URL}${PATH}`,
-        description:
-          "Lead capture, AI-assisted lead qualification and scoring, lead routing, CRM and sales pipeline automation, and automated follow-up built on n8n and Make.com.",
-        serviceType: "Lead qualification automation",
-        provider: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name },
-        areaServed: "Worldwide",
-      },
-      faqPageJsonLd(faqs),
-    ],
-  };
+  const jsonLd = getPageJsonLd(PATH);
 
   return (
     <div className="min-h-screen">
