@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 
 import Seo from "@/components/Seo";
+import { faqPageJsonLd } from "@/lib/seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ProjectCard from "@/components/ProjectCard";
@@ -188,6 +189,7 @@ const N8nWorkflowAutomation = () => {
         provider: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: site.name },
         areaServed: "Worldwide",
       },
+      faqPageJsonLd(faqs),
     ],
   };
 
