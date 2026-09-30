@@ -1,0 +1,3 @@
+
+- Per-route head tags live in `src/data/routeMeta.ts`; `scripts/prerender-head.ts` (postbuild) writes `dist/<route>.html` so non-JS scrapers get correct previews. Why: SPA has no SSR.
+- Share images are 1200x630 JPGs in `public/og/` (regenerate when projects change). Why: scrapers reject mismatched or webp images.

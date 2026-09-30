@@ -1,21 +1,22 @@
 import { useEffect } from "react";
 
 import { site } from "@/data/site";
+import { OG_HEIGHT, OG_WIDTH, getRouteMeta } from "@/data/routeMeta";
 import { SITE_URL, absoluteUrl } from "@/lib/seo";
 
 interface SeoProps {
   title: string;
   description: string;
   path: string;
-  /** Absolute or root-relative image used for social previews. */
+  /** Unused for share previews — share images come from `routeMeta`. Kept for API compatibility. */
   image?: string;
   /** Set for thin/utility pages that should stay out of the index. */
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const setMeta = (selector: string, attr: string, key: string, content: string) => {
-  let tag = document.head.querySelector<HTMLMetaElement>(selector);
+const setMeta = (attr: "name" | "property", key: string, content: string) => {
+  let tag = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
   if (!tag) {
     tag = document.createElement("meta");
     tag.setAttribute(attr, key);
@@ -24,31 +25,57 @@ const setMeta = (selector: string, attr: string, key: string, content: string) =
   tag.setAttribute("content", content);
 };
 
-const Seo = ({ title, description, path, image, noindex, jsonLd }: SeoProps) => {
-  useEffect(() => {
-    document.title = title;
-    setMeta('meta[name="description"]', "name", "description", description);
-    setMeta('meta[property="og:title"]', "property", "og:title", title);
-    setMeta('meta[property="og:description"]', "property", "og:description", description);
-    setMeta('meta[property="og:type"]', "property", "og:type", "website");
-    setMeta('meta[name="twitter:card"]', "name", "twitter:card", "summary_large_image");
-    setMeta('meta[property="og:site_name"]', "property", "og:site_name", site.name);
-    setMeta('meta[name="twitter:title"]', "name", "twitter:title", title);
-    setMeta('meta[name="twitter:description"]', "name", "twitter:description", description);
-    setMeta(
-      'meta[name="robots"]',
-      "name",
-      "robots",
-      noindex ? "noindex, follow" : "index, follow, max-image-preview:large",
-    );
+const clearArticleTags = () =>
+  document.head.querySelectorAll('meta[property^="article:"]').forEach((el) => el.remove());
 
-    if (image) {
-      const imageUrl = absoluteUrl(image);
-      setMeta('meta[property="og:image"]', "property", "og:image", imageUrl);
-      setMeta('meta[name="twitter:image"]', "name", "twitter:image", imageUrl);
+const Seo = ({ title: t, description: d, path, noindex: n, jsonLd }: SeoProps) => {
+  useEffect(() => {
+    const meta = getRouteMeta(path);
+    const title = meta?.title ?? t;
+    const description = meta?.description ?? d;
+    const noindex = meta?.noindex ?? n;
+    const image = absoluteUrl(meta?.ogImage ?? "/og/home.jpg");
+    const alt = meta?.ogImageAlt ?? "Muhammad Awais, AI Automation Engineer";
+    const href = `${SITE_URL}${path === "/" ? "/" : path}`;
+
+    document.title = title;
+    setMeta("name", "description", description);
+    setMeta("name", "robots", noindex ? "noindex, follow" : "index, follow, max-image-preview:large");
+
+    setMeta("property", "og:title", title);
+    setMeta("property", "og:description", description);
+    setMeta("property", "og:type", meta?.article ? "article" : "website");
+    setMeta("property", "og:site_name", site.name);
+    setMeta("property", "og:locale", "en_US");
+    setMeta("property", "og:url", href);
+    setMeta("property", "og:image", image);
+    setMeta("property", "og:image:secure_url", image);
+    setMeta("property", "og:image:type", "image/jpeg");
+    setMeta("property", "og:image:width", String(OG_WIDTH));
+    setMeta("property", "og:image:height", String(OG_HEIGHT));
+    setMeta("property", "og:image:alt", alt);
+
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta("name", "twitter:title", title);
+    setMeta("name", "twitter:description", description);
+    setMeta("name", "twitter:image", image);
+    setMeta("name", "twitter:image:alt", alt);
+
+    clearArticleTags();
+    if (meta?.article) {
+      const add = (key: string, content: string) => {
+        const tag = document.createElement("meta");
+        tag.setAttribute("property", key);
+        tag.setAttribute("content", content);
+        document.head.appendChild(tag);
+      };
+      add("article:published_time", meta.article.publishedTime);
+      add("article:modified_time", meta.article.modifiedTime);
+      add("article:author", site.name);
+      add("article:section", meta.article.section);
+      meta.article.tags.forEach((tag) => add("article:tag", tag));
     }
 
-    const href = `${SITE_URL}${path === "/" ? "/" : path}`;
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement("link");
@@ -56,7 +83,6 @@ const Seo = ({ title, description, path, image, noindex, jsonLd }: SeoProps) => 
       document.head.appendChild(canonical);
     }
     canonical.href = href;
-    setMeta('meta[property="og:url"]', "property", "og:url", href);
 
     const scriptId = "page-json-ld";
     document.getElementById(scriptId)?.remove();
@@ -68,7 +94,7 @@ const Seo = ({ title, description, path, image, noindex, jsonLd }: SeoProps) => 
       document.head.appendChild(script);
     }
     return () => document.getElementById(scriptId)?.remove();
-  }, [title, description, path, image, noindex, jsonLd]);
+  }, [t, d, path, n, jsonLd]);
 
   return null;
 };
