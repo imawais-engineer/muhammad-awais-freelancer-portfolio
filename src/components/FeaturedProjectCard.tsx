@@ -10,7 +10,7 @@ const FeaturedProjectCard = ({ project }: { project: Project }) => {
   const tags = Array.from(new Set([project.platform, ...project.tools])).slice(0, 3);
 
   return (
-    <article className="node-card flex h-full flex-col gap-4 p-5 sm:p-6">
+    <article className="node-card card-interactive flex h-full flex-col gap-4 p-5 sm:p-6">
       {image && (
         <div className="-mx-2 -mt-2 overflow-hidden rounded-lg border border-border bg-secondary">
           <img
