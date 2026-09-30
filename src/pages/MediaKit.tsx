@@ -36,7 +36,7 @@ import dataScienceLearningImage from "@/assets/data-science-learning-platform.we
 const standardEase: [number, number, number, number] = [0.2, 0, 0, 1];
 const reveal = {
   hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: standardEase } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.22, ease: standardEase } },
 };
 
 const services = [

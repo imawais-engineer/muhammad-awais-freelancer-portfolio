@@ -23,6 +23,12 @@ export default {
         "panel-strong": "hsl(var(--panel-strong))",
         "panel-border": "hsl(var(--panel-border))",
         success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+        danger: "hsl(var(--danger))",
+        highlight: {
+          DEFAULT: "hsl(var(--highlight))",
+          foreground: "hsl(var(--highlight-foreground))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -62,6 +68,17 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      /* Fluid type scale: headings grow continuously from 320px to 1920px. */
+      fontSize: {
+        base: ["1rem", { lineHeight: "1.7" }],
+        lg: ["1.125rem", { lineHeight: "1.7" }],
+        xl: ["clamp(1.125rem, 1.05rem + 0.35vw, 1.3rem)", { lineHeight: "1.4" }],
+        "2xl": ["clamp(1.35rem, 1.2rem + 0.75vw, 1.75rem)", { lineHeight: "1.25" }],
+        "3xl": ["clamp(1.6rem, 1.35rem + 1.25vw, 2.2rem)", { lineHeight: "1.15" }],
+        "4xl": ["clamp(1.9rem, 1.5rem + 2vw, 2.75rem)", { lineHeight: "1.1" }],
+        "5xl": ["clamp(2.1rem, 1.55rem + 2.75vw, 3.3rem)", { lineHeight: "1.08" }],
+        "6xl": ["clamp(2.4rem, 1.6rem + 4vw, 4rem)", { lineHeight: "1.05" }],
+      },
       fontFamily: {
         sans: ["Geist", "Inter", "system-ui", "sans-serif"],
         mono: ["Geist Mono", "ui-monospace", "SFMono-Regular", "monospace"],
@@ -74,6 +91,8 @@ export default {
       boxShadow: {
         panel: "var(--shadow-panel)",
         elevated: "var(--shadow-elevated)",
+        glow: "var(--glow-primary)",
+        window: "var(--shadow-window)",
       },
       transitionTimingFunction: {
         standard: "cubic-bezier(0.2, 0, 0, 1)",
