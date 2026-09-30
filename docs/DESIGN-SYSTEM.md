@@ -53,3 +53,10 @@ Use rem so everything scales together. The one accepted exception is tap-target 
 
 Framer Motion is used for subtle entrance transitions only (opacity + small Y offset). All
 motion is suppressed under `prefers-reduced-motion`.
+
+## Phase 3 additions
+
+- Accent tokens: `--highlight` (amber, CTAs only), `--success` / `--warning` / `--danger` (outcome, scale, window chrome).
+- Fluid type scale (`xl`–`6xl`) uses `clamp()` in `tailwind.config.ts`; H1 line-height 1.05–1.1; reading text is `text-base` (16px+) at 1.7 line-height, capped at 72ch.
+- `.card-interactive` (hover lift + cyan border glow), `.window-frame` (framed workflow canvas), `.eyebrow` (mono label).
+- Section entry fade/rise (220ms) via `useSectionReveal`, skipped under reduced motion. Case studies show a sticky "Discuss your workflow" button after the Outcome section.
