@@ -12,6 +12,37 @@ import { dirname, join } from "node:path";
 import { OG_HEIGHT, OG_WIDTH, routeMeta } from "../src/data/routeMeta";
 import { SITE_URL } from "../src/lib/seo";
 import { getPageJsonLd } from "../src/data/structuredData";
+import { projects } from "../src/data/projects";
+
+/** Visible <h1> per static route (matches the rendered page; "/" keeps the index.html fallback). */
+const staticH1: Record<string, string> = {
+  "/projects": "AI automation projects, documented end to end",
+  "/services": "AI Automation Services for Businesses That Want Less Manual Work",
+  "/services/n8n-workflow-automation": "n8n Workflow Automation Engineer",
+  "/services/lead-qualification-crm-automation": "AI Lead Qualification & CRM Automation",
+  "/about": "About Muhammad Awais — AI Automation Engineer",
+  "/contact": "Start an AI automation project",
+  "/media-kit": "Muhammad Awais",
+  "/terms": "Terms of Service",
+};
+const h1For = (path: string) =>
+  staticH1[path] ?? projects.find((p) => `/projects/${p.slug}` === path)?.name;
+
+/** Workflow screenshot URL per project, read from the asset pointers imported by projectImages.ts. */
+const projectImageUrl = (() => {
+  const src = readFileSync(join(process.cwd(), "src/data/projectImages.ts"), "utf8");
+  const files = Object.fromEntries(
+    [...src.matchAll(/import (\w+) from "@\/(assets\/projects\/[^"]+)"/g)].map((m) => [m[1], m[2]]),
+  );
+  const out: Record<string, string> = {};
+  for (const m of src.matchAll(/"([\w-]+)": (\w+)\.url/g)) {
+    const file = files[m[2]];
+    if (file) out[m[1]] = JSON.parse(readFileSync(join(process.cwd(), "src", file), "utf8")).url;
+  }
+  return out;
+})();
+
+const PROFILE_PRELOAD = /<link\s+rel="preload"\s+as="image"[\s\S]*?\/>\s*/i;
 
 const DIST = join(process.cwd(), "dist");
 const template = readFileSync(join(DIST, "index.html"), "utf8");
@@ -65,7 +96,27 @@ for (const [path, m] of Object.entries(routeMeta)) {
   }
   const ld = getPageJsonLd(path);
   if (ld) tags.push(`<script type="application/ld+json" id="page-json-ld">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`);
-  const html = strip(template).replace(/(<meta charset[^>]*>)/i, `$1\n    ${tags.join("\n    ")}`);
+  let html = strip(template).replace(/(<meta charset[^>]*>)/i, `$1\n    ${tags.join("\n    ")}`);
+
+  // LCP preload: profile photo only where it is shown; the workflow canvas on case studies.
+  const slug = path.startsWith("/projects/") ? path.slice("/projects/".length) : "";
+  if (slug && projectImageUrl[slug]) {
+    html = html.replace(
+      PROFILE_PRELOAD,
+      `<link rel="preload" as="image" type="image/webp" href="${projectImageUrl[slug]}" fetchpriority="high" />\n    `,
+    );
+  } else if (path !== "/" && path !== "/about") {
+    html = html.replace(PROFILE_PRELOAD, "");
+  }
+
+  // Static body fallback: this route's own <h1> and summary for non-JS crawlers.
+  const h1 = h1For(path);
+  if (h1) {
+    html = html.replace(
+      /(<div id="root">\s*<!--[^>]*-->\s*)<h1>[\s\S]*?<\/h1>\s*<p>[\s\S]*?<\/p>/,
+      `$1<h1>${esc(h1)}</h1>\n      <p>${esc(m.description)}</p>`,
+    );
+  }
   const file = path === "/" ? join(DIST, "index.html") : join(DIST, `${path.slice(1)}.html`);
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, html);

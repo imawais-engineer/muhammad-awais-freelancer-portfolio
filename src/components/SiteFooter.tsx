@@ -16,7 +16,7 @@ const SiteFooter = () => {
         </a>
       </div>
 
-      <nav aria-label="Site" className="flex flex-col gap-2">
+      <nav aria-label="Site" className="flex flex-col">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Site</p>
         <Link to="/projects" className="system-link">Projects</Link>
         <Link to="/services" className="system-link">AI automation services</Link>
@@ -27,7 +27,7 @@ const SiteFooter = () => {
         <Link to="/terms" className="system-link">Terms of Service</Link>
       </nav>
 
-      <nav aria-label="Elsewhere" className="flex flex-col gap-2">
+      <nav aria-label="Elsewhere" className="flex flex-col">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Elsewhere</p>
         <a href={site.links.upwork} target="_blank" rel="noreferrer noopener" className="system-link">Upwork</a>
         <a href={site.links.fiverr} target="_blank" rel="noreferrer noopener" className="system-link">Fiverr</a>

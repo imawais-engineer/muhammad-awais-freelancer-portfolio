@@ -213,7 +213,7 @@ const MediaKit = () => {
       <SiteHeader />
 
 
-      <main id="main" className="pb-8">
+      <main id="main" tabIndex={-1} className="pb-8">
         <section className="container py-14 md:py-20">
           <motion.div className="max-w-3xl space-y-6" initial="hidden" animate="show" variants={reveal}>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Media Kit</p>

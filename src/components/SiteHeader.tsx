@@ -37,7 +37,7 @@ const SiteHeader = () => {
         Skip to content
       </a>
       <div className="container flex h-16 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2 font-mono text-sm text-foreground">
+        <Link to="/" className="flex min-h-11 items-center gap-2 font-mono text-sm text-foreground">
           <span className="inline-block h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
           Muhammad Awais
           <span className="hidden text-muted-foreground lg:inline">— {site.title}</span>
@@ -68,6 +68,7 @@ const SiteHeader = () => {
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
           className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground md:hidden"
         >
@@ -76,7 +77,7 @@ const SiteHeader = () => {
       </div>
 
       {open && (
-        <nav aria-label="Mobile" className="border-t border-panel-border md:hidden">
+        <nav id="mobile-nav" aria-label="Mobile" className="border-t border-panel-border md:hidden">
           <div className="container flex flex-col gap-1 py-3 pb-4">
             {navItems.map((item) => (
               <Link

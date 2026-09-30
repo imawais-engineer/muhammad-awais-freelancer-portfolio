@@ -183,7 +183,7 @@ const Index = () => {
       />
       <SiteHeader />
 
-      <main id="main" className="pb-8">
+      <main id="main" tabIndex={-1} className="pb-8">
         {/* 01 — Hero */}
         <section className="container pt-8 md:pt-12">
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
@@ -201,13 +201,13 @@ const Index = () => {
               </p>
 
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Button asChild size="lg" className="w-full sm:w-auto">
+                <Button asChild size="lg" className="h-auto min-h-11 w-full whitespace-normal text-center sm:w-auto">
                   <Link to="/contact">
                     Start an AI automation project
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
+                <Button asChild size="lg" variant="secondary" className="h-auto min-h-11 w-full whitespace-normal text-center sm:w-auto">
                   <Link to="/projects">
                     View automation case studies
                     <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -539,7 +539,7 @@ const Index = () => {
                 what it would take.
               </p>
             </div>
-            <Button asChild size="lg" className="w-full shrink-0 sm:w-auto">
+            <Button asChild size="lg" className="h-auto min-h-11 w-full shrink-0 whitespace-normal text-center sm:w-auto">
               <Link to="/contact">
                 Start an AI automation project
                 <ArrowRight className="ml-2 h-4 w-4" />
