@@ -4,10 +4,17 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install --legacy-peer-deps",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "imawais.engineer" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "imawais.engineer"
+        }
+      ],
       "destination": "https://www.imawais.engineer/$1",
       "permanent": true
     }

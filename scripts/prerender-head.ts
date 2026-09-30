@@ -62,7 +62,7 @@ for (const [path, m] of Object.entries(routeMeta)) {
       ...m.article.tags.map((t) => `<meta property="article:tag" content="${esc(t)}">`),
     );
   }
-  const html = strip(template).replace(/<head>/i, `<head>\n    ${tags.join("\n    ")}`);
+  const html = strip(template).replace(/(<meta charset[^>]*>)/i, `$1\n    ${tags.join("\n    ")}`);
   const file = path === "/" ? join(DIST, "index.html") : join(DIST, `${path.slice(1)}.html`);
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, html);
