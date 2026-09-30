@@ -108,7 +108,7 @@ export const projects: Project[] = [
     name: "Automated Slack Reporting Pipeline with Apify and n8n",
     shortName: "Slack Reporting Pipeline",
     summary:
-      "A scheduled scraping-to-Slack digest that replaced 10+ hours a day of manual data collection and formatting.",
+      "A scheduled scraping-to-Slack digest that replaced 10+ hours a week of manual data collection and formatting.",
     headlineResult: "10+ hrs/week saved",
     category: "Reporting",
     clientType: "Small business / agency",
@@ -124,7 +124,7 @@ export const projects: Project[] = [
       "Everything you need. Professional, responds extremely quickly, and works in a structured and reliable manner. Top-notch! There's really nothing more to say.",
     problem: [
       "The client needed structured data extracted from multiple web sources and delivered daily to an internal Slack channel.",
-      "The team was manually collecting and formatting that data, taking 10+ hours each day.",
+      "The team was manually collecting and formatting that data, taking 10+ hours a week.",
       "The manual process was error-prone, delayed, and did not scale as data sources grew.",
     ],
     requirements: [

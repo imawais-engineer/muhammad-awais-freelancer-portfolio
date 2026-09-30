@@ -11,11 +11,11 @@ export const homeFaqs = [
   },
   {
     q: "How long does a typical automation project take?",
-    a: "Most single workflows are delivered in a few days to two weeks, depending on how many systems are involved and how clean the data is. You get a clear scope and timeline before any work starts.",
+    a: "Most single workflows are usually delivered within 48 hours. Complex builds never take longer than a week. You get a clear scope and timeline before any work starts.",
   },
   {
     q: "Do you work with clients outside Pakistan?",
-    a: "Yes. I work remotely with agencies, SaaS teams and small businesses worldwide, through Upwork, Fiverr or direct contracts.",
+    a: "Yes. I work remotely with agencies, SaaS teams and small businesses worldwide, through Upwork or direct contracts.",
   },
   {
     q: "What happens after the workflow is delivered?",
