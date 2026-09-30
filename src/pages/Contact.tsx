@@ -30,7 +30,7 @@ const Contact = () => (
       <motion.header
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45 }}
+        transition={{ duration: 0.22, ease: [0.2, 0, 0, 1] }}
         className="max-w-3xl space-y-5"
       >
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Contact</p>
@@ -85,7 +85,7 @@ const Contact = () => (
 
       <section className="mt-16">
         <h2 className="text-2xl font-semibold tracking-tight">Send me the details</h2>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+        <p className="mt-2 max-w-2xl text-base text-muted-foreground">
           A quick message works fine. If you already know the process you want automated, the
           detailed brief gets you a realistic scope faster.
         </p>
@@ -97,7 +97,7 @@ const Contact = () => (
       <section className="mt-16 grid gap-4 lg:grid-cols-2">
         <article className="node-card p-6">
           <h2 className="text-xl font-semibold">What to send me</h2>
-          <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+          <ul className="mt-4 space-y-3 text-base text-muted-foreground">
             {briefChecklist.map((item) => (
               <li key={item} className="flex gap-3">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
@@ -105,7 +105,7 @@ const Contact = () => (
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-6 text-base text-muted-foreground">
             That's enough for me to come back with a realistic scope, an approach, and an honest view
             on whether automation is the right call.
           </p>

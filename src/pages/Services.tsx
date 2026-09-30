@@ -97,13 +97,13 @@ const Services = () => {
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
+          transition={{ duration: 0.22, ease: [0.2, 0, 0, 1] }}
           className="max-w-3xl space-y-5"
         >
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
             Services
           </p>
-          <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
             AI Automation Services for Businesses That Want Less Manual Work
           </h1>
           <p className="text-lg text-muted-foreground">
@@ -139,15 +139,15 @@ const Services = () => {
             {serviceGroups.map((group) => (
               <article key={group.id} id={group.id} className="node-card flex h-full flex-col p-6">
                 <h3 className="text-lg font-semibold leading-snug">{group.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{group.intro}</p>
+                <p className="mt-3 text-base text-muted-foreground">{group.intro}</p>
                 {group.link && (
-                  <p className="mt-3 text-sm">
+                  <p className="mt-3 text-base">
                     <Link to={group.link.href} className="system-link">
                       {group.link.label}
                     </Link>
                   </p>
                 )}
-                <ul className="mt-5 space-y-2.5 text-sm text-muted-foreground">
+                <ul className="mt-5 space-y-2.5 text-base text-muted-foreground">
                   {group.items.map((item) => (
                     <li key={item} className="flex gap-3">
                       <Check className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
@@ -206,7 +206,7 @@ const Services = () => {
               </li>
             ))}
           </ol>
-          <p className="mt-6 max-w-3xl text-sm text-muted-foreground">
+          <p className="mt-6 max-w-3xl text-base text-muted-foreground">
             Every external call gets error handling and retries, every run gets logged, and the
             logic is written so a future developer — or you — can read it without me in the room.
           </p>
@@ -242,7 +242,7 @@ const Services = () => {
             {deliverables.map((item) => (
               <div key={item.title} className="node-card p-5">
                 <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
+                <p className="mt-2 text-base text-muted-foreground">{item.detail}</p>
               </div>
             ))}
           </div>
@@ -273,7 +273,7 @@ const Services = () => {
               ))}
             </dl>
           </div>
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-6 text-base text-muted-foreground">
             More background on{" "}
             <Link to="/about" className="system-link">
               how I work as an AI automation engineer
@@ -296,7 +296,7 @@ const Services = () => {
               (project) => project && <ProjectCard key={project.slug} project={project} />,
             )}
           </div>
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-6 text-base text-muted-foreground">
             <Link to="/projects" className="system-link">
               View all AI automation projects
             </Link>

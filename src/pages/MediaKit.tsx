@@ -36,7 +36,7 @@ import dataScienceLearningImage from "@/assets/data-science-learning-platform.we
 const standardEase: [number, number, number, number] = [0.2, 0, 0, 1];
 const reveal = {
   hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: standardEase } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.22, ease: standardEase } },
 };
 
 const services = [
@@ -223,7 +223,7 @@ const MediaKit = () => {
               I build smart systems that automate work, connect AI with real-world workflows, and turn ideas into
               functional digital solutions.
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               About Muhammad Awais, my work, audience, capabilities, and partnership opportunities.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -287,7 +287,7 @@ const MediaKit = () => {
                 >
                   <Icon className="size-5 text-primary" aria-hidden="true" />
                   <h3 className="mt-4 text-lg font-semibold">{service.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{service.desc}</p>
+                  <p className="mt-2 text-base text-muted-foreground">{service.desc}</p>
                 </motion.article>
               );
             })}
@@ -353,7 +353,7 @@ const MediaKit = () => {
                     {project.status}
                   </span>
                 </div>
-                <p className="mt-2 text-sm text-muted-foreground">{project.desc}</p>
+                <p className="mt-2 text-base text-muted-foreground">{project.desc}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {project.stack.map((item) => (
                     <span key={item} className="tech-tag">
@@ -390,7 +390,7 @@ const MediaKit = () => {
                 variants={reveal}
               >
                 <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
+                <p className="mt-2 text-base text-muted-foreground">{item.desc}</p>
               </motion.article>
             ))}
           </div>
@@ -408,8 +408,8 @@ const MediaKit = () => {
             >
               <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">Current Audience</p>
               <p className="mt-3 text-3xl font-semibold text-foreground">0–1,000</p>
-              <p className="mt-1 text-sm text-muted-foreground">monthly website traffic</p>
-              <p className="mt-4 text-sm text-muted-foreground">
+              <p className="mt-1 text-base text-muted-foreground">monthly website traffic</p>
+              <p className="mt-4 text-base text-muted-foreground">
                 I’m currently growing my professional audience through portfolio content, technology projects, social
                 channels, networking, referrals, and educational resources.
               </p>
@@ -477,7 +477,7 @@ const MediaKit = () => {
               variants={reveal}
             >
               <h3 className="text-lg font-semibold">Good Fit For</h3>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <ul className="mt-4 space-y-2 text-base text-muted-foreground">
                 {goodFit.map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <Check className="mt-0.5 size-4 shrink-0 text-success" aria-hidden="true" />
@@ -494,7 +494,7 @@ const MediaKit = () => {
               variants={reveal}
             >
               <h3 className="text-lg font-semibold">Not a Good Fit For</h3>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <ul className="mt-4 space-y-2 text-base text-muted-foreground">
                 {notFit.map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <X className="mt-0.5 size-4 shrink-0 text-destructive" aria-hidden="true" />
@@ -516,7 +516,7 @@ const MediaKit = () => {
             variants={reveal}
           >
             {whyWorkWithMe.map((item) => (
-              <p key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+              <p key={item} className="flex items-start gap-2 text-base text-muted-foreground">
                 <Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
                 {item}
               </p>
@@ -536,7 +536,7 @@ const MediaKit = () => {
             {businessInfo.map((row) => (
               <div key={row.label} className="grid gap-1 py-4 first:pt-0 last:pb-0 sm:grid-cols-[200px_minmax(0,1fr)] sm:gap-4">
                 <dt className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">{row.label}</dt>
-                <dd className="break-words text-sm text-foreground">
+                <dd className="break-words text-base text-foreground">
                   {row.url ? (
                     <a href={row.url} target="_blank" rel="noreferrer" className="text-primary underline-offset-4 hover:underline">
                       {row.value}
@@ -579,7 +579,7 @@ const MediaKit = () => {
                 <Link to="/#projects">View Portfolio</Link>
               </Button>
             </div>
-            <p className="pt-2 text-sm text-muted-foreground">
+            <p className="pt-2 text-base text-muted-foreground">
               Engagements are governed by my{" "}
               <Link to="/terms" className="text-primary underline-offset-4 hover:underline">
                 Terms of Service

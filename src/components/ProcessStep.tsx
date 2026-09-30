@@ -16,8 +16,8 @@ const ProcessStep = ({
       </span>
       <h3 className="text-base font-semibold leading-snug">{title}</h3>
     </div>
-    <p className="text-sm font-medium text-foreground">{outcome}</p>
-    <p className="text-sm leading-relaxed text-muted-foreground">{detail}</p>
+    <p className="text-base font-medium text-foreground">{outcome}</p>
+    <p className="text-base leading-relaxed text-muted-foreground">{detail}</p>
   </li>
 );
 

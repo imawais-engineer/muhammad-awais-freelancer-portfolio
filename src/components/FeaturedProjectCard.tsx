@@ -10,7 +10,7 @@ const FeaturedProjectCard = ({ project }: { project: Project }) => {
   const tags = Array.from(new Set([project.platform, ...project.tools])).slice(0, 3);
 
   return (
-    <article className="node-card flex h-full flex-col gap-4 p-5 sm:p-6">
+    <article className="node-card card-interactive flex h-full flex-col gap-4 p-5 sm:p-6">
       {image && (
         <div className="-mx-2 -mt-2 overflow-hidden rounded-lg border border-border bg-secondary">
           <img
@@ -28,14 +28,14 @@ const FeaturedProjectCard = ({ project }: { project: Project }) => {
       <div className="min-w-0 space-y-2">
         <span className="tech-tag inline-block">{project.category}</span>
         <h3 className="line-clamp-2 break-words text-base font-semibold leading-snug">{project.name}</h3>
-        <p className="line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+        <p className="line-clamp-2 text-base leading-relaxed text-muted-foreground">
           {project.clientType} · {project.industry}
         </p>
       </div>
 
       <p className="text-lg font-semibold leading-snug text-primary sm:text-xl">{project.headlineResult}</p>
 
-      <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+      <p className="line-clamp-3 text-base leading-relaxed text-muted-foreground">{project.summary}</p>
 
       <div className="flex flex-wrap gap-2">
         {tags.map((tool) => (

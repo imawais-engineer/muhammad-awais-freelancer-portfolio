@@ -357,7 +357,7 @@ const Terms = () => {
               <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">Contents</p>
               <ol className="mt-4 max-h-[60vh] space-y-2 overflow-y-auto pr-1">
                 {sections.map((section, i) => (
-                  <li key={section.id} className="flex gap-2 text-sm">
+                  <li key={section.id} className="flex gap-2 text-base">
                     <span className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
                     <a
                       href={`#${section.id}`}

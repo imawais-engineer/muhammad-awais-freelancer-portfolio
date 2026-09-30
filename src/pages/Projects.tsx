@@ -35,7 +35,7 @@ const Projects = () => {
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
+          transition={{ duration: 0.22, ease: [0.2, 0, 0, 1] }}
           className="max-w-3xl space-y-4"
         >
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Case studies</p>

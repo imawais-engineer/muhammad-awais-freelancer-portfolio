@@ -24,7 +24,7 @@ const About = () => (
           <motion.header
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.22, ease: [0.2, 0, 0, 1] }}
             className="max-w-3xl space-y-5"
           >
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">About</p>
@@ -62,7 +62,7 @@ const About = () => (
                 {about.approach.map((step, i) => (
                   <li key={step} className="node-card p-5">
                     <p className="font-mono text-sm text-primary">{String(i + 1).padStart(2, "0")}</p>
-                    <p className="mt-2 text-sm text-muted-foreground">{step}</p>
+                    <p className="mt-2 text-base text-muted-foreground">{step}</p>
                   </li>
                 ))}
               </ol>
@@ -132,10 +132,10 @@ const About = () => (
           </div>
 
           <div className="node-card space-y-4 p-6">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Available for automation projects, retainers, and workflow rescue work.
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               See the full range of{" "}
               <Link to="/services" className="system-link">
                 n8n workflow automation services

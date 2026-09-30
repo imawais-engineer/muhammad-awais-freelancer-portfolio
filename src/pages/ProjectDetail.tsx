@@ -15,6 +15,7 @@ import { SITE_URL, absoluteUrl, faqPageJsonLd } from "@/lib/seo";
 import { getRouteMeta } from "@/data/routeMeta";
 import { projectFaqs } from "@/data/faqs";
 import { getPageJsonLd } from "@/data/structuredData";
+import StickyWorkflowCta from "@/components/StickyWorkflowCta";
 import FaqSection from "@/components/FaqSection";
 
 /** Case studies whose primary subject is lead capture, qualification, CRM or follow-up. */
@@ -26,18 +27,18 @@ const LEAD_SLUGS = new Set([
 ]);
 
 
-const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <section className="space-y-4">
+const Block = ({ title, children, id }: { title: string; children: React.ReactNode; id?: string }) => (
+  <section id={id} className="scroll-mt-24 space-y-4">
     <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{title}</h2>
     {children}
   </section>
 );
 
-const BulletList = ({ items }: { items: string[] }) => (
+const BulletList = ({ items, tone = "primary" }: { items: string[]; tone?: "primary" | "success" }) => (
   <ul className="space-y-3 text-muted-foreground">
     {items.map((item) => (
       <li key={item} className="flex gap-3">
-        <Check className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+        <Check className={`mt-1 h-4 w-4 shrink-0 ${tone === "success" ? "text-success" : "text-primary"}`} aria-hidden="true" />
         <span>{item}</span>
       </li>
     ))}
@@ -117,22 +118,40 @@ const ProjectDetail = () => {
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
+          transition={{ duration: 0.22, ease: [0.2, 0, 0, 1] }}
           className="mt-8 max-w-4xl space-y-5"
         >
           <div className="flex flex-wrap gap-2">
             <span className="tech-tag">{project.category}</span>
             {project.clientWork && <span className="tech-tag">Real client engagement</span>}
           </div>
-          <h1 className="text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
             {project.name}
           </h1>
           <p className="text-lg text-muted-foreground">{project.summary}</p>
-          <p className="font-mono text-lg text-primary">{project.headlineResult}</p>
+          <p className="inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-4 py-1.5 font-mono text-sm font-medium tabular-nums text-success">
+            <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden="true" />
+            {project.headlineResult}
+          </p>
+          <section className="space-y-3 pt-2">
+            <h2 className="eyebrow">Tools &amp; integrations</h2>
+            <div className="flex flex-wrap gap-2">
+              {project.tools.map((tool) => (
+                <TechTag key={tool} label={tool} />
+              ))}
+            </div>
+          </section>
         </motion.header>
 
         {image && (
           <figure className="mt-10">
+            <div className="window-frame">
+              <div className="flex items-center gap-1.5 border-b border-panel-border bg-panel-strong px-4 py-2.5" aria-hidden="true">
+                <span className="h-2.5 w-2.5 rounded-full bg-danger/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-warning/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-success/70" />
+                <span className="ml-3 font-mono text-xs text-muted-foreground">{project.platform}</span>
+              </div>
             <img
               src={image}
               alt={`${project.platform} workflow canvas for the ${project.name.toLowerCase()} build`}
@@ -140,8 +159,9 @@ const ProjectDetail = () => {
               decoding="async"
               width={960}
               height={440}
-              className="w-full rounded-xl border border-border bg-secondary object-cover"
+              className="w-full bg-secondary object-cover"
             />
+            </div>
             <figcaption className="mt-3 font-mono text-xs text-muted-foreground">
               {project.clientWork
                 ? "Actual workflow canvas from the delivered client build."
@@ -157,21 +177,11 @@ const ProjectDetail = () => {
               <dt className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 {item.label}
               </dt>
-              <dd className="mt-2 text-sm text-foreground">{item.value}</dd>
+              <dd className="mt-2 text-base text-foreground">{item.value}</dd>
             </div>
           ))}
         </dl>
 
-        <section className="mt-10 space-y-4">
-          <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
-            Tools &amp; integrations
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {project.tools.map((tool) => (
-              <TechTag key={tool} label={tool} />
-            ))}
-          </div>
-        </section>
 
 
         <div className="mt-16 grid gap-16 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
@@ -197,7 +207,7 @@ const ProjectDetail = () => {
                     <span className="font-mono text-sm text-primary">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-sm text-muted-foreground">{step}</span>
+                    <span className="text-base text-muted-foreground">{step}</span>
                   </li>
                 ))}
               </ol>
@@ -211,8 +221,8 @@ const ProjectDetail = () => {
               <BulletList items={project.output} />
             </Block>
 
-            <Block title="Outcome">
-              <BulletList items={project.results} />
+            <Block title="Outcome" id="outcome">
+              <BulletList items={project.results} tone="success" />
             </Block>
 
             {project.feedback && (
@@ -236,7 +246,7 @@ const ProjectDetail = () => {
                 {project.scale.map((item) => (
                   <div key={item.label}>
                     <dt className="text-xs text-muted-foreground">{item.label}</dt>
-                    <dd className="text-sm font-medium text-foreground">{item.value}</dd>
+                    <dd className="font-mono text-base font-medium tabular-nums text-success">{item.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -246,7 +256,7 @@ const ProjectDetail = () => {
               <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 Proof
               </h2>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <ul className="mt-4 space-y-2 text-base text-muted-foreground">
                 {project.proof.map((p) => (
                   <li key={p} className="flex gap-2">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
@@ -257,15 +267,17 @@ const ProjectDetail = () => {
             </div>
 
             <div className="node-card space-y-4 p-6">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Running a similar process by hand? I can tell you what it would take to automate it.
               </p>
-              <Button asChild className="w-full">
+              <Button asChild variant="highlight" className="w-full">
                 <Link to="/contact">Discuss your workflow</Link>
               </Button>
             </div>
           </aside>
         </div>
+
+        <StickyWorkflowCta />
 
         <FaqSection faqs={faqs} title={`${project.shortName}: common questions`} className="mt-20 max-w-4xl" />
 
@@ -345,7 +357,7 @@ const ProjectDetail = () => {
             <span className="text-xl font-semibold md:text-2xl">{next.name}</span>
             <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
           </Link>
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-6 text-base text-muted-foreground">
             More about{" "}
             <Link to="/about" className="system-link">
               how I work as an AI automation engineer
