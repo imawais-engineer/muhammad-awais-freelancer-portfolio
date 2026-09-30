@@ -41,6 +41,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.imawais.engineer/projects/linkedin-job-search-automation-openai-telegram</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.imawais.engineer/projects/slack-reporting-pipeline-apify-n8n</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
