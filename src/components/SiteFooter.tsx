@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 
 import { site } from "@/data/site";
+import { useSectionReveal } from "@/hooks/use-section-reveal";
 
-const SiteFooter = () => (
+const SiteFooter = () => {
+  useSectionReveal();
+  return (
   <footer className="mt-24 border-t border-panel-border">
     <div className="container grid gap-8 py-12 md:grid-cols-3">
       <div className="space-y-2">
@@ -38,6 +41,7 @@ const SiteFooter = () => (
       </p>
     </div>
   </footer>
-);
+  );
+};
 
 export default SiteFooter;
