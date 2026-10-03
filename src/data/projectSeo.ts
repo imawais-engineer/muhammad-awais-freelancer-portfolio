@@ -21,6 +21,14 @@ export interface ProjectSeo {
 }
 
 export const projectSeo: Record<string, ProjectSeo> = {
+  "instagram-reel-recreation-gemini-minimax": {
+    topic: "AI video recreation automation",
+    title: "Recreate Instagram Reels with Gemini & MiniMax AI",
+    description: "n8n workflow that downloads an Instagram Reel, analyzes it with Gemini 2.0 Flash and generates a new AI video with MiniMax on Replicate.",
+    ctaHeading: "Want AI video content produced on autopilot?",
+    ctaLabel: "Build a similar AI video workflow",
+    related: ["instagram-reels-outlier-telegram-n8n", "youtube-publishing-automation", "slack-reporting-pipeline-apify-n8n"],
+  },
   "automated-business-kpi-analysis-growth-insights": {
     topic: "automated KPI reporting",
     title: "Automated Business KPI Analysis & AI Growth Insights with n8n",
@@ -86,7 +94,7 @@ export const projectSeo: Record<string, ProjectSeo> = {
       "n8n Instagram analytics automation that monitors 50+ accounts, scores every Reel against its account median and reports true outliers to Telegram.",
     ctaHeading: "Want social analytics monitored and reported automatically?",
     ctaLabel: "Build a similar analytics automation",
-    related: ["slack-reporting-pipeline-apify-n8n", "real-estate-lead-generation-browseract-make", "automated-business-kpi-analysis-growth-insights"],
+    related: ["slack-reporting-pipeline-apify-n8n", "real-estate-lead-generation-browseract-make", "automated-business-kpi-analysis-growth-insights", "instagram-reel-recreation-gemini-minimax"],
   },
   "ai-lead-qualification-real-estate": {
     topic: "AI lead qualification automation",
@@ -158,7 +166,7 @@ export const projectSeo: Record<string, ProjectSeo> = {
       "YouTube publishing automation that reads pending videos from a sheet, pulls files from Drive, writes SEO metadata with AI and uploads in batches.",
     ctaHeading: "Publishing content manually every week?",
     ctaLabel: "Build a similar content automation",
-    related: ["ai-review-management-system", "slack-reporting-pipeline-apify-n8n"],
+    related: ["ai-review-management-system", "slack-reporting-pipeline-apify-n8n", "instagram-reel-recreation-gemini-minimax"],
   },
   "lead-reply-sync-gohighlevel-clickup": {
     topic: "automated lead follow-up",
