@@ -16,6 +16,7 @@ import newShot1 from "@/assets/projects/Automated-Offer-Letter---Response-Tracki
 import newShot2 from "@/assets/projects/Dynamic-HubSpot-Lead-Routing-with-GPT-4---Airtable-Sales-Team-Distribution.webp.asset.json";
 import newShot3 from "@/assets/projects/Lead-Meeting-Scheduling-with-Zoho-CRM--Google-Calendar---Gemini.webp.asset.json";
 import newShot4 from "@/assets/projects/Voice-Based-Appointment-Booking-System-with-ElevenLabs-AI---Cal-com.webp.asset.json";
+import reelRecreationShot from "@/assets/projects/Recreate-Instagram-Reels-Gemini-MiniMax.webp.asset.json";
 
 /** Real n8n / Make workflow screenshots, keyed by project slug. */
 export const projectImages: Record<string, string> = {
@@ -37,6 +38,7 @@ export const projectImages: Record<string, string> = {
   "hubspot-lead-routing-gpt4-airtable": newShot2.url,
   "ai-lead-meeting-scheduling-zoho-gemini": newShot3.url,
   "voice-ai-appointment-booking-elevenlabs-calcom": newShot4.url,
+  "instagram-reel-recreation-gemini-minimax": reelRecreationShot.url,
 };
 
 export const getProjectImage = (slug: string): string | undefined => projectImages[slug];

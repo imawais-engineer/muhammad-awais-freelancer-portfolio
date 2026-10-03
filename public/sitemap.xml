@@ -202,4 +202,13 @@
       <image:loc>https://www.imawais.engineer/og/projects/voice-ai-appointment-booking-elevenlabs-calcom.jpg</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://www.imawais.engineer/projects/instagram-reel-recreation-gemini-minimax</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.imawais.engineer/og/projects/instagram-reel-recreation-gemini-minimax.jpg</image:loc>
+    </image:image>
+  </url>
 </urlset>

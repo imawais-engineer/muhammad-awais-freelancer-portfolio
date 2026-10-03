@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 30 Sep 2026 00:00:00 GMT</lastBuildDate>
     <item>
+      <title>Recreate Instagram Reels on Demand with Gemini &amp; MiniMax</title>
+      <link>https://www.imawais.engineer/projects/instagram-reel-recreation-gemini-minimax</link>
+      <guid isPermaLink="true">https://www.imawais.engineer/projects/instagram-reel-recreation-gemini-minimax</guid>
+      <pubDate>Sat, 03 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Content</category>
+      <description>n8n workflow that downloads an Instagram Reel, analyzes it with Gemini 2.0 Flash and generates a new AI video with MiniMax on Replicate.</description>
+      <enclosure url="https://www.imawais.engineer/og/projects/instagram-reel-recreation-gemini-minimax.jpg" type="image/jpeg" length="76564" />
+    </item>
+    <item>
       <title>Automated Business KPI Analysis &amp; Growth Insights</title>
       <link>https://www.imawais.engineer/projects/automated-business-kpi-analysis-growth-insights</link>
       <guid isPermaLink="true">https://www.imawais.engineer/projects/automated-business-kpi-analysis-growth-insights</guid>

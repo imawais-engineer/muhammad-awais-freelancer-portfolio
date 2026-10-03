@@ -34,6 +34,7 @@ export const projectPublished: Record<string, string> = {
   "ai-lead-meeting-scheduling-zoho-gemini": "2026-08-20",
   "voice-ai-appointment-booking-elevenlabs-calcom": "2026-08-20",
   "automated-business-kpi-analysis-growth-insights": "2026-08-25",
+  "instagram-reel-recreation-gemini-minimax": "2026-10-03",
 };
 export const PROJECT_MODIFIED = "2026-09-30";
 
