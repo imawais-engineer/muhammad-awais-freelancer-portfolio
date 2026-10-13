@@ -11,8 +11,8 @@ const HomeServiceCard = ({
   outcome: string;
   tools: string;
 }) => (
-  <article className="node-card flex h-full flex-col gap-3 p-5 sm:p-6">
-    <h3 className="text-base font-semibold sm:text-lg leading-snug">{title}</h3>
+  <article className="node-card card-interactive flex h-full flex-col gap-3 p-5 sm:p-6">
+    <h3 className="font-display text-base font-bold sm:text-lg leading-snug">{title}</h3>
 
     <dl className="space-y-3 text-sm leading-relaxed">
       {[

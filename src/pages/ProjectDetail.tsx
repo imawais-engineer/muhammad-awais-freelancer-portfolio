@@ -125,14 +125,16 @@ const ProjectDetail = () => {
             <span className="tech-tag">{project.category}</span>
             {project.clientWork && <span className="tech-tag">Real client engagement</span>}
           </div>
-          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
+          <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
             {project.name}
           </h1>
-          <p className="text-lg text-muted-foreground">{project.summary}</p>
-          <p className="inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-4 py-1.5 font-mono text-sm font-medium tabular-nums text-success">
-            <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden="true" />
-            {project.headlineResult}
-          </p>
+          <p className="text-lg leading-relaxed text-muted-foreground">{project.summary}</p>
+          <div className="pt-1">
+            <span className="metric-pill">
+              <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" aria-hidden="true" />
+              {project.headlineResult}
+            </span>
+          </div>
           <section className="space-y-3 pt-2">
             <h2 className="eyebrow">Tools &amp; integrations</h2>
             <div className="flex flex-wrap gap-2">
@@ -146,7 +148,7 @@ const ProjectDetail = () => {
         {image && (
           <figure className="mt-10">
             <div className="window-frame">
-              <div className="flex items-center gap-1.5 border-b border-panel-border bg-panel-strong px-4 py-2.5" aria-hidden="true">
+              <div className="flex items-center gap-1.5 border-b border-white/[0.08] bg-panel-strong px-4 py-2.5" aria-hidden="true">
                 <span className="h-2.5 w-2.5 rounded-full bg-danger/70" />
                 <span className="h-2.5 w-2.5 rounded-full bg-warning/70" />
                 <span className="h-2.5 w-2.5 rounded-full bg-success/70" />
@@ -195,9 +197,17 @@ const ProjectDetail = () => {
             </Block>
 
             <Block title="Solution architecture">
-              <p className="node-card p-5 font-mono text-sm leading-relaxed text-foreground">
-                {project.architecture}
-              </p>
+              <div className="window-frame">
+                <div className="flex items-center gap-1.5 border-b border-white/[0.08] bg-panel-strong px-4 py-2" aria-hidden="true">
+                  <span className="h-2 w-2 rounded-full bg-danger/70" />
+                  <span className="h-2 w-2 rounded-full bg-warning/70" />
+                  <span className="h-2 w-2 rounded-full bg-success/70" />
+                  <span className="ml-2 font-mono text-[0.6875rem] text-muted-foreground">architecture.spec</span>
+                </div>
+                <p className="p-5 font-mono text-sm leading-relaxed text-foreground">
+                  {project.architecture}
+                </p>
+              </div>
             </Block>
 
             <Block title="How the workflow runs">
@@ -270,7 +280,7 @@ const ProjectDetail = () => {
               <p className="text-base text-muted-foreground">
                 Running a similar process by hand? I can tell you what it would take to automate it.
               </p>
-              <Button asChild variant="highlight" className="w-full">
+              <Button asChild className="w-full bg-gradient-cta border-0 text-white shadow-glow-sm hover:opacity-95 transition-opacity">
                 <Link to="/contact">Discuss your workflow</Link>
               </Button>
             </div>
@@ -282,13 +292,13 @@ const ProjectDetail = () => {
         <FaqSection faqs={faqs} title={`${project.shortName}: common questions`} className="mt-20 max-w-4xl" />
 
         <section className="mt-20 border-t border-panel-border pt-10">
-          <h2 className="text-2xl font-semibold tracking-tight">{seo?.ctaHeading ?? "Running a similar process by hand?"}</h2>
+          <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">{seo?.ctaHeading ?? "Running a similar process by hand?"}</h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             I design, build and maintain systems like this one end to end. Tell me how your process
             works today and I&apos;ll map what an automated version would look like.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild>
+            <Button asChild className="bg-gradient-cta border-0 text-white shadow-glow-sm hover:opacity-95 transition-opacity">
               <Link to="/contact">{seo?.ctaLabel ?? "Build a similar system"} →</Link>
             </Button>
             <Button asChild variant="outline">

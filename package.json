@@ -11,9 +11,9 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "predev": "bunx tsx scripts/generate-sitemap.ts",
-    "prebuild": "bunx tsx scripts/generate-sitemap.ts",
-    "postbuild": "bunx tsx scripts/prerender-head.ts"
+    "predev": "npx --yes tsx scripts/generate-sitemap.ts",
+    "prebuild": "npx --yes tsx scripts/generate-sitemap.ts",
+    "postbuild": "npx --yes tsx scripts/prerender-head.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

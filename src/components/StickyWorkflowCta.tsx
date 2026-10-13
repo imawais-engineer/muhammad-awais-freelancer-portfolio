@@ -36,7 +36,7 @@ const StickyWorkflowCta = () => {
       <Link
         to="/contact"
         tabIndex={visible ? 0 : -1}
-        className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-highlight px-5 py-2.5 font-mono text-sm font-semibold text-highlight-foreground shadow-elevated transition-[filter] hover:brightness-110"
+        className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-gradient-cta px-6 py-2.5 font-mono text-sm font-semibold text-white shadow-glow-violet transition-[transform,filter] duration-200 hover:scale-105 active:scale-95"
       >
         Discuss your workflow
         <ArrowRight className="h-4 w-4" aria-hidden="true" />

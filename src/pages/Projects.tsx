@@ -18,7 +18,6 @@ const Projects = () => {
   const filteredClient = useMemo(() => filterBy(clientProjects), [active]);
   const filteredDemo = useMemo(() => filterBy(demoProjects), [active]);
 
-
   const filters = ["All", ...projectCategories];
 
   return (
@@ -39,18 +38,18 @@ const Projects = () => {
           className="max-w-3xl space-y-4"
         >
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Case studies</p>
-          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-            AI automation projects, documented end to end
+          <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
+            <span className="gradient-text">AI Automation Case Studies</span>{" "}
+            <span className="text-foreground">documented end to end</span>
           </h1>
-          <p className="text-lg text-muted-foreground">
-            {projects.length} n8n and Make.com automation projects covering AI workflow automation,
-            AI agents, CRM and lead automation, reporting and business process automation. Each case
-            study covers the business problem, the architecture, the workflow logic and the measured
-            results — paid client work first, then demonstration builds.
+          <p className="text-lg leading-relaxed text-muted-foreground">
+            {projects.length} production n8n and Make.com automation projects covering AI workflow
+            automation, LLM agents, CRM pipelines, and intelligent reporting systems. Every case study
+            details the business bottlenecks, technical architecture, and verified business outcomes.
           </p>
         </motion.header>
 
-        <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label="Filter projects">
+        <div className="mt-10 flex flex-wrap gap-2.5" role="group" aria-label="Filter projects">
           {filters.map((filter) => (
             <button
               key={filter}
@@ -58,10 +57,10 @@ const Projects = () => {
               onClick={() => setActive(filter)}
               aria-pressed={active === filter}
               className={cn(
-                "rounded-md border border-panel-border px-3 py-1.5 font-mono text-xs transition-colors duration-200",
+                "rounded-lg px-4 py-2 font-mono text-xs font-medium transition-all duration-300",
                 active === filter
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-panel text-muted-foreground hover:text-foreground",
+                  ? "bg-gradient-cta text-white shadow-glow-sm"
+                  : "border border-white/[0.08] bg-panel/70 text-muted-foreground hover:border-primary/40 hover:text-foreground",
               )}
             >
               {filter}
@@ -70,14 +69,14 @@ const Projects = () => {
         </div>
 
         {filteredClient.length > 0 && (
-          <section className="mt-12">
+          <section className="mt-14">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
-              Real client projects
+              Real client engagements
             </p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight">
-              n8n automation projects delivered for paying clients
+            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+              Production automations shipped for paying clients
             </h2>
-            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {filteredClient.map((project) => (
                 <ProjectCard key={project.slug} project={project} />
               ))}
@@ -86,14 +85,14 @@ const Projects = () => {
         )}
 
         {filteredDemo.length > 0 && (
-          <section className="mt-14">
+          <section className="mt-16">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
-              Demonstration projects
+              Demonstration systems
             </p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight">
-              Systems I've built to prove the patterns
+            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+              Architectural builds proving advanced AI patterns
             </h2>
-            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {filteredDemo.map((project) => (
                 <ProjectCard key={project.slug} project={project} />
               ))}
@@ -102,9 +101,8 @@ const Projects = () => {
         )}
 
         {filteredClient.length === 0 && filteredDemo.length === 0 && (
-          <p className="mt-10 text-muted-foreground">No case studies in this category yet.</p>
+          <p className="mt-10 font-mono text-muted-foreground">No case studies in this category yet.</p>
         )}
-
       </main>
 
       <SiteFooter />
