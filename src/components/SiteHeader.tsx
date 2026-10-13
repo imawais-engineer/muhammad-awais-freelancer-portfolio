@@ -47,7 +47,6 @@ const SiteHeader = () => {
         <Link to="/" className="flex min-h-11 items-center gap-2 font-mono text-sm text-foreground">
           <span className="inline-block h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
           Muhammad Awais
-          <span className="hidden text-muted-foreground lg:inline">— {site.title}</span>
         </Link>
 
         <div className="hidden items-center gap-5 md:flex lg:gap-6">

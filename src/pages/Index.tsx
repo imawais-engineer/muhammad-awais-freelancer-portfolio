@@ -188,10 +188,7 @@ const Index = () => {
         <section className="container pt-8 md:pt-12">
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
-              <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
-                Freelance n8n Workflow Engineer · AI Automation Specialist
-              </p>
-              <h1 className="mt-2 max-w-3xl font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+              <h1 className="max-w-3xl font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
                 <span className="gradient-text">I build AI automation systems</span>{" "}
                 <span className="text-foreground">that eliminate repetitive work.</span>
               </h1>
