@@ -177,7 +177,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Seo
         title="Muhammad Awais | AI Automation Engineer & n8n Workflow Automation"
-        description="Muhammad Awais is an AI Automation Engineer building n8n workflow automation and AI systems that cut 20+ hours of manual work a week for agencies, SaaS teams and small businesses."
+        description="Freelance n8n workflow automation engineer and AI integration specialist. Muhammad Awais builds production automation systems for agencies and SaaS teams — saving 20+ hours of manual work every week."
         path="/"
         jsonLd={jsonLd}
       />
@@ -189,19 +189,19 @@ const Index = () => {
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
               <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-primary sm:text-xs sm:tracking-[0.25em]">
-                Freelance AI Automation Engineer · n8n Workflow Automation
+                Freelance n8n Workflow Engineer · AI Automation Specialist
               </p>
-              <h1 className="mt-2 max-w-3xl text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-                I build AI-powered systems that eliminate repetitive work.
+              <h1 className="mt-2 max-w-3xl font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+                <span className="gradient-text">I build AI automation systems</span>{" "}
+                <span className="text-foreground">that eliminate repetitive work.</span>
               </h1>
               <p className="mt-3 max-w-[38ch] text-base leading-relaxed text-muted-foreground sm:max-w-2xl md:text-lg">
-                I'm Muhammad Awais, a freelance AI Automation Engineer. I help agencies, SaaS teams
-                and small businesses automate operations with n8n workflow automation, AI agents and
-                connected business systems — turning manual workflows into reliable ones.
+                I'm Muhammad Awais, a freelance n8n workflow automation engineer and AI integration specialist. I help agencies, SaaS teams
+                and growing businesses eliminate 20+ hours of manual work per week with production-ready AI workflows, CRM pipelines, and custom automation.
               </p>
 
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Button asChild size="lg" className="h-auto min-h-11 w-full whitespace-normal text-center sm:w-auto">
+                <Button asChild size="lg" className="h-auto min-h-11 w-full whitespace-normal text-center sm:w-auto bg-gradient-cta border-0 text-white shadow-glow-strong hover:opacity-95 transition-opacity">
                   <Link to="/contact">
                     Start an AI automation project
                     <ArrowRight className="ml-2 h-4 w-4" />

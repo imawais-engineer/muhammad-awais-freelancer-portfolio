@@ -67,8 +67,29 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        indigo: {
+          400: "#818cf8",
+          500: "#6366f1",
+          600: "#4f46e5",
+        },
+        violet: {
+          400: "#a78bfa",
+          500: "#8b5cf6",
+          600: "#7c3aed",
+        },
+        neon: {
+          cyan: "#06b6d4",
+          violet: "#8b5cf6",
+          indigo: "#6366f1",
+        },
       },
-      /* Fluid type scale: headings grow continuously from 320px to 1920px. */
+      backgroundImage: {
+        "gradient-hero": "linear-gradient(135deg, #6366f1 0%, #8b5cf6 45%, #06b6d4 100%)",
+        "gradient-cta": "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+        "gradient-text-hero": "linear-gradient(135deg, #ffffff 0%, #cbd5e1 45%, #38bdf8 100%)",
+        "gradient-card": "linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%)",
+      },
+      /* Fluid type scale */
       fontSize: {
         base: ["1rem", { lineHeight: "1.7" }],
         lg: ["1.125rem", { lineHeight: "1.7" }],
@@ -82,6 +103,8 @@ export default {
       fontFamily: {
         sans: ["Geist", "Inter", "system-ui", "sans-serif"],
         mono: ["Geist Mono", "ui-monospace", "SFMono-Regular", "monospace"],
+        display: ["Syne", "sans-serif"],
+        jetbrains: ["JetBrains Mono", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -93,26 +116,20 @@ export default {
         elevated: "var(--shadow-elevated)",
         glow: "var(--glow-primary)",
         window: "var(--shadow-window)",
+        "glow-violet": "0 0 40px -8px rgba(139, 92, 246, 0.45), 0 0 80px -20px rgba(99, 102, 241, 0.25)",
+        "glow-strong": "0 0 40px -8px hsl(var(--primary) / 0.5), 0 0 80px -20px hsl(var(--primary) / 0.25)",
       },
       transitionTimingFunction: {
         standard: "cubic-bezier(0.2, 0, 0, 1)",
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
         "fade-in-up": {
           from: { opacity: "0", transform: "translateY(16px)" },

@@ -1,22 +1,6 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
 Allow: /
-
-# Assets required for rendering must stay crawlable.
-Allow: /assets/
-Allow: /__l5e/
-Allow: /*.css$
-Allow: /*.js$
+Disallow: /404
+Disallow: /terms
 
 Sitemap: https://www.imawais.engineer/sitemap.xml

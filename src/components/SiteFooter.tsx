@@ -6,7 +6,14 @@ import { useSectionReveal } from "@/hooks/use-section-reveal";
 const SiteFooter = () => {
   useSectionReveal();
   return (
-  <footer className="mt-24 border-t border-panel-border">
+  <footer
+    className="mt-24"
+    style={{
+      borderTop: "1px solid",
+      borderImage:
+        "linear-gradient(90deg, transparent, hsl(199 89% 48% / 0.25), hsl(258 89% 70% / 0.25), transparent) 1",
+    }}
+  >
     <div className="container grid gap-8 py-12 md:grid-cols-3">
       <div className="space-y-2">
         <p className="font-mono text-sm text-foreground">{site.name}</p>

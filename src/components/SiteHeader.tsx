@@ -29,7 +29,14 @@ const SiteHeader = () => {
     };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-panel-border bg-background/90 backdrop-blur">
+    <header
+      className="sticky top-0 z-40 bg-background/90 backdrop-blur"
+      style={{
+        borderBottom: "1px solid",
+        borderImage:
+          "linear-gradient(90deg, transparent, hsl(199 89% 48% / 0.35), hsl(258 89% 70% / 0.35), transparent) 1",
+      }}
+    >
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:border focus:border-primary/40 focus:bg-background focus:px-3 focus:py-2 focus:font-mono focus:text-xs focus:text-primary"
@@ -58,7 +65,7 @@ const SiteHeader = () => {
           </nav>
           <Link
             to="/contact"
-            className="rounded-md bg-highlight whitespace-nowrap px-3 py-1.5 font-mono text-xs font-semibold text-highlight-foreground transition-[filter,transform] duration-200 hover:brightness-110 active:scale-[0.98]"
+            className="rounded-md bg-gradient-cta shadow-glow-sm whitespace-nowrap px-3.5 py-2 font-mono text-xs font-semibold text-white transition-[filter,transform] duration-200 hover:brightness-110 active:scale-[0.98]"
           >
             Contact to start a Project
           </Link>

@@ -21,7 +21,7 @@ const Contact = () => (
   <div className="min-h-screen">
     <Seo
       title="Hire an AI Automation Engineer | Contact Muhammad Awais"
-      description="Start an AI automation project with Muhammad Awais, a freelance AI Automation Engineer. Tell him which process is still manual and get an honest scope for n8n, Make.com or AI agents."
+      description="Hire Muhammad Awais — freelance n8n workflow automation engineer and AI integration specialist. Book a discovery conversation and get a scoped automation proposal within 24 hours."
       path="/contact"
     />
     <SiteHeader />
@@ -34,8 +34,8 @@ const Contact = () => (
         className="max-w-3xl space-y-5"
       >
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Contact</p>
-        <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-          Start an AI automation project
+        <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
+          Hire a Freelance <span className="gradient-text-primary">n8n &amp; AI Automation Engineer</span>
         </h1>
         <p className="text-lg text-muted-foreground">
           Hire a freelance AI Automation Engineer to automate your business processes with n8n
@@ -50,7 +50,7 @@ const Contact = () => (
           first, including CRM and lead automation.
         </p>
         <div className="flex flex-wrap gap-3">
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="bg-gradient-cta border-0 text-white shadow-glow-strong hover:opacity-95 transition-opacity">
             <a href={`mailto:${site.email}`}>
               <Mail className="mr-2 h-4 w-4" />
               Email me

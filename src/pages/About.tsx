@@ -13,7 +13,7 @@ const About = () => (
   <div className="min-h-screen">
     <Seo
       title="About Muhammad Awais | AI Automation Engineer & n8n Expert"
-      description="Background, credentials and working approach of Muhammad Awais — an AI Automation Engineer building production n8n and AI workflow automation for clients worldwide."
+      description="Muhammad Awais is a freelance n8n automation engineer and AI integration specialist based in Pakistan, delivering production workflow automation to agencies and SaaS teams worldwide."
       path="/about"
     />
     <SiteHeader />
@@ -28,8 +28,8 @@ const About = () => (
             className="max-w-3xl space-y-5"
           >
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">About</p>
-            <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-              About Muhammad Awais — AI Automation Engineer
+            <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
+              About <span className="gradient-text-primary">Muhammad Awais</span> — AI Automation Engineer
             </h1>
             <p className="text-lg text-muted-foreground">{about.intro}</p>
             <p className="flex items-center gap-2 font-mono text-sm text-muted-foreground">

@@ -78,7 +78,7 @@ const staticRoutes: Record<string, RouteMeta> = {
   "/": {
     title: "Muhammad Awais | AI Automation Engineer & n8n Workflow Automation",
     description:
-      "Muhammad Awais, AI Automation Engineer, builds n8n workflow automation and AI systems that cut 20+ hours of manual work a week for agencies and SaaS teams.",
+      "Freelance n8n workflow automation engineer and AI integration specialist. Muhammad Awais builds production automation systems for agencies and SaaS teams — saving 20+ hours of manual work every week.",
     ogImage: "/og/home.jpg",
     ogImageAlt:
       "Muhammad Awais, AI Automation Engineer — I build smart systems that automate work",
@@ -93,7 +93,7 @@ const staticRoutes: Record<string, RouteMeta> = {
   "/services": {
     title: "AI Automation Services | n8n Workflow Automation | Muhammad Awais",
     description:
-      "AI automation services for agencies, SaaS teams and small businesses: n8n workflow automation, AI agents, CRM and lead automation that save hours weekly.",
+      "Hire a freelance n8n workflow automation engineer and AI specialist. Fixed-scope automation services for agencies and SaaS teams — n8n, Make.com, AI agents, CRM automation.",
     ogImage: "/og/services.jpg",
     ogImageAlt: "AI and n8n automation services by Muhammad Awais",
   },
@@ -114,14 +114,14 @@ const staticRoutes: Record<string, RouteMeta> = {
   "/about": {
     title: "About Muhammad Awais | AI Automation Engineer & n8n Expert",
     description:
-      "About Muhammad Awais, AI Automation Engineer: background, credentials and how he builds production n8n and AI workflow automation for clients worldwide.",
+      "Muhammad Awais is a freelance n8n automation engineer and AI integration specialist based in Pakistan, delivering production workflow automation to agencies and SaaS teams worldwide.",
     ogImage: "/og/about.jpg",
     ogImageAlt: "Portrait of Muhammad Awais, AI Automation Engineer and n8n & Make expert",
   },
   "/contact": {
     title: "Hire an AI Automation Engineer | Contact Muhammad Awais",
     description:
-      "Hire Muhammad Awais, freelance AI Automation Engineer. Tell him which process is still manual and get an honest scope for n8n, Make.com or AI agent work.",
+      "Hire Muhammad Awais — freelance n8n workflow automation engineer and AI integration specialist. Book a discovery conversation and get a scoped automation proposal within 24 hours.",
     ogImage: "/og/contact.jpg",
     ogImageAlt: "Start an automation project with Muhammad Awais",
   },

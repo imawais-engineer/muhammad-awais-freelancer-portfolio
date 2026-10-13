@@ -87,7 +87,7 @@ const Services = () => {
     <div className="min-h-screen">
       <Seo
         title="AI Automation Services | n8n Workflow Automation | Muhammad Awais"
-        description="AI automation services for agencies, SaaS teams and small businesses — n8n workflow automation, AI agents, CRM and lead automation that remove hours of manual work every week."
+        description="Hire a freelance n8n workflow automation engineer and AI specialist. Fixed-scope automation services for agencies and SaaS teams — n8n, Make.com, AI agents, CRM automation."
         path="/services"
         jsonLd={jsonLd}
       />
@@ -103,8 +103,8 @@ const Services = () => {
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
             Services
           </p>
-          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-            AI Automation Services for Businesses That Want Less Manual Work
+          <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
+            <span className="gradient-text-primary">n8n Workflow Automation</span> &amp; AI Integration Services
           </h1>
           <p className="text-lg text-muted-foreground">
             I&apos;m Muhammad Awais, a freelance AI Automation Engineer. I design and build n8n
@@ -117,7 +117,7 @@ const Services = () => {
             processes still depend on someone copying, checking or forwarding things by hand.
           </p>
           <div className="flex flex-wrap gap-3 pt-1">
-            <Button asChild>
+            <Button asChild className="bg-gradient-cta border-0 text-white shadow-glow-strong hover:opacity-95 transition-opacity">
               <Link to="/contact">Start an Automation Project</Link>
             </Button>
             <Button asChild variant="outline">
