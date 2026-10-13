@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const navItems = [
