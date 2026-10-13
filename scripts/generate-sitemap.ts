@@ -3,7 +3,7 @@
 // Only canonical, indexable URLs. /terms is intentionally excluded (noindex utility page).
 // <lastmod> is emitted only for case studies, from their real build/update dates in routeMeta.
 
-import { statSync, writeFileSync } from "fs";
+import { existsSync, statSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { projects } from "../src/data/projects";
@@ -24,6 +24,10 @@ const entries: SitemapEntry[] = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/projects", changefreq: "weekly", priority: "0.9" },
   { path: "/services", changefreq: "monthly", priority: "0.9" },
+  { path: "/services/agentic-systems", changefreq: "monthly", priority: "0.9" },
+  { path: "/services/mcp-engineering", changefreq: "monthly", priority: "0.9" },
+  { path: "/services/full-stack-ai-apps", changefreq: "monthly", priority: "0.9" },
+  { path: "/services/hybrid-automation", changefreq: "monthly", priority: "0.9" },
   { path: "/services/n8n-workflow-automation", changefreq: "monthly", priority: "0.9" },
   { path: "/services/lead-qualification-crm-automation", changefreq: "monthly", priority: "0.9" },
   { path: "/about", changefreq: "monthly", priority: "0.8" },
@@ -94,7 +98,11 @@ writeFileSync(
         `      <pubDate>${new Date(m.article!.publishedTime).toUTCString()}</pubDate>`,
         `      <category>${esc(p.category)}</category>`,
         `      <description>${esc(m.description)}</description>`,
-        `      <enclosure url="${BASE_URL}${m.ogImage}" type="image/jpeg" length="${statSync(resolve(`public${m.ogImage}`)).size}" />`,
+        `      <enclosure url="${BASE_URL}${m.ogImage}" type="image/jpeg" length="${
+          existsSync(resolve(`public${m.ogImage}`))
+            ? statSync(resolve(`public${m.ogImage}`)).size
+            : statSync(resolve("public/og/projects.jpg")).size
+        }" />`,
         `    </item>`,
       ].join("\n"),
     ),

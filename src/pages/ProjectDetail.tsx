@@ -82,19 +82,12 @@ const ProjectDetail = () => {
   const jsonLd = getPageJsonLd(`/projects/${project.slug}`);
 
   const meta = [
-    project.clientWork
-      ? { label: "Client", value: project.clientType }
-      : { label: "Build type", value: "Self-initiated demonstration build" },
-    { label: "Industry", value: project.industry },
+    { label: "Client Profile", value: project.clientProfile || project.clientType },
+    { label: "Domain Category", value: project.domainCategory || project.category },
+    { label: "System Pattern", value: project.architecturalPattern || `${project.platform} Workflow` },
+    { label: "Deployment", value: project.deployment || "Cloud Serverless" },
     { label: "Timeframe", value: project.timeframe },
     { label: "Role", value: project.role },
-    { label: "Platform", value: project.platform },
-    project.clientWork
-      ? { label: "Rating", value: project.rating }
-      : {
-          label: "Automation depth",
-          value: `${project.workflow.length} workflow steps · ${project.tools.length} integrations`,
-        },
   ];
 
 
@@ -122,8 +115,19 @@ const ProjectDetail = () => {
           className="mt-8 max-w-4xl space-y-5"
         >
           <div className="flex flex-wrap gap-2">
-            <span className="tech-tag">{project.category}</span>
-            {project.clientWork && <span className="tech-tag">Real client engagement</span>}
+            <span className="tech-tag border-primary/30 text-primary font-mono font-medium">
+              {project.domainCategory || project.category}
+            </span>
+            {project.architecturalPattern && (
+              <span className="tech-tag font-mono text-cyan-400">
+                {project.architecturalPattern}
+              </span>
+            )}
+            {project.clientWork ? (
+              <span className="tech-tag">Real client engagement</span>
+            ) : (
+              <span className="tech-tag">Production Agentic Spec</span>
+            )}
           </div>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
             {project.name}
@@ -168,6 +172,30 @@ const ProjectDetail = () => {
               {project.clientWork
                 ? "Actual workflow canvas from the delivered client build."
                 : "Actual workflow canvas from this demonstration build."}
+            </figcaption>
+          </figure>
+        )}
+
+        {project.asciiDiagram && (
+          <figure className="mt-10">
+            <div className="window-frame overflow-hidden border border-white/[0.12] bg-[#050811] shadow-glow-sm">
+              <div className="flex items-center justify-between border-b border-white/[0.08] bg-panel-strong px-4 py-2.5">
+                <div className="flex items-center gap-1.5" aria-hidden="true">
+                  <span className="h-2.5 w-2.5 rounded-full bg-danger/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-warning/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-success/70" />
+                  <span className="ml-3 font-mono text-xs text-muted-foreground">system-topology.dag</span>
+                </div>
+                <span className="font-mono text-xs text-primary font-medium">{project.architecturalPattern}</span>
+              </div>
+              <div className="overflow-x-auto p-6 bg-[#040711]">
+                <pre className="font-mono text-xs sm:text-sm text-cyan-300/90 leading-relaxed tracking-normal select-all">
+                  {project.asciiDiagram}
+                </pre>
+              </div>
+            </div>
+            <figcaption className="mt-3 font-mono text-xs text-muted-foreground">
+              State graph topology &amp; agentic execution flow.
             </figcaption>
           </figure>
         )}
@@ -222,6 +250,53 @@ const ProjectDetail = () => {
                 ))}
               </ol>
             </Block>
+
+            {project.engineeringFlow && (
+              <Block title="Engineering Architecture & Data Flow">
+                <ol className="space-y-4">
+                  {project.engineeringFlow.map((step, i) => (
+                    <li key={step.title} className="node-card space-y-2 p-5">
+                      <div className="flex items-center gap-3">
+                        <span className="font-mono text-sm text-primary">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <h3 className="font-display text-base font-bold text-foreground">{step.title}</h3>
+                      </div>
+                      <p className="text-sm leading-relaxed text-muted-foreground pl-7">{step.detail}</p>
+                    </li>
+                  ))}
+                </ol>
+              </Block>
+            )}
+
+            {project.failureHandling && (
+              <Block title="Failure Handling & Boundary Controls">
+                <div className="rounded-xl border border-warning/20 bg-warning/5 p-5">
+                  <BulletList items={project.failureHandling} />
+                </div>
+              </Block>
+            )}
+
+            {project.securityGovernance && (
+              <Block title="Security & Data Governance">
+                <div className="rounded-xl border border-primary/20 bg-primary/5 p-5">
+                  <BulletList items={project.securityGovernance} />
+                </div>
+              </Block>
+            )}
+
+            {project.fullStackIntegration && (
+              <Block title="Full-Stack Integration">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {project.fullStackIntegration.map((item) => (
+                    <div key={item.title} className="node-card p-5 space-y-2">
+                      <h3 className="font-display text-sm font-bold text-foreground">{item.title}</h3>
+                      <p className="text-xs leading-relaxed text-muted-foreground">{item.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </Block>
+            )}
 
             <Block title="Business logic & decision rules">
               <BulletList items={project.logic} />

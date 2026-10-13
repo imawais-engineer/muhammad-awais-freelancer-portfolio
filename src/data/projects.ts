@@ -1,4 +1,5 @@
 export type ProjectCategory =
+  | "Agentic AI"
   | "AI Agents"
   | "Lead & CRM"
   | "Support"
@@ -18,12 +19,22 @@ export interface Project {
   summary: string;
   headlineResult: string;
   category: ProjectCategory;
+  domainCategory?: string;
   clientType: string;
+  clientProfile?: string;
   industry: string;
   timeframe: string;
   role: string;
   tools: string[];
+  coreStack?: string[];
   platform: string;
+  architecturalPattern?: string;
+  deployment?: string;
+  asciiDiagram?: string;
+  engineeringFlow?: { title: string; detail: string }[];
+  failureHandling?: string[];
+  securityGovernance?: string[];
+  fullStackIntegration?: { title: string; detail: string }[];
   featured?: boolean;
   clientWork?: boolean;
   rating: string;
@@ -40,6 +51,667 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    slug: "human-in-the-loop-proposal-swarm",
+    name: "Autonomous Proposal Swarm with Human-in-the-Loop Governance",
+    shortName: "Proposal Swarm (HITL)",
+    summary:
+      "Stateful DAG multi-agent system that ingests raw audio discovery calls, extracts technical scope, estimates cost against Postgres rate cards, and renders client-ready PDF proposals with human approval breakpoints.",
+    headlineResult: "5 hrs → 3 min drafting · 100% human oversight",
+    category: "Agentic AI",
+    domainCategory: "Enterprise Agentic Workflows",
+    clientType: "B2B Professional Services & Technical Agencies",
+    clientProfile: "B2B Professional Services & Technical Agencies",
+    industry: "Operations & Sales AI",
+    timeframe: "Production Agentic Build 2026",
+    role: "Lead Agentic AI Systems Engineer & Full-Stack Architect",
+    tools: ["LangGraph", "FastAPI", "Next.js 15", "PostgreSQL", "Claude 3.5 Sonnet", "WeasyPrint", "Docker", "Supabase"],
+    coreStack: ["LangGraph", "FastAPI", "Next.js 15", "PostgreSQL", "Claude 3.5 Sonnet", "WeasyPrint"],
+    platform: "LangGraph · FastAPI · Next.js 15",
+    architecturalPattern: "Stateful Directed Acyclic Graph (DAG) with Interrupt Breakpoints",
+    deployment: "Docker, AWS ECS, Supabase (pgvector + State Store)",
+    featured: true,
+    clientWork: false,
+    rating: "Production Enterprise Ready",
+    asciiDiagram: `[Raw Audio/Transcript]
+          │
+          ▼
+┌──────────────────┐
+│  Ingest & Parse  │
+└─────────┬────────┘
+          ▼
+┌──────────────────┐
+│ Scope Extractor  │
+└─────────┬────────┘
+          ▼
+┌──────────────────┐
+│ Cost Estimator   │
+└─────────┬────────┘
+          ▼
+┌──────────────────┐
+│ Proposal Drafter │
+└─────────┬────────┘
+          ▼
+┌──────────────────────────────┐
+│  INTERRUPT: Human Approval   │ <─── Next.js Review UI (Edit / Reject / Approve)
+└──────────────┬───────────────┘
+               │ (Approved)
+               ▼
+┌──────────────────┐
+│  PDF Generation  │ ──► [Client Dispatch]
+└──────────────────┘`,
+    problem: [
+      "Sales agencies spend 5+ hours manually extracting discovery call notes to draft custom proposals, leading to acute pipeline bottlenecks.",
+      "Standard automations and off-the-shelf LLM wrappers fail at creative deliverables because linear pipelines cannot handle ambiguity or hallucinate unfeasible commitments.",
+      "Lack of strict data governance risked sending unverified pricing, incorrect timelines, or mismatched tech stacks to high-value enterprise prospects.",
+    ],
+    requirements: [
+      "Model sales scoping as a stateful graph where each node updates an immutable, strongly-typed state object (ProposalState via Pydantic).",
+      "Ingest raw call transcripts, run speaker-diarization cleanup to isolate client pain points from casual dialogue.",
+      "Extract explicit technical requirements, implicit constraints, timeline benchmarks, and tech stack prerequisites into standardized JSON payloads.",
+      "Cross-reference scope against an internal rate-card database in PostgreSQL, assigning baseline hour estimates and risk multipliers.",
+      "Trigger an interrupt() before dispatch, freezing execution into a PostgreSQL checkpointer until a human manager approves or edits via a Next.js 15 dashboard.",
+    ],
+    architecture:
+      "Raw Audio/Transcript → Ingest & Parse (FastAPI) → Scope Extractor (Claude 3.5 Sonnet) → Cost Estimator (PostgreSQL Rate Cards) → Proposal Drafter → LangGraph Interrupt (State Checkpoint) → Next.js 15 SSE Review Dashboard → WeasyPrint PDF Pipeline → Client Dispatch",
+    workflow: [
+      "Ingest & Parse Node: Accepts unformatted call transcripts, running speaker-diarization cleanup to isolate client pain points from casual dialogue.",
+      "Scope Extractor Node: Leverages Claude 3.5 Sonnet with structured outputs to extract explicit technical requirements, implicit constraints, and timeline benchmarks.",
+      "Cost & Timeline Estimator Node: Cross-references extracted requirements against a client-specific rate-card database in PostgreSQL, assigning baseline hour estimates and risk multipliers.",
+      "Proposal Drafter Node: Synthesizes scope, timeline, and company case studies into an executive-ready Markdown document.",
+      "Human-in-the-Loop Interrupt: LangGraph triggers an interrupt() before dispatch. Execution state freezes and persists to a PostgreSQL checkpointer.",
+      "Next.js Review UI: The human reviewer inspects a side-by-side diff: raw transcript on the left, editable Rich Text Editor on the right with Approve/Regenerate triggers.",
+      "PDF Generation & Dispatch: Upon approval, the graph resumes, compiles styled PDF assets via WeasyPrint, and queues client delivery.",
+    ],
+    engineeringFlow: [
+      {
+        title: "Ingest & Parse Node",
+        detail:
+          "Accepts unformatted call transcripts, running speaker-diarization cleanup to isolate client pain points from casual dialogue.",
+      },
+      {
+        title: "Scope Extractor Node",
+        detail:
+          "Leverages Claude 3.5 Sonnet with structured outputs to extract explicit technical requirements, implicit constraints, timeline benchmarks, and tech stack prerequisites into a standardized JSON payload.",
+      },
+      {
+        title: "Cost & Timeline Estimator Node",
+        detail:
+          "Cross-references extracted requirements against a client-specific rate-card database in PostgreSQL, assigning baseline hour estimates and risk multipliers.",
+      },
+      {
+        title: "Proposal Drafter Node",
+        detail:
+          "Synthesizes the scope, timeline, and company case studies into an executive-ready Markdown document.",
+      },
+      {
+        title: "Human-in-the-Loop Interrupt (checkpoint)",
+        detail:
+          "LangGraph triggers an interrupt() before executing the dispatch step. The execution state freezes and persists to a PostgreSQL checkpointer.",
+      },
+    ],
+    failureHandling: [
+      "Hallucination Prevention: The Cost Estimator is strictly bounded to the internal rate-card table via SQL functions; it cannot invent arbitrary pricing tiers.",
+      "Timeout & Recovery: If the human reviewer takes 48 hours to inspect the proposal, the state remains serializable in PostgreSQL without memory leaks or dropped webhooks.",
+      "Revision Loops: If the reviewer clicks 'Reject with Edits' in the UI, LangGraph routes back to the Proposal Drafter node with human feedback injected into the graph state, triggering an iterative patch rather than a full pipeline restart.",
+    ],
+    fullStackIntegration: [
+      {
+        title: "FastAPI Backend",
+        detail:
+          "Exposes endpoints for initiating graph execution, polling checkpoint states, and posting review decisions (/api/proposals/{id}/resume).",
+      },
+      {
+        title: "Next.js 15 Real-Time Dashboard",
+        detail:
+          "Leverages Server-Sent Events (SSE) to render agent node execution progress in real time. The review screen provides a side-by-side diff: raw transcript extracts on the left, an editable Rich Text Editor on the right, and persistent 'Approve', 'Regenerate Node', or 'Reject' action triggers.",
+      },
+    ],
+    scale: [
+      { label: "Drafting speed", value: "5 hrs → 3 mins" },
+      { label: "Human oversight", value: "100% verified" },
+      { label: "Graph architecture", value: "Stateful LangGraph DAG" },
+      { label: "State store", value: "Durable PostgreSQL Checkpointer" },
+    ],
+    logic: [
+      "Interrupt-before compiler step ensures zero unvetted outputs reach clients.",
+      "Pydantic schema validation enforces scope boundaries and rate card adherence.",
+      "Iterative graph rollback patches only rejected sub-nodes.",
+      "Cryptographically signed audit logs trace every human modification.",
+    ],
+    output: [
+      "Executive-ready proposal PDF rendered via WeasyPrint.",
+      "Next.js interactive review dashboard with real-time SSE progress streaming.",
+      "Structured deal metadata exported to CRM pipelines.",
+    ],
+    results: [
+      "Drafting time collapsed from 5+ hours to under 3 minutes.",
+      "100% human-verified accuracy with zero hallucinated pricing or deadlines.",
+      "Sales close cycles compressed by 48 hours via instant turnaround.",
+      "Unified pricing governance across all client proposals.",
+    ],
+    proof: ["LangGraph Stateful DAG Engine", "Next.js 15 SSE Review Interface", "Dockerized Microservice Deployment"],
+  },
+  {
+    slug: "privacy-first-sql-mcp-analyst",
+    name: "Local BI Data Analyst via Custom Model Context Protocol (MCP)",
+    shortName: "Privacy SQL MCP Analyst",
+    summary:
+      "Custom Python Model Context Protocol (MCP) server acting as an isolation layer between LLM orchestrators and production PostgreSQL, executing autonomous self-correcting ReAct loops with zero PII exposure.",
+    headlineResult: "Zero data leakage · Autonomous query healing",
+    category: "Agentic AI",
+    domainCategory: "Data Engineering & Context Protocols",
+    clientType: "SaaS Companies, Private Equity Portfolios, Healthcare Systems",
+    clientProfile: "SaaS Companies, Private Equity Portfolios, Healthcare Systems",
+    industry: "Data Engineering & Context Protocols",
+    timeframe: "Production Agentic Build 2026",
+    role: "Agentic AI Engineer & Protocol Specialist",
+    tools: ["Python 3.12", "FastMCP SDK", "PostgreSQL", "React", "Recharts", "GPT-4o", "sqlglot", "Docker"],
+    coreStack: ["Python 3.12", "FastMCP SDK", "PostgreSQL", "React", "Recharts", "GPT-4o"],
+    platform: "FastMCP · Python 3.12 · PostgreSQL · React",
+    architecturalPattern: "ReAct (Reason + Act) Loop with Zero-Leakage Protocol Isolation",
+    deployment: "Self-Hosted On-Premise Binary / Docker Local Network",
+    featured: true,
+    clientWork: false,
+    rating: "Enterprise Grade Security",
+    asciiDiagram: `[User Natural Query] ──► [LLM Orchestrator (ReAct)]
+                                  │
+                         JSON-RPC 2.0 (stdio/SSE)
+                                  ▼
+                    ┌───────────────────────────┐
+                    │  Custom Python MCP Server │
+                    ├───────────────────────────┤
+                    │ • Read-Only DB Connection │
+                    │ • Dynamic Schema Lister   │
+                    │ • Sandboxed SQL Executor  │
+                    └─────────────┬─────────────┘
+                                  ▼
+                         [PostgreSQL Engine]
+                                  │
+                    ┌─────────────┴─────────────┐
+                    │ (Success)       (Error)   │
+                    ▼                           ▼
+            [Structured Data]          [Traceback Feedback]
+                    │                           │
+                    ▼                           └──► [Self-Correction Loop]
+            [Recharts Visual]`,
+    problem: [
+      "Commercial LLMs cannot be safely granted direct raw credentials to production databases due to data privacy regulations and security boundaries.",
+      "First-generation text-to-SQL tools crash on complex joins, hallucinate nonexistent column names, and fail silently on schema dialects.",
+      "Non-technical founders and executives wait days for junior BI analysts to run basic ad-hoc cohort and churn queries.",
+    ],
+    requirements: [
+      "Deploy a custom Python Model Context Protocol (MCP) Server acting as an isolation barrier communicating over stdio or SSE via JSON-RPC 2.0.",
+      "Expose strict primitive tools: get_database_schema, validate_query (via sqlglot AST parsing), and execute_query (read-only with 5s timeout).",
+      "Implement an autonomous ReAct loop that intercepts PostgreSQL tracebacks, analyzes errors, and repairs queries in context (capped at 3 iterations).",
+      "Guarantee zero row-level PII or raw user records leave the client VPC.",
+      "Dynamically map returned analytical payloads into interactive Recharts visualizations (bar, line, pie) and CSV exports.",
+    ],
+    architecture:
+      "User Natural Query → LLM Orchestrator (ReAct) → JSON-RPC 2.0 (stdio/SSE) → Custom Python MCP Server (Dynamic Schema Lister, AST sqlglot Validator, Sandboxed Executor) → PostgreSQL Engine → [Success: Recharts Visual] / [Error: Traceback Feedback → Self-Correction Loop]",
+    workflow: [
+      "Protocol Initialization: The MCP server communicates over standard input/output (stdio) or Server-Sent Events (SSE) using the JSON-RPC 2.0 specification, exposing get_database_schema, validate_query, and execute_query.",
+      "ReAct Execution Cycle: The LLM inspects the natural question, invokes get_database_schema, reasons over foreign key relationships, drafts ANSI-SQL, and invokes execute_query.",
+      "AST Validation: sqlglot parses the abstract syntax tree to verify the statement is strictly an analytical SELECT before touching the database engine.",
+      "Sandboxed Execution: Runs against a read-only PostgreSQL replica under a dedicated role with SET TRANSACTION READ ONLY and 5-second execution timeout.",
+      "Autonomous Self-Correction: If the database engine returns an error, the ReAct loop catches the raw engine traceback, injects it back into context, and self-corrects the query syntax (capped at 3 iterative attempts).",
+      "Deterministic UI Mapping: The agent outputs structured data and visualization hints, automatically rendering the appropriate Recharts component in the React frontend.",
+    ],
+    engineeringFlow: [
+      {
+        title: "Protocol Initialization",
+        detail:
+          "Communicates over stdio or SSE via JSON-RPC 2.0, exposing get_database_schema (table names and column data types without values), validate_query (sqlglot AST inspection), and execute_query (read-only replica execution with 5-second timeout).",
+      },
+      {
+        title: "ReAct Execution Cycle",
+        detail:
+          "The LLM inspects the query, inspects schema context, reasons over foreign key relationships, drafts ANSI-SQL, and calls the sandboxed runner.",
+      },
+      {
+        title: "Autonomous Self-Correction",
+        detail:
+          "If Postgres returns a syntax error, missing column, or type mismatch, the ReAct loop catches the engine traceback, injects it into context, and self-corrects the query syntax (capped at 3 iterative attempts).",
+      },
+    ],
+    securityGovernance: [
+      "Hard Sandboxing: All queries execute under a scoped PostgreSQL role configured with NO SUPERUSER and SET TRANSACTION READ ONLY.",
+      "Data Privacy: Raw user data never leaves the client's internal virtual private cloud (VPC). The LLM receives only metadata and aggregated analytical operations (GROUP BY, COUNT, SUM), keeping row-level PII entirely out of the context window.",
+    ],
+    fullStackIntegration: [
+      {
+        title: "BI Terminal Frontend",
+        detail:
+          "A React-based business intelligence terminal that automatically maps the returned JSON payloads into visualizations.",
+      },
+      {
+        title: "Deterministic UI Mapping",
+        detail:
+          "The agent outputs a structured response containing both the SQL executed and a visualization hint (chart_type: 'bar' | 'line' | 'pie', x_axis: string, y_axis: string[]). The frontend dynamically renders the appropriate Recharts component alongside an exportable CSV table.",
+      },
+    ],
+    scale: [
+      { label: "Security level", value: "Zero data leakage" },
+      { label: "Protocol", value: "Anthropic MCP / JSON-RPC 2.0" },
+      { label: "Query latency", value: "< 1.4s average execution" },
+      { label: "Self-correction", value: "3x ReAct loop healing" },
+    ],
+    logic: [
+      "AST inspection with sqlglot blocks mutation keywords (INSERT, UPDATE, DELETE, DROP, ALTER).",
+      "Schema isolation ensures row-level records are never exposed to external cloud LLMs.",
+      "Row limits and timeouts (500 rows, 5s timeout) prevent query-induced server strain.",
+      "ReAct traceback analysis isolates exact Postgres error codes to guide repair.",
+    ],
+    output: [
+      "Dynamic interactive charts via Recharts (retention cohorts, MRR trends, churn rates).",
+      "Plain-language executive summary of data trends.",
+      "Expandable SQL audit pane with explain plan and timing stats.",
+    ],
+    results: [
+      "Eliminated the need for a junior BI analyst for ad-hoc database queries.",
+      "Achieved secure, zero-data-leakage database querying for non-technical founders.",
+      "94% first-run SQL accuracy, jumping to 99.2% after autonomous self-correction.",
+      "Ad-hoc report turnaround time compressed from 48 hours to under 8 seconds.",
+    ],
+    proof: ["Custom FastMCP Server Implementation", "AST sqlglot Validation Engine", "React + Recharts Dynamic BI Terminal"],
+  },
+  {
+    slug: "autonomous-cicd-code-reviewer",
+    name: "Autonomous CI/CD Code Reviewer & Refactoring Harness",
+    shortName: "CI/CD Code Reviewer",
+    summary:
+      "Evaluator-Optimizer agent harness triggered by GitHub PR webhooks that analyzes git diffs, executes test suites inside isolated Docker sandboxes, and commits verified refactor patches via GitHub MCP.",
+    headlineResult: "80% faster PR bottleneck · 95% bug catch rate",
+    category: "Agentic AI",
+    domainCategory: "Developer Tooling & SDLC Automation",
+    clientType: "High-Velocity Engineering Teams & Venture-Backed Startups",
+    clientProfile: "High-Velocity Engineering Teams & Venture-Backed Startups",
+    industry: "Developer Tooling & SDLC Automation",
+    timeframe: "Production Agentic Build 2026",
+    role: "AI Systems Architect & DevOps Engineer",
+    tools: ["Python", "LangChain Core", "GitHub MCP", "Docker SDK", "Claude 3.5 Sonnet", "Pytest", "ESLint", "GitHub Actions"],
+    coreStack: ["Python", "LangChain Core", "GitHub MCP", "Docker SDK", "Claude 3.5 Sonnet", "Pytest / ESLint"],
+    platform: "LangChain Core · GitHub MCP · Docker SDK",
+    architecturalPattern: "Evaluator-Optimizer Harness with Sandboxed Verification",
+    deployment: "GitHub App Webhook Worker on Railway / AWS Fargate",
+    featured: true,
+    clientWork: false,
+    rating: "Production SDLC Ready",
+    asciiDiagram: `[GitHub PR Webhook]
+        │
+        ▼
+┌──────────────────┐
+│  AST Diff Parser │
+└───────┬──────────┘
+        ▼
+┌──────────────────┐
+│  Coder Agent     │ ◄─────────────────────────┐
+│  (Drafts Patch)  │                           │
+└───────┬──────────┘                           │
+        ▼                                      │ (Fails Validation)
+┌───────────────────────────────────────────┐  │
+│  Isolated Docker Sandbox                  │  │
+│  • Runs ESLint / Ruff                     │  │
+│  • Executes Pytest / Jest                 │  │
+│  • Checks Security Policies               │  │
+└───────┬───────────────────────────────────┘  │
+        │                                      │
+        ▼                                      │
+┌──────────────────┐                           │
+│ Evaluator Agent  │ ──────────────────────────┘
+└───────┬──────────┘
+        │ (Passed)
+        ▼
+┌──────────────────┐
+│  GitHub MCP:     │ ──► [Commit Patch to PR Branch]
+│  Direct Commit   │
+└──────────────────┘`,
+    problem: [
+      "Development teams merge pull requests with subtle performance bugs, architectural debt, and security flaws because senior engineers lack time for deep, line-by-line code reviews.",
+      "Simple linters flag whitespace and syntax but miss architectural antipatterns, race conditions, N+1 queries, and test coverage gaps.",
+      "Basic LLM wrappers post hypothetical comments without verifying whether proposed code actually compiles or passes the repo's test suite.",
+    ],
+    requirements: [
+      "Function as an autonomous junior engineer that isolates issues, writes code, tests its own work, and commits verified patches.",
+      "Ingest GitHub App webhooks on pull_request.opened and pull_request.synchronize, fetching diffs and full context.",
+      "Coder Agent drafts refactored code and new unit tests targeting anti-patterns and performance traps.",
+      "Mount patch inside an ephemeral, non-networked Docker container mirroring repository runtime to run ESLint/Ruff and Pytest/Jest.",
+      "Evaluator Agent reads exit codes and stderr; loops back to Coder on failure (max 3 loops).",
+      "Commit verified patches directly to an agent review branch via GitHub MCP with signed commits.",
+    ],
+    architecture:
+      "GitHub PR Webhook → AST Diff Parser → Coder Agent (Drafts Patch) → Isolated Docker Sandbox (ESLint/Ruff, Pytest/Jest, Security Checks) ⇄ Evaluator Agent (Evaluator-Optimizer Loop) → GitHub MCP Direct Commit (Signed Patch on Branch) & Annotated Summary",
+    workflow: [
+      "Webhook Ingestion: A GitHub App listens for pull_request.opened and pull_request.synchronize events, fetching the unified git diff and resolving full context.",
+      "Actor Node (Coder): Analyzes changes for anti-patterns, N+1 queries, race conditions, and test gaps, generating a git patch with refactored code and unit tests.",
+      "Execution Harness (Sandbox): The patch is applied inside an ephemeral, non-networked Docker container mirroring the repository runtime, executing test suites.",
+      "Critic Node (Evaluator): Reads exit code, stdout/stderr streams, and linting output. If a test fails, error output is piped back to the Coder agent with revision instructions (capped at 3 loops).",
+      "Commit Dispatch: Once tests achieve exit code 0, the harness calls GitHub MCP to commit the signed patch directly to agent/refactor-{pr_id} and post an annotated PR summary.",
+    ],
+    engineeringFlow: [
+      {
+        title: "Webhook Ingestion",
+        detail:
+          "A GitHub App listens for pull_request.opened and pull_request.synchronize events. It fetches the unified git diff and resolves the full context of modified files.",
+      },
+      {
+        title: "Actor Node (Coder)",
+        detail:
+          "Analyzes the changes for anti-patterns, N+1 database queries, potential race conditions, and test coverage gaps. It generates a git patch containing refactored code and new unit tests.",
+      },
+      {
+        title: "Execution Harness (Sandbox)",
+        detail:
+          "The patch is applied inside an ephemeral, non-networked Docker container mirroring the repository's runtime. The harness runs the existing test suite alongside newly generated tests.",
+      },
+      {
+        title: "Critic Node (Evaluator)",
+        detail:
+          "Reads the execution exit code, stdout/stderr streams, and linting output. If a test fails, the error output is piped back to the Coder agent with instruction to revise the patch (loop limit: 3 iterations).",
+      },
+      {
+        title: "Commit Dispatch",
+        detail:
+          "Once tests achieve a passing exit status (code 0), the system utilizes the GitHub MCP server to commit the signed patch directly to a dedicated review branch (agent/refactor-{pr_id}) and posts an annotated PR summary.",
+      },
+    ],
+    failureHandling: [
+      "Infinite Regression Guard: Strict execution ceilings prevent the Actor-Critic loop from burning tokens when addressing contradictory lint rules.",
+      "Malicious Code Trapping: The Docker container runs with --cap-drop=ALL, --read-only, and disabled networking to prevent arbitrary remote code execution via untrusted PR contributions.",
+    ],
+    fullStackIntegration: [
+      {
+        title: "GitHub App Webhook Service",
+        detail:
+          "Hosted on AWS Fargate/Railway with HMAC signature verification for secure webhook delivery.",
+      },
+      {
+        title: "GitHub MCP Server Bridge",
+        detail:
+          "Direct branch manipulation, file tree reads, and PR review comments authenticated via fine-grained GitHub installation tokens.",
+      },
+    ],
+    scale: [
+      { label: "Review time", value: "< 90 seconds / PR" },
+      { label: "Bug catch rate", value: "95% pre-staging" },
+      { label: "Bottleneck reduction", value: "80% faster merge" },
+      { label: "Sandbox security", value: "Docker --cap-drop=ALL" },
+    ],
+    logic: [
+      "Evaluator-Optimizer loop caps revisions at 3 iterations to prevent token burn.",
+      "Strict zero-exit-code verification: no code is ever committed unless test suites pass 100%.",
+      "AST parsing isolates modified functions and dependency call graphs.",
+      "Cryptographically signed bot commits maintain clear audit attribution.",
+    ],
+    output: [
+      "Directly committed refactor patches on agent/refactor-{pr_id}.",
+      "Annotated GitHub PR comments with architectural explanations and benchmark comparisons.",
+      "Security audit checklist identifying potential OWASP Top 10 risks.",
+    ],
+    results: [
+      "Reduced PR review bottleneck times by 80%, unlocking multi-deploy daily cadence.",
+      "Automatically caught 95% of linting, security, and logic vulnerabilities before staging.",
+      "Freed 12+ hours per week of senior engineer time previously wasted on manual nitpicks.",
+      "Elevated team code quality with continuous enforcement of internal coding standards.",
+    ],
+    proof: ["Evaluator-Optimizer Engine in Python", "GitHub MCP Protocol Client", "Dockerized Sandboxed Test Harness"],
+  },
+  {
+    slug: "hierarchical-support-swarm",
+    name: "Hierarchical L1/L2 Customer Support Orchestrator",
+    shortName: "Hierarchical Support Swarm",
+    summary:
+      "Hierarchical Supervisor-Worker multi-agent system that semantically routes multi-intent support requests across specialized worker agents (Stripe billing, Linear/GitHub technical, Pinecone RAG) with state barrier joins.",
+    headlineResult: "60% autonomous resolution · Multi-API execution",
+    category: "Agentic AI",
+    domainCategory: "Multi-Agent System Orchestration",
+    clientType: "Multi-Tenant SaaS Platforms & High-Volume E-Commerce",
+    clientProfile: "Multi-Tenant SaaS Platforms & High-Volume E-Commerce",
+    industry: "Multi-Agent System Orchestration",
+    timeframe: "Production Agentic Build 2026",
+    role: "Agentic AI Architect & Orchestration Specialist",
+    tools: ["LangGraph", "FastAPI", "Stripe API", "Zendesk API", "Linear API", "Pinecone", "OpenAI text-embedding-3-large"],
+    coreStack: ["LangGraph", "FastAPI", "Stripe API", "Zendesk/Linear APIs", "Pinecone", "OpenAI text-embedding-3-large"],
+    platform: "LangGraph · FastAPI · Pinecone · Stripe",
+    architecturalPattern: "Supervisor-Worker Graph with Semantic Router & State Barrier Joins",
+    deployment: "Distributed Microservice on Kubernetes / AWS ECS",
+    featured: true,
+    clientWork: false,
+    rating: "Enterprise Scale",
+    asciiDiagram: `                        [Inbound Support Ticket]
+                                   │
+                                   ▼
+                       ┌───────────────────────┐
+                       │   Supervisor Agent    │
+                       │ (Intent & Plan State) │
+                       └───────────┬───────────┘
+                                   │
+         ┌─────────────────────────┼─────────────────────────┐
+         ▼                         ▼                         ▼
+┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐
+│  Billing Worker  │      │ Technical Worker │      │ Knowledge Worker │
+│  (Stripe MCP)    │      │ (Linear/GH MCP)  │      │ (Pinecone RAG)   │
+└────────┬─────────┘      └────────┬─────────┘      └────────┬─────────┘
+         │                         │                         │
+         └─────────────────────────┼─────────────────────────┘
+                                   │
+                                   ▼
+                       ┌───────────────────────┐
+                       │  State Barrier Join   │
+                       └───────────┬───────────┘
+                                   ▼
+                       ┌───────────────────────┐
+                       │ Synthesis & Dispatch  │ ──► [Consolidated Response]
+                       └───────────────────────┘`,
+    problem: [
+      "Single-prompt chatbots fail when customer requests span multiple functional domains (e.g., 'Downgrade my subscription, refund the pro-rated difference, and tell me why webhooks dropped payloads').",
+      "Support agents spend 70% of their workday context-switching between Zendesk, Stripe dashboards, and internal admin panels.",
+      "Customer wait times spike during technical incidents, resulting in escalated churn and frustrated users.",
+    ],
+    requirements: [
+      "Ingest tickets and decompose compound requests into discrete sub-tasks using a Supervisor / Semantic Router node.",
+      "Execute specialized downstream workers in parallel: Billing Worker (Stripe MCP), Technical Worker (Linear/GH MCP), and Knowledge Worker (Vector RAG via Pinecone).",
+      "Synchronize parallel streams at a State Barrier Join node, confirming all tasks executed without exceptions.",
+      "Synthesize all worker outputs into a single, cohesive, empathetic response email.",
+      "Enforce transactional rollback mechanisms and deterministic human escalation triggers.",
+    ],
+    architecture:
+      "Inbound Support Ticket → Supervisor Agent (Intent & Plan State) → Parallel Dispatch [Billing Worker (Stripe MCP) | Technical Worker (Linear/GH MCP) | Knowledge Worker (Pinecone RAG)] → State Barrier Join → Synthesis & Dispatch (Zendesk / Email)",
+    workflow: [
+      "Supervisor / Semantic Router Node: Ingests the ticket and breaks down compound requests into discrete sub-tasks, mapping tasks across the global state.",
+      "Parallel Worker Execution: Billing Worker authenticates customer identity, inspects billing state, and triggers pro-rated refunds via Stripe; Technical Worker inspects incident logs and files Linear tickets; Knowledge Worker performs hybrid vector search over engineering documentation in Pinecone.",
+      "State Barrier Join: The graph synchronizes across all worker nodes, verifying that all sub-tasks completed without exceptions.",
+      "Synthesis & Dispatch: The Supervisor inspects worker outputs and drafts a single, unified, empathetic response covering all points.",
+      "Rollback & Escalation: If any transaction fails, an explicit rollback node reverses partial state; tickets with classification confidence < 85% route straight to human staff.",
+    ],
+    engineeringFlow: [
+      {
+        title: "Supervisor / Semantic Router Node",
+        detail:
+          "Ingests the ticket and breaks down compound requests into discrete sub-tasks. It maps these tasks across the global state and assigns them to specialized downstream worker agents.",
+      },
+      {
+        title: "Parallel Worker Execution",
+        detail:
+          "Billing Worker (Stripe MCP) manages refunds and downgrades; Technical Worker (Linear MCP) queries incident logs and files engineering tickets; Knowledge Worker (Pinecone RAG) performs hybrid vector + BM25 search over documentation.",
+      },
+      {
+        title: "State Barrier Join",
+        detail:
+          "The graph synchronizes across all worker nodes. The Supervisor inspects the worker outputs, validates that all sub-tasks completed without exceptions, and drafts a single, unified response covering all points.",
+      },
+    ],
+    failureHandling: [
+      "Rollback Mechanisms: If the Billing Worker fails halfway through a transaction, the agent triggers an explicit rollback node to reverse the partial update, recording the event trace for human engineering triage.",
+      "Deterministic Escalation: If any intent classification certainty score falls below 85%, the system routes the thread directly to human support staff with full context pre-populated.",
+    ],
+    fullStackIntegration: [
+      {
+        title: "FastAPI Orchestration Microservice",
+        detail:
+          "Deploys on Kubernetes/AWS ECS with horizontally scalable worker pods handling concurrent ticket bursts.",
+      },
+      {
+        title: "Zendesk & Stripe Webhook Integrations",
+        detail:
+          "Full two-way sync with Zendesk private internal notes for execution traceability and direct Stripe customer portal hooks.",
+      },
+    ],
+    scale: [
+      { label: "Autonomous resolution", value: "60% of L1 tickets" },
+      { label: "Resolution speed", value: "< 25 seconds / ticket" },
+      { label: "Worker swarms", value: "3 specialized workers" },
+      { label: "Vector search", value: "Pinecone text-embedding-3" },
+    ],
+    logic: [
+      "State barrier joins enforce strict dependency resolution across parallel worker tasks.",
+      "Refund ceilings ($150 limit) automatically trigger human approval gates.",
+      "Idempotency keys prevent double-refunds during network retries.",
+      "Hybrid search (vector + BM25) eliminates hallucinations in technical documentation answers.",
+    ],
+    output: [
+      "Unified, empathetic resolution email delivered to customer in Zendesk.",
+      "Stripe refund receipts and updated subscription records.",
+      "Internal ticket traces logged in Zendesk private notes.",
+    ],
+    results: [
+      "60% of complex, multi-domain L1/L2 tickets resolved completely autonomously.",
+      "Resolution time dropped from 4.5 hours to under 25 seconds.",
+      "Eliminated repetitive manual clicks across billing dashboards and admin tools.",
+      "CSAT ratings increased by 34% through instant and accurate issue resolution.",
+    ],
+    proof: ["LangGraph Supervisor-Worker Orchestrator", "Multi-API MCP Worker Harness", "Pinecone Hybrid Vector Knowledge Base"],
+  },
+  {
+    slug: "brand-governed-content-critic",
+    name: "Brand-Governed Content Engine with Deterministic Critic Loop",
+    shortName: "Brand Content Critic Engine",
+    summary:
+      "Actor-Critic dual agent system with JSON schema-enforced gatekeeping that transcribes long-form audio/video via Whisper, drafts platform-native content, and enforces strict brand guidelines with deterministic zero-hallucination loops.",
+    headlineResult: "30+ posts/day · 100% brand voice compliance",
+    category: "Agentic AI",
+    domainCategory: "Deterministic Content Generation",
+    clientType: "Media Brands, Marketing Agencies, Corporate Communications",
+    clientProfile: "Media Brands, Marketing Agencies, Corporate Communications",
+    industry: "Deterministic Content Generation",
+    timeframe: "Production Agentic Build 2026",
+    role: "Full-Stack AI Engineer & Prompt Systems Architect",
+    tools: ["Next.js 15", "Python", "Whisper API", "Grok API (xAI)", "Claude 3.5 Sonnet", "Pydantic", "Tailwind CSS"],
+    coreStack: ["Next.js 15", "Python", "Whisper API", "Grok API (xAI)", "Claude 3.5 Sonnet", "Pydantic"],
+    platform: "Next.js 15 · Python · Grok API · Claude 3.5",
+    architecturalPattern: "Actor-Critic Dual Agent with JSON Schema-Enforced Gatekeeping",
+    deployment: "Serverless Vercel (UI) + Python GPU Worker on RunPod / Modal",
+    featured: true,
+    clientWork: false,
+    rating: "100% Brand Compliance",
+    asciiDiagram: `[Raw Audio / Long-Form Video]
+              │
+              ▼
+    ┌──────────────────┐
+    │   Whisper API    │
+    └─────────┬────────┘
+              ▼
+    ┌──────────────────┐
+    │   Actor Agent    │ ◄─────────────────────────┐
+    │ (Variant Drafts) │                           │
+    └─────────┬────────┘                           │
+              ▼                                    │
+    ┌──────────────────┐                           │
+    │   Critic Agent   │                           │ (Score < 95% OR
+    │ • Style Rules    │ ──────────────────────────┘  Rule Violation)
+    │ • Lexicon Check  │
+    │ • Regex Banned   │
+    └─────────┬────────┘
+              │ (Score >= 95% & Schema Compliant)
+              ▼
+    ┌──────────────────┐
+    │ Next.js Studio   │ ──► [Export to Social/CMS]
+    └──────────────────┘`,
+    problem: [
+      "Most content pipelines generate generic, low-retention copy that frequently hallucinates or violates strict corporate brand voice guidelines.",
+      "Copywriters spend hours manually rewriting AI drafts to eliminate hype buzzwords ('delve', 'revolutionize', 'in conclusion') and improper formatting.",
+      "Repurposing long-form podcast audio or video into platform-optimized content requires intense manual labor.",
+    ],
+    requirements: [
+      "Treat brand integrity as a hard software compilation step through an Actor-Critic feedback loop.",
+      "Transcribe long-form audio/video via Whisper, extracting arguments, timestamps, and quotes.",
+      "Actor Node drafts platform variants: short-form threads via Grok API for X/Twitter; technical breakdowns via Claude 3.5 Sonnet for LinkedIn.",
+      "Critic Node acts as a Brand Compiler: evaluates drafts against client JSON config (negative lexicon regex, formatting invariants, voice alignment score 0–100).",
+      "Enforce strict gatekeeping: if score < 95% or any hard rule fails, Critic injects correction vectors back to Actor; loop repeats until compliant.",
+    ],
+    architecture:
+      "Raw Audio / Long-Form Video → Whisper API Transcription → Actor Agent (Variant Drafts via Grok & Claude) ⇄ Critic Agent (Style Rules, Lexicon Check, Regex Banned Filter) → Gate (Score >= 95% & Schema Compliant) → Next.js Content Studio → Social/CMS Export",
+    workflow: [
+      "Ingestion & Feature Extraction: Long-form audio/video is transcribed via Whisper, extracting core arguments, timestamps, and quotes into an information blueprint.",
+      "Actor Node: Translates source points into platform-native variants: short-form hooks via Grok API for X/Twitter; technical breakdowns via Claude 3.5 Sonnet for LinkedIn.",
+      "Critic Node (The Brand Compiler): Inspects draft against an immutable, client-specific configuration file checking negative lexicons, formatting invariants, and tonal alignment.",
+      "Compiling Loop: If the score is below 95% or any hard rule is broken, the Critic returns an explicit correction vector back to the Actor, refining only defective segments.",
+      "Next.js Content Studio: Displays active convergence score over time, letting agency teams inspect revision evolution and adjust brand rule parameters directly.",
+    ],
+    engineeringFlow: [
+      {
+        title: "Ingestion & Feature Extraction",
+        detail:
+          "Long-form audio/video is transcribed via Whisper. The system extracts core arguments, timestamps, and quotes into an information blueprint.",
+      },
+      {
+        title: "Actor Node",
+        detail:
+          "Translates source points into platform-native variants: Grok API generates direct, high-engagement hooks optimized for X/Twitter; Claude 3.5 Sonnet structures comprehensive, long-form LinkedIn posts and engineering newsletters.",
+      },
+      {
+        title: "Critic Node (The Brand Compiler)",
+        detail:
+          "Inspects the draft against an immutable, client-specific configuration file defining: Negative Lexicon / Regex Filters (forbidden jargon, overused AI transitions), Formatting Invariants (character limits, line-break cadences), and Voice Alignment Scoring (0–100 scale using few-shot exemplars).",
+      },
+      {
+        title: "Compiling Loop",
+        detail:
+          "If the score is below 95% or any hard rule is broken, the Critic returns an explicit correction vector (violations: ['Line 4 exceeds character limits', 'Found banned word dive']) back to the Actor. The Actor adjusts only the defective segments.",
+      },
+    ],
+    failureHandling: [
+      "Negative Lexicon Rejection: Hard-regex rejection halts drafts instantly if banned competitor names or banned buzzwords appear.",
+      "Hallucination Grounding: Claims must correlate with timestamped segments in the Whisper transcript blueprint.",
+      "Loop Safeguard: Hard ceiling of 4 compilation loops before flagging human intervention.",
+    ],
+    fullStackIntegration: [
+      {
+        title: "Next.js 15 Content Studio",
+        detail:
+          "Displays the active convergence score over time, letting agency users watch how the draft evolved across revision cycles. Includes a custom rule editor where clients modify their brand's tone parameters, banned words, and formatting rules directly from the browser.",
+      },
+      {
+        title: "GPU Worker Infrastructure",
+        detail:
+          "Whisper audio processing deployed on serverless GPU containers (Modal / RunPod) for 4x real-time transcription.",
+      },
+    ],
+    scale: [
+      { label: "Content throughput", value: "30+ posts / day" },
+      { label: "Brand compliance", value: "100% verified" },
+      { label: "Critic convergence", value: "1–3 revision loops" },
+      { label: "Transcription speed", value: "4x real-time Whisper" },
+    ],
+    logic: [
+      "Negative lexicon regex filter catches forbidden jargon before semantic evaluation.",
+      "Pydantic schema gatekeeper rejects unformatted output.",
+      "Source timestamp attribution links generated claims back to verified audio.",
+      "Convergence score graph tracks automated refinement across revision passes.",
+    ],
+    output: [
+      "High-engagement X/Twitter threads compiled via Grok API.",
+      "Long-form, structured LinkedIn thought leadership articles via Claude 3.5 Sonnet.",
+      "Interactive Critic audit scorecard with violation breakdown and tone confidence metrics.",
+    ],
+    results: [
+      "Allowed a single content manager to produce 30+ compliant social posts per day with zero tone drift.",
+      "Achieved 100% brand voice compliance with zero off-brand hallucinations.",
+      "Reduced content repurposing workflow from 4 hours per episode to under 12 minutes.",
+      "Client revision requests dropped by 75% across active agency client accounts.",
+    ],
+    proof: ["Actor-Critic Compiler Engine", "Next.js 15 Content Studio UI", "Configurable Pydantic JSON Brand Voice Schema"],
+  },
   {
     slug: "linkedin-job-search-automation-openai-telegram",
     name: "Automated LinkedIn Job Search Automation with OpenAI & Telegram Alerts",
@@ -1088,6 +1760,7 @@ export const projects: Project[] = [
 ];
 
 export const projectCategories: ProjectCategory[] = [
+  "Agentic AI",
   "AI Agents",
   "Lead & CRM",
   "Support",
@@ -1096,7 +1769,18 @@ export const projectCategories: ProjectCategory[] = [
   "Content",
 ];
 
-export const getProject = (slug?: string) => projects.find((p) => p.slug === slug);
+const slugAliases: Record<string, string> = {
+  "human-in-the-loop-proposal-agent": "human-in-the-loop-proposal-swarm",
+  "local-mcp-bi-analyst": "privacy-first-sql-mcp-analyst",
+  "autonomous-code-reviewer": "autonomous-cicd-code-reviewer",
+  "omni-channel-support-swarm": "hierarchical-support-swarm",
+};
+
+export const getProject = (slug?: string) => {
+  if (!slug) return undefined;
+  const target = slugAliases[slug] || slug;
+  return projects.find((p) => p.slug === target);
+};
 export const featuredProjects = projects.filter((p) => p.featured);
 export const clientProjects = projects.filter((p) => p.clientWork);
 export const demoProjects = projects.filter((p) => !p.clientWork);

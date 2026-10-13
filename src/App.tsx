@@ -12,6 +12,10 @@ const Projects = lazy(() => import("./pages/Projects.tsx"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail.tsx"));
 const About = lazy(() => import("./pages/About.tsx"));
 const Services = lazy(() => import("./pages/Services.tsx"));
+const AgenticSystems = lazy(() => import("./pages/AgenticSystems.tsx"));
+const McpEngineering = lazy(() => import("./pages/McpEngineering.tsx"));
+const FullStackAiApps = lazy(() => import("./pages/FullStackAiApps.tsx"));
+const HybridAutomation = lazy(() => import("./pages/HybridAutomation.tsx"));
 const N8nWorkflowAutomation = lazy(() => import("./pages/N8nWorkflowAutomation.tsx"));
 const LeadQualificationCrmAutomation = lazy(() => import("./pages/LeadQualificationCrmAutomation.tsx"));
 const Contact = lazy(() => import("./pages/Contact.tsx"));
@@ -34,6 +38,10 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/agentic-systems" element={<AgenticSystems />} />
+          <Route path="/services/mcp-engineering" element={<McpEngineering />} />
+          <Route path="/services/full-stack-ai-apps" element={<FullStackAiApps />} />
+          <Route path="/services/hybrid-automation" element={<HybridAutomation />} />
           <Route path="/services/n8n-workflow-automation" element={<N8nWorkflowAutomation />} />
           <Route path="/services/lead-qualification-crm-automation" element={<LeadQualificationCrmAutomation />} />
           <Route path="/about" element={<About />} />

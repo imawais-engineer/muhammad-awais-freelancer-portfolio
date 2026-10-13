@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
@@ -15,16 +16,20 @@ const Projects = () => {
   const filterBy = (list: typeof projects) =>
     active === "All" ? list : list.filter((p) => p.category === active);
 
+  const agenticProjects = useMemo(() => projects.filter((p) => p.category === "Agentic AI"), []);
   const filteredClient = useMemo(() => filterBy(clientProjects), [active]);
-  const filteredDemo = useMemo(() => filterBy(demoProjects), [active]);
+  const filteredDemo = useMemo(
+    () => (active === "All" ? demoProjects.filter((p) => p.category !== "Agentic AI") : filterBy(demoProjects)),
+    [active],
+  );
 
   const filters = ["All", ...projectCategories];
 
   return (
     <div className="min-h-screen">
       <Seo
-        title="AI Automation Projects & n8n Case Studies | Muhammad Awais"
-        description="Documented n8n, Make.com and AI automation projects — lead qualification, CRM pipelines, AI agents and reporting: the problem, architecture and measured results."
+        title="Agentic AI & Automation Case Studies | Muhammad Awais"
+        description="Documented agentic AI architectures, custom Model Context Protocol (MCP) servers, LangGraph state machines, and production workflow automation systems with measured outcomes."
         path="/projects"
         jsonLd={getPageJsonLd("/projects")}
       />
@@ -37,15 +42,20 @@ const Projects = () => {
           transition={{ duration: 0.22, ease: [0.2, 0, 0, 1] }}
           className="max-w-3xl space-y-4"
         >
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Case studies</p>
+          <div className="flex items-center gap-2">
+            <span className="tech-tag border-primary/30 text-primary font-mono text-xs">
+              Systems Architecture
+            </span>
+            <span className="font-mono text-xs text-muted-foreground">{projects.length} Total Systems</span>
+          </div>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            <span className="gradient-text">AI Automation Case Studies</span>{" "}
-            <span className="text-foreground">documented end to end</span>
+            <span className="gradient-text">Agentic AI &amp; Automation</span>{" "}
+            <span className="text-foreground">Case Studies</span>
           </h1>
           <p className="text-lg leading-relaxed text-muted-foreground">
-            {projects.length} production n8n and Make.com automation projects covering AI workflow
-            automation, LLM agents, CRM pipelines, and intelligent reporting systems. Every case study
-            details the business bottlenecks, technical architecture, and verified business outcomes.
+            Production agentic workflows, custom Model Context Protocol (MCP) servers, LangGraph state machines,
+            and enterprise automation pipelines. Every case study documents system architecture, state topology,
+            governance constraints, and verified business outcomes.
           </p>
         </motion.header>
 
@@ -68,8 +78,29 @@ const Projects = () => {
           ))}
         </div>
 
-        {filteredClient.length > 0 && (
+        {/* Flagship Agentic Architectures (Visible on "All" or "Agentic AI") */}
+        {(active === "All" || active === "Agentic AI") && agenticProjects.length > 0 && (
           <section className="mt-14">
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-primary animate-pulse" />
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+                Agentic Systems &amp; State Graphs
+              </p>
+            </div>
+            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+              Autonomous architectures with deterministic governance
+            </h2>
+            <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {agenticProjects.map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Client Engagements */}
+        {active !== "Agentic AI" && filteredClient.length > 0 && (
+          <section className="mt-16">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
               Real client engagements
             </p>
@@ -84,13 +115,14 @@ const Projects = () => {
           </section>
         )}
 
-        {filteredDemo.length > 0 && (
+        {/* Other Demonstrations */}
+        {active !== "Agentic AI" && filteredDemo.length > 0 && (
           <section className="mt-16">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
               Demonstration systems
             </p>
             <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-              Architectural builds proving advanced AI patterns
+              Architectural builds proving workflow patterns
             </h2>
             <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {filteredDemo.map((project) => (
@@ -100,7 +132,7 @@ const Projects = () => {
           </section>
         )}
 
-        {filteredClient.length === 0 && filteredDemo.length === 0 && (
+        {filteredClient.length === 0 && filteredDemo.length === 0 && (active !== "Agentic AI" && active !== "All") && (
           <p className="mt-10 font-mono text-muted-foreground">No case studies in this category yet.</p>
         )}
       </main>

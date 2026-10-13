@@ -19,7 +19,7 @@ import { getProject } from "@/data/projects";
 import { deliverables, proofStats, site } from "@/data/site";
 import { SITE_URL } from "@/lib/seo";
 import { getPageJsonLd } from "@/data/structuredData";
-import { serviceGroups, servicesFaqs as faqs } from "@/data/serviceContent";
+import { modernServices, serviceGroups, servicesFaqs as faqs } from "@/data/serviceContent";
 
 const problemMap = [
   {
@@ -101,60 +101,84 @@ const Services = () => {
           className="max-w-3xl space-y-5"
         >
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
-            Services
+            Engineering Services
           </p>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            <span className="gradient-text-primary">n8n Workflow Automation</span> &amp; AI Integration Services
+            <span className="gradient-text-primary">Agentic Systems &amp; MCP Engineering</span> for Scalable AI
           </h1>
           <p className="text-lg text-muted-foreground">
-            I&apos;m Muhammad Awais, a freelance AI Automation Engineer. I design and build n8n
-            workflow automation, AI systems and agents, CRM and lead automation, and the connected
-            business processes that sit between them — so the repetitive parts of your operation run
-            without anyone chasing them.
+            I&apos;m Muhammad Awais, an Agentic AI Systems Engineer and Full-Stack Architect. I design
+            and deploy state graph workflows, Model Context Protocol (MCP) servers, full-stack Next.js
+            intelligence dashboards, and production workflow pipelines — engineered with deterministic
+            data governance and automated self-healing.
           </p>
           <p className="text-muted-foreground">
-            I work with agencies, SaaS teams, founders, operations teams and small businesses whose
-            processes still depend on someone copying, checking or forwarding things by hand.
+            From high-velocity startups to enterprise teams, I replace fragile prompt chains and manual
+            processes with robust, test-verified agent architectures.
           </p>
           <div className="flex flex-wrap gap-3 pt-1">
             <Button asChild className="bg-gradient-cta border-0 text-white shadow-glow-strong hover:opacity-95 transition-opacity">
-              <Link to="/contact">Start an Automation Project</Link>
+              <Link to="/contact">Discuss Your System</Link>
             </Button>
             <Button asChild variant="outline">
-              <Link to="/projects">View Automation Case Studies</Link>
+              <Link to="/projects">View Agentic Case Studies</Link>
             </Button>
           </div>
         </motion.header>
 
-        {/* Services overview */}
-        <section className="mt-20" aria-labelledby="what-i-build">
-          <h2 id="what-i-build" className="text-2xl font-semibold tracking-tight md:text-3xl">
-            What I build
+        {/* Modernized Services overview */}
+        <section className="mt-20" aria-labelledby="core-services">
+          <h2 id="core-services" className="font-display text-2xl font-bold tracking-tight md:text-3xl">
+            Specialized Software &amp; Agent Engineering
           </h2>
           <p className="mt-3 max-w-3xl text-muted-foreground">
-            Four service areas. Most engagements combine two of them, because a real process rarely
-            stops at one system.
+            Four specialized engineering domains. Each engagement is delivered with typed schemas, comprehensive
+            error handling, and production deployment harnesses.
           </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {serviceGroups.map((group) => (
-              <article key={group.id} id={group.id} className="node-card flex h-full flex-col p-6">
-                <h3 className="text-lg font-semibold leading-snug">{group.title}</h3>
-                <p className="mt-3 text-base text-muted-foreground">{group.intro}</p>
-                {group.link && (
-                  <p className="mt-3 text-base">
-                    <Link to={group.link.href} className="system-link">
-                      {group.link.label}
-                    </Link>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {modernServices.map((service) => (
+              <article key={service.id} id={service.id} className="node-card card-interactive flex h-full flex-col p-6 sm:p-7">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-display text-xl font-bold leading-snug text-foreground">
+                    {service.title}
+                  </h3>
+                  <span className="tech-tag border-primary/30 font-mono text-[0.6875rem] text-primary">
+                    Production
+                  </span>
+                </div>
+                <p className="mt-2 font-mono text-sm italic text-primary/90">{service.tagline}</p>
+
+                <div className="mt-4 rounded-lg border border-white/[0.06] bg-panel-strong/60 p-3">
+                  <p className="font-mono text-xs text-muted-foreground">
+                    <span className="font-semibold text-foreground">Ideal for:</span> {service.idealFor}
                   </p>
-                )}
-                <ul className="mt-5 space-y-2.5 text-base text-muted-foreground">
-                  {group.items.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <Check className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
+                </div>
+
+                <div className="mt-5 space-y-2">
+                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                    Core Deliverables
+                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    {service.deliverables.map((item) => (
+                      <li key={item} className="flex gap-2.5">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-1.5">
+                  {service.techStack.map((tech) => (
+                    <TechTag key={tech} label={tech} />
                   ))}
-                </ul>
+                </div>
+
+                <div className="mt-6 pt-2 border-t border-white/[0.06]">
+                  <Link to={service.href} className="system-link inline-flex items-center text-sm font-medium">
+                    Explore architecture &amp; scope →
+                  </Link>
+                </div>
               </article>
             ))}
           </div>

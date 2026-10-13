@@ -17,7 +17,11 @@ import { projects } from "../src/data/projects";
 /** Visible <h1> per static route (matches the rendered page; "/" keeps the index.html fallback). */
 const staticH1: Record<string, string> = {
   "/projects": "AI automation projects, documented end to end",
-  "/services": "AI Automation Services for Businesses That Want Less Manual Work",
+  "/services": "AI Automation & Agentic Systems Services",
+  "/services/agentic-systems": "Agentic Systems & State Graph Architecture",
+  "/services/mcp-engineering": "Model Context Protocol (MCP) Server Engineering",
+  "/services/full-stack-ai-apps": "Full-Stack AI Products & Internal Tools",
+  "/services/hybrid-automation": "Deterministic Automation & Hybrid Orchestration",
   "/services/n8n-workflow-automation": "n8n Workflow Automation Engineer",
   "/services/lead-qualification-crm-automation": "AI Lead Qualification & CRM Automation",
   "/about": "About Muhammad Awais — AI Automation Engineer",

@@ -1,4 +1,75 @@
-/** Content shared by the service pages and their structured data (also read at build time). */
+export interface ModernService {
+  id: string;
+  title: string;
+  tagline: string;
+  idealFor: string;
+  deliverables: string[];
+  techStack: string[];
+  href: string;
+}
+
+export const modernServices: ModernService[] = [
+  {
+    id: "agentic-systems",
+    title: "Agentic Systems & State Graph Architecture",
+    tagline: "Custom multi-agent workflows that plan, reason, and self-heal.",
+    idealFor:
+      "SaaS companies and operations-heavy agencies needing autonomous pipelines that manage ambiguous tasks without breaking.",
+    deliverables: [
+      "Custom state graph workflows built on LangGraph and Python",
+      "Actor-Critic and Evaluator-Optimizer loops with automated self-correction",
+      "Human-in-the-Loop approval interfaces with persistent state checkpoints",
+      "Structured output extraction using Pydantic validation and strict schema enforcement",
+    ],
+    techStack: ["Python", "LangGraph", "FastAPI", "Claude 3.5 Sonnet", "GPT-4o", "PostgreSQL"],
+    href: "/services/agentic-systems",
+  },
+  {
+    id: "mcp-engineering",
+    title: "Model Context Protocol (MCP) Server Engineering",
+    tagline: "Secure, privacy-first bridges connecting LLMs to your private data and APIs.",
+    idealFor:
+      "Enterprise teams, fintech, and startups looking to integrate tools like Claude Desktop, Cursor, or proprietary models with their internal databases without exposing credentials or leaking PII.",
+    deliverables: [
+      "Custom MCP servers built via the official Python/TypeScript SDKs (stdio / SSE transports)",
+      "Read-only database bridges for Postgres, MySQL, MongoDB, and internal REST APIs",
+      "Dynamic schema introspection and AST-based SQL query validation via sqlglot",
+      "Sandboxed execution environments with zero-retention data policies",
+    ],
+    techStack: ["FastMCP", "Python", "Node.js", "JSON-RPC 2.0", "PostgreSQL", "Docker"],
+    href: "/services/mcp-engineering",
+  },
+  {
+    id: "full-stack-ai-apps",
+    title: "Full-Stack AI Products & Internal Tools",
+    tagline: "Production web applications built to operationalize autonomous intelligence.",
+    idealFor:
+      "Founders needing customer-facing AI applications, and teams requiring purpose-built dashboards to monitor and steer autonomous agents.",
+    deliverables: [
+      "Modern, responsive frontends built with Next.js 15, React, and Tailwind CSS",
+      "Real-time agent monitoring interfaces using Server-Sent Events (SSE) and WebSockets",
+      "Dynamic data visualization dashboards using Recharts and D3",
+      "Robust authentication, role-based access control (RBAC), and multi-tenant database architectures",
+    ],
+    techStack: ["Next.js 15", "TypeScript", "FastAPI", "Supabase", "Tailwind CSS", "Vercel"],
+    href: "/services/full-stack-ai-apps",
+  },
+  {
+    id: "hybrid-automation",
+    title: "Deterministic Automation & Hybrid Orchestration",
+    tagline: "Hardened infrastructure pipelines combining traditional automation with intelligent agents.",
+    idealFor:
+      "Businesses with established n8n, Make, or Zapier setups that have hit scaling limits and need to integrate custom Python backends and agent loops.",
+    deliverables: [
+      "Architecture migrations from fragile no-code workflows to robust Python microservices",
+      "Hybrid setups linking n8n webhook triggers to LangGraph-powered reasoning engines",
+      "High-throughput API integrations, webhook pipelines, and error-handling harnesses",
+      "Automated data syncing across CRMs, ERPs, and internal databases with guaranteed at-least-once delivery",
+    ],
+    techStack: ["n8n (Self-Hosted)", "Python", "Redis", "Celery", "Docker", "REST APIs"],
+    href: "/services/hybrid-automation",
+  },
+];
 
 export interface ServiceGroup {
   id: string;
@@ -9,6 +80,70 @@ export interface ServiceGroup {
 }
 
 export const serviceGroups: ServiceGroup[] = [
+  {
+    id: "agentic-systems",
+    title: "Agentic Systems & State Graph Architecture",
+    link: {
+      href: "/services/agentic-systems",
+      label: "Explore Agentic Systems & State Graphs →",
+    },
+    intro:
+      "Custom multi-agent workflows that plan, reason, and self-heal without brittle prompt chains.",
+    items: [
+      "Custom state graph workflows built on LangGraph and Python",
+      "Actor-Critic and Evaluator-Optimizer loops with automated self-correction",
+      "Human-in-the-Loop approval interfaces with persistent state checkpoints",
+      "Structured output extraction using Pydantic validation and strict schema enforcement",
+    ],
+  },
+  {
+    id: "mcp-engineering",
+    title: "Model Context Protocol (MCP) Server Engineering",
+    link: {
+      href: "/services/mcp-engineering",
+      label: "Explore MCP Server Engineering →",
+    },
+    intro:
+      "Secure, privacy-first bridges connecting LLMs to your private databases and internal APIs with zero data leakage.",
+    items: [
+      "Custom MCP servers built via official Python/TypeScript SDKs (stdio / SSE)",
+      "Read-only database bridges for Postgres, MySQL, MongoDB, and REST APIs",
+      "Dynamic schema introspection and AST-based SQL query validation",
+      "Sandboxed execution environments with zero-retention data policies",
+    ],
+  },
+  {
+    id: "full-stack-ai-apps",
+    title: "Full-Stack AI Products & Internal Tools",
+    link: {
+      href: "/services/full-stack-ai-apps",
+      label: "Explore Full-Stack AI Products →",
+    },
+    intro:
+      "Production web applications built to operationalize autonomous intelligence with intuitive oversight.",
+    items: [
+      "Modern, responsive frontends built with Next.js 15, React, and Tailwind CSS",
+      "Real-time agent monitoring interfaces using Server-Sent Events (SSE)",
+      "Dynamic data visualization dashboards using Recharts and D3",
+      "Robust authentication, RBAC, and multi-tenant database architectures",
+    ],
+  },
+  {
+    id: "hybrid-automation",
+    title: "Deterministic Automation & Hybrid Orchestration",
+    link: {
+      href: "/services/hybrid-automation",
+      label: "Explore Hybrid Automation →",
+    },
+    intro:
+      "Hardened infrastructure pipelines combining traditional automation with intelligent agents.",
+    items: [
+      "Architecture migrations from fragile no-code workflows to Python microservices",
+      "Hybrid setups linking n8n webhook triggers to LangGraph-powered engines",
+      "High-throughput API integrations, webhook pipelines, and error-handling harnesses",
+      "Automated data syncing across CRMs, ERPs, and databases with at-least-once delivery",
+    ],
+  },
   {
     id: "n8n-workflow-automation",
     title: "n8n Workflow Automation",
@@ -28,19 +163,6 @@ export const serviceGroups: ServiceGroup[] = [
     ],
   },
   {
-    id: "ai-automation-ai-agents",
-    title: "AI Automation & AI Agents",
-    intro:
-      "AI used where it genuinely beats a rule — reading messy input, classifying it, and deciding what happens next inside a workflow you can audit.",
-    items: [
-      "AI agents that answer, classify and take action inside your workflows",
-      "Classification, extraction and summarisation of emails, tickets and documents",
-      "Decision support: the AI drafts or scores, a rule or a human approves",
-      "RAG knowledge assistants answering from your own documents and data",
-      "WhatsApp, Slack and web assistants with conversation memory",
-    ],
-  },
-  {
     id: "crm-lead-automation",
     title: "CRM & Lead Automation",
     link: {
@@ -48,28 +170,12 @@ export const serviceGroups: ServiceGroup[] = [
       label: "More on lead qualification & CRM automation →",
     },
     intro:
-      "Most businesses do not have a lead problem — they have a response-time problem. Lead qualification automation closes the gap between an inquiry arriving and someone useful acting on it.",
+      "Lead qualification automation closes the gap between an inquiry arriving and someone useful acting on it.",
     items: [
       "Lead capture from web forms, landing pages, email and social channels",
       "Lead qualification automation that enriches and scores each inquiry before it reaches sales",
       "Lead routing to the right owner, channel or pipeline stage automatically",
       "CRM synchronisation across HubSpot, Pipedrive, GoHighLevel, Airtable and Notion",
-      "Pipeline management: stage updates, task creation and owner notifications",
-      "Follow-up automation, appointment booking, reminders and re-engagement sequences",
-    ],
-  },
-  {
-    id: "business-process-data-automation",
-    title: "Business Process & Data Automation",
-    intro:
-      "The unglamorous work that eats the week: copying data, chasing numbers, assembling the same report. Automated once, documented, and left running.",
-    items: [
-      "Google Workspace automation — Sheets, Docs, Drive and Gmail",
-      "Operational and management reporting delivered to Slack, Telegram or email",
-      "Data synchronisation between apps, sheets and databases",
-      "Scraping and enrichment pipelines for monitoring and research",
-      "Notification and alerting workflows so exceptions surface immediately",
-      "Document workflows: generation, routing, storage and approvals",
     ],
   },
 ];

@@ -6,7 +6,61 @@
     <atom:link href="https://www.imawais.engineer/feed.xml" rel="self" type="application/rss+xml" />
     <description>Documented n8n, Make.com and AI automation case studies by Muhammad Awais, AI Automation Engineer.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 13 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Automated Business KPI Analysis &amp; Growth Insights</title>
+      <link>https://www.imawais.engineer/projects/automated-business-kpi-analysis-growth-insights</link>
+      <guid isPermaLink="true">https://www.imawais.engineer/projects/automated-business-kpi-analysis-growth-insights</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Reporting</category>
+      <description>Automated n8n reporting system that syncs business metrics to Google Sheets, flags revenue anomalies with AI and sends executive summaries on schedule.</description>
+      <enclosure url="https://www.imawais.engineer/og/projects/automated-business-kpi-analysis-growth-insights.jpg" type="image/jpeg" length="84730" />
+    </item>
+    <item>
+      <title>Brand-Governed Content Engine with Deterministic Critic Loop</title>
+      <link>https://www.imawais.engineer/projects/brand-governed-content-critic</link>
+      <guid isPermaLink="true">https://www.imawais.engineer/projects/brand-governed-content-critic</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Agentic AI</category>
+      <description>Actor-Critic content compiler with JSON schema enforcement: turns long-form audio into 30+ compliant social posts daily with 100% brand voice alignment.</description>
+      <enclosure url="https://www.imawais.engineer/og/projects/brand-governed-content-critic.jpg" type="image/jpeg" length="65843" />
+    </item>
+    <item>
+      <title>Hierarchical L1/L2 Customer Support Orchestrator</title>
+      <link>https://www.imawais.engineer/projects/hierarchical-support-swarm</link>
+      <guid isPermaLink="true">https://www.imawais.engineer/projects/hierarchical-support-swarm</guid>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Agentic AI</category>
+      <description>Supervisor-Worker multi-agent swarm in LangGraph that semantically coordinates Stripe billing, Linear/GitHub APIs, and Pinecone vector RAG.</description>
+      <enclosure url="https://www.imawais.engineer/og/projects/hierarchical-support-swarm.jpg" type="image/jpeg" length="65843" />
+    </item>
+    <item>
+      <title>Autonomous CI/CD Code Reviewer &amp; Refactoring Harness</title>
+      <link>https://www.imawais.engineer/projects/autonomous-cicd-code-reviewer</link>
+      <guid isPermaLink="true">https://www.imawais.engineer/projects/autonomous-cicd-code-reviewer</guid>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Agentic AI</category>
+      <description>Evaluator-Optimizer agent harness testing git diffs in Docker sandboxes and committing verified refactor patches directly via GitHub MCP.</description>
+      <enclosure url="https://www.imawais.engineer/og/projects/autonomous-cicd-code-reviewer.jpg" type="image/jpeg" length="65843" />
+    </item>
+    <item>
+      <title>Local BI Data Analyst via Custom Model Context Protocol (MCP)</title>
+      <link>https://www.imawais.engineer/projects/privacy-first-sql-mcp-analyst</link>
+      <guid isPermaLink="true">https://www.imawais.engineer/projects/privacy-first-sql-mcp-analyst</guid>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Agentic AI</category>
+      <description>Custom Python Model Context Protocol (MCP) server with self-correcting ReAct SQL loops, read-only PostgreSQL sandboxing, and zero PII data leakage.</description>
+      <enclosure url="https://www.imawais.engineer/og/projects/privacy-first-sql-mcp-analyst.jpg" type="image/jpeg" length="65843" />
+    </item>
+    <item>
+      <title>Autonomous Proposal Swarm with Human-in-the-Loop Governance</title>
+      <link>https://www.imawais.engineer/projects/human-in-the-loop-proposal-swarm</link>
+      <guid isPermaLink="true">https://www.imawais.engineer/projects/human-in-the-loop-proposal-swarm</guid>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Agentic AI</category>
+      <description>LangGraph multi-agent state machine with human-in-the-loop interrupts that turns raw discovery audio into executive-ready proposals in 3 minutes.</description>
+      <enclosure url="https://www.imawais.engineer/og/projects/human-in-the-loop-proposal-swarm.jpg" type="image/jpeg" length="65843" />
+    </item>
     <item>
       <title>Recreate Instagram Reels on Demand with Gemini &amp; MiniMax</title>
       <link>https://www.imawais.engineer/projects/instagram-reel-recreation-gemini-minimax</link>
@@ -15,15 +69,6 @@
       <category>Content</category>
       <description>Production n8n workflow that downloads Instagram Reels, extracts prompts with Gemini 2.0 Flash and generates fresh AI videos with MiniMax on Replicate.</description>
       <enclosure url="https://www.imawais.engineer/og/projects/instagram-reel-recreation-gemini-minimax.jpg" type="image/jpeg" length="76564" />
-    </item>
-    <item>
-      <title>Automated Business KPI Analysis &amp; Growth Insights</title>
-      <link>https://www.imawais.engineer/projects/automated-business-kpi-analysis-growth-insights</link>
-      <guid isPermaLink="true">https://www.imawais.engineer/projects/automated-business-kpi-analysis-growth-insights</guid>
-      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Reporting</category>
-      <description>Automated n8n reporting system that syncs business metrics to Google Sheets, flags revenue anomalies with AI and sends executive summaries on schedule.</description>
-      <enclosure url="https://www.imawais.engineer/og/projects/automated-business-kpi-analysis-growth-insights.jpg" type="image/jpeg" length="84730" />
     </item>
     <item>
       <title>Voice AI Appointment Booking with ElevenLabs &amp; Cal.com</title>

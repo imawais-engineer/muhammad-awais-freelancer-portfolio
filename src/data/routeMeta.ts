@@ -33,15 +33,28 @@ export const projectPublished: Record<string, string> = {
   "hubspot-lead-routing-gpt4-airtable": "2026-08-20",
   "ai-lead-meeting-scheduling-zoho-gemini": "2026-08-20",
   "voice-ai-appointment-booking-elevenlabs-calcom": "2026-08-20",
-  "automated-business-kpi-analysis-growth-insights": "2026-08-25",
   "instagram-reel-recreation-gemini-minimax": "2026-10-03",
+  "human-in-the-loop-proposal-swarm": "2026-10-10",
+  "privacy-first-sql-mcp-analyst": "2026-10-11",
+  "autonomous-cicd-code-reviewer": "2026-10-12",
+  "hierarchical-support-swarm": "2026-10-12",
+  "brand-governed-content-critic": "2026-10-13",
 };
-export const PROJECT_MODIFIED = "2026-09-30";
+export const PROJECT_MODIFIED = "2026-10-13";
 
 /** Titles kept under 60 characters where the default pattern ran long. */
 const titleOverrides: Record<string, string> = {
   "/": "Muhammad Awais | AI Automation Engineer & n8n Expert",
   "/services": "AI & n8n Automation Services | Muhammad Awais",
+  "/services/agentic-systems": "Agentic Systems & State Graph Architecture | Muhammad Awais",
+  "/services/mcp-engineering": "Model Context Protocol (MCP) Server Engineering | Muhammad Awais",
+  "/services/full-stack-ai-apps": "Full-Stack AI Products & Internal Tools | Muhammad Awais",
+  "/services/hybrid-automation": "Deterministic Automation & Hybrid Orchestration | Muhammad Awais",
+  "/projects/human-in-the-loop-proposal-swarm": "Autonomous Proposal Swarm with Human-in-the-Loop Governance",
+  "/projects/privacy-first-sql-mcp-analyst": "Privacy-First SQL AI Analyst via Custom MCP Server",
+  "/projects/autonomous-cicd-code-reviewer": "Autonomous CI/CD Code Reviewer & Refactoring Harness",
+  "/projects/hierarchical-support-swarm": "Hierarchical L1/L2 Customer Support Swarm Orchestrator",
+  "/projects/brand-governed-content-critic": "Brand-Governed AI Content Engine with Deterministic Critic Loop",
   "/projects/linkedin-job-search-automation-openai-telegram": "LinkedIn Job Search Automation with OpenAI & Telegram",
   "/projects/slack-reporting-pipeline-apify-n8n": "Automated Slack Reporting with n8n & Apify | Muhammad Awais",
   "/projects/instagram-reels-outlier-telegram-n8n": "Instagram Reels Outlier Detection & Telegram Reports",
@@ -91,11 +104,39 @@ const staticRoutes: Record<string, RouteMeta> = {
     ogImageAlt: `${projects.length} AI automation case studies by Muhammad Awais`,
   },
   "/services": {
-    title: "AI Automation Services | n8n Workflow Automation | Muhammad Awais",
+    title: "AI Automation & Agentic Systems Services | Muhammad Awais",
     description:
-      "Hire a freelance n8n workflow automation engineer and AI specialist. Fixed-scope automation services for agencies and SaaS teams — n8n, Make.com, AI agents, CRM automation.",
+      "Specialized agentic AI engineering, custom Model Context Protocol (MCP) servers, full-stack Next.js AI tools, and enterprise workflow orchestration by Muhammad Awais.",
     ogImage: "/og/services.jpg",
-    ogImageAlt: "AI and n8n automation services by Muhammad Awais",
+    ogImageAlt: "AI and agentic engineering services by Muhammad Awais",
+  },
+  "/services/agentic-systems": {
+    title: "Agentic Systems & State Graph Architecture | Muhammad Awais",
+    description:
+      "Custom multi-agent workflows built on LangGraph and Python: stateful DAG execution, Actor-Critic loops, and Human-in-the-Loop review gates that never break.",
+    ogImage: "/og/services-agentic.jpg",
+    ogImageAlt: "Agentic Systems and State Graph Architecture service card",
+  },
+  "/services/mcp-engineering": {
+    title: "Model Context Protocol (MCP) Server Engineering | Muhammad Awais",
+    description:
+      "Secure, privacy-first bridges connecting LLMs to private databases via Model Context Protocol (MCP) with read-only sandboxes and zero data leakage.",
+    ogImage: "/og/services-mcp.jpg",
+    ogImageAlt: "Model Context Protocol MCP engineering service card",
+  },
+  "/services/full-stack-ai-apps": {
+    title: "Full-Stack AI Products & Internal Tools | Muhammad Awais",
+    description:
+      "Production Next.js 15 web applications operationalizing autonomous intelligence: real-time SSE agent monitors, Recharts BI dashboards, and review portals.",
+    ogImage: "/og/services-fullstack.jpg",
+    ogImageAlt: "Full-Stack AI Products and Internal Tools service card",
+  },
+  "/services/hybrid-automation": {
+    title: "Deterministic Automation & Hybrid Orchestration | Muhammad Awais",
+    description:
+      "Hardened infrastructure combining n8n workflow automation with custom Python microservices, Celery/Redis queues, and guaranteed at-least-once delivery.",
+    ogImage: "/og/services-hybrid.jpg",
+    ogImageAlt: "Deterministic Automation and Hybrid Orchestration service card",
   },
   "/services/n8n-workflow-automation": {
     title: "n8n Workflow Automation Engineer | Muhammad Awais",

@@ -18,6 +18,46 @@ export interface ProjectSeo {
 }
 
 export const projectSeo: Record<string, ProjectSeo> = {
+  "human-in-the-loop-proposal-swarm": {
+    topic: "LangGraph proposal generator human in the loop",
+    title: "Autonomous Proposal Swarm with Human-in-the-Loop Governance",
+    description: "LangGraph multi-agent state machine with human-in-the-loop interrupts that turns raw discovery audio into executive-ready proposals in 3 minutes.",
+    ctaHeading: "Ready to deploy human-governed agentic workflows?",
+    ctaLabel: "Build a custom LangGraph agent swarm",
+    related: ["privacy-first-sql-mcp-analyst", "autonomous-cicd-code-reviewer", "client-intake-onboarding-automation"],
+  },
+  "privacy-first-sql-mcp-analyst": {
+    topic: "Model Context Protocol MCP SQL analyst",
+    title: "Privacy-First SQL AI Analyst via Custom Model Context Protocol (MCP)",
+    description: "Custom Python Model Context Protocol (MCP) server with self-correcting ReAct SQL loops, read-only PostgreSQL sandboxing, and zero PII data leakage.",
+    ctaHeading: "Need to chat with your production database securely?",
+    ctaLabel: "Build a custom MCP server",
+    related: ["human-in-the-loop-proposal-swarm", "autonomous-cicd-code-reviewer", "automated-business-kpi-analysis-growth-insights"],
+  },
+  "autonomous-cicd-code-reviewer": {
+    topic: "Autonomous CI/CD code reviewer Evaluator Optimizer",
+    title: "Autonomous CI/CD Code Reviewer & Refactoring Harness",
+    description: "Evaluator-Optimizer agent harness testing git diffs in Docker sandboxes and committing verified refactor patches directly via GitHub MCP.",
+    ctaHeading: "Want your pull requests reviewed and refactored on autopilot?",
+    ctaLabel: "Build an autonomous SDLC review harness",
+    related: ["privacy-first-sql-mcp-analyst", "human-in-the-loop-proposal-swarm", "hierarchical-support-swarm"],
+  },
+  "hierarchical-support-swarm": {
+    topic: "Hierarchical multi-agent customer support swarm",
+    title: "Hierarchical L1/L2 Customer Support Swarm Orchestrator",
+    description: "Supervisor-Worker multi-agent swarm in LangGraph that semantically coordinates Stripe billing, Linear/GitHub APIs, and Pinecone vector RAG.",
+    ctaHeading: "Looking to automate complex multi-domain support tickets?",
+    ctaLabel: "Build a hierarchical support swarm",
+    related: ["ai-customer-support-triage", "whatsapp-ai-assistant-google-docs", "human-in-the-loop-proposal-swarm"],
+  },
+  "brand-governed-content-critic": {
+    topic: "Brand-governed AI content engine Actor Critic loop",
+    title: "Brand-Governed AI Content Engine with Deterministic Critic Loop",
+    description: "Actor-Critic content compiler with JSON schema enforcement: turns long-form audio into 30+ compliant social posts daily with 100% brand voice alignment.",
+    ctaHeading: "Want content generated without off-brand hallucinations?",
+    ctaLabel: "Build a brand-governed content engine",
+    related: ["youtube-publishing-automation", "instagram-reel-recreation-gemini-minimax", "human-in-the-loop-proposal-swarm"],
+  },
   "instagram-reel-recreation-gemini-minimax": {
     topic: "AI video generation n8n workflow",
     title: "Instagram Reel Recreation with Gemini 2.0 & MiniMax AI",
@@ -172,4 +212,14 @@ export const projectSeo: Record<string, ProjectSeo> = {
   },
 };
 
-export const getProjectSeo = (slug: string): ProjectSeo | undefined => projectSeo[slug];
+const seoAliases: Record<string, string> = {
+  "human-in-the-loop-proposal-agent": "human-in-the-loop-proposal-swarm",
+  "local-mcp-bi-analyst": "privacy-first-sql-mcp-analyst",
+  "autonomous-code-reviewer": "autonomous-cicd-code-reviewer",
+  "omni-channel-support-swarm": "hierarchical-support-swarm",
+};
+
+export const getProjectSeo = (slug: string): ProjectSeo | undefined => {
+  const target = seoAliases[slug] || slug;
+  return projectSeo[target];
+};

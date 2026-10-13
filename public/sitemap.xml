@@ -16,6 +16,26 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.imawais.engineer/services/agentic-systems</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/services/mcp-engineering</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/services/full-stack-ai-apps</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/services/hybrid-automation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.imawais.engineer/services/n8n-workflow-automation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -41,8 +61,53 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.imawais.engineer/projects/human-in-the-loop-proposal-swarm</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.imawais.engineer/og/projects/human-in-the-loop-proposal-swarm.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/projects/privacy-first-sql-mcp-analyst</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.imawais.engineer/og/projects/privacy-first-sql-mcp-analyst.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/projects/autonomous-cicd-code-reviewer</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.imawais.engineer/og/projects/autonomous-cicd-code-reviewer.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/projects/hierarchical-support-swarm</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.imawais.engineer/og/projects/hierarchical-support-swarm.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.imawais.engineer/projects/brand-governed-content-critic</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.imawais.engineer/og/projects/brand-governed-content-critic.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.imawais.engineer/projects/linkedin-job-search-automation-openai-telegram</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -51,7 +116,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/slack-reporting-pipeline-apify-n8n</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -60,7 +125,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/instagram-reels-outlier-telegram-n8n</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -69,7 +134,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/ai-lead-qualification-real-estate</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -78,7 +143,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/real-estate-lead-generation-browseract-make</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -87,7 +152,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/ai-email-labeling-agent-gmail</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -96,7 +161,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/ai-customer-support-triage</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -105,7 +170,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/whatsapp-ai-assistant-google-docs</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -114,7 +179,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/ai-review-management-system</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -123,7 +188,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/client-intake-onboarding-automation</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -132,7 +197,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/youtube-publishing-automation</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -141,7 +206,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/lead-reply-sync-gohighlevel-clickup</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -150,7 +215,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/multi-query-rag-supabase-openai</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -159,7 +224,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/automated-business-kpi-analysis-growth-insights</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -168,7 +233,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/automated-offer-letter-response-tracking</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -177,7 +242,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/hubspot-lead-routing-gpt4-airtable</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -186,7 +251,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/ai-lead-meeting-scheduling-zoho-gemini</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -195,7 +260,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/voice-ai-appointment-booking-elevenlabs-calcom</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -204,7 +269,7 @@
   </url>
   <url>
     <loc>https://www.imawais.engineer/projects/instagram-reel-recreation-gemini-minimax</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
