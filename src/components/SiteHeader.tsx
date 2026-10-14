@@ -8,7 +8,7 @@ const navItems = [
   { label: "Work", to: "/#work", hash: "#work" },
   { label: "Services", to: "/services" },
   { label: "Process", to: "/#process", hash: "#process" },
-  { label: "About", to: "/#about", hash: "#about" },
+  { label: "About", to: "/about" },
 ] as const;
 
 const SiteHeader = () => {
