@@ -5,3 +5,4 @@
 - [x] Verify updated icons and footer on desktop and mobile.
 - [x] Add the role line and profile logos to the homepage hero card, without the tool suffix.
 - [x] Set the homepage card role line to "Forward Deployed AI Engineer" and verify at desktop and mobile.
+- [x] Show "Forward Deployed AI Engineer" in the footer and copyright; keep search-facing titles unchanged.
