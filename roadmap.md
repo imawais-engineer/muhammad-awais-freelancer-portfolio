@@ -8,3 +8,5 @@
 - [x] Show "Forward Deployed AI Engineer" in the footer and copyright; keep search-facing titles unchanged.
 - [x] Point the header "About" link at the About page instead of the homepage section.
 - [x] Change the hero strip to "5 Star Rated" with the Upwork mark only, keeping a hidden Upwork label.
+
+- [x] About profile card rebuilt to match homepage card (circular photo, badge, title, social logos) + global axe scan clean (2026-10-14)

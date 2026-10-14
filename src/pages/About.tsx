@@ -5,6 +5,7 @@ import { ArrowRight, BadgeCheck, Check, MapPin } from "lucide-react";
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import BrandLogo from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { about, process, site } from "@/data/site";
 import profileImage from "@/assets/profile.webp";
@@ -89,28 +90,47 @@ const About = () => (
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
-          <div className="node-card overflow-hidden p-0">
+          <div className="node-card mx-auto w-full max-w-[16rem] p-4 sm:max-w-[18rem] lg:max-w-none lg:p-5">
             <img
               src={profileImage}
               alt="Portrait of Muhammad Awais, freelance AI Automation Engineer"
-              className="aspect-square w-full object-cover"
+              className="mx-auto aspect-square w-full max-w-[12rem] rounded-full object-cover"
               loading="lazy"
               decoding="async"
               width={512}
               height={512}
             />
-            <div className="p-5">
-              <div className="flex items-center gap-2">
-                <p className="text-xl font-semibold tracking-tight text-foreground">{site.name}</p>
-                <span
-                  className="inline-flex"
-                  role="img"
-                  aria-label="Identity verified"
-                  title="Identity verified — government ID check and visual verification"
-                >
-                  <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                </span>
-              </div>
+            <div className="mt-3 flex items-center justify-center gap-2">
+              <p className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">{site.name}</p>
+              <span
+                className="inline-flex"
+                role="img"
+                aria-label="Identity verified"
+                title="Identity verified — government ID check and visual verification"
+              >
+                <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+              </span>
+            </div>
+            <p className="mt-1 text-center text-xs leading-snug tracking-tight text-muted-foreground">
+              {site.shortTitle}
+            </p>
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+              {(["upwork", "fiverr", "github", "linkedin"] as const).map((platform) => {
+                const label = { upwork: "Upwork", fiverr: "Fiverr", github: "GitHub", linkedin: "LinkedIn" }[platform];
+                return (
+                  <a
+                    key={platform}
+                    href={site.links[platform]}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label={label}
+                    title={label}
+                    className="flex h-9 w-9 items-center justify-center rounded-md border border-panel-border bg-secondary/40 text-muted-foreground transition-colors hover:border-primary/50 hover:bg-accent hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <BrandLogo label={label} className="h-4 w-4" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
