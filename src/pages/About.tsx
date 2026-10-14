@@ -5,6 +5,7 @@ import { ArrowRight, BadgeCheck, Check, MapPin } from "lucide-react";
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import BrandLogo from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { about, process, site } from "@/data/site";
 import profileImage from "@/assets/profile.webp";
