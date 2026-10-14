@@ -1,0 +1,2 @@
+- [x] Align footer sections and add theme-aligned link logos.
+- [x] Replace outdated project counts with the catalog total and verify.

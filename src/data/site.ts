@@ -1,4 +1,5 @@
 import aaronAvatar from "@/assets/aaron-auf-der-maur.jpg.asset.json";
+import { projects } from "@/data/projects";
 
 export const site = {
   name: "Muhammad Awais",
@@ -19,7 +20,7 @@ export const site = {
 
 export const proofStats = [
   { value: "5.0 / 5.0", label: "Upwork rating" },
-  { value: "12", label: "Automation systems shipped" },
+  { value: String(projects.length), label: "Portfolio projects documented" },
   { value: "20+ hrs", label: "Saved per client, per week" },
   { value: "100%", label: "Job success & repeat clients" },
 ];
