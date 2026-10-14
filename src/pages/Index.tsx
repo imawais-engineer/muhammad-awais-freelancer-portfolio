@@ -197,7 +197,7 @@ const Index = () => {
             </span>
             <span className="hidden items-center gap-1.5 sm:inline-flex">
               <BrandLogo label="Upwork" />
-              Upwork Verified 5.0 / 5.0
+              5 Star Rated
               <Star className="h-3.5 w-3.5 fill-current text-primary" aria-hidden="true" />
               <span aria-hidden="true">·</span> {projects.length} Portfolio Projects
             </span>
