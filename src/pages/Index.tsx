@@ -264,6 +264,27 @@ const Index = () => {
                   <BadgeCheck className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" aria-hidden="true" />
                 </span>
               </div>
+              <p className="mt-1 text-center font-mono text-[0.625rem] leading-snug tracking-tight text-muted-foreground sm:text-[0.6875rem]">
+                {site.shortTitle}
+              </p>
+              <div className="mt-3 flex flex-wrap items-center justify-center gap-1 sm:gap-2">
+                {(["upwork", "fiverr", "github", "linkedin"] as const).map((platform) => {
+                  const label = { upwork: "Upwork", fiverr: "Fiverr", github: "GitHub", linkedin: "LinkedIn" }[platform];
+                  return (
+                    <a
+                      key={platform}
+                      href={site.links[platform]}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label={label}
+                      title={label}
+                      className="flex h-8 w-8 items-center justify-center rounded-md border border-panel-border bg-secondary/40 text-muted-foreground transition-colors hover:border-primary/50 hover:bg-accent hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:h-9 sm:w-9"
+                    >
+                      <BrandLogo label={label} className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
