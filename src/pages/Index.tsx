@@ -24,7 +24,7 @@ import BottleneckComparison from "@/components/BottleneckComparison";
 
 import { Button } from "@/components/ui/button";
 import { SITE_URL, absoluteUrl, faqPageJsonLd } from "@/lib/seo";
-import { clientProjects } from "@/data/projects";
+import { clientProjects, projects } from "@/data/projects";
 import {
   about,
   process,
@@ -194,7 +194,7 @@ const Index = () => {
               <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981] animate-pulse" />
               Status: Deploying Production Systems (Q4 2026)
             </span>
-            <span className="hidden sm:inline">Upwork Verified 5.0 / 5.0 ★ · 12 Shipped Systems</span>
+            <span className="hidden sm:inline">Upwork Verified 5.0 / 5.0 ★ · {projects.length} Portfolio Projects</span>
             <span className="text-primary font-medium">PK ➔ CH / US / UK Clients</span>
           </div>
 
