@@ -112,7 +112,7 @@ const About = () => (
                   <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                 </span>
               </div>
-              <p className="mt-1 whitespace-nowrap text-xs text-muted-foreground">AI Automation Engineer · n8n & Make Expert</p>
+              <p className="mt-1 whitespace-nowrap text-xs tracking-tight text-muted-foreground">AI Automation Engineer · n8n & Make Expert</p>
               <div className="mt-4 flex flex-wrap items-center gap-2">
                 {(["upwork", "fiverr", "github", "linkedin"] as const).map((platform) => {
                   const label = { upwork: "Upwork", fiverr: "Fiverr", github: "GitHub", linkedin: "LinkedIn" }[platform];
