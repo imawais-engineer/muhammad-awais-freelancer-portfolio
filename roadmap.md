@@ -4,3 +4,4 @@
 - [x] Remove the three service footer links and add GitHub alongside the other platforms.
 - [x] Verify updated icons and footer on desktop and mobile.
 - [x] Add the role line and profile logos to the homepage hero card, without the tool suffix.
+- [x] Set the homepage card role line to "Forward Deployed AI Engineer" and verify at desktop and mobile.
