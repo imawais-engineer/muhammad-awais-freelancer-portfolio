@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Boxes } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -10,7 +9,7 @@ import { cn } from "@/lib/utils";
  * "OpenAI GPT-4o-mini" still resolves to openai.com.
  *
  * Brand marks are self-hosted under `public/brands/<slug>.svg` (no third-party
- * CDN, so crawlers can always fetch them). Unknown brands render nothing.
+ * CDN, so crawlers can always fetch them). Unknown tools use a neutral icon.
  */
 const BRAND_DOMAINS: Array<[match: string, domain: string, slug?: string]> = [
   ["n8n", "n8n.io", "n8n"],
@@ -97,27 +96,19 @@ export const getBrandDomain = (label: string): string | null => findBrand(label)
 
 const BrandLogo = ({ label, className }: { label: string; className?: string }) => {
   const brand = findBrand(label);
-  const [failed, setFailed] = useState(false);
 
   if (!brand) return <Boxes aria-hidden="true" className={cn("h-4 w-4 shrink-0 text-primary", className)} />;
 
   const [, , slug] = brand;
-  if (!slug || failed) return <Boxes aria-hidden="true" className={cn("h-4 w-4 shrink-0 text-primary", className)} />;
+  if (!slug) return <Boxes aria-hidden="true" className={cn("h-4 w-4 shrink-0 text-primary", className)} />;
 
   const src = `/brands/${slug}.svg`;
 
   return (
-    <img
-      key={src}
-      src={src}
-      alt=""
+    <span
       aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-      width={16}
-      height={16}
-      onError={() => setFailed(true)}
-      className={cn("h-4 w-4 shrink-0 rounded-[3px] object-contain", className)}
+      style={{ maskImage: `url(${src})`, WebkitMaskImage: `url(${src})` }}
+      className={cn("brand-logo h-4 w-4 shrink-0", className)}
     />
   );
 };
