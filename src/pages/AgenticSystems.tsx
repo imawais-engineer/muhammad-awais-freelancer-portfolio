@@ -195,7 +195,7 @@ const AgenticSystems = () => {
           </p>
           <div className="mt-6">
             <Button asChild className="bg-gradient-cta border-0 text-white shadow-glow-sm hover:opacity-95 transition-opacity">
-              <Link to="/contact">Schedule Technical Scoping Call →</Link>
+              <Link to="/contact">Schedule Technical Scoping Call <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /></Link>
             </Button>
           </div>
         </section>
