@@ -1,2 +1,5 @@
 - [x] Align footer sections and add theme-aligned link logos.
 - [x] Replace outdated project counts with the catalog total and verify.
+- [ ] Replace emoji and text-only logo substitutes globally with theme-aligned marks or icons.
+- [ ] Remove the three service footer links and add GitHub alongside the other platforms.
+- [ ] Verify updated icons and footer on desktop and mobile.

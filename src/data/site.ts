@@ -15,6 +15,7 @@ export const site = {
     upwork: "https://www.upwork.com/freelancers/awaisai",
     fiverr: "https://www.fiverr.com/mawais_pk",
     linkedin: "https://linkedin.com/in/imawais-engineer",
+    github: "https://github.com/imawais-engineer",
   },
 };
 
