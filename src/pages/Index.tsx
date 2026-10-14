@@ -196,6 +196,7 @@ const Index = () => {
               Status: Deploying Production Systems (Q4 2026)
             </span>
             <span className="hidden items-center gap-1.5 sm:inline-flex">
+              <span className="sr-only">Upwork</span>
               <BrandLogo label="Upwork" />
               5 Star Rated
               <Star className="h-3.5 w-3.5 fill-current text-primary" aria-hidden="true" />
