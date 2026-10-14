@@ -3,7 +3,7 @@ import { projects } from "@/data/projects";
 
 export const site = {
   name: "Muhammad Awais",
-  title: "AI Automation Engineer — n8n Workflow Automation",
+  title: "Forward Deployed AI Engineer — n8n Workflow Automation",
   shortTitle: "Forward Deployed AI Engineer",
   tagline:
     "Helping agencies, SaaS teams, and small businesses cut 20+ hours of manual work a week with smart automations.",
