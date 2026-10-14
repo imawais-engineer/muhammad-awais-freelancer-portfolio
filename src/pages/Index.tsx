@@ -264,7 +264,7 @@ const Index = () => {
                   <BadgeCheck className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" aria-hidden="true" />
                 </span>
               </div>
-              <p className="mt-1 text-center font-mono text-[0.625rem] leading-snug tracking-tight text-muted-foreground">
+              <p className="mt-1 text-center text-[0.625rem] leading-snug tracking-tight text-muted-foreground">
                 {site.shortTitle.split(" · ").map((part, i, all) => (
                   <span key={part} className="whitespace-nowrap">
                     {part}
