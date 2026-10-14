@@ -21,7 +21,7 @@ const Contact = () => (
   <div className="min-h-screen">
     <Seo
       title="Hire an AI Automation Engineer | Contact Muhammad Awais"
-      description="Hire Muhammad Awais — freelance n8n workflow automation engineer and AI integration specialist. Book a discovery conversation and get a scoped automation proposal within 24 hours."
+      description="Hire Muhammad Awais, freelance AI automation engineer and n8n expert. Share your workflow and get a scoped automation proposal within 24 hours."
       path="/contact"
     />
     <SiteHeader />

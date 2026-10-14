@@ -330,7 +330,7 @@ const Terms = () => {
     <div className="min-h-screen bg-background">
       <Seo
         title="Terms of Service | Muhammad Awais"
-        description="Terms of service covering website use and automation engagements with Muhammad Awais, AI Automation Engineer."
+        description="Terms of service for website use, freelance automation engagements, deliverables, payments and support with Muhammad Awais, AI Automation Engineer."
         path="/terms"
         noindex
       />

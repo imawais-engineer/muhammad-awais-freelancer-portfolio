@@ -180,7 +180,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Seo
         title="Muhammad Awais | AI Automation Engineer & n8n Workflow Automation"
-        description="Freelance n8n workflow automation engineer and AI integration specialist. Muhammad Awais builds production automation systems for agencies and SaaS teams — saving 20+ hours of manual work every week."
+        description="Muhammad Awais, AI Automation Engineer, builds n8n workflow automation, AI agents and CRM integrations that cut 20+ hours of manual work a week for teams."
         path="/"
         jsonLd={jsonLd}
       />

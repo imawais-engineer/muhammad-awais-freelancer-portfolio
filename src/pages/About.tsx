@@ -14,7 +14,7 @@ const About = () => (
   <div className="min-h-screen">
     <Seo
       title="About Muhammad Awais | AI Automation Engineer & n8n Expert"
-      description="Muhammad Awais is a freelance n8n automation engineer and AI integration specialist based in Pakistan, delivering production workflow automation to agencies and SaaS teams worldwide."
+      description="Muhammad Awais is a freelance AI automation engineer in Pakistan building n8n, Make.com and AI agent workflows for agencies and SaaS teams worldwide."
       path="/about"
     />
     <SiteHeader />
