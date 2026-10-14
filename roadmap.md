@@ -3,4 +3,4 @@
 - [x] Replace emoji and text-only logo substitutes globally with theme-aligned marks or icons.
 - [x] Remove the three service footer links and add GitHub alongside the other platforms.
 - [x] Verify updated icons and footer on desktop and mobile.
-- [ ] Add the role line and profile logos to the homepage hero card, without the tool suffix.
+- [x] Add the role line and profile logos to the homepage hero card, without the tool suffix.
