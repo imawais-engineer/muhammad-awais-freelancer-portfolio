@@ -264,13 +264,8 @@ const Index = () => {
                   <BadgeCheck className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" aria-hidden="true" />
                 </span>
               </div>
-              <p className="mt-1 text-center text-[0.625rem] leading-snug tracking-tight text-muted-foreground">
-                {site.shortTitle.split(" · ").map((part, i, all) => (
-                  <span key={part} className="whitespace-nowrap">
-                    {part}
-                    {i < all.length - 1 ? " · " : ""}
-                  </span>
-                ))}
+              <p className="mt-1 text-center text-[0.6875rem] leading-snug tracking-tight text-muted-foreground">
+                {site.shortTitle}
               </p>
               <div className="mt-3 flex flex-wrap items-center justify-center gap-1 sm:gap-2">
                 {(["upwork", "fiverr", "github", "linkedin"] as const).map((platform) => {
