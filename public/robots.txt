@@ -3,4 +3,4 @@ Allow: /
 Disallow: /404
 Disallow: /terms
 
-Sitemap: https://www.imawais.engineer/sitemap.xml
+Sitemap: https://imawais.engineer/sitemap.xml

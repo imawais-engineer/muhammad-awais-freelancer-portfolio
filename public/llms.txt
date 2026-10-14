@@ -4,13 +4,13 @@
 
 ## Pages
 
-- [Home](https://www.imawais.engineer/): Overview, proof metrics, featured automation builds.
-- [Projects](https://www.imawais.engineer/projects): AI automation case studies with workflow architecture and outcomes.
-- [Services](https://www.imawais.engineer/services): Automation service groups, problem mapping, process and FAQ.
-- [n8n Workflow Automation](https://www.imawais.engineer/services/n8n-workflow-automation): Specialist n8n build service.
-- [Lead Qualification & CRM Automation](https://www.imawais.engineer/services/lead-qualification-crm-automation): Lead capture, scoring and CRM sync automation.
-- [About](https://www.imawais.engineer/about): Background, stack and working method.
-- [Contact](https://www.imawais.engineer/contact): Project enquiry form and direct links.
+- [Home](https://imawais.engineer/): Overview, proof metrics, featured automation builds.
+- [Projects](https://imawais.engineer/projects): AI automation case studies with workflow architecture and outcomes.
+- [Services](https://imawais.engineer/services): Automation service groups, problem mapping, process and FAQ.
+- [n8n Workflow Automation](https://imawais.engineer/services/n8n-workflow-automation): Specialist n8n build service.
+- [Lead Qualification & CRM Automation](https://imawais.engineer/services/lead-qualification-crm-automation): Lead capture, scoring and CRM sync automation.
+- [About](https://imawais.engineer/about): Background, stack and working method.
+- [Contact](https://imawais.engineer/contact): Project enquiry form and direct links.
 
 ## Tools
 

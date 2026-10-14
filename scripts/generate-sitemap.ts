@@ -9,7 +9,7 @@ import { resolve } from "path";
 import { projects } from "../src/data/projects";
 import { routeMeta } from "../src/data/routeMeta";
 
-const BASE_URL = "https://www.imawais.engineer";
+const BASE_URL = "https://imawais.engineer";
 
 const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");

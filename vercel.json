@@ -12,10 +12,10 @@
       "has": [
         {
           "type": "host",
-          "value": "imawais.engineer"
+          "value": "www.imawais.engineer"
         }
       ],
-      "destination": "https://www.imawais.engineer/$1",
+      "destination": "https://imawais.engineer/$1",
       "permanent": true
     }
   ],
