@@ -5,6 +5,7 @@ import { ArrowRight, BadgeCheck, Check, MapPin } from "lucide-react";
 import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import BrandLogo from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { about, process, site } from "@/data/site";
 import profileImage from "@/assets/profile.webp";
@@ -110,6 +111,17 @@ const About = () => (
                 >
                   <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                 </span>
+              </div>
+              <p className="mt-1 truncate text-sm text-muted-foreground">{site.title}</p>
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                {(["upwork", "fiverr", "github", "linkedin"] as const).map((platform) => {
+                  const label = { upwork: "Upwork", fiverr: "Fiverr", github: "GitHub", linkedin: "LinkedIn" }[platform];
+                  return (
+                    <a key={platform} href={site.links[platform]} target="_blank" rel="noreferrer noopener" aria-label={label} title={label} className="flex h-10 w-10 items-center justify-center rounded-md border border-panel-border bg-secondary/40 text-muted-foreground transition-colors hover:border-primary/50 hover:bg-accent hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                      <BrandLogo label={label} className="h-5 w-5" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
