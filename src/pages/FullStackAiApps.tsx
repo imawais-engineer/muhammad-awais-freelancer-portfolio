@@ -194,7 +194,7 @@ const FullStackAiApps = () => {
           </p>
           <div className="mt-6">
             <Button asChild className="bg-gradient-cta border-0 text-white shadow-glow-sm hover:opacity-95 transition-opacity">
-              <Link to="/contact">Discuss Your AI Product →</Link>
+              <Link to="/contact">Discuss Your AI Product <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /></Link>
             </Button>
           </div>
         </section>

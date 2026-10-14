@@ -176,7 +176,8 @@ const Services = () => {
 
                 <div className="mt-6 pt-2 border-t border-white/[0.06]">
                   <Link to={service.href} className="system-link inline-flex items-center text-sm font-medium">
-                    Explore architecture &amp; scope →
+                    Explore architecture &amp; scope
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
               </article>

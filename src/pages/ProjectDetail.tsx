@@ -374,7 +374,10 @@ const ProjectDetail = () => {
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Button asChild className="bg-gradient-cta border-0 text-white shadow-glow-sm hover:opacity-95 transition-opacity">
-              <Link to="/contact">{seo?.ctaLabel ?? "Build a similar system"} →</Link>
+              <Link to="/contact">
+                {seo?.ctaLabel ?? "Build a similar system"}
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              </Link>
             </Button>
             <Button asChild variant="outline">
               <Link to="/projects">View all AI automation projects</Link>

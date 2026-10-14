@@ -21,6 +21,7 @@ import HomeServiceCard from "@/components/HomeServiceCard";
 import ProcessStep from "@/components/ProcessStep";
 import N8nSimulator from "@/components/N8nSimulator";
 import BottleneckComparison from "@/components/BottleneckComparison";
+import BrandLogo from "@/components/BrandLogo";
 
 import { Button } from "@/components/ui/button";
 import { SITE_URL, absoluteUrl, faqPageJsonLd } from "@/lib/seo";
@@ -120,7 +121,7 @@ const Index = () => {
           "CRM automation",
           "software engineering",
         ],
-        sameAs: [site.links.upwork, site.links.fiverr, site.links.linkedin],
+        sameAs: [site.links.upwork, site.links.fiverr, site.links.linkedin, site.links.github],
       },
       {
         "@type": "WebSite",
@@ -194,8 +195,15 @@ const Index = () => {
               <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981] animate-pulse" />
               Status: Deploying Production Systems (Q4 2026)
             </span>
-            <span className="hidden sm:inline">Upwork Verified 5.0 / 5.0 ★ · {projects.length} Portfolio Projects</span>
-            <span className="text-primary font-medium">PK ➔ CH / US / UK Clients</span>
+            <span className="hidden items-center gap-1.5 sm:inline-flex">
+              <BrandLogo label="Upwork" />
+              Upwork Verified 5.0 / 5.0
+              <Star className="h-3.5 w-3.5 fill-current text-primary" aria-hidden="true" />
+              <span aria-hidden="true">·</span> {projects.length} Portfolio Projects
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-primary font-medium">
+              PK <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" /> CH / US / UK Clients
+            </span>
           </div>
 
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">

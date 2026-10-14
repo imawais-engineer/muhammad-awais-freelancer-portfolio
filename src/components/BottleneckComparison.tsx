@@ -80,7 +80,7 @@ export default function BottleneckComparison() {
             }`}
           >
             <AlertCircle className="h-3.5 w-3.5 text-red-400" />
-            [!] Manual Bottleneck
+            Manual Bottleneck
           </button>
           <button
             onClick={() => setMode("after")}
@@ -91,7 +91,7 @@ export default function BottleneckComparison() {
             }`}
           >
             <CheckCircle className="h-3.5 w-3.5 text-emerald-400" />
-            [✓] Engineered Outcome
+            Engineered Outcome
           </button>
         </div>
       </div>

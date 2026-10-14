@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Mail, Globe, Linkedin, ArrowUpRight } from "lucide-react";
+import { Mail, Globe, ArrowUpRight } from "lucide-react";
 
 import BrandLogo from "@/components/BrandLogo";
 import ContactForms from "@/components/ContactForms";
@@ -70,8 +70,14 @@ const Contact = () => (
           </Button>
           <Button asChild size="lg" variant="secondary">
             <a href={site.links.linkedin} target="_blank" rel="noreferrer noopener">
-              <Linkedin className="mr-2 h-4 w-4" />
+              <BrandLogo label="LinkedIn" className="mr-2" />
               LinkedIn
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="secondary">
+            <a href={site.links.github} target="_blank" rel="noreferrer noopener">
+              <BrandLogo label="GitHub" className="mr-2" />
+              GitHub
             </a>
           </Button>
           <Button asChild size="lg" variant="secondary">
