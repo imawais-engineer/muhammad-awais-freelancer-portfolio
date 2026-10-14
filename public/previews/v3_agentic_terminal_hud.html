@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Awais — Agentic Command OS & n8n Telemetry (V3: Terminal HUD)</title>
+  <style>
+    :root {
+      --bg-hud: #070b12;
+      --bg-panel: #0d1421;
+      --bg-card: #121c2e;
+      --border-cyan: rgba(6, 182, 212, 0.28);
+      --border-dim: rgba(148, 163, 184, 0.14);
+      --cyan: #06b6d4;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --text-main: #e2e8f0;
+      --text-dim: #94a3b8;
+      --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-hud);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      background-image: 
+        linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .hud-wrap {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Telemetry Top Bar */
+    .telemetry-bar {
+      background: #04070c;
+      border-bottom: 1px solid var(--border-cyan);
+      padding: 10px 24px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .telemetry-bar .online { color: var(--green); }
+    .telemetry-bar .cyan { color: var(--cyan); }
+
+    /* Command Header */
+    .cmd-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-dim);
+    }
+    .cmd-logo {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .cmd-logo span { color: var(--cyan); }
+    .cmd-links {
+      display: flex;
+      gap: 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .cmd-links a:hover { color: var(--cyan); }
+    .hud-btn {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 6px;
+      border: 1px solid var(--cyan);
+      background: rgba(6, 182, 212, 0.14);
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hud-btn:hover {
+      background: var(--cyan);
+      color: #04070c;
+    }
+
+    /* Hero + Interactive ROI Calculator Split */
+    .hud-hero {
+      padding: 56px 0;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .terminal-prompt {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+    .hud-hero h1 {
+      font-size: 46px;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hud-hero p.sub {
+      color: var(--text-dim);
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+    .stat-chips {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .stat-chip {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-left: 3px solid var(--cyan);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+    }
+    .stat-chip strong {
+      font-size: 20px;
+      color: #fff;
+      display: block;
+    }
+    .stat-chip span {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* Interactive ROI & Workflow Scope Estimator Panel */
+    .calc-panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-cyan);
+      border-radius: 12px;
+      padding: 26px;
+      box-shadow: 0 0 40px rgba(6, 182, 212, 0.1);
+    }
+    .calc-head {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cyan);
+      border-bottom: 1px solid var(--border-dim);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .calc-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .bottleneck-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .b-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dim);
+      color: var(--text-dim);
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      cursor: pointer;
+      text-align: left;
+    }
+    .b-chip.active {
+      border-color: var(--cyan);
+      color: #fff;
+      background: rgba(6, 182, 212, 0.15);
+    }
+    .slider-wrap {
+      margin-bottom: 20px;
+    }
+    .slider-wrap input[type=range] {
+      width: 100%;
+      accent-color: var(--cyan);
+      cursor: pointer;
+    }
+    .calc-output {
+      background: #060a10;
+      border: 1px solid var(--border-dim);
+      border-radius: 8px;
+      padding: 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .calc-row:last-child { margin-bottom: 0; }
+    .calc-val { color: var(--green); font-weight: 700; }
+
+    /* Production Log Case Studies */
+    .hud-section {
+      padding: 56px 0;
+      border-top: 1px solid var(--border-dim);
+    }
+    .hud-sec-title {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .hud-h2 {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 28px;
+    }
+    .log-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .log-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: 10px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .log-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+    .log-card h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+    .log-card p {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+    .code-trace {
+      background: #05080e;
+      border: 1px solid var(--border-dim);
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #a5f3fc;
+      margin-bottom: 16px;
+    }
+
+    /* Engineering Architecture & 5-Step Pipeline */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .arch-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-top: 2px solid var(--cyan);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .arch-box h4 {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .arch-box p {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* Proof & Certs */
+    .hud-proof {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .terminal-quote {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 960px) {
+      .hud-hero, .log-cards, .arch-grid, .hud-proof { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="telemetry-bar">
+    <div><span class="online">● SYSTEM ONLINE</span> // [VERSION 03: AGENTIC COMMAND OS & ROI TELEMETRY HUD]</div>
+    <div>ENGINEER: MUHAMMAD AWAIS · <span class="cyan">N8N CERTIFIED</span> · UPWORK 5.0/5.0</div>
+  </div>
+
+  <div class="hud-wrap">
+    <header class="cmd-nav">
+      <a href="https://www.imawais.engineer/" class="cmd-logo">~/imawais<span>.engineer</span></a>
+      <nav class="cmd-links">
+        <a href="#deployments">./deployments</a>
+        <a href="#services">./capabilities</a>
+        <a href="#guardrails">./guardrails</a>
+        <a href="https://www.imawais.engineer/about">./about</a>
+      </nav>
+      <a href="https://www.imawais.engineer/contact" class="hud-btn">$ init_project --scope</a>
+    </header>
+
+    <!-- HERO WITH LIVE ROI & ARCHITECTURE ESTIMATOR -->
+    <div class="hud-hero">
+      <div>
+        <div class="terminal-prompt">&gt; whoami --role="Freelance AI Automation Engineer & n8n Expert"</div>
+        <h1>I build AI-powered systems that eliminate repetitive work.</h1>
+        <p class="sub">
+          I'm Muhammad Awais. I help agencies, SaaS teams and small businesses automate operations with n8n workflow automation, AI agents and connected business systems — turning manual workflows into reliable ones. I don't use AI for the sake of it: if a deterministic automation works better, I keep it simple.
+        </p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="https://www.imawais.engineer/contact" class="hud-btn">Start an AI automation project →</a>
+          <a href="https://www.imawais.engineer/projects" class="hud-btn" style="background:transparent; border-color:var(--border-dim);">Explore 12 Case Studies</a>
+        </div>
+
+        <div class="stat-chips">
+          <div class="stat-chip">
+            <strong>5.0 / 5.0</strong>
+            <span>UPWORK RATING (100% JOB SUCCESS)</span>
+          </div>
+          <div class="stat-chip">
+            <strong>20+ hrs/wk</strong>
+            <span>SAVED PER CLIENT IN PRODUCTION</span>
+          </div>
+          <div class="stat-chip">
+            <strong>12 Systems</strong>
+            <span>SHIPPED & DOCUMENTED END-TO-END</span>
+          </div>
+          <div class="stat-chip">
+            <strong>Global Remote</strong>
+            <span>PAKISTAN → SWITZERLAND, US, EU, UK</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE SCOPE & ROI SIMULATOR -->
+      <div class="calc-panel">
+        <div class="calc-head">
+          <span>// INTERACTIVE WORKFLOW ROI & STACK ESTIMATOR</span>
+          <span>v2026.4</span>
+        </div>
+        <label class="calc-label">1. Select manual bottleneck to eliminate:</label>
+        <div class="bottleneck-grid">
+          <button class="b-chip active" onclick="selectBottleneck(0, this)">[A] Customer Support Triage</button>
+          <button class="b-chip" onclick="selectBottleneck(1, this)">[B] Scraping & Slack Digest</button>
+          <button class="b-chip" onclick="selectBottleneck(2, this)">[C] CRM & Lead Qualification</button>
+          <button class="b-chip" onclick="selectBottleneck(3, this)">[D] Social / Content Outliers</button>
+        </div>
+
+        <div class="slider-wrap">
+          <label class="calc-label">2. Current manual team hours spent per week: <strong id="hrsDisplay" style="color:var(--cyan);">20 hrs/wk</strong></label>
+          <input type="range" id="hrsSlider" min="5" max="50" value="20" oninput="updateROI()" />
+        </div>
+
+        <div class="calc-output">
+          <div class="calc-row">
+            <span>Est. Hours Reclaimed (85% automation):</span>
+            <span class="calc-val" id="outSaved">17 hrs / week (~68 hrs / mo)</span>
+          </div>
+          <div class="calc-row">
+            <span>Recommended Stack:</span>
+            <span style="color:var(--cyan);" id="outStack">n8n + OpenAI GPT-4o-mini + Gmail/Slack API</span>
+          </div>
+          <div class="calc-row">
+            <span>Architecture Pattern:</span>
+            <span style="color:var(--amber);" id="outPattern">Multi-channel webhook → LLM classifier → Fan-out</span>
+          </div>
+          <div class="calc-row">
+            <span>Delivery Protocol:</span>
+            <span>5-Step (Design Approved Before Build)</span>
+          </div>
+        </div>
+
+        <a href="https://www.imawais.engineer/contact" class="hud-btn" style="width:100%; justify-content:center;">Request Honest Scope for This Workflow →</a>
+      </div>
+    </div>
+
+    <!-- FEATURED PRODUCTION DEPLOYMENTS -->
+    <section id="deployments" class="hud-section">
+      <div class="hud-sec-title">// PRODUCTION TELEMETRY · PAID CLIENT BUILDS</div>
+      <h2 class="hud-h2">Verified Automation Systems in Production</h2>
+
+      <div class="log-cards">
+        <div class="log-card">
+          <div>
+            <div class="log-meta">[REPORTING] · SMALL BUSINESS / AGENCY</div>
+            <h3>Automated Slack Reporting Pipeline with Apify and n8n</h3>
+            <p>A scheduled scraping-to-Slack digest that replaced 10+ hours a day of manual data collection and formatting.</p>
+            <div class="code-trace">
+              &gt; trigger: cron_schedule<br>
+              &gt; ingest: Apify + Make.com + n8n<br>
+              &gt; impact: 10+ hrs/week saved
+            </div>
+          </div>
+          <a href="https://www.imawais.engineer/projects/slack-reporting-pipeline-apify-n8n" style="font-family:var(--font-mono); font-size:12px; color:var(--cyan);">cat ./case-study/slack-reporting ↗</a>
+        </div>
+
+        <div class="log-card">
+          <div>
+            <div class="log-meta">[SCRAPING] · DIRECT CLIENT REFERRAL</div>
+            <h3>Instagram Reels Outlier Detection & Telegram Reporting</h3>
+            <p>Monitors 50+ Instagram business accounts, scores every new Reel against its 12-Reel median, and pushes ≥3.0× outliers to Telegram.</p>
+            <div class="code-trace">
+              &gt; source: SocialCrawl API (50+ accts)<br>
+              &gt; rule: views/median &gt;= 3.0x (&lt;=14d)<br>
+              &gt; impact: 100% viral detection rate
+            </div>
+          </div>
+          <a href="https://www.imawais.engineer/projects/instagram-reels-outlier-telegram-n8n" style="font-family:var(--font-mono); font-size:12px; color:var(--cyan);">cat ./case-study/instagram-outliers ↗</a>
+        </div>
+
+        <div class="log-card">
+          <div>
+            <div class="log-meta">[SUPPORT] · SAAS / E-COMMERCE CLIENT</div>
+            <h3>AI Customer Support Triage System</h3>
+            <p>Multi-channel tickets are normalised, classified for topic, urgency and sentiment, then fanned out to Slack, Sheets, and instant auto-reply.</p>
+            <div class="code-trace">
+              &gt; model: OpenAI GPT-4o-mini<br>
+              &gt; channels: Gmail API + Slack + Sheets<br>
+              &gt; impact: 20+ hrs/wk · 90% faster replies
+            </div>
+          </div>
+          <a href="https://www.imawais.engineer/projects" style="font-family:var(--font-mono); font-size:12px; color:var(--cyan);">cat ./case-study/support-triage ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES & ENGINEERING PRIORITIES -->
+    <section id="guardrails" class="hud-section">
+      <div class="hud-sec-title">// RELIABILITY ENGINEERING</div>
+      <h2 class="hud-h2">Built to Run, Not Just Connect</h2>
+      <div class="arch-grid">
+        <div class="arch-box">
+          <h4>01 // Resilient Execution</h4>
+          <p>API failures, rate limits, and timeouts don't silently break your workflow. Errors are caught on every branch with automated backoff retries.</p>
+        </div>
+        <div class="arch-box">
+          <h4>02 // Idempotent State</h4>
+          <p>Duplicate triggers are controlled via state flags and stable keys so the same lead, ticket, or Reel is never processed twice.</p>
+        </div>
+        <div class="arch-box">
+          <h4>03 // Scoped Credentials</h4>
+          <p>Credentials stay out of workflow exports. Keys live in encrypted stores or environment variables with least-privilege tokens.</p>
+        </div>
+        <div class="arch-box">
+          <h4>04 // Visible Failures</h4>
+          <p>Execution history, structured run logs, and instant failure alerts ensure you know about upstream API issues before customers do.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENT LOGS & CREDENTIALS -->
+    <section id="services" class="hud-section">
+      <div class="hud-sec-title">// CLIENT VERIFICATION & CERTIFICATIONS</div>
+      <h2 class="hud-h2">Trusted by Global Teams</h2>
+      <div class="hud-proof">
+        <div>
+          <div class="terminal-quote">
+            <p style="font-style:italic; margin-bottom:10px;">“Everything you need. Professional, responds extremely quickly, and works in a structured and reliable manner. Top-notch! There's really nothing more to say.”</p>
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--cyan);">— Aaron Auf der Maur · Managing Director, Brand Aktuell (Switzerland · Upwork 5.0/5.0)</div>
+          </div>
+          <div class="terminal-quote">
+            <p style="font-style:italic; margin-bottom:10px;">“You did amazing work again – exactly as expected. Thanks a lot!”</p>
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--cyan);">— Diego Armandon · Direct Client Referral (Switzerland · 5.0/5.0)</div>
+          </div>
+        </div>
+        <div class="terminal-quote" style="font-family:var(--font-mono); font-size:12px;">
+          <div style="color:var(--green); margin-bottom:12px;">$ ls -la ./credentials-and-awards</div>
+          <p style="margin-bottom:10px;"><strong>[CERT] n8n Certified — Essentials & APIs</strong><br><span style="color:var(--text-dim);">Official n8n certification covering workflow fundamentals and API integration.</span></p>
+          <p style="margin-bottom:10px;"><strong>[CERT] GenAI Workflow Orchestration — DeepLearning.AI</strong><br><span style="color:var(--text-dim);">Orchestrating generative AI inside production workflows.</span></p>
+          <p style="margin-bottom:10px;"><strong>[AWARD] USAII Global AI Hackathon 2026 — Finalist</strong><br><span style="color:var(--text-dim);">Built an AI agent turning vague ideas into structured action plans with human-in-the-loop review.</span></p>
+          <p><strong>[CONTACT] Direct Dispatch:</strong> <a href="mailto:alpha.se.awais@gmail.com" style="color:var(--cyan);">alpha.se.awais@gmail.com</a></p>
+        </div>
+      </div>
+    </section>
+
+    <footer style="padding: 36px 0; border-top: 1px solid var(--border-dim); font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <div>© 2026 Muhammad Awais — AI Automation Engineer (imawais.engineer)</div>
+      <div style="display:flex; gap:18px;">
+        <a href="https://www.imawais.engineer/projects">Projects</a>
+        <a href="https://www.imawais.engineer/about">About</a>
+        <a href="https://www.imawais.engineer/contact">Contact</a>
+        <a href="mailto:alpha.se.awais@gmail.com">alpha.se.awais@gmail.com</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const presets = [
+      { stack: "n8n + OpenAI GPT-4o-mini + Gmail/Slack API", pattern: "Multi-channel webhook → LLM classifier → Fan-out" },
+      { stack: "n8n + Apify + Make.com + Google Sheets + Slack", pattern: "Scheduled Scraper → Normaliser → Daily Digest" },
+      { stack: "n8n + HubSpot / GoHighLevel + Airtable + AI Scoring", pattern: "Lead Webhook → Enrichment & 0-100 Score → CRM Sync" },
+      { stack: "n8n + SocialCrawl API + Google Sheets + Telegram Bot", pattern: "Batch Loop (4s delay) → Median Filter (≥3x) → Alert" }
+    ];
+    let currentPreset = 0;
+
+    function selectBottleneck(idx, el) {
+      currentPreset = idx;
+      document.querySelectorAll('.b-chip').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('outStack').textContent = presets[idx].stack;
+      document.getElementById('outPattern').textContent = presets[idx].pattern;
+      updateROI();
+    }
+
+    function updateROI() {
+      const hrs = parseInt(document.getElementById('hrsSlider').value, 10);
+      document.getElementById('hrsDisplay').textContent = hrs + " hrs/wk";
+      const saved = Math.round(hrs * 0.85);
+      const monthly = saved * 4;
+      document.getElementById('outSaved').textContent = saved + " hrs / week (~" + monthly + " hrs / mo)";
+    }
+  </script>
+</body>
+</html>

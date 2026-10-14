@@ -19,6 +19,8 @@ import EngineeringValueCard from "@/components/EngineeringValueCard";
 import FeaturedProjectCard from "@/components/FeaturedProjectCard";
 import HomeServiceCard from "@/components/HomeServiceCard";
 import ProcessStep from "@/components/ProcessStep";
+import N8nSimulator from "@/components/N8nSimulator";
+import BottleneckComparison from "@/components/BottleneckComparison";
 
 import { Button } from "@/components/ui/button";
 import { SITE_URL, absoluteUrl, faqPageJsonLd } from "@/lib/seo";
@@ -185,7 +187,17 @@ const Index = () => {
 
       <main id="main" tabIndex={-1} className="pb-8">
         {/* 01 — Hero */}
-        <section className="container pt-8 md:pt-12">
+        <section className="container pt-6 md:pt-10">
+          {/* Swiss Editorial Telemetry Strip */}
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-panel-border bg-panel/30 px-4 py-2 font-mono text-[0.6875rem] uppercase tracking-wider text-muted-foreground backdrop-blur">
+            <span className="flex items-center gap-2 text-foreground font-semibold">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981] animate-pulse" />
+              Status: Deploying Production Systems (Q4 2026)
+            </span>
+            <span className="hidden sm:inline">Upwork Verified 5.0 / 5.0 ★ · 12 Shipped Systems</span>
+            <span className="text-primary font-medium">PK ➔ CH / US / UK Clients</span>
+          </div>
+
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
               <h1 className="max-w-3xl font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
@@ -247,8 +259,13 @@ const Index = () => {
             </div>
           </div>
 
+          {/* Live n8n Execution Studio (Obsidian Canvas) */}
+          <div className="mt-8">
+            <N8nSimulator />
+          </div>
+
           {/* 02 — Proof strip */}
-          <dl className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <dl className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {proofStats.map((stat) => (
               <div key={stat.label} className="node-card p-4">
                 <dt className="font-mono text-[0.625rem] uppercase leading-relaxed tracking-[0.15em] text-muted-foreground sm:text-[0.6875rem] sm:tracking-[0.2em]">
@@ -295,36 +312,7 @@ const Index = () => {
             </Button>
           }
         >
-          <div className="grid gap-4 md:grid-cols-2">
-            <HomeServiceCard
-              title="AI Agents & Chatbots"
-              problem="Customer questions, support tickets, and content decisions pile up faster than a small team can handle."
-              solution="LLM-powered AI agents and classification workflows that answer, route, and extract on your channels — web, WhatsApp, Slack or email."
-              outcome="Faster first replies, fewer manual decisions, and 24/7 handling of routine requests."
-              tools="OpenAI · Claude · Gemini · n8n"
-            />
-            <HomeServiceCard
-              title="n8n Workflow & Process Automation"
-              problem="Teams waste hours moving data between spreadsheets, inboxes, Google Workspace and disconnected apps."
-              solution="End-to-end n8n and Make.com pipelines that connect your tools and run on triggers, schedules, or webhooks."
-              outcome="Repetitive business processes disappear, errors drop, and operations scale without hiring."
-              tools="n8n · Make · Zapier · Google Workspace · APIs"
-            />
-            <HomeServiceCard
-              title="CRM & Lead Automation"
-              problem="Leads arrive faster than they can be qualified, routed, and followed up."
-              solution="Lead qualification automation that captures, scores, routes and syncs every enquiry to your CRM, then books meetings and triggers follow-ups."
-              outcome="Good leads never go cold; sales time is spent on qualified calls."
-              tools="HubSpot · Pipedrive · GoHighLevel · Airtable"
-            />
-            <HomeServiceCard
-              title="Data & Scraping Automation"
-              problem="Market tracking, reporting, and data collection are rebuilt by hand every week."
-              solution="Scheduled scraping, enrichment, and structured delivery to sheets, dashboards, or CRMs."
-              outcome="Reliable data feeds and automated reporting without the manual copy-paste."
-              tools="Apify · Python · REST APIs · Google Sheets"
-            />
-          </div>
+          <BottleneckComparison />
           <p className="mt-6 text-base text-muted-foreground">
             Full detail on scope, tools, deliverables and FAQs:{" "}
             <Link to="/services" className="system-link">

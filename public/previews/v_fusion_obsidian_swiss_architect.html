@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Awais — AI Systems Architecture & n8n Engineering (Obsidian Swiss Fusion)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-canvas: #08090d;
+      --bg-surface: #0e111a;
+      --bg-card: #131722;
+      --bg-card-subtle: #171c2b;
+      
+      --rule: rgba(255, 255, 255, 0.08);
+      --rule-bright: rgba(255, 255, 255, 0.16);
+      --rule-accent: #3b82f6;
+
+      --text-main: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+
+      --accent-emerald: #10b981;
+      --accent-emerald-glow: rgba(16, 185, 129, 0.2);
+      --accent-n8n: #ff6d5a;
+      --accent-n8n-glow: rgba(255, 109, 90, 0.2);
+      --accent-klein: #3b82f6;
+      --accent-klein-glow: rgba(59, 130, 246, 0.25);
+      --accent-vermilion: #ef4444;
+
+      --font-display: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      background-image: 
+        radial-gradient(ellipse at 15% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 15%, rgba(16, 185, 129, 0.06) 0%, transparent 45%),
+        radial-gradient(#1e2230 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 28px 28px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* SWISS STRUCTURAL FRAME (1260px container with 1px border lines) */
+    .fusion-frame {
+      max-width: 1260px;
+      margin: 0 auto;
+      border-left: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      background: rgba(8, 9, 13, 0.88);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 100px rgba(0, 0, 0, 0.6);
+    }
+
+    /* TOP SWISS TELEMETRY INDEX BAR */
+    .index-bar {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 10px 28px;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-secondary);
+      background: rgba(14, 17, 26, 0.7);
+    }
+    .index-bar .live-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+      margin-right: 8px;
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* SWISS EDITORIAL MASTHEAD NAVIGATION */
+    .masthead {
+      display: grid;
+      grid-template-columns: 1.3fr 1.7fr auto;
+      border-bottom: 1px solid var(--rule);
+      align-items: stretch;
+    }
+    .mast-brand {
+      padding: 24px 32px;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .mast-brand strong {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mast-brand strong .n8n-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: rgba(255, 109, 90, 0.15);
+      color: var(--accent-n8n);
+      border: 1px solid rgba(255, 109, 90, 0.35);
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .mast-brand span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .mast-nav {
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      gap: 32px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+    }
+    .mast-nav a { transition: color 0.15s ease; }
+    .mast-nav a:hover { color: #ffffff; }
+    .mast-cta {
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      background: var(--accent-klein);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-left: 1px solid var(--rule);
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .mast-cta:hover {
+      background: #2563eb;
+      box-shadow: 0 0 24px var(--accent-klein-glow);
+    }
+
+    /* HERO SPLIT: SWISS EDITORIAL HEADLINE (LEFT) + OBSIDIAN N8N STUDIO (RIGHT) */
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-left {
+      padding: 56px 40px;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-emerald);
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow .eyebrow-chip {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 46px;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 24px;
+    }
+    .hero-title .gradient-span {
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 70%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subdeck {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 580px;
+    }
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      margin-bottom: 32px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .meta-item span {
+      display: block;
+      color: var(--text-muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .meta-item strong {
+      color: #ffffff;
+      font-size: 13px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-fusion {
+      padding: 13px 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-fusion.primary {
+      background: var(--accent-klein);
+      color: #ffffff;
+      border: 1px solid #60a5fa;
+      box-shadow: 0 0 20px var(--accent-klein-glow);
+    }
+    .btn-fusion.primary:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+    }
+    .btn-fusion.outline {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-main);
+      border: 1px solid var(--rule-bright);
+    }
+    .btn-fusion.outline:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: #94a3b8;
+    }
+
+    /* RIGHT: OBSIDIAN N8N PIPELINE SIMULATOR STUDIO */
+    .hero-right {
+      background: #090b11;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 109, 90, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .studio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+    }
+    .studio-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-n8n);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+    .studio-tabs {
+      display: flex;
+      gap: 6px;
+    }
+    .wf-tab {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--rule);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .wf-tab.active {
+      background: rgba(255, 109, 90, 0.15);
+      border-color: var(--accent-n8n);
+      color: #ffffff;
+    }
+
+    /* SIMULATOR NODES CANVAS */
+    .canvas-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      margin: 16px 0;
+    }
+    .canvas-node {
+      background: var(--bg-surface);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .canvas-node::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: transparent;
+      border-radius: 6px 0 0 6px;
+      transition: background 0.2s ease;
+    }
+    .canvas-node.active-step {
+      border-color: var(--accent-emerald);
+      background: #111a1f;
+      transform: translateX(4px);
+      box-shadow: 0 0 16px var(--accent-emerald-glow);
+    }
+    .canvas-node.active-step::before {
+      background: var(--accent-emerald);
+    }
+    .node-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .node-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .node-icon.trigger { background: rgba(255, 109, 90, 0.2); color: var(--accent-n8n); border: 1px solid rgba(255, 109, 90, 0.4); }
+    .node-icon.ai { background: rgba(59, 130, 246, 0.2); color: var(--accent-klein); border: 1px solid rgba(59, 130, 246, 0.4); }
+    .node-icon.filter { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.4); }
+    .node-icon.output { background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.4); }
+    
+    .node-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      font-family: var(--font-sans);
+    }
+    .node-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      margin-top: 2px;
+    }
+    .node-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--rule);
+      color: var(--text-secondary);
+      padding: 3px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .studio-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+    .status-text {
+      color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-simulate {
+      background: var(--accent-emerald);
+      color: #052e16;
+      border: none;
+      padding: 8px 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-simulate:hover {
+      background: #34d399;
+      box-shadow: 0 0 16px var(--accent-emerald-glow);
+    }
+
+    /* SWISS ARCHITECTURAL KPI GRID */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--rule);
+    }
+    .kpi-item {
+      padding: 32px 28px;
+      border-right: 1px solid var(--rule);
+      background: rgba(14, 17, 26, 0.4);
+    }
+    .kpi-item:last-child { border-right: none; }
+    .kpi-num {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .kpi-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* SECTION 2: INTERACTIVE BEFORE/AFTER MANUAL BOTTLENECK TOGGLE (SWISS GRID) */
+    .section-header {
+      padding: 40px 32px 20px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .sec-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-klein);
+      margin-bottom: 8px;
+    }
+    .sec-h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+    .toggle-group {
+      display: inline-flex;
+      background: var(--bg-surface);
+      border: 1px solid var(--rule);
+      padding: 3px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+    .toggle-btn {
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .toggle-btn.active.before {
+      background: rgba(239, 68, 68, 0.18);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+    .toggle-btn.active.after {
+      background: rgba(16, 185, 129, 0.18);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .bottleneck-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-bottom: 1px solid var(--rule);
+    }
+    .bottleneck-card {
+      padding: 36px 32px;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      background: rgba(14, 17, 26, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 240px;
+      transition: all 0.25s ease;
+    }
+    .bottleneck-card:nth-child(2n) { border-right: none; }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .card-idx {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .status-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .status-badge.before {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+    .status-badge.after {
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .card-body-box {
+      background: var(--bg-surface);
+      border-left: 3px solid var(--accent-vermilion);
+      padding: 16px;
+      border-radius: 0 4px 4px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    /* SECTION 3: CASE STUDIES & ARCHITECTURAL DOSSIERS */
+    .dossier-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--rule);
+    }
+    .dossier-col {
+      padding: 36px 32px;
+      border-right: 1px solid var(--rule);
+    }
+    .dossier-col:last-child { border-right: none; }
+    .dossier-tagline {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-n8n);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .dossier-h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .dossier-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .tech-chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: var(--text-secondary);
+    }
+    .dossier-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0;
+      padding: 14px;
+      background: var(--bg-surface);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+    }
+    .dm-val {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent-emerald);
+    }
+    .dm-lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* CODE TELEMETRY BLOCK */
+    .telemetry-code {
+      background: #06070a;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #38bdf8;
+      overflow-x: auto;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    /* SECTION 4: CLIENT TESTIMONIALS & VERBATIM PROOF */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--rule);
+    }
+    .proof-box {
+      padding: 36px 32px;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .proof-box:last-child { border-right: none; }
+    .proof-rating {
+      color: #fbbf24;
+      font-size: 14px;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+    .proof-quote {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #ffffff;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    .proof-client {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--rule);
+      padding-top: 14px;
+    }
+    .proof-client strong {
+      display: block;
+      color: #ffffff;
+      font-size: 13px;
+    }
+
+    /* ENGINEERING GUARANTEES STRIP (4-COL) */
+    .guarantee-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--rule);
+    }
+    .guarantee-cell {
+      padding: 24px;
+      border-right: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+    .guarantee-cell:last-child { border-right: none; }
+    .guarantee-cell strong {
+      display: block;
+      font-size: 12px;
+      color: #ffffff;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .guarantee-cell p {
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* FOOTER CONSULTATION MASTHEAD */
+    .footer-masthead {
+      padding: 56px 40px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      align-items: center;
+      gap: 32px;
+      background: var(--bg-surface);
+    }
+    .foot-h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .foot-p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .foot-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    /* SUB-FOOTER STAMP */
+    .subfooter {
+      padding: 16px 32px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 960px) {
+      .hero-split, .dossier-grid, .proof-grid, .bottleneck-grid, .footer-masthead { grid-template-columns: 1fr; }
+      .hero-left, .dossier-col, .proof-box, .bottleneck-card { border-right: none; }
+      .kpi-grid, .guarantee-grid { grid-template-columns: repeat(2, 1fr); }
+      .masthead { grid-template-columns: 1fr; }
+      .mast-brand, .mast-nav { border-right: none; border-bottom: 1px solid var(--rule); }
+      .mast-cta { padding: 16px 32px; border-left: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="fusion-frame">
+
+    <!-- TOP TELEMETRY INDEX -->
+    <div class="index-bar">
+      <div><span class="live-dot"></span>STATUS: DEPLOYING PRODUCTION WORKFLOWS (Q4 2026)</div>
+      <div style="text-align: center;">UPWORK VERIFIED 5.0 / 5.0 ★ · 12 SHIPPED ENTERPRISE SYSTEMS</div>
+      <div style="text-align: right;">LOC: ISLAMABAD, PK ➔ CH / US / UK CLIENTS</div>
+    </div>
+
+    <!-- SWISS EDITORIAL MASTHEAD -->
+    <header class="masthead">
+      <div class="mast-brand">
+        <strong>MUHAMMAD AWAIS <span class="n8n-badge">N8N CERTIFIED</span></strong>
+        <span>AI AUTOMATION & SYSTEMS ARCHITECTURE</span>
+      </div>
+      <nav class="mast-nav">
+        <a href="#simulator">Execution Canvas</a>
+        <a href="#services">Engineered Systems</a>
+        <a href="#dossiers">Technical Dossiers</a>
+        <a href="#proof">Client Proof</a>
+      </nav>
+      <a href="https://www.imawais.engineer/contact" class="mast-cta">
+        Book Architecture Call ↗
+      </a>
+    </header>
+
+    <!-- HERO SECTION: EDITORIAL TYPOGRAPHY (LEFT) + OBSIDIAN N8N PIPELINE SIMULATOR (RIGHT) -->
+    <section class="hero-split">
+      <div class="hero-left">
+        <div>
+          <div class="hero-eyebrow">
+            <span class="eyebrow-chip">ENTERPRISE AGENTIC AI</span>
+            <span>SYSTEMS ARCHITECT & N8N SPECIALIST</span>
+          </div>
+          <h1 class="hero-title">
+            I build AI-powered systems that <span class="gradient-span">eliminate repetitive work.</span>
+          </h1>
+          <p class="hero-subdeck">
+            Custom n8n orchestration, autonomous multi-agent pipelines, and fault-tolerant CRM workflows that reclaim 20+ hours of manual operations every week for agencies, founders, and scaling teams.
+          </p>
+          
+          <div class="hero-meta-grid">
+            <div class="meta-item">
+              <span>Core Specialisation</span>
+              <strong>n8n Workflows & AI Swarms</strong>
+            </div>
+            <div class="meta-item">
+              <span>Verified Track Record</span>
+              <strong>5.0 / 5.0 (100% Success)</strong>
+            </div>
+            <div class="meta-item">
+              <span>Average Reclaimed Time</span>
+              <strong>20+ Hours / Week / Client</strong>
+            </div>
+            <div class="meta-item">
+              <span>Architectural Model</span>
+              <strong>Self-Healing & Idempotent</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="https://www.imawais.engineer/contact" class="btn-fusion primary">
+            Start an AI Project ↗
+          </a>
+          <a href="mailto:alpha.se.awais@gmail.com" class="btn-fusion outline">
+            alpha.se.awais@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <!-- OBSIDIAN N8N STUDIO SIMULATOR -->
+      <div class="hero-right" id="simulator">
+        <div>
+          <div class="studio-header">
+            <div class="studio-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              n8n Production Execution Engine
+            </div>
+            <div class="studio-tabs">
+              <button class="wf-tab active" onclick="switchWorkflow(0)">Slack Reporting</button>
+              <button class="wf-tab" onclick="switchWorkflow(1)">Reels Outlier</button>
+              <button class="wf-tab" onclick="switchWorkflow(2)">Support Triage</button>
+            </div>
+          </div>
+
+          <div class="canvas-container">
+            <!-- NODE 1 -->
+            <div class="canvas-node" id="node-n1">
+              <div class="node-left">
+                <div class="node-icon trigger">TRG</div>
+                <div>
+                  <div class="node-name" id="n1-title">Cron Schedule + Apify Scraper</div>
+                  <div class="node-desc" id="n1-desc">Pulls daily multi-source marketing & ops metrics</div>
+                </div>
+              </div>
+              <div class="node-pill" id="n1-badge">200 OK · 1.2s</div>
+            </div>
+
+            <!-- NODE 2 -->
+            <div class="canvas-node" id="node-n2">
+              <div class="node-left">
+                <div class="node-icon filter">FLT</div>
+                <div>
+                  <div class="node-name" id="n2-title">Data Normalisation & Deduplication</div>
+                  <div class="node-desc" id="n2-desc">Idempotent state check + schema validation</div>
+                </div>
+              </div>
+              <div class="node-pill" id="n2-badge">0 Duplicates</div>
+            </div>
+
+            <!-- NODE 3 -->
+            <div class="canvas-node" id="node-n3">
+              <div class="node-left">
+                <div class="node-icon ai">AI</div>
+                <div>
+                  <div class="node-name" id="n3-title">Executive Digest Formatter (Gemini/OpenAI)</div>
+                  <div class="node-desc" id="n3-desc">Structures raw metrics into actionable daily summary</div>
+                </div>
+              </div>
+              <div class="node-pill" id="n3-badge">Processed</div>
+            </div>
+
+            <!-- NODE 4 -->
+            <div class="canvas-node" id="node-n4">
+              <div class="node-left">
+                <div class="node-icon output">OUT</div>
+                <div>
+                  <div class="node-name" id="n4-title">Slack Channel + Google Sheets Log</div>
+                  <div class="node-desc" id="n4-desc">Replaces 10+ hrs/week of manual copy-paste reporting</div>
+                </div>
+              </div>
+              <div class="node-pill" id="n4-badge" style="color: var(--accent-emerald);">10+ hrs/wk saved</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="studio-bar">
+          <span class="status-text" id="wfStatus">
+            ● Status: Production Active (Idempotent)
+          </span>
+          <button class="btn-simulate" onclick="simulateRun()">
+            ▶ Run Pipeline
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURAL KPI STRIP (SWISS GRID) -->
+    <div class="kpi-grid">
+      <div class="kpi-item">
+        <div class="kpi-num">5.0 / 5.0</div>
+        <div class="kpi-tag">Upwork Client Rating</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">12+</div>
+        <div class="kpi-tag">Production Systems Shipped</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">20+ hrs</div>
+        <div class="kpi-tag">Reclaimed / Week / Client</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">100%</div>
+        <div class="kpi-tag">Job Success & Client Retention</div>
+      </div>
+    </div>
+
+    <!-- CORE SERVICES: SWISS BEFORE/AFTER BOTTLENECK TOGGLE -->
+    <section id="services">
+      <div class="section-header">
+        <div>
+          <div class="sec-label">ENGINEERED CAPABILITIES & ARCHITECTURE</div>
+          <h2 class="sec-h2">Which manual bottleneck is costing your team?</h2>
+        </div>
+        <div class="toggle-group">
+          <button class="toggle-btn active before" id="btnBefore" onclick="setServiceMode('before')">
+            [!] Manual Bottleneck
+          </button>
+          <button class="toggle-btn after" id="btnAfter" onclick="setServiceMode('after')">
+            [✓] Engineered Outcome
+          </button>
+        </div>
+      </div>
+
+      <div class="bottleneck-grid">
+        <!-- SERVICE 1 -->
+        <div class="bottleneck-card">
+          <div>
+            <div class="card-meta">
+              <span class="card-idx">// 01 ARCHITECTURE</span>
+              <span class="status-badge before" id="srv0-badge">MANUAL BOTTLENECK</span>
+            </div>
+            <h3 class="card-title">AI Agents & Autonomous Swarms</h3>
+          </div>
+          <div class="card-body-box" id="srv0-box">
+            <p id="srv0-txt">Customer questions, support tickets, and content review decisions pile up faster than a lean team can manually triage, leading to 24hr response lag.</p>
+          </div>
+        </div>
+
+        <!-- SERVICE 2 -->
+        <div class="bottleneck-card">
+          <div>
+            <div class="card-meta">
+              <span class="card-idx">// 02 ORCHESTRATION</span>
+              <span class="status-badge before" id="srv1-badge">MANUAL BOTTLENECK</span>
+            </div>
+            <h3 class="card-title">n8n Workflow & Process Pipelines</h3>
+          </div>
+          <div class="card-body-box" id="srv1-box">
+            <p id="srv1-txt">Staff members spend 15–20 hours every week manually shifting CSVs, copy-pasting customer records, and synchronizing siloed cloud software.</p>
+          </div>
+        </div>
+
+        <!-- SERVICE 3 -->
+        <div class="bottleneck-card">
+          <div>
+            <div class="card-meta">
+              <span class="card-idx">// 03 PIPELINE</span>
+              <span class="status-badge before" id="srv2-badge">MANUAL BOTTLENECK</span>
+            </div>
+            <h3 class="card-title">CRM & Lead Qualification Engines</h3>
+          </div>
+          <div class="card-body-box" id="srv2-box">
+            <p id="srv2-txt">High-intent inbound leads sit uncontacted for hours in inbox queues, letting potential six-figure deals turn cold before sales reps reach out.</p>
+          </div>
+        </div>
+
+        <!-- SERVICE 4 -->
+        <div class="bottleneck-card">
+          <div>
+            <div class="card-meta">
+              <span class="card-idx">// 04 DATA OPS</span>
+              <span class="status-badge before" id="srv3-badge">MANUAL BOTTLENECK</span>
+            </div>
+            <h3 class="card-title">Data Extraction & Intelligence Ops</h3>
+          </div>
+          <div class="card-body-box" id="srv3-box">
+            <p id="srv3-txt">Competitor benchmarking, market pricing intelligence, and lead scraping are compiled by hand every week with frequent human data entry errors.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES & TECHNICAL DOSSIERS -->
+    <section id="dossiers">
+      <div class="section-header">
+        <div>
+          <div class="sec-label">VERIFIED PRODUCTION CASE STUDIES</div>
+          <h2 class="sec-h2">Engineered for Reliability at Scale</h2>
+        </div>
+      </div>
+
+      <div class="dossier-grid">
+        <!-- DOSSIER 1 -->
+        <div class="dossier-col">
+          <div class="dossier-tagline">DOSSIER REF: N8N-SLACK-001</div>
+          <h3 class="dossier-h3">Automated Slack Reporting Pipeline with Apify & n8n</h3>
+          <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 14px;">
+            Replaced daily manual marketing audits with a scheduled n8n workflow that scrapes live multi-source metrics via Apify, normalises schema, and publishes an executive digest directly to Slack.
+          </p>
+          <div class="dossier-chips">
+            <span class="tech-chip">n8n Orchestration</span>
+            <span class="tech-chip">Apify Actors</span>
+            <span class="tech-chip">Slack API</span>
+            <span class="tech-chip">Google Sheets</span>
+          </div>
+
+          <div class="dossier-metrics">
+            <div>
+              <div class="dm-val">10+ hrs</div>
+              <div class="dm-lbl">Manual Reporting Saved / Wk</div>
+            </div>
+            <div>
+              <div class="dm-val">100%</div>
+              <div class="dm-lbl">Idempotent Daily Delivery</div>
+            </div>
+          </div>
+
+          <div class="telemetry-code">
+// n8n Webhook / Scheduled Trigger Execution
+cron('0 8 * * 1-5') ➔ apify.runTask('marketing-audit')
+  ➔ transform.normaliseSchema(rawPayload)
+  ➔ slack.postBlockKitMessage('#exec-briefing')
+          </div>
+        </div>
+
+        <!-- DOSSIER 2 -->
+        <div class="dossier-col">
+          <div class="dossier-tagline">DOSSIER REF: IG-REEL-OUTLIER-002</div>
+          <h3 class="dossier-h3">Instagram Reels Outlier Detection & Telegram Reporting</h3>
+          <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 14px;">
+            Scans 50+ target business accounts via SocialCrawl API, calculates 14-day median engagement baseline, and alerts the content strategy team on Telegram when a video hits ≥ 3.0× baseline views.
+          </p>
+          <div class="dossier-chips">
+            <span class="tech-chip">n8n Self-Hosted</span>
+            <span class="tech-chip">SocialCrawl API</span>
+            <span class="tech-chip">Telegram Bot API</span>
+            <span class="tech-chip">Google Sheets DB</span>
+          </div>
+
+          <div class="dossier-metrics">
+            <div>
+              <div class="dm-val">Hours</div>
+              <div class="dm-lbl">Viral Detection vs Days</div>
+            </div>
+            <div>
+              <div class="dm-val">3.0×</div>
+              <div class="dm-lbl">Outlier Threshold Filter</div>
+            </div>
+          </div>
+
+          <div class="telemetry-code">
+// Statistical Outlier Detection Loop
+if (reel.views / account.medianViews14D >= 3.0) {
+  dedupCheck(reel.id) ➔ telegram.sendAlert(reel.url, outlierRatio);
+}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENT TESTIMONIALS & VERBATIM PROOF -->
+    <section id="proof">
+      <div class="section-header">
+        <div>
+          <div class="sec-label">INDEPENDENT VERIFICATION</div>
+          <h2 class="sec-h2">Client Proof from Production Deployments</h2>
+        </div>
+      </div>
+
+      <div class="proof-grid">
+        <div class="proof-box">
+          <div>
+            <div class="proof-rating">★★★★★ 5.0 / 5.0</div>
+            <p class="proof-quote">
+              “Everything you need. Professional, responds extremely quickly, and works in a structured and reliable manner. Top-notch! There's really nothing more to say.”
+            </p>
+          </div>
+          <div class="proof-client">
+            <strong>AARON AUF DER MAUR</strong>
+            Managing Director at Brand Aktuell (Switzerland · Upwork 5.0/5.0)
+          </div>
+        </div>
+
+        <div class="proof-box">
+          <div>
+            <div class="proof-rating">★★★★★ 5.0 / 5.0</div>
+            <p class="proof-quote">
+              “You did amazing work again – exactly as expected. Thanks a lot!”
+            </p>
+          </div>
+          <div class="proof-client">
+            <strong>DIEGO ARMANDON</strong>
+            Direct Client Referral (Switzerland · 5.0/5.0 Client Rating)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 ENGINEERING GUARANTEES -->
+    <div class="guarantee-grid">
+      <div class="guarantee-cell">
+        <strong>14-Day Warranty</strong>
+        <p>Any production bugs or API drift resolved at zero extra charge within two weeks of launch.</p>
+      </div>
+      <div class="guarantee-cell">
+        <strong>Idempotent Logic</strong>
+        <p>Workflows built with strict deduplication and state stores to guarantee zero duplicate actions.</p>
+      </div>
+      <div class="guarantee-cell">
+        <strong>Zero Lock-In</strong>
+        <p>All workflows, credentials, and documentation belong 100% to your company on delivery.</p>
+      </div>
+      <div class="guarantee-cell">
+        <strong>Full Video Handover</strong>
+        <p>Comprehensive Loom recording and architecture diagrams delivered with every project.</p>
+      </div>
+    </div>
+
+    <!-- FOOTER CONSULTATION MASTHEAD -->
+    <footer class="footer-masthead">
+      <div>
+        <h2 class="foot-h2">Which part of your operations is still manual?</h2>
+        <p class="foot-p">
+          Send me the workflow outline. I will review it and tell you honestly whether automating it is commercially viable, which architecture to use, and what it would take to build.
+        </p>
+      </div>
+      <div class="foot-actions">
+        <a href="https://www.imawais.engineer/contact" class="btn-fusion primary" style="width: 100%; justify-content: center;">
+          Start an AI Automation Project ↗
+        </a>
+        <a href="mailto:alpha.se.awais@gmail.com" class="btn-fusion outline" style="width: 100%; justify-content: center;">
+          alpha.se.awais@gmail.com
+        </a>
+      </div>
+    </footer>
+
+    <!-- SUBFOOTER -->
+    <div class="subfooter">
+      <div>© 2026 Muhammad Awais · AI Systems Architecture & n8n Engineering</div>
+      <div>n8n Certified · DeepLearning.AI Orchestration · USAII Finalist</div>
+    </div>
+
+  </div>
+
+  <script>
+    // N8N CANVAS SIMULATOR DATA
+    const workflows = [
+      {
+        n1: ["Cron Schedule + Apify Scraper", "Pulls daily multi-source marketing & ops metrics", "200 OK · 1.2s"],
+        n2: ["Data Normalisation & Deduplication", "Idempotent state check + schema validation", "0 Duplicates"],
+        n3: ["Executive Digest Formatter (Gemini/OpenAI)", "Structures raw metrics into actionable daily summary", "Processed"],
+        n4: ["Slack Channel + Google Sheets Log", "Replaces 10+ hrs/week of manual copy-paste reporting", "10+ hrs/wk saved"]
+      },
+      {
+        n1: ["Google Sheet Handle Input (50+ Accounts)", "Reads target Instagram business handles & categories", "50+ Accounts"],
+        n2: ["SocialCrawl API (12 Latest Reels/Account)", "Computes baseline median views within 14-day window", "4s Rate Delay"],
+        n3: ["Outlier Filter (Views ÷ Median ≥ 3.0×)", "Deduplicates against notified Reel ID sheet", "100% Detection"],
+        n4: ["Instant Telegram Bot Alert + Audit Log", "Pushes viral outliers in hours instead of days", "~20 Reels/run"]
+      },
+      {
+        n1: ["Multi-Channel Webhook (Gmail / Web / Slack)", "Ingests incoming customer support tickets live", "Real-Time"],
+        n2: ["OpenAI GPT-4o-mini Triage Agent", "Classifies topic, urgency score, and customer sentiment", "90% Faster"],
+        n3: ["Conditional Router & Guardrail Check", "Routes urgent escalations vs standard resolutions", "Idempotent"],
+        n4: ["Slack Escalation + Sheets + Instant Auto-Reply", "Cuts manual support triage by 20+ hours/week", "20+ hrs/wk saved"]
+      }
+    ];
+
+    function switchWorkflow(idx) {
+      document.querySelectorAll('.wf-tab').forEach((btn, i) => {
+        btn.classList.toggle('active', i === idx);
+      });
+      const wf = workflows[idx];
+      ['n1', 'n2', 'n3', 'n4'].forEach(key => {
+        document.getElementById(key + '-title').textContent = wf[key][0];
+        document.getElementById(key + '-desc').textContent = wf[key][1];
+        document.getElementById(key + '-badge').textContent = wf[key][2];
+      });
+      simulateRun();
+    }
+
+    function simulateRun() {
+      const nodes = [
+        document.getElementById('node-n1'),
+        document.getElementById('node-n2'),
+        document.getElementById('node-n3'),
+        document.getElementById('node-n4')
+      ];
+      const status = document.getElementById('wfStatus');
+      status.textContent = "● Executing workflow branch test...";
+      status.style.color = "#f59e0b";
+      nodes.forEach(n => n.classList.remove('active-step'));
+      nodes.forEach((node, idx) => {
+        setTimeout(() => {
+          nodes.forEach(n => n.classList.remove('active-step'));
+          node.classList.add('active-step');
+          if (idx === nodes.length - 1) {
+            status.textContent = "● Execution Complete: All branches verified (0 errors)";
+            status.style.color = "#10b981";
+          }
+        }, idx * 280);
+      });
+    }
+
+    // BEFORE / AFTER MANUAL BOTTLENECK TOGGLE
+    const srvData = {
+      before: [
+        "Customer questions, support tickets, and content review decisions pile up faster than a lean team can manually triage, leading to 24hr response lag.",
+        "Staff members spend 15–20 hours every week manually shifting CSVs, copy-pasting customer records, and synchronizing siloed cloud software.",
+        "High-intent inbound leads sit uncontacted for hours in inbox queues, letting potential six-figure deals turn cold before sales reps reach out.",
+        "Competitor benchmarking, market pricing intelligence, and lead scraping are compiled by hand every week with frequent human data entry errors."
+      ],
+      after: [
+        "Autonomous LLM triage agents and multi-channel bots classify intent, route escalations, and resolve 60%+ of routine inquiries in <30 seconds.",
+        "End-to-end event-driven n8n pipelines handle data transformation, API handoffs, and error retries with 100% idempotency and zero manual intervention.",
+        "Automated lead capture, enriched scoring (0–100), instant CRM synchronization, and intelligent auto-booking trigger within 60 seconds of submission.",
+        "Scheduled headless scraping and structured enrichment pipelines deliver clean, validated market intelligence directly into databases and dashboards."
+      ]
+    };
+
+    function setServiceMode(mode) {
+      document.getElementById('btnBefore').classList.toggle('active', mode === 'before');
+      document.getElementById('btnAfter').classList.toggle('active', mode === 'after');
+      for (let i = 0; i < 4; i++) {
+        const box = document.getElementById('srv' + i + '-box');
+        const badge = document.getElementById('srv' + i + '-badge');
+        const txt = document.getElementById('srv' + i + '-txt');
+        txt.textContent = srvData[mode][i];
+        if (mode === 'before') {
+          badge.textContent = "MANUAL BOTTLENECK";
+          badge.className = "status-badge before";
+          box.style.borderLeftColor = "var(--accent-vermilion)";
+        } else {
+          badge.textContent = "ENGINEERED OUTCOME";
+          badge.className = "status-badge after";
+          box.style.borderLeftColor = "var(--accent-emerald)";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
+

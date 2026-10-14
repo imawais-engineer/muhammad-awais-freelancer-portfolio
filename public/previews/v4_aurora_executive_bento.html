@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Awais — Executive AI & n8n Automation Consultancy (V4: Aurora Bento)</title>
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-navy: #0f172a;
+      --bg-navy-light: #1e293b;
+      --text-dark: #0f172a;
+      --text-body: #475569;
+      --text-muted: #64748b;
+      --indigo: #4f46e5;
+      --teal: #0d9488;
+      --coral: #ea580c;
+      --border-soft: #e2e8f0;
+      --shadow-card: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+      --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .top-pill-bar {
+      background: var(--bg-navy);
+      color: #cbd5e1;
+      font-size: 12px;
+      padding: 9px 24px;
+      text-align: center;
+      font-weight: 500;
+    }
+    .top-pill-bar strong { color: #5eead4; }
+
+    /* Floating Glass Nav */
+    .aurora-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 12px 24px;
+      margin-top: 20px;
+      box-shadow: var(--shadow-card);
+    }
+    .aurora-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 16px;
+    }
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--indigo), var(--teal));
+    }
+    .aurora-links {
+      display: flex;
+      gap: 26px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-body);
+    }
+    .aurora-links a:hover { color: var(--indigo); }
+    .pill-cta {
+      background: var(--bg-navy);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+    .pill-cta:hover { background: var(--indigo); }
+
+    /* Bento Hero */
+    .bento-hero {
+      padding: 48px 0 36px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 24px;
+    }
+    .hero-card-main {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: var(--shadow-card);
+      background-image: radial-gradient(circle at top right, rgba(79, 70, 229, 0.07), transparent 50%);
+    }
+    .badge-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eef2ff;
+      color: var(--indigo);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .hero-card-main h1 {
+      font-size: 46px;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    .hero-card-main p {
+      font-size: 17px;
+      color: var(--text-body);
+      margin-bottom: 28px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-indigo {
+      background: var(--indigo);
+      color: #fff;
+      padding: 13px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .btn-ghost {
+      background: #f1f5f9;
+      color: var(--text-dark);
+      padding: 13px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* Right Navy Profile & Metric Bento */
+    .hero-card-side {
+      background: var(--bg-navy);
+      color: #fff;
+      border-radius: 24px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+    }
+    .profile-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .profile-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #4f46e5, #0d9488);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+    }
+    .bento-kpis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .b-kpi {
+      background: var(--bg-navy-light);
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .b-kpi strong {
+      font-size: 24px;
+      color: #5eead4;
+      display: block;
+    }
+    .b-kpi span {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    /* Interactive Diagnostic Audit Section */
+    .diagnostic-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 24px;
+      padding: 36px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-card);
+    }
+    .diag-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 18px 0 24px;
+    }
+    .diag-tab {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #f8fafc;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .diag-tab.active {
+      background: var(--indigo);
+      color: #fff;
+      border-color: var(--indigo);
+    }
+    .diag-content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      background: #f8fafc;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border-soft);
+    }
+    .diag-col h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .diag-col p {
+      font-size: 14px;
+      color: var(--text-body);
+    }
+
+    /* Case Studies Bento */
+    .bento-cases {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+    .b-case {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .b-case-pill {
+      display: inline-block;
+      background: #f0fdf4;
+      color: #15803d;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .b-case h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .b-case p {
+      font-size: 14px;
+      color: var(--text-body);
+      margin-bottom: 18px;
+    }
+
+    /* 5-Step Process & Engineering Priorities */
+    .bento-split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+    .bento-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .step-item {
+      display: flex;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .step-item:last-child { border-bottom: none; }
+    .step-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #eef2ff;
+      color: var(--indigo);
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 960px) {
+      .bento-hero, .diag-content, .bento-cases, .bento-split { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-pill-bar">
+    <strong>[VERSION 04 / AURORA EXECUTIVE CONSULTANCY]</strong> High-Conversion Bento Agency Layout + Interactive Service Configurator
+  </div>
+
+  <div class="wrap">
+    <header class="aurora-nav">
+      <a href="https://www.imawais.engineer/" class="aurora-brand">
+        <span class="brand-dot"></span>
+        <span>Muhammad Awais</span>
+      </a>
+      <nav class="aurora-links">
+        <a href="#work">Case Studies</a>
+        <a href="#services">Services</a>
+        <a href="#process">5-Step Process</a>
+        <a href="https://www.imawais.engineer/about">About</a>
+      </nav>
+      <a href="https://www.imawais.engineer/contact" class="pill-cta">Start a Project →</a>
+    </header>
+
+    <!-- BENTO HERO -->
+    <div class="bento-hero">
+      <div class="hero-card-main">
+        <div class="badge-row">⚡ AI Automation Engineer · n8n Workflow Automation</div>
+        <h1>I build AI-powered systems that eliminate repetitive work.</h1>
+        <p>
+          I'm Muhammad Awais, a freelance AI Automation Engineer. I help agencies, SaaS teams and small businesses automate operations with n8n workflow automation, AI agents and connected business systems — turning manual workflows into reliable ones.
+        </p>
+        <div class="hero-actions">
+          <a href="https://www.imawais.engineer/contact" class="btn-indigo">Start an AI automation project →</a>
+          <a href="https://www.imawais.engineer/projects" class="btn-ghost">View 12 production case studies</a>
+        </div>
+      </div>
+
+      <div class="hero-card-side">
+        <div>
+          <div class="profile-head">
+            <div class="profile-badge">MA</div>
+            <div>
+              <div style="font-weight: 800; font-size: 18px;">Muhammad Awais</div>
+              <div style="font-size: 13px; color: #94a3b8;">Pakistan · Working Remotely Worldwide</div>
+            </div>
+          </div>
+          <p style="font-size: 14px; color: #cbd5e1;">
+            “I don't use AI for the sake of it. If a simple automation works better, I keep it simple.”
+          </p>
+        </div>
+
+        <div class="bento-kpis">
+          <div class="b-kpi">
+            <strong>5.0 / 5.0</strong>
+            <span>Upwork Rating</span>
+          </div>
+          <div class="b-kpi">
+            <strong>20+ hrs</strong>
+            <span>Saved / Client / Wk</span>
+          </div>
+          <div class="b-kpi">
+            <strong>12 Built</strong>
+            <span>Production Systems</span>
+          </div>
+          <div class="b-kpi">
+            <strong>100%</strong>
+            <span>Job Success Rate</span>
+          </div>
+        </div>
+
+        <div style="font-size: 12px; color: #94a3b8; display: flex; justify-content: space-between;">
+          <span>✓ n8n Certified</span>
+          <span>✓ DeepLearning.AI</span>
+          <span>✓ USAII '26 Finalist</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE SERVICE CONFIGURATOR -->
+    <div id="services" class="diagnostic-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>
+          <span style="font-size:12px; font-weight:800; color:var(--indigo); text-transform:uppercase;">Interactive Capability Explorer</span>
+          <h2 style="font-size:28px; font-weight:800;">Where automation pays for itself fastest</h2>
+        </div>
+        <a href="https://www.imawais.engineer/contact" class="pill-cta">Discuss your process →</a>
+      </div>
+
+      <div class="diag-tabs">
+        <button class="diag-tab active" onclick="showPillar(0, this)">🤖 AI Agents & Chatbots</button>
+        <button class="diag-tab" onclick="showPillar(1, this)">⚡ n8n Workflow & Process Automation</button>
+        <button class="diag-tab" onclick="showPillar(2, this)">🎯 CRM & Lead Automation</button>
+        <button class="diag-tab" onclick="showPillar(3, this)">📊 Data & Scraping Automation</button>
+      </div>
+
+      <div class="diag-content">
+        <div class="diag-col">
+          <h4 style="color:#dc2626;">01. The Manual Problem</h4>
+          <p id="p-prob">Customer questions, support tickets, and content decisions pile up faster than a small team can handle.</p>
+        </div>
+        <div class="diag-col">
+          <h4 style="color:var(--indigo);">02. The Engineered Solution</h4>
+          <p id="p-sol">LLM-powered AI agents and classification workflows that answer, route, and extract on your channels — web, WhatsApp, Slack or email.</p>
+        </div>
+        <div class="diag-col">
+          <h4 style="color:var(--teal);">03. Verified Outcome & Stack</h4>
+          <p id="p-out">Faster first replies, fewer manual decisions, and 24/7 handling of routine requests. <strong>(OpenAI · Claude · Gemini · n8n)</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURED CASE STUDIES -->
+    <div id="work" style="margin-bottom: 24px; display:flex; justify-content:space-between; align-items:flex-end;">
+      <div>
+        <span style="font-size:12px; font-weight:800; color:var(--teal); text-transform:uppercase;">Production Portfolio</span>
+        <h2 style="font-size:30px; font-weight:800;">Paid client builds with verifiable outcomes</h2>
+      </div>
+      <a href="https://www.imawais.engineer/projects" style="font-weight:700; color:var(--indigo); font-size:14px;">See all 12 projects →</a>
+    </div>
+
+    <div class="bento-cases">
+      <div class="b-case">
+        <div>
+          <span class="b-case-pill">10+ hrs/week saved · Reporting</span>
+          <h3>Automated Slack Reporting Pipeline with Apify and n8n</h3>
+          <p>Replaced 10+ hours a day of manual marketing data collection and formatting with a scheduled scraping-to-Slack executive digest.</p>
+        </div>
+        <div>
+          <div style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">n8n · Make.com · Apify · Google Sheets</div>
+          <a href="https://www.imawais.engineer/projects/slack-reporting-pipeline-apify-n8n" style="font-weight:700; color:var(--indigo); font-size:14px;">View Case Study →</a>
+        </div>
+      </div>
+
+      <div class="b-case">
+        <div>
+          <span class="b-case-pill">100% viral detection · Scraping</span>
+          <h3>Instagram Reels Outlier Detection & Telegram Reporting</h3>
+          <p>Monitors 50+ Instagram business accounts, scores every new Reel against its 12-Reel account median (≥3.0× factor), and pushes genuine outliers to Telegram.</p>
+        </div>
+        <div>
+          <div style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">n8n · SocialCrawl API · Google Sheets · Telegram</div>
+          <a href="https://www.imawais.engineer/projects/instagram-reels-outlier-telegram-n8n" style="font-weight:700; color:var(--indigo); font-size:14px;">View Case Study →</a>
+        </div>
+      </div>
+
+      <div class="b-case">
+        <div>
+          <span class="b-case-pill">20+ hrs/wk saved · 90% faster replies</span>
+          <h3>AI Customer Support Triage System</h3>
+          <p>Multi-channel tickets are normalised, classified for topic, urgency and sentiment, then fanned out to Slack, Sheets, and an instant customer auto-reply.</p>
+        </div>
+        <div>
+          <div style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">n8n · OpenAI GPT-4o-mini · Gmail API · Slack</div>
+          <a href="https://www.imawais.engineer/projects" style="font-weight:700; color:var(--indigo); font-size:14px;">View Case Study →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5-STEP PROCESS & ENGINEERING DISCIPLINE + REVIEWS -->
+    <div id="process" class="bento-split">
+      <div class="bento-panel">
+        <span style="font-size:12px; font-weight:800; color:var(--indigo); text-transform:uppercase;">Delivery Roadmap</span>
+        <h3 style="font-size:24px; font-weight:800; margin-bottom:16px;">From problem to production in five steps</h3>
+        <div class="step-item">
+          <div class="step-badge">01</div>
+          <div><strong>Discovery & Requirements</strong> — Define scope, tools, success metrics, and timeline together.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">02</div>
+          <div><strong>System Design</strong> — Review and approve the architecture diagram before anything is built.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">03</div>
+          <div><strong>Build & Test</strong> — Resilient execution with error handling, retries, and idempotent deduplication.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">04</div>
+          <div><strong>Deployment & Training</strong> — Production launch with live monitoring and a team handover walkthrough.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">05</div>
+          <div><strong>Maintenance & Support</strong> — Ongoing adjustments and enhancements as your operations scale.</div>
+        </div>
+      </div>
+
+      <div class="bento-panel" style="background: var(--bg-navy); color: #fff;">
+        <span style="font-size:12px; font-weight:800; color:#5eead4; text-transform:uppercase;">Client Proof</span>
+        <h3 style="font-size:24px; font-weight:800; margin-bottom:18px;">Trusted by clients worldwide</h3>
+        <div style="background:var(--bg-navy-light); padding:20px; border-radius:16px; margin-bottom:16px;">
+          <p style="font-size:14px; font-style:italic; color:#e2e8f0; margin-bottom:10px;">
+            “Everything you need. Professional, responds extremely quickly, and works in a structured and reliable manner. Top-notch! There's really nothing more to say.”
+          </p>
+          <div style="font-size:12px; color:#5eead4; font-weight:700;">Aaron Auf der Maur · Managing Director, Brand Aktuell (Switzerland · 5.0/5.0)</div>
+        </div>
+        <div style="background:var(--bg-navy-light); padding:20px; border-radius:16px; margin-bottom:20px;">
+          <p style="font-size:14px; font-style:italic; color:#e2e8f0; margin-bottom:10px;">
+            “You did amazing work again – exactly as expected. Thanks a lot!”
+          </p>
+          <div style="font-size:12px; color:#5eead4; font-weight:700;">Diego Armandon · Direct Client Referral (Switzerland · 5.0/5.0)</div>
+        </div>
+        <div style="padding-top:12px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:13px; color:#cbd5e1;">Which part of your week is still manual?</span>
+          <a href="https://www.imawais.engineer/contact" class="btn-indigo" style="padding:9px 16px; font-size:12px;">Get Honest Scope →</a>
+        </div>
+      </div>
+    </div>
+
+    <footer style="padding: 32px 0 48px; border-top: 1px solid var(--border-soft); display:flex; justify-content:space-between; font-size:13px; color:var(--text-muted); flex-wrap:wrap; gap:16px;">
+      <div>© 2026 Muhammad Awais — AI Automation Engineer & n8n Workflow Automation</div>
+      <div style="display:flex; gap:20px;">
+        <a href="https://www.imawais.engineer/">Home</a>
+        <a href="https://www.imawais.engineer/projects">Projects</a>
+        <a href="https://www.imawais.engineer/about">About</a>
+        <a href="https://www.imawais.engineer/contact">Contact</a>
+        <a href="mailto:alpha.se.awais@gmail.com">alpha.se.awais@gmail.com</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const pillars = [
+      {
+        prob: "Customer questions, support tickets, and content decisions pile up faster than a small team can handle.",
+        sol: "LLM-powered AI agents and classification workflows that answer, route, and extract on your channels — web, WhatsApp, Slack or email.",
+        out: "Faster first replies, fewer manual decisions, and 24/7 handling of routine requests. (OpenAI · Claude · Gemini · n8n)"
+      },
+      {
+        prob: "Teams waste hours moving data between spreadsheets, inboxes, Google Workspace and disconnected apps.",
+        sol: "End-to-end n8n and Make.com pipelines that connect your tools and run on triggers, schedules, or webhooks.",
+        out: "Repetitive business processes disappear, errors drop, and operations scale without hiring. (n8n · Make · Zapier · APIs)"
+      },
+      {
+        prob: "Leads arrive faster than they can be qualified, routed, and followed up.",
+        sol: "Lead qualification automation that captures, scores, routes and syncs every enquiry to your CRM, then books meetings and triggers follow-ups.",
+        out: "Good leads never go cold; sales time is spent on qualified calls. (HubSpot · Pipedrive · GoHighLevel · Airtable)"
+      },
+      {
+        prob: "Market tracking, reporting, and data collection are rebuilt by hand every week.",
+        sol: "Scheduled scraping, enrichment, and structured delivery to sheets, dashboards, or CRMs.",
+        out: "Reliable data feeds and automated reporting without the manual copy-paste. (Apify · Python · REST APIs · Google Sheets)"
+      }
+    ];
+
+    function showPillar(idx, btn) {
+      document.querySelectorAll('.diag-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('p-prob').textContent = pillars[idx].prob;
+      document.getElementById('p-sol').textContent = pillars[idx].sol;
+      document.getElementById('p-out').textContent = pillars[idx].out;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Awais — AI Automation Engineer & n8n Workflow Studio (V1: Obsidian Node Studio)</title>
+  <style>
+    :root {
+      --bg-base: #090a0f;
+      --bg-surface: #11131c;
+      --bg-elevated: #171a26;
+      --bg-glass: rgba(23, 26, 38, 0.78);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(16, 185, 129, 0.35);
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --accent-emerald: #10b981;
+      --accent-n8n: #ff6d5a;
+      --accent-indigo: #6366f1;
+      --accent-amber: #f59e0b;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.08), transparent 35%),
+        radial-gradient(circle at 85% 20%, rgba(255, 109, 90, 0.08), transparent 35%),
+        radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 24px 24px;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Concept Ribbon */
+    .concept-bar {
+      background: linear-gradient(90deg, rgba(16,185,129,0.12), rgba(255,109,90,0.12));
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 8px 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-secondary);
+    }
+    .concept-bar span.tag {
+      color: var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    /* Navbar */
+    header.navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 10, 15, 0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+    .brand-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-n8n), var(--accent-emerald));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 14px;
+      color: #090a0f;
+      box-shadow: 0 0 20px rgba(255, 109, 90, 0.3);
+    }
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--accent-emerald);
+      color: #051b11;
+      box-shadow: 0 0 24px rgba(16, 185, 129, 0.25);
+    }
+    .btn-primary:hover {
+      background: #34d399;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
+    }
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      background: #1f2433;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 72px 0 64px;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.28);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent-emerald);
+      margin-bottom: 24px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 10px var(--accent-emerald);
+    }
+    .hero h1 {
+      font-size: 50px;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .hero h1 .gradient-text {
+      background: linear-gradient(95deg, #ffffff 0%, #a7f3d0 55%, #ff6d5a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p.lead {
+      font-size: 17px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      max-width: 560px;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .location-meta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Interactive n8n Node Simulator Canvas */
+    .workflow-studio {
+      background: var(--bg-surface);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(16, 185, 129, 0.1);
+    }
+    .studio-header {
+      background: #0d0f17;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2e3446;
+    }
+    .window-dots span:nth-child(1) { background: #ef4444; }
+    .window-dots span:nth-child(2) { background: #f59e0b; }
+    .window-dots span:nth-child(3) { background: #10b981; }
+    .studio-tabs {
+      display: flex;
+      gap: 6px;
+    }
+    .studio-tab {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .studio-tab.active {
+      background: rgba(255, 109, 90, 0.15);
+      border-color: var(--accent-n8n);
+      color: #fff;
+    }
+    .studio-body {
+      padding: 20px;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    .node-chain {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .wf-node {
+      background: var(--bg-elevated);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .wf-node.active-step {
+      border-color: var(--accent-emerald);
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.2);
+    }
+    .wf-node-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .node-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .icon-trigger { background: rgba(255, 109, 90, 0.18); color: var(--accent-n8n); border: 1px solid rgba(255, 109, 90, 0.4); }
+    .icon-ai { background: rgba(99, 102, 241, 0.18); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.4); }
+    .icon-logic { background: rgba(245, 158, 11, 0.18); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.4); }
+    .icon-out { background: rgba(16, 185, 129, 0.18); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.4); }
+    .node-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .node-desc {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+    .node-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-emerald);
+    }
+    .studio-footer {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .run-btn {
+      background: var(--accent-n8n);
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .run-btn:hover {
+      opacity: 0.92;
+    }
+
+    /* KPI Telemetry Bar */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 72px;
+    }
+    .kpi-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 22px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-emerald), var(--accent-n8n));
+      opacity: 0.7;
+    }
+    .kpi-val {
+      font-size: 34px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .kpi-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* Section Headers */
+    section {
+      padding: 64px 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .sec-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-n8n);
+      margin-bottom: 8px;
+    }
+    .sec-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .sec-sub {
+      color: var(--text-secondary);
+      max-width: 580px;
+      font-size: 15px;
+      margin-top: 8px;
+    }
+
+    /* Case Studies Bento Grid */
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .case-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .case-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+    .case-top-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .case-cat {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-primary);
+    }
+    .case-impact {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-emerald);
+    }
+    .case-card h3 {
+      font-size: 20px;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .case-client {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      margin-bottom: 14px;
+    }
+    .case-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+    .stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .stack-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      color: #d1d5db;
+    }
+    .case-link {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-emerald);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Services 2x2 Architecture Matrix */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 28px;
+    }
+    .service-card h3 {
+      font-size: 21px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pso-row {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 14px;
+    }
+    .pso-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .pso-tag.prob { color: #f87171; }
+    .pso-tag.sol { color: #60a5fa; }
+    .pso-tag.out { color: var(--accent-emerald); }
+
+    /* 5-Step Process Pipeline */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .step-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 22px 18px;
+      position: relative;
+    }
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent-n8n);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .step-box h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .step-box p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* Engineering Priorities + Credentials */
+    .eng-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .eng-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 22px;
+    }
+    .eng-card .eng-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-emerald);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .eng-card h4 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+    .eng-card p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* Proof & Credentials Split */
+    .proof-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .quote-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 26px;
+      margin-bottom: 18px;
+    }
+    .quote-text {
+      font-size: 16px;
+      font-style: italic;
+      color: #e5e7eb;
+      margin-bottom: 16px;
+    }
+    .quote-author {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .cred-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .cred-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .cred-item h4 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .cred-item p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .cred-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-emerald);
+      white-space: nowrap;
+    }
+
+    /* CTA Footer Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, #131726 0%, #0d1f1d 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 18px;
+      padding: 48px;
+      text-align: center;
+      margin: 40px 0 64px;
+    }
+    .cta-banner h2 {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+    .cta-banner p {
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto 28px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 40px 0;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    @media (max-width: 960px) {
+      .hero, .case-grid, .services-grid, .process-steps, .eng-grid, .proof-split, .kpi-strip {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="concept-bar">
+    <div><span class="tag">[VERSION 01 / OBSIDIAN WORKFLOW STUDIO]</span> Dark Technical Canvas + Interactive n8n Pipeline Simulator</div>
+    <div>imawais.engineer · Production Redesign</div>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="https://www.imawais.engineer/" class="brand">
+        <div class="brand-avatar">MA</div>
+        <div>
+          Muhammad Awais
+          <span class="brand-sub">AI Automation Engineer · n8n Expert</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#architecture">Architecture</a>
+        <a href="https://www.imawais.engineer/about">About</a>
+      </nav>
+      <a href="https://www.imawais.engineer/contact" class="btn btn-primary">Contact to start a Project →</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <div class="hero">
+      <div>
+        <div class="status-pill">
+          <span class="pulse-dot"></span>
+          <span>Freelance AI Automation Engineer · n8n Certified</span>
+        </div>
+        <h1>I build <span class="gradient-text">AI-powered systems</span> that eliminate repetitive work.</h1>
+        <p class="lead">
+          I'm <strong>Muhammad Awais</strong>, a freelance AI Automation Engineer. I help agencies, SaaS teams and small businesses automate operations with n8n workflow automation, AI agents and connected business systems — turning manual workflows into reliable ones.
+        </p>
+        <div class="hero-ctas">
+          <a href="https://www.imawais.engineer/contact" class="btn btn-primary">Start an AI automation project</a>
+          <a href="https://www.imawais.engineer/projects" class="btn btn-secondary">View 12 automation case studies</a>
+        </div>
+        <div class="location-meta">
+          <span>● Pakistan — working remotely with clients worldwide</span>
+          <span>● alpha.se.awais@gmail.com</span>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE N8N WORKFLOW STUDIO WIDGET -->
+      <div class="workflow-studio">
+        <div class="studio-header">
+          <div class="window-dots"><span></span><span></span><span></span></div>
+          <div class="studio-tabs">
+            <button class="studio-tab active" onclick="switchWorkflow(0)">01 Slack Digest</button>
+            <button class="studio-tab" onclick="switchWorkflow(1)">02 Reels Outlier</button>
+            <button class="studio-tab" onclick="switchWorkflow(2)">03 Support Triage</button>
+          </div>
+        </div>
+        <div class="studio-body">
+          <div class="node-chain" id="nodeChain">
+            <div class="wf-node active-step">
+              <div class="wf-node-left">
+                <div class="node-icon icon-trigger">TRG</div>
+                <div>
+                  <div class="node-title" id="n1-title">Cron Schedule + Apify Scraper</div>
+                  <div class="node-desc" id="n1-desc">Pulls daily multi-source marketing & ops metrics</div>
+                </div>
+              </div>
+              <span class="node-badge" id="n1-badge">200 OK · 1.2s</span>
+            </div>
+            <div class="wf-node">
+              <div class="wf-node-left">
+                <div class="node-icon icon-logic">N8N</div>
+                <div>
+                  <div class="node-title" id="n2-title">Data Normalisation & Deduplication</div>
+                  <div class="node-desc" id="n2-desc">Idempotent state check + schema validation</div>
+                </div>
+              </div>
+              <span class="node-badge" id="n2-badge">0 Duplicates</span>
+            </div>
+            <div class="wf-node">
+              <div class="wf-node-left">
+                <div class="node-icon icon-ai">AI</div>
+                <div>
+                  <div class="node-title" id="n3-title">Executive Digest Formatter</div>
+                  <div class="node-desc" id="n3-desc">Structures KPIs into actionable daily summary</div>
+                </div>
+              </div>
+              <span class="node-badge" id="n3-badge">Processed</span>
+            </div>
+            <div class="wf-node">
+              <div class="wf-node-left">
+                <div class="node-icon icon-out">OUT</div>
+                <div>
+                  <div class="node-title" id="n4-title">Slack Channel + Google Sheets Log</div>
+                  <div class="node-desc" id="n4-desc">Replaces 10+ hrs/week of manual reporting</div>
+                </div>
+              </div>
+              <span class="node-badge" id="n4-badge">10+ hrs/wk saved</span>
+            </div>
+          </div>
+          <div class="studio-footer">
+            <span id="wfStatus" style="color: var(--accent-emerald);">● Status: Production Active (Idempotent)</span>
+            <button class="run-btn" onclick="simulateRun()">▶ Simulate Execution</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI TELEMETRY STRIP -->
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-val">5.0 / 5.0</div>
+        <div class="kpi-label">Upwork Rating · Verified Global Clients</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">12</div>
+        <div class="kpi-label">Production Automation Systems Shipped</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">20+ hrs</div>
+        <div class="kpi-label">Saved Per Client, Per Week</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">100%</div>
+        <div class="kpi-label">Job Success & Repeat Client Referrals</div>
+      </div>
+    </div>
+
+    <!-- FEATURED WORK -->
+    <section id="work">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">// Featured Production Systems</div>
+          <h2 class="sec-title">AI automation projects running in production</h2>
+          <p class="sec-sub">Paid client builds — lead qualification, CRM routing, AI agents and automated reporting — with outcomes you can verify in each case study.</p>
+        </div>
+        <a href="https://www.imawais.engineer/projects" class="btn btn-secondary">View all 12 automation projects →</a>
+      </div>
+
+      <div class="case-grid">
+        <article class="case-card">
+          <div>
+            <div class="case-top-meta">
+              <span class="case-cat">Reporting</span>
+              <span class="case-impact">⚡ 10+ hrs/week saved</span>
+            </div>
+            <h3>Automated Slack Reporting Pipeline with Apify and n8n</h3>
+            <div class="case-client">Small business / agency · Digital Marketing / Operations</div>
+            <p class="case-desc">A scheduled scraping-to-Slack digest that replaced 10+ hours a day of manual data collection and formatting across marketing channels.</p>
+          </div>
+          <div>
+            <div class="stack-pills">
+              <span class="stack-pill">n8n</span>
+              <span class="stack-pill">Make.com</span>
+              <span class="stack-pill">Apify</span>
+              <span class="stack-pill">Google Sheets</span>
+              <span class="stack-pill">Slack API</span>
+            </div>
+            <a href="https://www.imawais.engineer/projects/slack-reporting-pipeline-apify-n8n" class="case-link">View Case Study & Workflow Canvas →</a>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div>
+            <div class="case-top-meta">
+              <span class="case-cat">Scraping</span>
+              <span class="case-impact">🎯 100% viral detection rate</span>
+            </div>
+            <h3>Instagram Reels Outlier Detection & Telegram Reporting</h3>
+            <div class="case-client">Direct client (referral) · Social Media Marketing / Agency Ops</div>
+            <p class="case-desc">Monitors 50+ Instagram business accounts, scores every new Reel against its 12-Reel account median (≥3.0× factor within 14 days), and pushes genuine outliers to Telegram.</p>
+          </div>
+          <div>
+            <div class="stack-pills">
+              <span class="stack-pill">n8n</span>
+              <span class="stack-pill">SocialCrawl API</span>
+              <span class="stack-pill">Google Sheets</span>
+              <span class="stack-pill">Telegram Bot</span>
+            </div>
+            <a href="https://www.imawais.engineer/projects/instagram-reels-outlier-telegram-n8n" class="case-link">View Case Study & Workflow Canvas →</a>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div>
+            <div class="case-top-meta">
+              <span class="case-cat">Support</span>
+              <span class="case-impact">🚀 20+ hrs/wk · 90% faster replies</span>
+            </div>
+            <h3>AI Customer Support Triage System</h3>
+            <div class="case-client">Direct client (SaaS / e-commerce) · Customer Support / Ops</div>
+            <p class="case-desc">Multi-channel tickets are normalised, classified for topic, urgency and sentiment, then fanned out to Slack, Sheets, and an instant customer auto-reply.</p>
+          </div>
+          <div>
+            <div class="stack-pills">
+              <span class="stack-pill">n8n</span>
+              <span class="stack-pill">OpenAI GPT-4o-mini</span>
+              <span class="stack-pill">Gmail API</span>
+              <span class="stack-pill">Slack API</span>
+            </div>
+            <a href="https://www.imawais.engineer/projects" class="case-link">View Case Study & Workflow Canvas →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">// Core Capabilities</div>
+          <h2 class="sec-title">AI automation and n8n workflow services</h2>
+          <p class="sec-sub">The areas where automation pays for itself fastest — delivered as tested, documented systems, not fragile one-off scripts.</p>
+        </div>
+        <a href="https://www.imawais.engineer/contact" class="btn btn-primary">Discuss your process →</a>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h3><span>AI Agents & Chatbots</span> <span class="stack-pill">OpenAI · Claude · Gemini · n8n</span></h3>
+          <div class="pso-row">
+            <span class="pso-tag prob">Problem</span>
+            <span>Customer questions, support tickets, and content decisions pile up faster than a small team can handle.</span>
+          </div>
+          <div class="pso-row">
+            <span class="pso-tag sol">Solution</span>
+            <span>LLM-powered AI agents and classification workflows that answer, route, and extract on web, WhatsApp, Slack or email.</span>
+          </div>
+          <div class="pso-row">
+            <span class="pso-tag out">Outcome</span>
+            <span>Faster first replies, fewer manual decisions, and 24/7 handling of routine requests.</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <h3><span>n8n Workflow & Process Automation</span> <span class="stack-pill">n8n · Make · Zapier · APIs</span></h3>
+          <div class="pso-row">
+            <span class="pso-tag prob">Problem</span>
+            <span>Teams waste hours moving data between spreadsheets, inboxes, Google Workspace and disconnected apps.</span>
+          </div>
+          <div class="pso-row">
+            <span class="pso-tag sol">Solution</span>
+            <span>End-to-end n8n and Make.com pipelines that connect your tools and run on triggers, schedules, or webhooks.</span>
+          </div>
+          <div class="pso-row">
+            <span class="pso-tag out">Outcome</span>
+            <span>Repetitive business processes disappear, errors drop, and operations scale without hiring.</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <h3><span>CRM & Lead Automation</span> <span class="stack-pill">HubSpot · Pipedrive · GHL · Airtable</span></h3>
+          <div class="pso-row">
+            <span class="pso-tag prob">Problem</span>
+            <span>Leads arrive faster than they can be qualified, routed, and followed up.</span>
+          </div>
+          <div class="pso-row">
+            <span class="pso-tag sol">Solution</span>
+            <span>Lead qualification automation that captures, scores, routes and syncs every enquiry to your CRM, then books meetings.</span>
+          </div>
+          <div class="pso-row">
+            <span class="pso-tag out">Outcome</span>
+            <span>Good leads never go cold; sales time is spent strictly on qualified calls.</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <h3><span>Data & Scraping Automation</span> <span class="stack-pill">Apify · Python · REST APIs · Sheets</span></h3>
+          <div class="pso-row">
+            <span class="pso-tag prob">Problem</span>
+            <span>Market tracking, reporting, and data collection are rebuilt by hand every week.</span>
+          </div>
+          <div class="pso-row">
+            <span class="pso-tag sol">Solution</span>
+            <span>Scheduled scraping, enrichment, and structured delivery to sheets, dashboards, or CRMs.</span>
+          </div>
+          <div class="pso-row">
+            <span class="pso-tag out">Outcome</span>
+            <span>Reliable data feeds and automated reporting without the manual copy-paste.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENGINEERING ARCHITECTURE & PROCESS -->
+    <section id="architecture">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">// Why Work With Me</div>
+          <h2 class="sec-title">Built to run, not just connect</h2>
+          <p class="sec-sub">I don't use AI for the sake of it. If a simple automation works better, I keep it simple — engineered with production guardrails.</p>
+        </div>
+      </div>
+
+      <div class="eng-grid" style="margin-bottom: 56px;">
+        <div class="eng-card">
+          <span class="eng-badge">Error handling · retries</span>
+          <h4>Resilient execution</h4>
+          <p>API failures, rate limits, and timeouts don't silently break your workflow. Errors are caught on every branch with exponential backoff retries.</p>
+        </div>
+        <div class="eng-card">
+          <span class="eng-badge">Idempotency · state</span>
+          <h4>No duplicate work</h4>
+          <p>State flags and stable keys guarantee each record is handled exactly once, even if a webhook or trigger double-fires.</p>
+        </div>
+        <div class="eng-card">
+          <span class="eng-badge">Credential hygiene · least privilege</span>
+          <h4>Secure integrations</h4>
+          <p>Credentials stay out of workflow logic and exports. Keys live in encrypted platform stores or environment variables with scoped tokens.</p>
+        </div>
+        <div class="eng-card">
+          <span class="eng-badge">Monitoring · logging</span>
+          <h4>Visible failures</h4>
+          <p>You find out about problems before your customers do. Run logs, execution history, and instant Slack/Telegram failure alerts come standard.</p>
+        </div>
+      </div>
+
+      <div id="process">
+        <div class="sec-eyebrow">// Execution Protocol</div>
+        <h3 style="font-size: 24px; margin-bottom: 24px;">From problem to production in five steps</h3>
+        <div class="process-steps">
+          <div class="step-box">
+            <div class="step-num">STEP 01</div>
+            <h4>Discovery & Scope</h4>
+            <p>We define scope, tools, success metrics, and timeline together after auditing your existing stack.</p>
+          </div>
+          <div class="step-box">
+            <div class="step-num">STEP 02</div>
+            <h4>System Design</h4>
+            <p>You review and approve the architecture data-flow diagram before a single node is built.</p>
+          </div>
+          <div class="step-box">
+            <div class="step-num">STEP 03</div>
+            <h4>Build & Test</h4>
+            <p>Rigorous branch testing in n8n or Make.com for edge cases, rate limits, and payload failures.</p>
+          </div>
+          <div class="step-box">
+            <div class="step-num">STEP 04</div>
+            <h4>Deploy & Train</h4>
+            <p>Production go-live with active monitoring and a recorded handover walkthrough for your team.</p>
+          </div>
+          <div class="step-box">
+            <div class="step-num">STEP 05</div>
+            <h4>Support & Scale</h4>
+            <p>Ongoing maintenance, API adjustments, and enhancements as your operations evolve.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENT PROOF & CREDENTIALS -->
+    <section>
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">// Client Proof & Credentials</div>
+          <h2 class="sec-title">Trusted by clients. Built with discipline.</h2>
+        </div>
+      </div>
+
+      <div class="proof-split">
+        <div>
+          <div class="quote-card">
+            <p class="quote-text">“Everything you need. Professional, responds extremely quickly, and works in a structured and reliable manner. Top-notch! There's really nothing more to say.”</p>
+            <div class="quote-author">
+              <div><strong>Aaron Auf der Maur</strong> · Managing Director at Brand Aktuell</div>
+              <span class="cred-tag">Switzerland · Upwork 5.0/5.0</span>
+            </div>
+          </div>
+          <div class="quote-card">
+            <p class="quote-text">“You did amazing work again – exactly as expected. Thanks a lot!”</p>
+            <div class="quote-author">
+              <div><strong>Diego Armandon</strong> · Direct Client Referral</div>
+              <span class="cred-tag">Switzerland · 5.0/5.0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cred-list">
+          <div class="cred-item">
+            <div>
+              <h4>n8n Certified — Essentials & APIs</h4>
+              <p>Official n8n certification covering workflow fundamentals and API integration.</p>
+            </div>
+            <span class="cred-tag">Verified Cert</span>
+          </div>
+          <div class="cred-item">
+            <div>
+              <h4>GenAI Workflow Orchestration — DeepLearning.AI</h4>
+              <p>Certification in orchestrating generative AI inside production workflows.</p>
+            </div>
+            <span class="cred-tag">DeepLearning.AI</span>
+          </div>
+          <div class="cred-item">
+            <div>
+              <h4>USAII Global AI Hackathon 2026 — Finalist</h4>
+              <p>Built an AI agent turning vague ideas into structured action plans with HITL guardrails.</p>
+            </div>
+            <span class="cred-tag">2026 Finalist</span>
+          </div>
+          <div class="cred-item">
+            <div>
+              <h4>Upwork — 5.0 / 5.0 Rating</h4>
+              <p>Delivering automation systems to clients globally, with repeat and referral work.</p>
+            </div>
+            <span class="cred-tag">100% Success</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <div class="cta-banner">
+      <h2>Which part of your week is still manual?</h2>
+      <p>Tell me the process and I'll tell you honestly whether automating it is worth it — and what it would take.</p>
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <a href="https://www.imawais.engineer/contact" class="btn btn-primary">Start an AI automation project →</a>
+        <a href="mailto:alpha.se.awais@gmail.com" class="btn btn-secondary">alpha.se.awais@gmail.com</a>
+      </div>
+    </div>
+
+    <footer>
+      <div>© 2026 Muhammad Awais — AI Automation Engineer — n8n Workflow Automation</div>
+      <div class="footer-links">
+        <a href="https://www.imawais.engineer/projects">Projects</a>
+        <a href="https://www.imawais.engineer/about">About</a>
+        <a href="https://www.imawais.engineer/contact">Contact</a>
+        <a href="https://contra.com/imawais_eningeer/posts">Contra</a>
+        <a href="mailto:alpha.se.awais@gmail.com">Email</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const workflows = [
+      {
+        n1: ["Cron Schedule + Apify Scraper", "Pulls daily multi-source marketing & ops metrics", "200 OK · 1.2s"],
+        n2: ["Data Normalisation & Deduplication", "Idempotent state check + schema validation", "0 Duplicates"],
+        n3: ["Executive Digest Formatter", "Structures KPIs into actionable daily summary", "Processed"],
+        n4: ["Slack Channel + Google Sheets Log", "Replaces 10+ hrs/week of manual reporting", "10+ hrs/wk saved"]
+      },
+      {
+        n1: ["Google Sheet Handle Input (50+ Accounts)", "Reads target Instagram business handles & categories", "50+ Accounts"],
+        n2: ["SocialCrawl API (12 Latest Reels/Account)", "Computes baseline median views within 14-day window", "4s Rate Delay"],
+        n3: ["Outlier Filter (Views ÷ Median ≥ 3.0×)", "Deduplicates against notified Reel ID sheet", "100% Detection"],
+        n4: ["Instant Telegram Bot Alert + Audit Log", "Pushes viral outliers in hours instead of days", "~20 Reels/run"]
+      },
+      {
+        n1: ["Multi-Channel Webhook (Gmail / Web / Slack)", "Ingests incoming customer support tickets live", "Real-Time"],
+        n2: ["OpenAI GPT-4o-mini Triage Agent", "Classifies topic, urgency score, and customer sentiment", "90% Faster"],
+        n3: ["Conditional Router & Guardrail Check", "Routes urgent escalations vs standard resolutions", "Idempotent"],
+        n4: ["Slack Escalation + Sheets + Instant Auto-Reply", "Cuts manual support triage by 20+ hours/week", "20+ hrs/wk saved"]
+      }
+    ];
+
+    function switchWorkflow(idx) {
+      document.querySelectorAll('.studio-tab').forEach((btn, i) => {
+        btn.classList.toggle('active', i === idx);
+      });
+      const wf = workflows[idx];
+      ['n1', 'n2', 'n3', 'n4'].forEach(key => {
+        document.getElementById(key + '-title').textContent = wf[key][0];
+        document.getElementById(key + '-desc').textContent = wf[key][1];
+        document.getElementById(key + '-badge').textContent = wf[key][2];
+      });
+      simulateRun();
+    }
+
+    function simulateRun() {
+      const nodes = document.querySelectorAll('.wf-node');
+      const status = document.getElementById('wfStatus');
+      status.textContent = "● Executing workflow branch test...";
+      status.style.color = "#f59e0b";
+      nodes.forEach(n => n.classList.remove('active-step'));
+      nodes.forEach((node, idx) => {
+        setTimeout(() => {
+          nodes.forEach(n => n.classList.remove('active-step'));
+          node.classList.add('active-step');
+          if (idx === nodes.length - 1) {
+            status.textContent = "● Execution Complete: All branches verified (0 errors)";
+            status.style.color = "#10b981";
+          }
+        }, idx * 280);
+      });
+    }
+  </script>
+</body>
+</html>

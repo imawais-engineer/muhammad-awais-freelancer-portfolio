@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Awais — AI Systems Architecture & n8n Engineering (V2: Swiss Editorial Grid)</title>
+  <style>
+    :root {
+      --paper: #f6f4ef;
+      --paper-card: #ffffff;
+      --ink: #111111;
+      --ink-secondary: #4a4843;
+      --ink-muted: #78756e;
+      --rule: #d5d1c8;
+      --rule-dark: #111111;
+      --klein: #0038ff;
+      --vermilion: #d9381e;
+      --emerald-ink: #0b6e4f;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .swiss-frame {
+      max-width: 1240px;
+      margin: 0 auto;
+      border-left: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      background: var(--paper);
+    }
+
+    /* Top Index Bar */
+    .index-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 28px;
+      border-bottom: 2px solid var(--rule-dark);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Editorial Masthead Navigation */
+    .masthead {
+      display: grid;
+      grid-template-columns: 1.2fr 1.8fr auto;
+      border-bottom: 1px solid var(--rule);
+      align-items: stretch;
+    }
+    .mast-brand {
+      padding: 20px 28px;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .mast-brand strong {
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+    .mast-brand span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+    .mast-nav {
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      gap: 32px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .mast-nav a:hover { color: var(--klein); text-decoration: underline; }
+    .mast-cta {
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: background 0.2s;
+    }
+    .mast-cta:hover { background: var(--klein); }
+
+    /* Architectural Hero Grid */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 0.55fr;
+      border-bottom: 2px solid var(--rule-dark);
+    }
+    .hero-main {
+      padding: 64px 40px 64px 28px;
+      border-right: 1px solid var(--rule);
+    }
+    .spec-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--vermilion);
+      border: 1px solid var(--vermilion);
+      padding: 4px 10px;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .hero-main h1 {
+      font-family: var(--font-serif);
+      font-size: 56px;
+      font-weight: 400;
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .hero-main h1 em {
+      font-style: italic;
+      color: var(--klein);
+    }
+    .hero-main p {
+      font-size: 18px;
+      color: var(--ink-secondary);
+      max-width: 640px;
+      margin-bottom: 36px;
+    }
+    .btn-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .swiss-btn {
+      padding: 14px 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      border: 1px solid var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .swiss-btn.filled {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .swiss-btn.filled:hover {
+      background: var(--klein);
+      border-color: var(--klein);
+    }
+    .swiss-btn.outline:hover {
+      background: #eae6dd;
+    }
+
+    /* Right Hero Ledger */
+    .hero-ledger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .ledger-cell {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .ledger-cell:last-child { border-bottom: none; }
+    .ledger-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .ledger-num {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .ledger-desc {
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    /* Section Header Bar */
+    .sec-bar {
+      display: grid;
+      grid-template-columns: 220px 1fr auto;
+      border-bottom: 1px solid var(--rule-dark);
+      background: #efece4;
+      align-items: center;
+    }
+    .sec-bar-idx {
+      padding: 16px 28px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      border-right: 1px solid var(--rule);
+      text-transform: uppercase;
+    }
+    .sec-bar-title {
+      padding: 16px 28px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .sec-bar-action {
+      padding: 16px 28px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--klein);
+      font-weight: 600;
+    }
+
+    /* Case Study Table / Architectural Dossier */
+    .dossier-row {
+      display: grid;
+      grid-template-columns: 220px 1.3fr 1fr 220px;
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper-card);
+      transition: background 0.15s;
+    }
+    .dossier-row:hover {
+      background: #faf9f5;
+    }
+    .dossier-cell {
+      padding: 28px;
+      border-right: 1px solid var(--rule);
+    }
+    .dossier-cell:last-child { border-right: none; }
+    .dossier-cat {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--vermilion);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .dossier-client {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+    .dossier-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+    .dossier-summary {
+      font-size: 14px;
+      color: var(--ink-secondary);
+    }
+    .dossier-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .dossier-stack span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 8px;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+    }
+    .dossier-kpi {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--emerald-ink);
+      margin-bottom: 14px;
+    }
+
+    /* Interactive Before/After Service Matrix */
+    .toggle-header {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--paper);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .mode-switch {
+      display: inline-flex;
+      border: 1px solid var(--ink);
+    }
+    .mode-btn {
+      padding: 8px 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .mode-btn.active {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .service-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 2px solid var(--rule-dark);
+    }
+    .srv-col {
+      padding: 28px;
+      border-right: 1px solid var(--rule);
+      background: var(--paper-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .srv-col:last-child { border-right: none; }
+    .srv-idx {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+    }
+    .srv-col h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    .state-box {
+      padding: 14px;
+      border-left: 3px solid var(--klein);
+      background: var(--paper);
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .state-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* 5-Step Blueprint & Engineering Discipline */
+    .blueprint-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-bottom: 1px solid var(--rule-dark);
+    }
+    .bp-cell {
+      padding: 26px;
+      border-right: 1px solid var(--rule);
+    }
+    .bp-cell:last-child { border-right: none; }
+    .bp-num {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--klein);
+      margin-bottom: 10px;
+    }
+    .bp-cell h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .bp-cell p {
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    /* Engineering Guarantees + Testimonials */
+    .dual-ledger {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 2px solid var(--rule-dark);
+    }
+    .dual-col {
+      padding: 36px 28px;
+      border-right: 1px solid var(--rule);
+    }
+    .dual-col:last-child { border-right: none; }
+    .guarantee-item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .guarantee-item:last-child { border-bottom: none; }
+    .editorial-quote {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      line-height: 1.45;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    /* Footer */
+    .swiss-footer {
+      padding: 48px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .swiss-footer h2 {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 400;
+    }
+
+    @media (max-width: 960px) {
+      .masthead, .hero-grid, .dossier-row, .service-4col, .blueprint-grid, .dual-ledger, .sec-bar {
+        grid-template-columns: 1fr;
+      }
+      .hero-main h1 { font-size: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="swiss-frame">
+    <div class="index-bar">
+      <span>[VERSION 02 / SWISS EDITORIAL & SYSTEMS ARCHITECT]</span>
+      <span>DOC REF: IMAWAIS-ENG-2026 // PAKISTAN — REMOTE WORLDWIDE</span>
+    </div>
+
+    <header class="masthead">
+      <a href="https://www.imawais.engineer/" class="mast-brand">
+        <strong>MUHAMMAD AWAIS</strong>
+        <span>AI AUTOMATION ENGINEER · N8N WORKFLOW SYSTEMS</span>
+      </a>
+      <nav class="mast-nav">
+        <a href="#dossier">01. Case Dossier</a>
+        <a href="#capabilities">02. Capabilities</a>
+        <a href="#protocol">03. Five-Step Protocol</a>
+        <a href="#credentials">04. Proof & Certs</a>
+        <a href="https://www.imawais.engineer/about">05. About</a>
+      </nav>
+      <a href="https://www.imawais.engineer/contact" class="mast-cta">Start a Project ↗</a>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero-grid">
+      <div class="hero-main">
+        <span class="spec-tag">Production-Grade Workflow Architecture</span>
+        <h1>I build <em>AI-powered systems</em> that eliminate repetitive work.</h1>
+        <p>
+          I'm Muhammad Awais, a freelance AI Automation Engineer. I help agencies, SaaS teams and small businesses automate operations with n8n workflow automation, AI agents and connected business systems — turning manual workflows into reliable, documented infrastructure.
+        </p>
+        <div class="btn-row">
+          <a href="https://www.imawais.engineer/contact" class="swiss-btn filled">Commission an Automation System →</a>
+          <a href="https://www.imawais.engineer/projects" class="swiss-btn outline">Inspect 12 Production Case Studies</a>
+        </div>
+      </div>
+
+      <div class="hero-ledger">
+        <div class="ledger-cell">
+          <div class="ledger-index"><span>METRIC 01</span><span>VERIFIED UPWORK</span></div>
+          <div class="ledger-num">5.0 / 5.0</div>
+          <div class="ledger-desc">Client rating across global automation builds</div>
+        </div>
+        <div class="ledger-cell">
+          <div class="ledger-index"><span>METRIC 02</span><span>PRODUCTION FOOTPRINT</span></div>
+          <div class="ledger-num">12 Systems</div>
+          <div class="ledger-desc">Documented end-to-end in n8n & Make.com</div>
+        </div>
+        <div class="ledger-cell">
+          <div class="ledger-index"><span>METRIC 03</span><span>OPERATIONAL ROI</span></div>
+          <div class="ledger-num">20+ hrs/wk</div>
+          <div class="ledger-desc">Manual labor eliminated per client every week</div>
+        </div>
+        <div class="ledger-cell">
+          <div class="ledger-index"><span>METRIC 04</span><span>RELIABILITY</span></div>
+          <div class="ledger-num">100%</div>
+          <div class="ledger-desc">Job success & repeat client engagements</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 01: CASE STUDY DOSSIER -->
+    <div id="dossier" class="sec-bar">
+      <div class="sec-bar-idx">SECTION 01 // WORK</div>
+      <div class="sec-bar-title">AI Automation Projects Running in Production</div>
+      <a href="https://www.imawais.engineer/projects" class="sec-bar-action">FULL ARCHIVE (12) ↗</a>
+    </div>
+
+    <div class="dossier-row">
+      <div class="dossier-cell">
+        <div class="dossier-cat">01 / Reporting</div>
+        <div class="dossier-client">Small Business / Agency<br>Digital Marketing & Ops</div>
+      </div>
+      <div class="dossier-cell">
+        <h3 class="dossier-title">Automated Slack Reporting Pipeline with Apify and n8n</h3>
+        <p class="dossier-summary">A scheduled scraping-to-Slack digest that replaced 10+ hours a day of manual data collection and formatting.</p>
+      </div>
+      <div class="dossier-cell">
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted);">ARCHITECTURE STACK</div>
+        <div class="dossier-stack">
+          <span>n8n</span><span>Make.com</span><span>Apify</span><span>Google Sheets</span><span>Slack</span>
+        </div>
+      </div>
+      <div class="dossier-cell">
+        <div class="dossier-kpi">10+ hrs/wk saved</div>
+        <a href="https://www.imawais.engineer/projects/slack-reporting-pipeline-apify-n8n" style="font-family: var(--font-mono); font-size: 12px; color: var(--klein); font-weight: 700;">Read Case Study ↗</a>
+      </div>
+    </div>
+
+    <div class="dossier-row">
+      <div class="dossier-cell">
+        <div class="dossier-cat">02 / Scraping</div>
+        <div class="dossier-client">Direct Client Referral<br>Social Media Marketing</div>
+      </div>
+      <div class="dossier-cell">
+        <h3 class="dossier-title">Instagram Reels Outlier Detection & Telegram Reporting</h3>
+        <p class="dossier-summary">Monitors 50+ Instagram business accounts, computes the 12-Reel median baseline, filters for ≥3.0× outliers within 14 days, and alerts Telegram.</p>
+      </div>
+      <div class="dossier-cell">
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted);">ARCHITECTURE STACK</div>
+        <div class="dossier-stack">
+          <span>n8n</span><span>SocialCrawl API</span><span>Google Sheets</span><span>Telegram Bot</span>
+        </div>
+      </div>
+      <div class="dossier-cell">
+        <div class="dossier-kpi">100% viral detection</div>
+        <a href="https://www.imawais.engineer/projects/instagram-reels-outlier-telegram-n8n" style="font-family: var(--font-mono); font-size: 12px; color: var(--klein); font-weight: 700;">Read Case Study ↗</a>
+      </div>
+    </div>
+
+    <div class="dossier-row" style="border-bottom: 2px solid var(--rule-dark);">
+      <div class="dossier-cell">
+        <div class="dossier-cat">03 / Support</div>
+        <div class="dossier-client">Direct Client (SaaS / E-Com)<br>Customer Support & Ops</div>
+      </div>
+      <div class="dossier-cell">
+        <h3 class="dossier-title">AI Customer Support Triage System</h3>
+        <p class="dossier-summary">Multi-channel tickets are normalised, classified for topic, urgency and sentiment, then fanned out to Slack, Sheets, and an instant customer auto-reply.</p>
+      </div>
+      <div class="dossier-cell">
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted);">ARCHITECTURE STACK</div>
+        <div class="dossier-stack">
+          <span>n8n</span><span>OpenAI GPT-4o-mini</span><span>Gmail API</span><span>Slack API</span>
+        </div>
+      </div>
+      <div class="dossier-cell">
+        <div class="dossier-kpi">20+ hrs/wk · 90% faster</div>
+        <a href="https://www.imawais.engineer/projects" style="font-family: var(--font-mono); font-size: 12px; color: var(--klein); font-weight: 700;">Read Case Study ↗</a>
+      </div>
+    </div>
+
+    <!-- SECTION 02: INTERACTIVE CAPABILITIES MATRIX -->
+    <div id="capabilities" class="sec-bar">
+      <div class="sec-bar-idx">SECTION 02 // SERVICES</div>
+      <div class="sec-bar-title">Where Automation Pays for Itself Fastest</div>
+      <div class="sec-bar-action">TESTED, DOCUMENTED SYSTEMS</div>
+    </div>
+
+    <div class="toggle-header">
+      <div style="font-size: 14px; color: var(--ink-secondary);">
+        Inspect how manual bottlenecks transform into autonomous workflows across four core domains:
+      </div>
+      <div class="mode-switch">
+        <button class="mode-btn" id="btnBefore" onclick="setServiceMode('before')">01. Manual Bottleneck (Before)</button>
+        <button class="mode-btn active" id="btnAfter" onclick="setServiceMode('after')">02. Engineered System (After)</button>
+      </div>
+    </div>
+
+    <div class="service-4col">
+      <div class="srv-col">
+        <div>
+          <div class="srv-idx">DOMAIN 01 // LLM AGENTS</div>
+          <h3>AI Agents & Chatbots</h3>
+          <div class="state-box" id="srv0-box">
+            <span class="state-label" id="srv0-lbl">ENGINEERED OUTCOME</span>
+            <p id="srv0-txt">LLM-powered AI agents and classification workflows on web, WhatsApp, Slack or email — delivering 24/7 handling and faster first replies.</p>
+          </div>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted);">OpenAI · Claude · Gemini · n8n</div>
+      </div>
+
+      <div class="srv-col">
+        <div>
+          <div class="srv-idx">DOMAIN 02 // CORE PIPELINES</div>
+          <h3>n8n Workflow & Process Automation</h3>
+          <div class="state-box" id="srv1-box">
+            <span class="state-label" id="srv1-lbl">ENGINEERED OUTCOME</span>
+            <p id="srv1-txt">End-to-end n8n and Make.com pipelines running on triggers, schedules, or webhooks so operations scale without hiring.</p>
+          </div>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted);">n8n · Make · Zapier · Workspace</div>
+      </div>
+
+      <div class="srv-col">
+        <div>
+          <div class="srv-idx">DOMAIN 03 // REVENUE OPS</div>
+          <h3>CRM & Lead Automation</h3>
+          <div class="state-box" id="srv2-box">
+            <span class="state-label" id="srv2-lbl">ENGINEERED OUTCOME</span>
+            <p id="srv2-txt">Automated capture, AI lead scoring (0–100), CRM routing, meeting booking, and idempotent follow-ups so good leads never go cold.</p>
+          </div>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted);">HubSpot · Pipedrive · GHL · Airtable</div>
+      </div>
+
+      <div class="srv-col">
+        <div>
+          <div class="srv-idx">DOMAIN 04 // DATA INGESTION</div>
+          <h3>Data & Scraping Automation</h3>
+          <div class="state-box" id="srv3-box">
+            <span class="state-label" id="srv3-lbl">ENGINEERED OUTCOME</span>
+            <p id="srv3-txt">Scheduled scraping, enrichment, and structured delivery to sheets, dashboards, or CRMs without manual copy-paste.</p>
+          </div>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted);">Apify · Python · REST APIs · Sheets</div>
+      </div>
+    </div>
+
+    <!-- SECTION 03: FIVE-STEP PROTOCOL -->
+    <div id="protocol" class="sec-bar">
+      <div class="sec-bar-idx">SECTION 03 // PROTOCOL</div>
+      <div class="sec-bar-title">From Problem to Production in Five Steps</div>
+      <div class="sec-bar-action">ARCHITECTURE APPROVED UPFRONT</div>
+    </div>
+
+    <div class="blueprint-grid">
+      <div class="bp-cell">
+        <div class="bp-num">01</div>
+        <h4>Discovery & Requirements</h4>
+        <p>We define scope, tools, success metrics, and timeline together before proposing any architecture.</p>
+      </div>
+      <div class="bp-cell">
+        <div class="bp-num">02</div>
+        <h4>System Design</h4>
+        <p>You review and approve a clear data-flow and logic diagram before anything is built.</p>
+      </div>
+      <div class="bp-cell">
+        <div class="bp-num">03</div>
+        <h4>Build & Test</h4>
+        <p>Built in your chosen platform and tested branch-by-branch for real-world edge cases and API failures.</p>
+      </div>
+      <div class="bp-cell">
+        <div class="bp-num">04</div>
+        <h4>Deployment & Training</h4>
+        <p>Live production deployment with active monitoring and a clear handover walkthrough.</p>
+      </div>
+      <div class="bp-cell">
+        <div class="bp-num">05</div>
+        <h4>Maintenance & Support</h4>
+        <p>Ongoing support, updates, and enhancements so the system keeps delivering value as you grow.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 04: ENGINEERING GUARANTEES & CLIENT PROOF -->
+    <div id="credentials" class="dual-ledger">
+      <div class="dual-col">
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--vermilion); font-weight: 700; margin-bottom: 14px;">// BUILT TO RUN, NOT JUST CONNECT</div>
+        <div class="guarantee-item">
+          <div><strong>Resilient Execution</strong><br><span style="font-size:13px; color:var(--ink-secondary);">Errors caught on every branch; failed writes retry with backoff.</span></div>
+          <span style="font-family:var(--font-mono); font-size:11px;">RETRIES</span>
+        </div>
+        <div class="guarantee-item">
+          <div><strong>No Duplicate Work</strong><br><span style="font-size:13px; color:var(--ink-secondary);">State flags and stable keys guarantee each item processes once.</span></div>
+          <span style="font-family:var(--font-mono); font-size:11px;">IDEMPOTENT</span>
+        </div>
+        <div class="guarantee-item">
+          <div><strong>Secure Integrations</strong><br><span style="font-size:13px; color:var(--ink-secondary);">Scoped, revocable tokens in platform credential stores.</span></div>
+          <span style="font-family:var(--font-mono); font-size:11px;">LEAST PRIVILEGE</span>
+        </div>
+        <div class="guarantee-item">
+          <div><strong>Visible Failures</strong><br><span style="font-size:13px; color:var(--ink-secondary);">Run logs, execution history, and proactive failure alerts.</span></div>
+          <span style="font-family:var(--font-mono); font-size:11px;">TELEMETRY</span>
+        </div>
+      </div>
+
+      <div class="dual-col">
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--klein); font-weight: 700; margin-bottom: 14px;">// VERIFIED CLIENT ENDORSEMENTS & CREDENTIALS</div>
+        <blockquote class="editorial-quote">
+          “Everything you need. Professional, responds extremely quickly, and works in a structured and reliable manner. Top-notch! There's really nothing more to say.”
+        </blockquote>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); margin-bottom: 24px;">
+          — AARON AUF DER MAUR, MANAGING DIRECTOR AT BRAND AKTUELL (SWITZERLAND · UPWORK 5.0/5.0)
+        </div>
+        <blockquote class="editorial-quote" style="font-size: 17px;">
+          “You did amazing work again – exactly as expected. Thanks a lot!”
+        </blockquote>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); margin-bottom: 24px;">
+          — DIEGO ARMANDON, DIRECT CLIENT REFERRAL (SWITZERLAND · 5.0/5.0)
+        </div>
+        <div style="padding-top: 14px; border-top: 1px solid var(--rule); font-family: var(--font-mono); font-size: 11px; line-height: 1.8;">
+          ✓ n8n Certified (Essentials & APIs) &nbsp;·&nbsp; ✓ DeepLearning.AI GenAI Workflow Orchestration &nbsp;·&nbsp; ✓ USAII Global AI Hackathon 2026 Finalist
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER CTA -->
+    <footer class="swiss-footer">
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--vermilion); text-transform: uppercase; margin-bottom: 6px;">// Honest Scope Assessment</div>
+        <h2>Which part of your week is still manual?</h2>
+        <p style="color: var(--ink-secondary); margin-top: 6px;">Tell me the process and I'll tell you honestly whether automating it is worth it — and what it would take.</p>
+      </div>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <a href="https://www.imawais.engineer/contact" class="swiss-btn filled">Start an AI Automation Project ↗</a>
+        <a href="mailto:alpha.se.awais@gmail.com" class="swiss-btn outline">alpha.se.awais@gmail.com</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const srvData = {
+      before: [
+        "Customer questions, support tickets, and content decisions pile up faster than a small team can handle.",
+        "Teams waste hours moving data between spreadsheets, inboxes, Google Workspace and disconnected apps.",
+        "Leads arrive faster than they can be qualified, routed, and followed up — letting high-intent buyers go cold.",
+        "Market tracking, reporting, and data collection are rebuilt by hand every week through tedious copy-paste."
+      ],
+      after: [
+        "LLM-powered AI agents and classification workflows on web, WhatsApp, Slack or email — delivering 24/7 handling and faster first replies.",
+        "End-to-end n8n and Make.com pipelines running on triggers, schedules, or webhooks so operations scale without hiring.",
+        "Automated capture, AI lead scoring (0–100), CRM routing, meeting booking, and idempotent follow-ups so good leads never go cold.",
+        "Scheduled scraping, enrichment, and structured delivery to sheets, dashboards, or CRMs without manual copy-paste."
+      ]
+    };
+
+    function setServiceMode(mode) {
+      document.getElementById('btnBefore').classList.toggle('active', mode === 'before');
+      document.getElementById('btnAfter').classList.toggle('active', mode === 'after');
+      for (let i = 0; i < 4; i++) {
+        const box = document.getElementById('srv' + i + '-box');
+        const lbl = document.getElementById('srv' + i + '-lbl');
+        const txt = document.getElementById('srv' + i + '-txt');
+        txt.textContent = srvData[mode][i];
+        if (mode === 'before') {
+          lbl.textContent = "MANUAL BOTTLENECK (PROBLEM)";
+          box.style.borderLeftColor = "#d9381e";
+        } else {
+          lbl.textContent = "ENGINEERED OUTCOME (SOLUTION)";
+          box.style.borderLeftColor = "#0038ff";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
