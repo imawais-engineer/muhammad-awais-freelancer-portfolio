@@ -123,7 +123,7 @@ const Projects = () => {
               Demonstration systems
             </p>
             <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-              Architectural builds proving workflow patterns
+              Working n8n use cases proving automation patterns
             </h2>
             <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {filteredDemo.map((project) => (
