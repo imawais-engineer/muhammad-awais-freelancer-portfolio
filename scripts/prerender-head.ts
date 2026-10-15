@@ -16,7 +16,7 @@ import { projects } from "../src/data/projects";
 
 /** Visible <h1> per static route (matches the rendered page; "/" keeps the index.html fallback). */
 const staticH1: Record<string, string> = {
-  "/projects": "AI automation projects, documented end to end",
+  "/projects": "n8n & AI Automation Case Studies",
   "/services": "AI Automation & Agentic Systems Services",
   "/services/agentic-systems": "Agentic Systems & State Graph Architecture",
   "/services/mcp-engineering": "Model Context Protocol (MCP) Server Engineering",
