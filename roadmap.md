@@ -12,7 +12,8 @@
 - [x] About profile card rebuilt to match homepage card (circular photo, badge, title, social logos) + global axe scan clean (2026-10-14)
 
 ## Google indexing (Oct 15 2026)
-- GSC index read via API: only homepage known to Google (stale www canonical from Sep 30 crawl); /projects, /services, /about, /contact = "URL is unknown to Google". Sitemap: 36 URLs, 0 errors, downloaded Oct 15.
-- Live-check from sandbox: all main pages 200, robots "index, follow", sitemap + robots.txt OK.
-- BLOCKER: Test Live URL + Request Indexing buttons are GSC-UI only (no API). User must click per URL, priority: / → /projects → /services → /about → /contact → top case studies. Daily quota ~10.
+- Sitemap: 36 URLs, 0 errors, downloaded Oct 15.
+- User ran browser automator: Test Live URL + Request Indexing for 8 URLs (/ , /projects, /services, /about, /contact, 3 case studies) — all green, added to priority crawl queue, 8:49–9:21 PM.
+- Homepage now "Submitted and indexed", canonical imawais.engineer, crawled Oct 15 15:57 UTC. Other 7 URLs pending Google's crawl.
 - Open: Lovable hosting serves SPA shell for all routes (same <title> in raw HTML); per-route prerendered head from scripts/prerender-head.ts not active — Googlebot must render JS. Consider re-checking after indexing.
+- Next check: re-run GSC diagnose in ~1 week to confirm the other 7 pages move to indexed.
