@@ -17,3 +17,5 @@
 - Homepage now "Submitted and indexed", canonical imawais.engineer, crawled Oct 15 15:57 UTC. Other 7 URLs pending Google's crawl.
 - Open: Lovable hosting serves SPA shell for all routes (same <title> in raw HTML); per-route prerendered head from scripts/prerender-head.ts not active — Googlebot must render JS. Consider re-checking after indexing.
 - Next check: re-run GSC diagnose in ~1 week to confirm the other 7 pages move to indexed.
+- [x] Projects page page-1 push for "n8n case studies"/"n8n case study" (#15/#28, difficulty ~25): H1 now "n8n & AI Automation Case Studies", intro rewritten with n8n case studies / workflow examples / use cases phrasing, static H1 in prerender-head.ts aligned (Oct 15).
+- Open (user): finish disavow upload; add site link to Upwork/LinkedIn/GitHub/Fiverr profiles; post LinkedIn write-ups per case study.
