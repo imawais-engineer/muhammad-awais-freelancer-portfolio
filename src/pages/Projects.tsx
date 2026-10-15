@@ -49,13 +49,14 @@ const Projects = () => {
             <span className="font-mono text-xs text-muted-foreground">{projects.length} Total Systems</span>
           </div>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            <span className="gradient-text">Agentic AI &amp; Automation</span>{" "}
+            <span className="gradient-text">n8n &amp; AI Automation</span>{" "}
             <span className="text-foreground">Case Studies</span>
           </h1>
           <p className="text-lg leading-relaxed text-muted-foreground">
-            Production agentic workflows, custom Model Context Protocol (MCP) servers, LangGraph state machines,
-            and enterprise automation pipelines. Every case study documents system architecture, state topology,
-            governance constraints, and verified business outcomes.
+            Real n8n case studies and workflow examples: lead qualification, CRM pipelines, AI agents, and
+            reporting systems built with n8n, Make.com, and Python. Every build documents the architecture,
+            the tools, and the measured results — so you can see exactly how each automation works before
+            we build yours.
           </p>
         </motion.header>
 
