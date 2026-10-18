@@ -6,13 +6,13 @@
  * (WhatsApp, LinkedIn, Slack, Facebook, X) — which do not run JavaScript —
  * see the correct title, description and share image.
  *
- * Share images live in `public/og/` and are generated at exactly 1200x630 JPG.
+ * Share images live in `public/og/` and are generated at 2400x1260 JPG (2x HD, under 350KB).
  */
 import { projects } from "./projects";
 import { projectSeo } from "./projectSeo";
 
-export const OG_WIDTH = 1200;
-export const OG_HEIGHT = 630;
+export const OG_WIDTH = 2400;
+export const OG_HEIGHT = 1260;
 
 /** Real build dates per case study (article:published_time). */
 export const projectPublished: Record<string, string> = {
