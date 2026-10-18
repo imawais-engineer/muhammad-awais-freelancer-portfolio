@@ -244,6 +244,27 @@
     @apply rounded-2xl border border-panel-border bg-panel/40 text-card-foreground transition-colors duration-200 ease-standard;
   }
 
+  /* Profile identity card — glass panel with the theme's gradient accents */
+  .profile-card {
+    @apply rounded-2xl border border-white/[0.1] bg-panel/85 backdrop-blur-md text-card-foreground;
+    box-shadow:
+      0 0 0 1px hsl(var(--panel-border)),
+      0 16px 40px -12px hsl(240 20% 2% / 0.85),
+      0 0 44px -10px hsl(var(--primary) / 0.22),
+      0 0 64px -18px rgba(139, 92, 246, 0.18);
+    background-image:
+      radial-gradient(ellipse 85% 60% at 50% 0%, hsl(var(--primary) / 0.12), transparent 70%),
+      linear-gradient(160deg, rgba(139, 92, 246, 0.07), transparent 45%);
+  }
+
+  /* Gradient ring behind the circular portrait */
+  .avatar-ring {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, #8b5cf6 55%, #c084fc 100%);
+    padding: 2px;
+    border-radius: 9999px;
+    box-shadow: 0 0 28px -8px hsl(var(--primary) / 0.4);
+  }
+
   .card-interactive {
     @apply border border-white/[0.08] transition-[transform,box-shadow,border-color,background-color] duration-300 ease-standard;
   }

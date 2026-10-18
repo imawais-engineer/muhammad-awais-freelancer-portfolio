@@ -90,16 +90,18 @@ const About = () => (
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
-          <div className="node-card mx-auto w-full max-w-[16rem] p-4 sm:max-w-[18rem] lg:max-w-none lg:p-5">
+          <div className="profile-card mx-auto w-full max-w-[16rem] p-4 sm:max-w-[18rem] lg:max-w-none lg:p-5">
+            <div className="avatar-ring mx-auto aspect-square w-full max-w-[12rem]">
             <img
               src={profileImage}
               alt="Portrait of Muhammad Awais, freelance AI Automation Engineer"
-              className="mx-auto aspect-square w-full max-w-[12rem] rounded-full object-cover"
+              className="aspect-square w-full rounded-full object-cover"
               loading="lazy"
               decoding="async"
               width={512}
               height={512}
             />
+            </div>
             <div className="mt-3 flex items-center justify-center gap-2">
               <p className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">{site.name}</p>
               <span
