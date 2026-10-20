@@ -14,7 +14,7 @@
       <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
       <category>Reporting</category>
       <description>Automated n8n reporting system that syncs business metrics to Google Sheets, flags revenue anomalies with AI and sends executive summaries on schedule.</description>
-      <enclosure url="https://imawais.engineer/og/projects/automated-business-kpi-analysis-growth-insights.jpg" type="image/jpeg" length="84730" />
+      <enclosure url="https://imawais.engineer/og/projects/automated-business-kpi-analysis-growth-insights.jpg" type="image/jpeg" length="254355" />
     </item>
     <item>
       <title>Brand-Governed Content Engine with Deterministic Critic Loop</title>
@@ -23,7 +23,7 @@
       <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
       <category>Agentic AI</category>
       <description>Actor-Critic content compiler with JSON schema enforcement: turns long-form audio into 30+ compliant social posts daily with 100% brand voice alignment.</description>
-      <enclosure url="https://imawais.engineer/og/projects/brand-governed-content-critic.jpg" type="image/jpeg" length="65843" />
+      <enclosure url="https://imawais.engineer/og/projects/brand-governed-content-critic.jpg" type="image/jpeg" length="214745" />
     </item>
     <item>
       <title>Hierarchical L1/L2 Customer Support Orchestrator</title>
@@ -32,7 +32,7 @@
       <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
       <category>Agentic AI</category>
       <description>Supervisor-Worker multi-agent swarm in LangGraph that semantically coordinates Stripe billing, Linear/GitHub APIs, and Pinecone vector RAG.</description>
-      <enclosure url="https://imawais.engineer/og/projects/hierarchical-support-swarm.jpg" type="image/jpeg" length="65843" />
+      <enclosure url="https://imawais.engineer/og/projects/hierarchical-support-swarm.jpg" type="image/jpeg" length="203865" />
     </item>
     <item>
       <title>Autonomous CI/CD Code Reviewer &amp; Refactoring Harness</title>
@@ -41,7 +41,7 @@
       <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
       <category>Agentic AI</category>
       <description>Evaluator-Optimizer agent harness testing git diffs in Docker sandboxes and committing verified refactor patches directly via GitHub MCP.</description>
-      <enclosure url="https://imawais.engineer/og/projects/autonomous-cicd-code-reviewer.jpg" type="image/jpeg" length="65843" />
+      <enclosure url="https://imawais.engineer/og/projects/autonomous-cicd-code-reviewer.jpg" type="image/jpeg" length="215126" />
     </item>
     <item>
       <title>Local BI Data Analyst via Custom Model Context Protocol (MCP)</title>
@@ -50,7 +50,7 @@
       <pubDate>Sun, 11 Oct 2026 00:00:00 GMT</pubDate>
       <category>Agentic AI</category>
       <description>Custom Python Model Context Protocol (MCP) server with self-correcting ReAct SQL loops, read-only PostgreSQL sandboxing, and zero PII data leakage.</description>
-      <enclosure url="https://imawais.engineer/og/projects/privacy-first-sql-mcp-analyst.jpg" type="image/jpeg" length="65843" />
+      <enclosure url="https://imawais.engineer/og/projects/privacy-first-sql-mcp-analyst.jpg" type="image/jpeg" length="221901" />
     </item>
     <item>
       <title>Autonomous Proposal Swarm with Human-in-the-Loop Governance</title>
@@ -59,7 +59,7 @@
       <pubDate>Sat, 10 Oct 2026 00:00:00 GMT</pubDate>
       <category>Agentic AI</category>
       <description>LangGraph multi-agent state machine with human-in-the-loop interrupts that turns raw discovery audio into executive-ready proposals in 3 minutes.</description>
-      <enclosure url="https://imawais.engineer/og/projects/human-in-the-loop-proposal-swarm.jpg" type="image/jpeg" length="65843" />
+      <enclosure url="https://imawais.engineer/og/projects/human-in-the-loop-proposal-swarm.jpg" type="image/jpeg" length="213769" />
     </item>
     <item>
       <title>Recreate Instagram Reels on Demand with Gemini &amp; MiniMax</title>
@@ -68,7 +68,7 @@
       <pubDate>Sat, 03 Oct 2026 00:00:00 GMT</pubDate>
       <category>Content</category>
       <description>Production n8n workflow that downloads Instagram Reels, extracts prompts with Gemini 2.0 Flash and generates fresh AI videos with MiniMax on Replicate.</description>
-      <enclosure url="https://imawais.engineer/og/projects/instagram-reel-recreation-gemini-minimax.jpg" type="image/jpeg" length="76564" />
+      <enclosure url="https://imawais.engineer/og/projects/instagram-reel-recreation-gemini-minimax.jpg" type="image/jpeg" length="191479" />
     </item>
     <item>
       <title>Voice AI Appointment Booking with ElevenLabs &amp; Cal.com</title>
@@ -77,7 +77,7 @@
       <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
       <description>Production voice AI appointment agent: ElevenLabs calls an n8n webhook to check live Cal.com calendar slots and books verified meetings over the phone.</description>
-      <enclosure url="https://imawais.engineer/og/projects/voice-ai-appointment-booking-elevenlabs-calcom.jpg" type="image/jpeg" length="66997" />
+      <enclosure url="https://imawais.engineer/og/projects/voice-ai-appointment-booking-elevenlabs-calcom.jpg" type="image/jpeg" length="209224" />
     </item>
     <item>
       <title>AI Lead Meeting Scheduling with Zoho CRM, Google Calendar &amp; Gemini</title>
@@ -86,7 +86,7 @@
       <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
       <category>Lead &amp; CRM</category>
       <description>Automated n8n scheduling system turning Zoho CRM leads into confirmed calendar bookings with timezone intelligence, Zoom links and Gemini invite copy.</description>
-      <enclosure url="https://imawais.engineer/og/projects/ai-lead-meeting-scheduling-zoho-gemini.jpg" type="image/jpeg" length="69686" />
+      <enclosure url="https://imawais.engineer/og/projects/ai-lead-meeting-scheduling-zoho-gemini.jpg" type="image/jpeg" length="218474" />
     </item>
     <item>
       <title>Dynamic HubSpot Lead Routing with GPT-4 &amp; Airtable</title>
@@ -95,7 +95,7 @@
       <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
       <category>Lead &amp; CRM</category>
       <description>n8n AI lead qualification system that scores incoming HubSpot contacts using GPT-4, matches team availability in Airtable and assigns reps in real time.</description>
-      <enclosure url="https://imawais.engineer/og/projects/hubspot-lead-routing-gpt4-airtable.jpg" type="image/jpeg" length="79721" />
+      <enclosure url="https://imawais.engineer/og/projects/hubspot-lead-routing-gpt4-airtable.jpg" type="image/jpeg" length="240239" />
     </item>
     <item>
       <title>Automated LinkedIn Job Search Automation with OpenAI &amp; Telegram Alerts</title>
@@ -104,7 +104,7 @@
       <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
       <description>n8n automation that scrapes LinkedIn openings daily, matches candidate profiles using OpenAI, drafts custom proposals and dispatches alerts to Telegram.</description>
-      <enclosure url="https://imawais.engineer/og/projects/linkedin-job-search-automation-openai-telegram.jpg" type="image/jpeg" length="69828" />
+      <enclosure url="https://imawais.engineer/og/projects/linkedin-job-search-automation-openai-telegram.jpg" type="image/jpeg" length="222633" />
     </item>
     <item>
       <title>Instagram Reels Outlier Detection &amp; Telegram Reporting</title>
@@ -113,7 +113,7 @@
       <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
       <category>Scraping</category>
       <description>n8n social analytics system monitoring 50+ competitor accounts, scoring video views against account medians and sending viral outlier alerts to Telegram.</description>
-      <enclosure url="https://imawais.engineer/og/projects/instagram-reels-outlier-telegram-n8n.jpg" type="image/jpeg" length="62824" />
+      <enclosure url="https://imawais.engineer/og/projects/instagram-reels-outlier-telegram-n8n.jpg" type="image/jpeg" length="202047" />
     </item>
     <item>
       <title>AI Lead Qualification for Real Estate Buyer Inquiries</title>
@@ -122,7 +122,7 @@
       <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
       <category>Lead &amp; CRM</category>
       <description>AI lead scoring system that enriches buyer inquiries with AI, scores buying intent from 0–100, routes hot leads to agents and logs records to Airtable.</description>
-      <enclosure url="https://imawais.engineer/og/projects/ai-lead-qualification-real-estate.jpg" type="image/jpeg" length="58842" />
+      <enclosure url="https://imawais.engineer/og/projects/ai-lead-qualification-real-estate.jpg" type="image/jpeg" length="191941" />
     </item>
     <item>
       <title>End-to-End Client Intake &amp; Onboarding Automation</title>
@@ -131,7 +131,7 @@
       <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
       <category>Lead &amp; CRM</category>
       <description>End-to-end client onboarding automation chaining intake forms, calendar booking, invoice generation and Notion workspace provisioning seamlessly.</description>
-      <enclosure url="https://imawais.engineer/og/projects/client-intake-onboarding-automation.jpg" type="image/jpeg" length="82206" />
+      <enclosure url="https://imawais.engineer/og/projects/client-intake-onboarding-automation.jpg" type="image/jpeg" length="264236" />
     </item>
     <item>
       <title>Automated Slack Reporting Pipeline with Apify and n8n</title>
@@ -140,7 +140,7 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
       <category>Reporting</category>
       <description>Automated business intelligence pipeline built with Apify, Make and n8n that scrapes industry feeds daily and posts actionable Slack summaries, saving 10h/wk.</description>
-      <enclosure url="https://imawais.engineer/og/projects/slack-reporting-pipeline-apify-n8n.jpg" type="image/jpeg" length="89670" />
+      <enclosure url="https://imawais.engineer/og/projects/slack-reporting-pipeline-apify-n8n.jpg" type="image/jpeg" length="270427" />
     </item>
     <item>
       <title>Automated Offer Letter &amp; Response Tracking System</title>
@@ -149,7 +149,7 @@
       <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
       <category>Content</category>
       <description>n8n HR document workflow that compiles PDF offer letters from Google Docs, tracks one-click recipient replies and syncs status updates to Google Sheets.</description>
-      <enclosure url="https://imawais.engineer/og/projects/automated-offer-letter-response-tracking.jpg" type="image/jpeg" length="66871" />
+      <enclosure url="https://imawais.engineer/og/projects/automated-offer-letter-response-tracking.jpg" type="image/jpeg" length="205431" />
     </item>
     <item>
       <title>AI-Powered Review Management System</title>
@@ -158,7 +158,7 @@
       <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
       <description>n8n reputation management workflow that captures Google Maps reviews, alerts operations on low ratings and auto-generates contextual reply drafts.</description>
-      <enclosure url="https://imawais.engineer/og/projects/ai-review-management-system.jpg" type="image/jpeg" length="69504" />
+      <enclosure url="https://imawais.engineer/og/projects/ai-review-management-system.jpg" type="image/jpeg" length="228474" />
     </item>
     <item>
       <title>Smart WhatsApp AI Assistant with a Google Docs Knowledge Base</title>
@@ -167,7 +167,7 @@
       <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
       <description>24/7 WhatsApp AI customer agent built with n8n that grounds conversations in live Google Docs, maintains per-contact memory and escalates complex queries.</description>
-      <enclosure url="https://imawais.engineer/og/projects/whatsapp-ai-assistant-google-docs.jpg" type="image/jpeg" length="77252" />
+      <enclosure url="https://imawais.engineer/og/projects/whatsapp-ai-assistant-google-docs.jpg" type="image/jpeg" length="251242" />
     </item>
     <item>
       <title>Advanced Multi-Query RAG System with Supabase &amp; OpenAI</title>
@@ -176,7 +176,7 @@
       <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
       <description>Enterprise RAG pipeline on Supabase pgvector and OpenAI that deconstructs user questions into sub-queries, re-ranks vectors and delivers factual citations.</description>
-      <enclosure url="https://imawais.engineer/og/projects/multi-query-rag-supabase-openai.jpg" type="image/jpeg" length="69860" />
+      <enclosure url="https://imawais.engineer/og/projects/multi-query-rag-supabase-openai.jpg" type="image/jpeg" length="229291" />
     </item>
     <item>
       <title>AI Customer Support Triage System</title>
@@ -185,7 +185,7 @@
       <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
       <category>Support</category>
       <description>Multi-channel support triage system that classifies incoming customer tickets with LLMs by urgency and sentiment, notifies Slack and drafts responses.</description>
-      <enclosure url="https://imawais.engineer/og/projects/ai-customer-support-triage.jpg" type="image/jpeg" length="101739" />
+      <enclosure url="https://imawais.engineer/og/projects/ai-customer-support-triage.jpg" type="image/jpeg" length="322914" />
     </item>
     <item>
       <title>AI-Powered Email Labeling Agent for Inbox Management</title>
@@ -194,7 +194,7 @@
       <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
       <description>Autonomous Gmail AI assistant that analyzes incoming client inquiries, categorizes urgency and applies smart labels to keep inboxes zeroed out automatically.</description>
-      <enclosure url="https://imawais.engineer/og/projects/ai-email-labeling-agent-gmail.jpg" type="image/jpeg" length="67133" />
+      <enclosure url="https://imawais.engineer/og/projects/ai-email-labeling-agent-gmail.jpg" type="image/jpeg" length="209800" />
     </item>
     <item>
       <title>AI-Powered YouTube Publishing Automation</title>
@@ -203,7 +203,7 @@
       <pubDate>Sun, 14 Jun 2026 00:00:00 GMT</pubDate>
       <category>Content</category>
       <description>Automated content pipeline that ingests raw video files from Google Drive, generates optimized YouTube titles and tags with AI and schedules publishing.</description>
-      <enclosure url="https://imawais.engineer/og/projects/youtube-publishing-automation.jpg" type="image/jpeg" length="93666" />
+      <enclosure url="https://imawais.engineer/og/projects/youtube-publishing-automation.jpg" type="image/jpeg" length="284225" />
     </item>
     <item>
       <title>Automated Lead Reply &amp; Follow-Up System</title>
@@ -212,7 +212,7 @@
       <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
       <category>Lead &amp; CRM</category>
       <description>Two-way CRM integration linking GoHighLevel and ClickUp: auto-assigns sales follow-ups, syncs reply sentiment and eliminates lead response delays.</description>
-      <enclosure url="https://imawais.engineer/og/projects/lead-reply-sync-gohighlevel-clickup.jpg" type="image/jpeg" length="65455" />
+      <enclosure url="https://imawais.engineer/og/projects/lead-reply-sync-gohighlevel-clickup.jpg" type="image/jpeg" length="216226" />
     </item>
     <item>
       <title>Real Estate Lead Generation &amp; Property Monitoring</title>
@@ -221,7 +221,7 @@
       <pubDate>Sat, 06 Jun 2026 00:00:00 GMT</pubDate>
       <category>Scraping</category>
       <description>Make.com &amp; BrowserAct web automation tracking real estate listings against custom criteria with instant multi-channel push to Telegram and CRM systems.</description>
-      <enclosure url="https://imawais.engineer/og/projects/real-estate-lead-generation-browseract-make.jpg" type="image/jpeg" length="86880" />
+      <enclosure url="https://imawais.engineer/og/projects/real-estate-lead-generation-browseract-make.jpg" type="image/jpeg" length="264672" />
     </item>
   </channel>
 </rss>
