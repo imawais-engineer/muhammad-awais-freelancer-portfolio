@@ -16,11 +16,12 @@ import {
 } from "@/components/ui/accordion";
 import { getProject } from "@/data/projects";
 import { getPageJsonLd } from "@/data/structuredData";
+import { routeMeta } from "@/data/routeMeta";
+import { getServicePage } from "@/data/seoPages";
+import { agenticFaqs as faqs } from "@/data/serviceContent";
 
-const TITLE = "Agentic Systems & State Graph Architecture | Muhammad Awais";
-const DESCRIPTION =
-  "Custom multi-agent workflows built on LangGraph and Python: stateful DAG execution, Actor-Critic and Evaluator-Optimizer loops, Human-in-the-Loop review gates, and deterministic Pydantic schemas.";
 const PATH = "/services/agentic-systems";
+const { title: TITLE, description: DESCRIPTION } = routeMeta[PATH];
 
 const capabilities = [
   {
@@ -45,30 +46,7 @@ const capabilities = [
   },
 ];
 
-const caseStudySlugs = [
-  "human-in-the-loop-proposal-swarm",
-  "hierarchical-support-swarm",
-  "brand-governed-content-critic",
-];
-
-const faqs = [
-  {
-    q: "Why use state graphs in LangGraph instead of linear prompt chains?",
-    a: "Linear prompt chains break the moment an LLM encounters unexpected ambiguity, format errors, or multi-step decision paths. LangGraph models processes as cyclical state machines with strongly typed state, allowing agents to branch, retry, self-correct, and pause for human approval with 100% durability.",
-  },
-  {
-    q: "How do Human-in-the-Loop (HITL) interrupt gates work in production?",
-    a: "LangGraph checkpointers freeze the complete state graph in PostgreSQL. The system generates an approval token and alerts managers via a Next.js dashboard or webhook. When the manager clicks Approve or edits a section, the graph resumes from the exact checkpoint without re-running earlier steps.",
-  },
-  {
-    q: "Which LLMs do you use for agentic systems?",
-    a: "Primarily Claude 3.5 Sonnet for deep reasoning, coding, and structured extraction, along with GPT-4o for analytical synthesis and Grok / Gemini for rapid multimodal tasks. All model calls use strict temperature settings and schema validation.",
-  },
-  {
-    q: "How do you prevent agents from hallucinating or running in infinite loops?",
-    a: "Every loop is governed by hard iteration limits (typically 3–4 passes max), Pydantic validation boundaries, and deterministic fallback branches. If an agent fails to converge, the thread safely escalates to human staff rather than burning tokens.",
-  },
-];
+const { caseStudies: caseStudySlugs } = getServicePage(PATH);
 
 const techStack = [
   "Python 3.12",
@@ -107,7 +85,7 @@ const AgenticSystems = () => {
             <span className="tech-tag">LangGraph &amp; Python</span>
           </div>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            <span className="gradient-text-primary">Agentic Systems</span> &amp; State Graph Architecture
+            <span className="gradient-text-primary">LangGraph &amp; Multi-Agent</span> System Developer
           </h1>
           <p className="text-lg leading-relaxed text-muted-foreground">
             Custom multi-agent workflows that plan, reason, and self-heal. I design and build production-grade

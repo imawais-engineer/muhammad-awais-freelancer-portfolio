@@ -16,11 +16,12 @@ import {
 } from "@/components/ui/accordion";
 import { getProject } from "@/data/projects";
 import { getPageJsonLd } from "@/data/structuredData";
+import { routeMeta } from "@/data/routeMeta";
+import { getServicePage } from "@/data/seoPages";
+import { hybridFaqs as faqs } from "@/data/serviceContent";
 
-const TITLE = "Deterministic Automation & Hybrid Orchestration | Muhammad Awais";
-const DESCRIPTION =
-  "Hardened infrastructure pipelines combining n8n workflow automation with custom Python backends, Celery/Redis queues, Docker containers, and guaranteed at-least-once delivery.";
 const PATH = "/services/hybrid-automation";
+const { title: TITLE, description: DESCRIPTION } = routeMeta[PATH];
 
 const capabilities = [
   {
@@ -45,30 +46,7 @@ const capabilities = [
   },
 ];
 
-const caseStudySlugs = [
-  "slack-reporting-pipeline-apify-n8n",
-  "client-intake-onboarding-automation",
-  "ai-customer-support-triage",
-];
-
-const faqs = [
-  {
-    q: "What is a 'hybrid automation' architecture?",
-    a: "Hybrid automation combines the agility of visual workflow engines (like n8n) for webhook ingestion and CRM routing with dedicated Python microservices for heavy computation, custom cryptography, vector search, and agentic reasoning. This gives you the best of both worlds: rapid iteration without hitting no-code platform walls.",
-  },
-  {
-    q: "When should our team migrate away from Zapier or Make?",
-    a: "When you face recurring timeout errors, high per-task costs, lack of version control (git), or inability to run custom algorithms or private models. We migrate your workflows into self-hosted n8n and Python microservices that scale predictably.",
-  },
-  {
-    q: "How do you guarantee reliability during third-party API downtime?",
-    a: "Every integration features idempotent webhook processing, exponential backoff retries, dead-letter queues (DLQs), and automated alerts so transient outages never drop customer transactions.",
-  },
-  {
-    q: "Can you maintain and monitor existing self-hosted n8n instances?",
-    a: "Yes. I optimize database connection pooling, configure Redis queue execution modes for high concurrency, set up Docker backups, and monitor worker performance.",
-  },
-];
+const { caseStudies: caseStudySlugs } = getServicePage(PATH);
 
 const techStack = [
   "n8n (Self-Hosted)",
@@ -106,11 +84,12 @@ const HybridAutomation = () => {
             <span className="tech-tag">n8n &amp; Python Microservices</span>
           </div>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            <span className="gradient-text-primary">Deterministic Automation</span> &amp; Hybrid Orchestration
+            <span className="gradient-text-primary">Migrate Zapier &amp; Make.com to n8n</span>, Extended with Python
           </h1>
           <p className="text-lg leading-relaxed text-muted-foreground">
-            Hardened infrastructure pipelines combining visual workflow automation with intelligent Python microservices.
-            I help businesses scale past fragile no-code limits with robust, self-healing data pipelines and guaranteed delivery.
+            When your Zapier zaps or Make.com scenarios hit task limits, rate limits or logic they can&apos;t express,
+            I migrate them to n8n and move the heavy processing into Python microservices. You keep the same triggers
+            and outputs, and gain retries, queues and guaranteed delivery on self-hosted or cloud n8n.
           </p>
           <div className="flex flex-wrap gap-2 pt-1">
             {techStack.map((tech) => (

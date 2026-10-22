@@ -16,11 +16,12 @@ import {
 } from "@/components/ui/accordion";
 import { getProject } from "@/data/projects";
 import { getPageJsonLd } from "@/data/structuredData";
+import { routeMeta } from "@/data/routeMeta";
+import { getServicePage } from "@/data/seoPages";
+import { mcpFaqs as faqs } from "@/data/serviceContent";
 
-const TITLE = "Model Context Protocol (MCP) Server Engineering | Muhammad Awais";
-const DESCRIPTION =
-  "Custom Model Context Protocol (MCP) servers built with Python & TypeScript: secure, read-only database bridges, dynamic schema introspection, AST query validation, and zero-leakage enterprise AI integrations.";
 const PATH = "/services/mcp-engineering";
+const { title: TITLE, description: DESCRIPTION } = routeMeta[PATH];
 
 const capabilities = [
   {
@@ -45,30 +46,7 @@ const capabilities = [
   },
 ];
 
-const caseStudySlugs = [
-  "privacy-first-sql-mcp-analyst",
-  "autonomous-cicd-code-reviewer",
-  "hierarchical-support-swarm",
-];
-
-const faqs = [
-  {
-    q: "What is Model Context Protocol (MCP) and why does my business need it?",
-    a: "MCP is the open standard created by Anthropic for connecting AI models to external tools, databases, and business systems securely. Instead of building brittle, custom API wrappers, MCP creates an isolated, interoperable protocol bridge that prevents data leakage and enforces strict permission boundaries.",
-  },
-  {
-    q: "How does an MCP server guarantee that production database data doesn't leak?",
-    a: "The MCP server exposes database schemas (table names, column types, foreign keys) without row data. When an LLM generates a SQL query, the MCP server validates it against an AST whitelist, executes it within a sandboxed read-only transaction, and returns only aggregated results or specific answer metrics.",
-  },
-  {
-    q: "Which transports and SDKs do you support?",
-    a: "I build production MCP servers using the official FastMCP Python SDK and TypeScript SDKs, supporting both standard input/output (stdio) for local tools (Claude Desktop, Cursor) and Server-Sent Events (SSE) for distributed web applications.",
-  },
-  {
-    q: "Can an MCP server integrate with internal company REST APIs?",
-    a: "Yes. An MCP server can wrap internal microservices, CRM APIs, Stripe, Jira, or ERP endpoints, exposing them as safe tools with typed parameters and strict rate-limiting.",
-  },
-];
+const { caseStudies: caseStudySlugs } = getServicePage(PATH);
 
 const techStack = [
   "FastMCP SDK",
@@ -106,7 +84,7 @@ const McpEngineering = () => {
             <span className="tech-tag">Model Context Protocol (MCP)</span>
           </div>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            <span className="gradient-text-primary">Model Context Protocol (MCP)</span> Server Engineering
+            <span className="gradient-text-primary">Custom MCP Server</span> Development
           </h1>
           <p className="text-lg leading-relaxed text-muted-foreground">
             Secure, privacy-first bridges connecting LLMs to your private databases and APIs. I build hardened

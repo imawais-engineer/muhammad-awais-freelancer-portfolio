@@ -19,12 +19,12 @@ import { getProject } from "@/data/projects";
 import { deliverables, site } from "@/data/site";
 import { SITE_URL } from "@/lib/seo";
 import { getPageJsonLd } from "@/data/structuredData";
+import { routeMeta } from "@/data/routeMeta";
+import { getServicePage } from "@/data/seoPages";
 import { n8nFaqs as faqs } from "@/data/serviceContent";
 
-const TITLE = "n8n Workflow Automation Engineer | Muhammad Awais";
-const DESCRIPTION =
-  "Freelance n8n workflow automation engineer building production workflows: API and webhook integrations, AI-assisted steps, error handling and retries, and documented business process automation.";
 const PATH = "/services/n8n-workflow-automation";
+const { title: TITLE, description: DESCRIPTION } = routeMeta[PATH];
 
 const goodFor = [
   {
@@ -118,14 +118,7 @@ const toolGroups = [
   { label: "Messaging", tools: ["Slack", "Telegram", "WhatsApp", "Gmail"] },
 ];
 
-const caseStudySlugs = [
-  "slack-reporting-pipeline-apify-n8n",
-  "ai-customer-support-triage",
-  "client-intake-onboarding-automation",
-  "ai-email-labeling-agent-gmail",
-  "lead-reply-sync-gohighlevel-clickup",
-  "ai-review-management-system",
-];
+const { caseStudies: caseStudySlugs } = getServicePage(PATH);
 
 const N8nWorkflowAutomation = () => {
   const caseStudies = caseStudySlugs.map((slug) => getProject(slug)).filter(Boolean);
@@ -151,7 +144,7 @@ const N8nWorkflowAutomation = () => {
             / n8n
           </p>
           <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-            n8n Workflow Automation Engineer
+            Hire an n8n Expert for Workflow Automation
           </h1>
           <p className="text-lg text-muted-foreground">
             I&apos;m Muhammad Awais, a freelance AI Automation Engineer. I build n8n workflow

@@ -3,6 +3,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 
 import Seo from "@/components/Seo";
+import { getRouteMeta } from "@/data/routeMeta";
 
 const shell = () => {
   document.head.innerHTML = `
@@ -45,10 +46,9 @@ describe("rendered head", () => {
     const canonicals = document.head.querySelectorAll('link[rel="canonical"]');
     expect(canonicals).toHaveLength(1);
     expect(canonicals[0].getAttribute("href")).toBe("https://imawais.engineer/about");
-    expect(document.title).toBe("About Muhammad Awais | AI Automation Engineer & n8n Expert");
-    expect(document.head.querySelector('meta[name="description"]')?.getAttribute("content")).toMatch(
-      /freelance AI automation engineer/,
-    );
+    const about = getRouteMeta("/about");
+    expect(document.title).toBe(about?.title);
+    expect(document.head.querySelector('meta[name="description"]')?.getAttribute("content")).toBe(about?.description);
     expect(document.head.querySelector('meta[property="og:url"]')?.getAttribute("content")).toBe(
       "https://imawais.engineer/about",
     );
@@ -60,7 +60,7 @@ describe("rendered head", () => {
     shell();
     await renderSeo("/Contact/");
 
-    expect(document.title).toBe("Hire an AI Automation Engineer | Contact Muhammad Awais");
+    expect(document.title).toBe(getRouteMeta("/contact")?.title);
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
       "https://imawais.engineer/contact",
     );
@@ -81,7 +81,7 @@ describe("rendered head", () => {
     shell();
     await renderSeo("/projects/hierarchical-support-swarm");
 
-    expect(document.title).toBe("Hierarchical L1/L2 Customer Support Swarm Orchestrator");
+    expect(document.title).toBe(getRouteMeta("/projects/hierarchical-support-swarm")?.title);
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
       "https://imawais.engineer/projects/hierarchical-support-swarm",
     );

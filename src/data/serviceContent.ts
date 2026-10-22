@@ -10,6 +10,36 @@ export interface ModernService {
 
 export const modernServices: ModernService[] = [
   {
+    id: "n8n-workflow-automation-service",
+    title: "n8n Workflow Automation",
+    tagline: "Production n8n workflows that connect your tools and run the same way every time.",
+    idealFor:
+      "Agencies, SaaS teams and small businesses with repetitive work spread across disconnected tools, or n8n workflows that keep breaking.",
+    deliverables: [
+      "Webhook and event-driven workflows triggered by forms, apps or incoming data",
+      "REST API integrations, including tools without a ready-made connector",
+      "Error handling, retries and fallback branches on every external call",
+      "Fixes, clean-up and documentation for existing n8n and Make.com workflows",
+    ],
+    techStack: ["n8n", "Make.com", "REST APIs", "Webhooks", "OpenAI", "JavaScript"],
+    href: "/services/n8n-workflow-automation",
+  },
+  {
+    id: "lead-qualification-crm-automation-service",
+    title: "AI Lead Qualification & CRM Automation",
+    tagline: "Every inquiry enriched, scored and routed to the right person before it goes cold.",
+    idealFor:
+      "Sales teams and agencies whose leads arrive faster than anyone can qualify, route and follow up.",
+    deliverables: [
+      "Lead capture from web forms, landing pages, email and social channels",
+      "AI lead scoring against your ideal-customer criteria",
+      "Lead routing to the right owner, channel or pipeline stage",
+      "CRM sync across HubSpot, Pipedrive, GoHighLevel, Airtable and Notion",
+    ],
+    techStack: ["n8n", "HubSpot", "GoHighLevel", "Airtable", "OpenAI", "Gmail"],
+    href: "/services/lead-qualification-crm-automation",
+  },
+  {
     id: "agentic-systems",
     title: "Agentic Systems & State Graph Architecture",
     tagline: "Custom multi-agent workflows that plan, reason, and self-heal.",
@@ -268,3 +298,86 @@ export const leadFaqs = [
   },
 ];
 
+/** Visible FAQ on AgenticSystems.tsx (also emitted as FAQPage JSON-LD). */
+export const agenticFaqs = [
+  {
+    q: "Why use state graphs in LangGraph instead of linear prompt chains?",
+    a: "Linear prompt chains break the moment an LLM encounters unexpected ambiguity, format errors, or multi-step decision paths. LangGraph models processes as cyclical state machines with strongly typed state, allowing agents to branch, retry, self-correct, and pause for human approval with 100% durability.",
+  },
+  {
+    q: "How do Human-in-the-Loop (HITL) interrupt gates work in production?",
+    a: "LangGraph checkpointers freeze the complete state graph in PostgreSQL. The system generates an approval token and alerts managers via a Next.js dashboard or webhook. When the manager clicks Approve or edits a section, the graph resumes from the exact checkpoint without re-running earlier steps.",
+  },
+  {
+    q: "Which LLMs do you use for agentic systems?",
+    a: "Primarily Claude 3.5 Sonnet for deep reasoning, coding, and structured extraction, along with GPT-4o for analytical synthesis and Grok / Gemini for rapid multimodal tasks. All model calls use strict temperature settings and schema validation.",
+  },
+  {
+    q: "How do you prevent agents from hallucinating or running in infinite loops?",
+    a: "Every loop is governed by hard iteration limits (typically 3–4 passes max), Pydantic validation boundaries, and deterministic fallback branches. If an agent fails to converge, the thread safely escalates to human staff rather than burning tokens.",
+  },
+];
+
+/** Visible FAQ on McpEngineering.tsx (also emitted as FAQPage JSON-LD). */
+export const mcpFaqs = [
+  {
+    q: "What is Model Context Protocol (MCP) and why does my business need it?",
+    a: "MCP is the open standard created by Anthropic for connecting AI models to external tools, databases, and business systems securely. Instead of building brittle, custom API wrappers, MCP creates an isolated, interoperable protocol bridge that prevents data leakage and enforces strict permission boundaries.",
+  },
+  {
+    q: "How does an MCP server guarantee that production database data doesn't leak?",
+    a: "The MCP server exposes database schemas (table names, column types, foreign keys) without row data. When an LLM generates a SQL query, the MCP server validates it against an AST whitelist, executes it within a sandboxed read-only transaction, and returns only aggregated results or specific answer metrics.",
+  },
+  {
+    q: "Which transports and SDKs do you support?",
+    a: "I build production MCP servers using the official FastMCP Python SDK and TypeScript SDKs, supporting both standard input/output (stdio) for local tools (Claude Desktop, Cursor) and Server-Sent Events (SSE) for distributed web applications.",
+  },
+  {
+    q: "Can an MCP server integrate with internal company REST APIs?",
+    a: "Yes. An MCP server can wrap internal microservices, CRM APIs, Stripe, Jira, or ERP endpoints, exposing them as safe tools with typed parameters and strict rate-limiting.",
+  },
+];
+
+/** Visible FAQ on FullStackAiApps.tsx (also emitted as FAQPage JSON-LD). */
+export const fullStackFaqs = [
+  {
+    q: "Why do I need a custom full-stack UI for autonomous AI agents?",
+    a: "Agents without purpose-built interfaces are black boxes. A custom Next.js frontend gives your team visibility into node progression, lets managers inspect reasoning trajectories, and provides intuitive Human-in-the-Loop approval buttons before irreversible actions occur.",
+  },
+  {
+    q: "How is real-time agent streaming handled?",
+    a: "We implement Server-Sent Events (SSE) in FastAPI and Next.js 15. As the state machine transitions between graph nodes (e.g. from Extractor to Estimator to Review Gate), the frontend updates dynamically without requiring manual page refreshes.",
+  },
+  {
+    q: "Can the UI integrate with our existing design system and identity providers?",
+    a: "Yes. All interfaces are built using Tailwind CSS and shadcn/ui components, making them completely customizable to match your corporate brand standards and Single Sign-On (SSO) providers.",
+  },
+  {
+    q: "What deployment targets do you support?",
+    a: "Frontends are optimized for Vercel, AWS Amplify, or Docker containers, with Python backends containerized on AWS ECS, Railway, or Google Cloud Run.",
+  },
+];
+
+/** Visible FAQ on HybridAutomation.tsx (also emitted as FAQPage JSON-LD). */
+export const hybridFaqs = [
+  {
+    q: "Can you migrate our Zapier or Make.com automations to n8n?",
+    a: "Yes. When the logic has outgrown Zapier or Make.com, I rebuild each scenario in n8n with the same triggers and outputs, add error handling and retries, and move heavy processing into Python services where it makes sense. Self-hosted n8n on Docker is an option when data control or volume matters.",
+  },
+  {
+    q: "What is a 'hybrid automation' architecture?",
+    a: "Hybrid automation combines the agility of visual workflow engines (like n8n) for webhook ingestion and CRM routing with dedicated Python microservices for heavy computation, custom cryptography, vector search, and agentic reasoning. This gives you the best of both worlds: rapid iteration without hitting no-code platform walls.",
+  },
+  {
+    q: "When should our team migrate away from Zapier or Make?",
+    a: "When you face recurring timeout errors, high per-task costs, lack of version control (git), or inability to run custom algorithms or private models. We migrate your workflows into self-hosted n8n and Python microservices that scale predictably.",
+  },
+  {
+    q: "How do you guarantee reliability during third-party API downtime?",
+    a: "Every integration features idempotent webhook processing, exponential backoff retries, dead-letter queues (DLQs), and automated alerts so transient outages never drop customer transactions.",
+  },
+  {
+    q: "Can you maintain and monitor existing self-hosted n8n instances?",
+    a: "Yes. I optimize database connection pooling, configure Redis queue execution modes for high concurrency, set up Docker backups, and monitor worker performance.",
+  },
+];

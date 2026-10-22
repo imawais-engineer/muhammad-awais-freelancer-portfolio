@@ -24,7 +24,6 @@ import BottleneckComparison from "@/components/BottleneckComparison";
 import BrandLogo from "@/components/BrandLogo";
 
 import { Button } from "@/components/ui/button";
-import { SITE_URL, absoluteUrl, faqPageJsonLd } from "@/lib/seo";
 import { clientProjects, projects } from "@/data/projects";
 import {
   about,
@@ -33,9 +32,11 @@ import {
   site,
   testimonials,
 } from "@/data/site";
+import { routeMeta } from "@/data/routeMeta";
+import { homeJsonLd } from "@/data/jsonLdCore";
+import { servicePages } from "@/data/seoPages";
 
 
-const profileImage = "/profile.webp";
 
 const standardEase: [number, number, number, number] = [0.2, 0, 0, 1];
 
@@ -99,49 +100,7 @@ const Section = ({
  */
 const Index = () => {
   const reduceMotion = useReducedMotion();
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": `${SITE_URL}/#person`,
-        name: site.name,
-        alternateName: ["Awais", "imawais", "imawais.engineer"],
-        jobTitle: "AI Automation Engineer",
-        description: site.positioning,
-        email: `mailto:${site.email}`,
-        url: `${SITE_URL}/`,
-        image: absoluteUrl(profileImage),
-        knowsAbout: [
-          "AI automation",
-          "n8n workflow automation",
-          "business process automation",
-          "AI integrations",
-          "lead qualification automation",
-          "CRM automation",
-          "software engineering",
-        ],
-        sameAs: [site.links.upwork, site.links.fiverr, site.links.linkedin, site.links.github],
-      },
-      {
-        "@type": "WebSite",
-        "@id": `${SITE_URL}/#website`,
-        url: `${SITE_URL}/`,
-        name: `${site.name} — AI Automation Engineer`,
-        inLanguage: "en",
-        publisher: { "@id": `${SITE_URL}/#person` },
-      },
-      {
-        "@type": "WebPage",
-        "@id": `${SITE_URL}/#webpage`,
-        url: `${SITE_URL}/`,
-        name: "Muhammad Awais | AI Automation Engineer & n8n Workflow Automation",
-        isPartOf: { "@id": `${SITE_URL}/#website` },
-        about: { "@id": `${SITE_URL}/#person` },
-      },
-      faqPageJsonLd(homeFaqs),
-    ],
-  };
+  const jsonLd = homeJsonLd();
 
   const featuredProjects = clientProjects.slice(0, 3);
   const engineeringValues = [
@@ -179,8 +138,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Seo
-        title="Muhammad Awais | AI Automation Engineer & n8n Workflow Automation"
-        description="Muhammad Awais, AI Automation Engineer, builds n8n workflow automation, AI agents and CRM integrations that cut 20+ hours of manual work a week for teams."
+        title={routeMeta["/"].title}
+        description={routeMeta["/"].description}
         path="/"
         jsonLd={jsonLd}
       />
@@ -210,8 +169,8 @@ const Index = () => {
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
               <h1 className="max-w-3xl font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-                <span className="gradient-text">I build AI automation systems</span>{" "}
-                <span className="text-foreground">that eliminate repetitive work.</span>
+                <span className="gradient-text">AI Automation Engineer &amp; n8n Expert</span>{" "}
+                <span className="text-foreground">building systems that eliminate repetitive work.</span>
               </h1>
               <p className="mt-3 max-w-[38ch] text-base leading-relaxed text-muted-foreground sm:max-w-2xl md:text-lg">
                 I'm Muhammad Awais, a freelance n8n workflow automation engineer and AI integration specialist. I help agencies, SaaS teams
@@ -345,13 +304,22 @@ const Index = () => {
           }
         >
           <BottleneckComparison />
-          <p className="mt-6 text-base text-muted-foreground">
-            Full detail on scope, tools, deliverables and FAQs:{" "}
-            <Link to="/services" className="system-link">
-              AI automation services
-            </Link>
-            .
-          </p>
+          <nav aria-label="Automation services" className="mt-6">
+            <ul className="flex flex-wrap gap-x-5 gap-y-2 text-base">
+              {servicePages.map((s) => (
+                <li key={s.path}>
+                  <Link to={s.path} className="system-link">
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link to="/services" className="system-link">
+                  All AI automation services
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </Section>
 
         {/* 05 — How I work */}

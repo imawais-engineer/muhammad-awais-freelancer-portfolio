@@ -139,7 +139,7 @@
       <guid isPermaLink="true">https://imawais.engineer/projects/slack-reporting-pipeline-apify-n8n</guid>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
       <category>Reporting</category>
-      <description>Automated business intelligence pipeline built with Apify, Make and n8n that scrapes industry feeds daily and posts actionable Slack summaries, saving 10h/wk.</description>
+      <description>Client build: Apify scrapes industry feeds daily, then n8n and Make.com post actionable Slack summaries to the team, saving 10+ hours a week.</description>
       <enclosure url="https://imawais.engineer/og/projects/slack-reporting-pipeline-apify-n8n.jpg" type="image/jpeg" length="270427" />
     </item>
     <item>
@@ -175,7 +175,7 @@
       <guid isPermaLink="true">https://imawais.engineer/projects/multi-query-rag-supabase-openai</guid>
       <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
-      <description>Enterprise RAG pipeline on Supabase pgvector and OpenAI that deconstructs user questions into sub-queries, re-ranks vectors and delivers factual citations.</description>
+      <description>n8n RAG agent on Supabase pgvector and OpenAI: splits questions into 1-5 sub-queries, keeps chunks above 0.4 similarity and answers only from your docs.</description>
       <enclosure url="https://imawais.engineer/og/projects/multi-query-rag-supabase-openai.jpg" type="image/jpeg" length="229291" />
     </item>
     <item>
@@ -193,7 +193,7 @@
       <guid isPermaLink="true">https://imawais.engineer/projects/ai-email-labeling-agent-gmail</guid>
       <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
       <category>AI Agents</category>
-      <description>Autonomous Gmail AI assistant that analyzes incoming client inquiries, categorizes urgency and applies smart labels to keep inboxes zeroed out automatically.</description>
+      <description>Gmail AI agent built with n8n that reads incoming client inquiries, classifies urgency and applies smart labels automatically to keep the inbox organized.</description>
       <enclosure url="https://imawais.engineer/og/projects/ai-email-labeling-agent-gmail.jpg" type="image/jpeg" length="209800" />
     </item>
     <item>

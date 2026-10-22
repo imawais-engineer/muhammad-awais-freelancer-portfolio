@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
@@ -9,6 +10,7 @@ import ProjectCard from "@/components/ProjectCard";
 import { cn } from "@/lib/utils";
 import { getPageJsonLd } from "@/data/structuredData";
 import { clientProjects, demoProjects, projectCategories, projects } from "@/data/projects";
+import { routeMeta } from "@/data/routeMeta";
 
 const Projects = () => {
   const [active, setActive] = useState<string>("All");
@@ -28,8 +30,8 @@ const Projects = () => {
   return (
     <div className="min-h-screen">
       <Seo
-        title="Agentic AI & Automation Case Studies | Muhammad Awais"
-        description="Documented agentic AI architectures, custom Model Context Protocol (MCP) servers, LangGraph state machines, and production workflow automation systems with measured outcomes."
+        title={routeMeta["/projects"].title}
+        description={routeMeta["/projects"].description}
         path="/projects"
         jsonLd={getPageJsonLd("/projects")}
       />
@@ -49,14 +51,37 @@ const Projects = () => {
             <span className="font-mono text-xs text-muted-foreground">{projects.length} Total Systems</span>
           </div>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            <span className="gradient-text">n8n &amp; AI Automation</span>{" "}
-            <span className="text-foreground">Case Studies</span>
+            <span className="gradient-text">n8n Workflow Examples</span>{" "}
+            <span className="text-foreground">&amp; AI Automation Case Studies</span>
           </h1>
           <p className="text-lg leading-relaxed text-muted-foreground">
             Real n8n case studies and workflow examples: lead qualification, CRM pipelines, AI agents, and
             reporting systems built with n8n, Make.com, and Python. Every build documents the architecture,
             the tools, and the measured results — so you can see exactly how each automation works before
             we build yours.
+          </p>
+          <p className="text-base leading-relaxed text-muted-foreground">
+            Popular builds:{" "}
+            <Link to="/projects/multi-query-rag-supabase-openai" className="system-link">
+              Supabase pgvector RAG agent with n8n
+            </Link>
+            ,{" "}
+            <Link to="/projects/slack-reporting-pipeline-apify-n8n" className="system-link">
+              n8n Slack reporting automation
+            </Link>
+            ,{" "}
+            <Link to="/projects/instagram-reels-outlier-telegram-n8n" className="system-link">
+              Instagram Reels outlier detection
+            </Link>{" "}
+            and{" "}
+            <Link to="/projects/ai-lead-qualification-real-estate" className="system-link">
+              AI lead qualification for real estate
+            </Link>
+            . Need one built?{" "}
+            <Link to="/services" className="system-link">
+              See the services
+            </Link>
+            .
           </p>
         </motion.header>
 

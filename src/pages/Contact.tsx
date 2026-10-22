@@ -8,7 +8,17 @@ import Seo from "@/components/Seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
-import { process, site } from "@/data/site";
+import FaqSection from "@/components/FaqSection";
+import { process, site, testimonials } from "@/data/site";
+import {
+  contactFaqs,
+  engagementOptions,
+  pricingApproach,
+  showPricePlaceholders,
+  typicalProjects,
+} from "@/data/contactContent";
+import { routeMeta } from "@/data/routeMeta";
+import { getPageJsonLd } from "@/data/structuredData";
 
 const briefChecklist = [
   "The process you want automated, described the way you'd explain it to a new hire.",
@@ -20,9 +30,10 @@ const briefChecklist = [
 const Contact = () => (
   <div className="min-h-screen">
     <Seo
-      title="Hire an AI Automation Engineer | Contact Muhammad Awais"
-      description="Hire Muhammad Awais, freelance AI automation engineer and n8n expert. Share your workflow and get a scoped automation proposal within 24 hours."
+      title={routeMeta["/contact"].title}
+      description={routeMeta["/contact"].description}
       path="/contact"
+      jsonLd={getPageJsonLd("/contact")}
     />
     <SiteHeader />
 
@@ -35,7 +46,7 @@ const Contact = () => (
       >
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">Contact</p>
         <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-          Hire a Freelance <span className="gradient-text-primary">n8n &amp; AI Automation Engineer</span>
+          Hire an <span className="gradient-text-primary">n8n &amp; AI Automation Engineer</span>
         </h1>
         <p className="text-lg text-muted-foreground">
           Hire a freelance AI Automation Engineer to automate your business processes with n8n
@@ -132,6 +143,78 @@ const Contact = () => (
           </ol>
         </article>
       </section>
+
+      <section className="mt-16" aria-labelledby="engagements">
+        <h2 id="engagements" className="text-2xl font-semibold tracking-tight">
+          Ways to work together
+        </h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {engagementOptions.map((o) => (
+            <article key={o.title} className="node-card p-6">
+              <h3 className="text-lg font-semibold">{o.title}</h3>
+              <p className="mt-3 text-base text-muted-foreground">{o.detail}</p>
+              {showPricePlaceholders && <p className="mt-3 font-mono text-sm text-primary">{o.priceNote}</p>}
+            </article>
+          ))}
+        </div>
+        <h3 className="mt-10 text-xl font-semibold">How pricing works</h3>
+        <ul className="mt-4 max-w-3xl space-y-3 text-base text-muted-foreground">
+          {pricingApproach.map((item) => (
+            <li key={item} className="flex gap-3">
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-sm text-muted-foreground">
+          Full details:{" "}
+          <Link to="/terms" className="system-link">
+            terms of service
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section className="mt-16" aria-labelledby="typical-projects">
+        <h2 id="typical-projects" className="text-2xl font-semibold tracking-tight">
+          Projects I typically take on
+        </h2>
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+          {typicalProjects.map((p) => (
+            <li key={p.href}>
+              <Link to={p.href} className="node-card card-interactive flex items-center justify-between gap-3 p-4 text-base">
+                <span>{p.label}</span>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-base text-muted-foreground">
+          See every build with its architecture and results in the{" "}
+          <Link to="/projects" className="system-link">
+            n8n and AI automation case studies
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section className="mt-16" aria-labelledby="client-feedback">
+        <h2 id="client-feedback" className="text-2xl font-semibold tracking-tight">
+          What clients say
+        </h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {testimonials.map((t) => (
+            <figure key={t.author} className="node-card p-6">
+              <blockquote className="text-base leading-relaxed">“{t.quote}”</blockquote>
+              <figcaption className="mt-4 text-sm text-muted-foreground">
+                {t.author}, {t.role} · {t.meta}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <FaqSection faqs={contactFaqs} title="Before you get in touch" className="mt-16 max-w-4xl" />
     </main>
 
     <SiteFooter />

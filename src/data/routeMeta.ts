@@ -44,28 +44,28 @@ export const PROJECT_MODIFIED = "2026-10-13";
 
 /** Titles kept under 60 characters where the default pattern ran long. */
 const titleOverrides: Record<string, string> = {
-  "/": "Muhammad Awais | AI Automation Engineer & n8n Expert",
-  "/services": "AI & n8n Automation Services | Muhammad Awais",
-  "/services/agentic-systems": "Agentic AI Systems & LangGraph Engineering | Muhammad Awais",
-  "/services/mcp-engineering": "Custom MCP Server Engineering for AI | Muhammad Awais",
-  "/services/full-stack-ai-apps": "Full-Stack AI Products & Internal Tools | Muhammad Awais",
-  "/services/hybrid-automation": "Hybrid n8n & Python Automation | Muhammad Awais",
+  "/": "Muhammad Awais – AI Automation Engineer & n8n Expert",
+  "/services": "AI Workflow Automation Services | Muhammad Awais",
+  "/services/agentic-systems": "LangGraph & Multi-Agent System Developer | Muhammad Awais",
+  "/services/mcp-engineering": "Custom MCP Server Development | Muhammad Awais",
+  "/services/full-stack-ai-apps": "AI Internal Tools & Next.js AI Apps | Muhammad Awais",
+  "/services/hybrid-automation": "Zapier & Make to n8n Migration + Python | Muhammad Awais",
   "/projects/human-in-the-loop-proposal-swarm": "Autonomous Proposal Swarm with Human-in-the-Loop Governance",
-  "/projects/privacy-first-sql-mcp-analyst": "Privacy-First SQL AI Analyst via Custom MCP Server",
+  "/projects/privacy-first-sql-mcp-analyst": "Custom MCP Server for SQL: Private AI Data Analyst",
   "/projects/autonomous-cicd-code-reviewer": "Autonomous CI/CD Code Reviewer & Refactoring Harness",
   "/projects/hierarchical-support-swarm": "Hierarchical L1/L2 Customer Support Swarm Orchestrator",
   "/projects/brand-governed-content-critic": "Brand-Governed AI Content Engine with Critic Loop",
   "/projects/linkedin-job-search-automation-openai-telegram": "LinkedIn Job Search Automation with OpenAI & Telegram",
-  "/projects/slack-reporting-pipeline-apify-n8n": "Automated Slack Reporting with n8n & Apify | Muhammad Awais",
-  "/projects/instagram-reels-outlier-telegram-n8n": "Instagram Reels Outlier Detection & Telegram Reports",
-  "/projects/ai-lead-qualification-real-estate": "AI Lead Qualification for Real Estate Inquiries",
+  "/projects/slack-reporting-pipeline-apify-n8n": "Apify + n8n Slack Reporting Automation (Case Study)",
+  "/projects/instagram-reels-outlier-telegram-n8n": "Instagram Reels Analytics with n8n & Telegram Alerts",
+  "/projects/ai-lead-qualification-real-estate": "n8n AI Lead Qualification for Real Estate (Case Study)",
   "/projects/real-estate-lead-generation-browseract-make": "Real Estate Lead Generation & Property Monitoring",
   "/projects/ai-email-labeling-agent-gmail": "AI Email Labeling Agent for Gmail | Muhammad Awais",
-  "/projects/ai-customer-support-triage": "AI Customer Support Triage System | Muhammad Awais",
-  "/projects/whatsapp-ai-assistant-google-docs": "WhatsApp AI Assistant with Google Docs Knowledge Base",
+  "/projects/ai-customer-support-triage": "n8n AI Customer Support Triage (Case Study)",
+  "/projects/whatsapp-ai-assistant-google-docs": "n8n WhatsApp AI Chatbot with a Google Docs Knowledge Base",
   "/projects/client-intake-onboarding-automation": "Client Intake & Onboarding Automation | Muhammad Awais",
   "/projects/lead-reply-sync-gohighlevel-clickup": "Lead Reply & Follow-Up Sync: GoHighLevel + ClickUp",
-  "/projects/multi-query-rag-supabase-openai": "Multi-Query RAG System with Supabase & OpenAI",
+  "/projects/multi-query-rag-supabase-openai": "Supabase pgvector RAG Agent with n8n (Case Study)",
   "/projects/automated-business-kpi-analysis-growth-insights": "Automated KPI Analysis & AI Growth Insights with n8n",
   "/projects/automated-offer-letter-response-tracking": "Offer Letter & Response Tracking Automation with n8n",
   "/projects/hubspot-lead-routing-gpt4-airtable": "HubSpot Lead Routing with GPT-4, Airtable & n8n",
@@ -92,80 +92,80 @@ export interface RouteMeta {
 
 const staticRoutes: Record<string, RouteMeta> = {
   "/": {
-    title: "Muhammad Awais | AI Automation Engineer & n8n Workflow Automation",
+    title: "Muhammad Awais – AI Automation Engineer & n8n Expert",
     description:
-      "Muhammad Awais, AI Automation Engineer, builds n8n workflow automation, AI agents and CRM integrations that cut 20+ hours of manual work a week for teams.",
+      "Freelance AI automation engineer and n8n expert for hire: production n8n workflows, AI agents and CRM automation for agencies, SaaS and small businesses.",
     ogImage: "/og/home.jpg",
     ogImageAlt:
       "Muhammad Awais, AI Automation Engineer — I build smart systems that automate work",
   },
   "/projects": {
-    title: "AI Automation Projects & n8n Case Studies | Muhammad Awais",
+    title: "n8n & AI Automation Case Studies | Muhammad Awais",
     description:
-      "n8n, Make.com and AI automation case studies: lead qualification, CRM pipelines, AI agents and reporting, each with the architecture and measured results.",
+      "n8n workflow examples and AI agent case studies: lead qualification, CRM routing, RAG, WhatsApp bots and reporting, each with architecture and results.",
     ogImage: "/og/projects.jpg",
     ogImageAlt: `${projects.length} AI automation case studies by Muhammad Awais`,
   },
   "/services": {
-    title: "AI Automation & Agentic Systems Services | Muhammad Awais",
+    title: "AI Workflow Automation Services | Muhammad Awais",
     description:
-      "AI automation services: n8n workflow automation, AI agents, custom MCP servers, CRM and lead qualification systems and full-stack AI tools by Muhammad Awais.",
+      "AI workflow automation services for small businesses, agencies and SaaS: n8n workflows, AI lead qualification, CRM automation, AI agents and MCP servers.",
     ogImage: "/og/services.jpg",
     ogImageAlt: "AI and agentic engineering services by Muhammad Awais",
   },
   "/services/agentic-systems": {
-    title: "Agentic Systems & State Graph Architecture | Muhammad Awais",
+    title: "LangGraph & Multi-Agent System Developer | Muhammad Awais",
     description:
-      "Custom multi-agent workflows built on LangGraph and Python: stateful DAG execution, Actor-Critic loops, and Human-in-the-Loop review gates that never break.",
+      "LangGraph developer for hire: multi-agent AI systems in Python with stateful agents, critic loops and human-in-the-loop approvals built for production.",
     ogImage: "/og/services-agentic.jpg",
     ogImageAlt: "Agentic Systems and State Graph Architecture service card",
   },
   "/services/mcp-engineering": {
-    title: "Custom MCP Server Engineering for AI | Muhammad Awais",
+    title: "Custom MCP Server Development | Muhammad Awais",
     description:
-      "Secure, privacy-first bridges connecting LLMs to private databases via Model Context Protocol (MCP) with read-only sandboxes and zero data leakage.",
+      "MCP server developer for hire: custom MCP servers in Python and TypeScript that connect Claude and ChatGPT to your Postgres database and internal APIs.",
     ogImage: "/og/services-mcp.jpg",
     ogImageAlt: "Model Context Protocol MCP engineering service card",
   },
   "/services/full-stack-ai-apps": {
-    title: "Full-Stack AI Products & Internal Tools | Muhammad Awais",
+    title: "AI Internal Tools & Next.js AI Apps | Muhammad Awais",
     description:
-      "Production Next.js 15 web applications operationalizing autonomous intelligence: real-time SSE agent monitors, Recharts BI dashboards, and review portals.",
+      "AI internal tools and Next.js AI apps: agent dashboards with streaming updates, review portals and BI charts, built full stack on top of your automations.",
     ogImage: "/og/services-fullstack.jpg",
     ogImageAlt: "Full-Stack AI Products and Internal Tools service card",
   },
   "/services/hybrid-automation": {
-    title: "Hybrid n8n & Python Automation | Muhammad Awais",
+    title: "Zapier & Make to n8n Migration + Python | Muhammad Awais",
     description:
-      "Hardened infrastructure combining n8n workflow automation with custom Python microservices, Celery/Redis queues, and guaranteed at-least-once delivery.",
+      "Migrate Zapier and Make.com workflows to n8n and extend them with Python services, Redis queues, retries and self-hosted n8n on Docker for high volume.",
     ogImage: "/og/services-hybrid.jpg",
     ogImageAlt: "Deterministic Automation and Hybrid Orchestration service card",
   },
   "/services/n8n-workflow-automation": {
-    title: "n8n Workflow Automation Engineer | Muhammad Awais",
+    title: "Hire an n8n Expert & Automation Freelancer | Muhammad Awais",
     description:
-      "Freelance n8n workflow automation engineer: production workflows with API and webhook integrations, AI steps, error handling, retries and documentation.",
+      "Hire a freelance n8n expert to build, fix or self-host production workflows: API and webhook integrations, AI steps, error handling, retries and docs.",
     ogImage: "/og/services-n8n.jpg",
     ogImageAlt: "n8n workflow automation service card",
   },
   "/services/lead-qualification-crm-automation": {
     title: "AI Lead Qualification & CRM Automation | Muhammad Awais",
     description:
-      "AI lead qualification and CRM automation: lead scoring, routing, sales pipeline updates and automated follow-up, built by AI Automation Engineer Muhammad Awais.",
+      "AI lead qualification automation in n8n: lead scoring, HubSpot lead routing, GoHighLevel automation, CRM pipeline updates and instant follow-up.",
     ogImage: "/og/services-lead.jpg",
     ogImageAlt: "AI lead qualification and CRM automation service card",
   },
   "/about": {
     title: "About Muhammad Awais | AI Automation Engineer & n8n Expert",
     description:
-      "Muhammad Awais is a freelance AI automation engineer in Pakistan building n8n, Make.com and AI agent workflows for agencies and SaaS teams worldwide.",
+      "Muhammad Awais is an AI automation engineer and n8n expert in Pakistan and a software engineering student, building n8n and AI agent systems worldwide.",
     ogImage: "/og/about.jpg",
     ogImageAlt: "Portrait of Muhammad Awais, AI Automation Engineer and n8n & Make expert",
   },
   "/contact": {
-    title: "Hire an AI Automation Engineer | Contact Muhammad Awais",
+    title: "Hire an n8n & AI Automation Engineer | Muhammad Awais",
     description:
-      "Hire Muhammad Awais, freelance AI automation engineer and n8n expert. Share your workflow and get a scoped automation proposal within 24 hours.",
+      "Hire an n8n and AI automation engineer. Share your workflow and get a scoped proposal and fixed quote within 24 hours. Engagement options, timelines, FAQ.",
     ogImage: "/og/contact.jpg",
     ogImageAlt: "Start an automation project with Muhammad Awais",
   },

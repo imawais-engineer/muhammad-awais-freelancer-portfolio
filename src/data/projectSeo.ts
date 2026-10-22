@@ -7,6 +7,8 @@ export interface ProjectSeo {
   topic: string;
   /** Unique <title> body — the site suffix is appended by the page. */
   title: string;
+  /** Visible <h1> when it should carry the target keyword better than the project name. */
+  h1?: string;
   /** Unique meta description: what was built, topic, key tech, outcome (145-158 chars). */
   description: string;
   /** Contextual CTA headline used near the end of the page. */
@@ -29,6 +31,7 @@ export const projectSeo: Record<string, ProjectSeo> = {
   "privacy-first-sql-mcp-analyst": {
     topic: "Model Context Protocol MCP SQL analyst",
     title: "Privacy-First SQL AI Analyst via Custom Model Context Protocol (MCP)",
+    h1: "Custom MCP Server for a Privacy-First SQL AI Analyst",
     description: "Custom Python Model Context Protocol (MCP) server with self-correcting ReAct SQL loops, read-only PostgreSQL sandboxing, and zero PII data leakage.",
     ctaHeading: "Need to chat with your production database securely?",
     ctaLabel: "Build a custom MCP server",
@@ -117,7 +120,8 @@ export const projectSeo: Record<string, ProjectSeo> = {
   "slack-reporting-pipeline-apify-n8n": {
     topic: "automated Slack reporting pipeline",
     title: "Automated Slack Reporting Pipeline with n8n & Apify",
-    description: "Automated business intelligence pipeline built with Apify, Make and n8n that scrapes industry feeds daily and posts actionable Slack summaries, saving 10h/wk.",
+    h1: "Automated Slack Reporting with Apify & n8n",
+    description: "Client build: Apify scrapes industry feeds daily, then n8n and Make.com post actionable Slack summaries to the team, saving 10+ hours a week.",
     ctaHeading: "Need automated reporting into Slack or email?",
     ctaLabel: "Build a similar reporting system",
     related: ["instagram-reels-outlier-telegram-n8n", "ai-review-management-system", "automated-business-kpi-analysis-growth-insights"],
@@ -125,6 +129,7 @@ export const projectSeo: Record<string, ProjectSeo> = {
   "instagram-reels-outlier-telegram-n8n": {
     topic: "Instagram video analytics n8n automation",
     title: "Instagram Reels Outlier Detection with n8n & Telegram",
+    h1: "Instagram Reels Outlier Detection with n8n & Telegram",
     description: "n8n social analytics system monitoring 50+ competitor accounts, scoring video views against account medians and sending viral outlier alerts to Telegram.",
     ctaHeading: "Want social analytics monitored and reported automatically?",
     ctaLabel: "Build a similar analytics automation",
@@ -133,6 +138,7 @@ export const projectSeo: Record<string, ProjectSeo> = {
   "ai-lead-qualification-real-estate": {
     topic: "AI lead qualification real estate n8n",
     title: "AI Lead Qualification for Real Estate via n8n",
+    h1: "AI Lead Qualification for Real Estate Inquiries with n8n",
     description: "AI lead scoring system that enriches buyer inquiries with AI, scores buying intent from 0–100, routes hot leads to agents and logs records to Airtable.",
     ctaHeading: "Need AI lead qualification for your inquiries?",
     ctaLabel: "Build a similar lead qualification system",
@@ -149,7 +155,7 @@ export const projectSeo: Record<string, ProjectSeo> = {
   "ai-email-labeling-agent-gmail": {
     topic: "AI email categorization agent n8n",
     title: "AI Email Labeling & Inbox Management Agent for Gmail",
-    description: "Autonomous Gmail AI assistant that analyzes incoming client inquiries, categorizes urgency and applies smart labels to keep inboxes zeroed out automatically.",
+    description: "Gmail AI agent built with n8n that reads incoming client inquiries, classifies urgency and applies smart labels automatically to keep the inbox organized.",
     ctaHeading: "Drowning in an inbox that needs sorting?",
     ctaLabel: "Build a similar inbox automation",
     related: ["ai-customer-support-triage", "lead-reply-sync-gohighlevel-clickup", "automated-offer-letter-response-tracking"],
@@ -157,6 +163,7 @@ export const projectSeo: Record<string, ProjectSeo> = {
   "ai-customer-support-triage": {
     topic: "AI customer support triage system",
     title: "AI Customer Support Triage & Ticket Routing Pipeline",
+    h1: "AI Customer Support Triage with n8n & GPT-4o-mini",
     description: "Multi-channel support triage system that classifies incoming customer tickets with LLMs by urgency and sentiment, notifies Slack and drafts responses.",
     ctaHeading: "Need support tickets triaged and answered faster?",
     ctaLabel: "Build a similar support automation",
@@ -165,6 +172,7 @@ export const projectSeo: Record<string, ProjectSeo> = {
   "whatsapp-ai-assistant-google-docs": {
     topic: "WhatsApp AI chatbot knowledge base",
     title: "WhatsApp AI Assistant with Google Docs Knowledge Base",
+    h1: "WhatsApp AI Chatbot with a Google Docs Knowledge Base",
     description: "24/7 WhatsApp AI customer agent built with n8n that grounds conversations in live Google Docs, maintains per-contact memory and escalates complex queries.",
     ctaHeading: "Want an AI assistant answering on WhatsApp?",
     ctaLabel: "Build a similar AI assistant",
@@ -203,9 +211,10 @@ export const projectSeo: Record<string, ProjectSeo> = {
     related: ["ai-lead-qualification-real-estate", "client-intake-onboarding-automation", "automated-offer-letter-response-tracking", "hubspot-lead-routing-gpt4-airtable", "ai-lead-meeting-scheduling-zoho-gemini"],
   },
   "multi-query-rag-supabase-openai": {
-    topic: "Multi-query RAG Supabase vector automation",
-    title: "Multi-Query RAG AI Knowledge System with Supabase",
-    description: "Enterprise RAG pipeline on Supabase pgvector and OpenAI that deconstructs user questions into sub-queries, re-ranks vectors and delivers factual citations.",
+    topic: "Supabase pgvector RAG with n8n",
+    title: "Supabase pgvector RAG Agent with n8n",
+    h1: "Multi-Query RAG on Supabase pgvector with n8n & OpenAI",
+    description: "n8n RAG agent on Supabase pgvector and OpenAI: splits questions into 1-5 sub-queries, keeps chunks above 0.4 similarity and answers only from your docs.",
     ctaHeading: "Need an AI system that answers from your own documents?",
     ctaLabel: "Build a similar RAG system",
     related: ["whatsapp-ai-assistant-google-docs", "ai-customer-support-triage"],

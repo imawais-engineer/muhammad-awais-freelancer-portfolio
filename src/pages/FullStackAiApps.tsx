@@ -16,11 +16,12 @@ import {
 } from "@/components/ui/accordion";
 import { getProject } from "@/data/projects";
 import { getPageJsonLd } from "@/data/structuredData";
+import { routeMeta } from "@/data/routeMeta";
+import { getServicePage } from "@/data/seoPages";
+import { fullStackFaqs as faqs } from "@/data/serviceContent";
 
-const TITLE = "Full-Stack AI Products & Internal Tools | Muhammad Awais";
-const DESCRIPTION =
-  "Production web applications built to operationalize autonomous intelligence: Next.js 15 frontends, real-time SSE agent monitors, Recharts BI dashboards, and Human-in-the-Loop review portals.";
 const PATH = "/services/full-stack-ai-apps";
+const { title: TITLE, description: DESCRIPTION } = routeMeta[PATH];
 
 const capabilities = [
   {
@@ -45,30 +46,7 @@ const capabilities = [
   },
 ];
 
-const caseStudySlugs = [
-  "human-in-the-loop-proposal-swarm",
-  "privacy-first-sql-mcp-analyst",
-  "brand-governed-content-critic",
-];
-
-const faqs = [
-  {
-    q: "Why do I need a custom full-stack UI for autonomous AI agents?",
-    a: "Agents without purpose-built interfaces are black boxes. A custom Next.js frontend gives your team visibility into node progression, lets managers inspect reasoning trajectories, and provides intuitive Human-in-the-Loop approval buttons before irreversible actions occur.",
-  },
-  {
-    q: "How is real-time agent streaming handled?",
-    a: "We implement Server-Sent Events (SSE) in FastAPI and Next.js 15. As the state machine transitions between graph nodes (e.g. from Extractor to Estimator to Review Gate), the frontend updates dynamically without requiring manual page refreshes.",
-  },
-  {
-    q: "Can the UI integrate with our existing design system and identity providers?",
-    a: "Yes. All interfaces are built using Tailwind CSS and shadcn/ui components, making them completely customizable to match your corporate brand standards and Single Sign-On (SSO) providers.",
-  },
-  {
-    q: "What deployment targets do you support?",
-    a: "Frontends are optimized for Vercel, AWS Amplify, or Docker containers, with Python backends containerized on AWS ECS, Railway, or Google Cloud Run.",
-  },
-];
+const { caseStudies: caseStudySlugs } = getServicePage(PATH);
 
 const techStack = [
   "Next.js 15",
@@ -106,7 +84,7 @@ const FullStackAiApps = () => {
             <span className="tech-tag">Next.js 15 &amp; FastAPI</span>
           </div>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            <span className="gradient-text-primary">Full-Stack AI Products</span> &amp; Internal Tools
+            <span className="gradient-text-primary">AI Internal Tools</span> &amp; Next.js AI App Development
           </h1>
           <p className="text-lg leading-relaxed text-muted-foreground">
             Production web applications built to operationalize autonomous intelligence. I build responsive

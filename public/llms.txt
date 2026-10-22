@@ -1,4 +1,4 @@
-# Muhammad Awais — AI Automation Engineer
+# Muhammad Awais — AI Automation Engineer & n8n Expert
 
 > Freelance AI Automation Engineer building n8n workflow automation, AI agents and connected business systems for agencies, SaaS teams and small businesses.
 
@@ -9,6 +9,11 @@
 - [Services](https://imawais.engineer/services): Automation service groups, problem mapping, process and FAQ.
 - [n8n Workflow Automation](https://imawais.engineer/services/n8n-workflow-automation): Specialist n8n build service.
 - [Lead Qualification & CRM Automation](https://imawais.engineer/services/lead-qualification-crm-automation): Lead capture, scoring and CRM sync automation.
+- [Custom MCP Server Development](https://imawais.engineer/services/mcp-engineering): MCP servers connecting Claude/ChatGPT to private databases and APIs.
+- [LangGraph & Multi-Agent Systems](https://imawais.engineer/services/agentic-systems): Stateful multi-agent AI with human-in-the-loop review.
+- [Zapier/Make to n8n Migration + Python](https://imawais.engineer/services/hybrid-automation): Migrations to n8n extended with Python services and queues.
+- [AI Internal Tools & Next.js Apps](https://imawais.engineer/services/full-stack-ai-apps): Agent dashboards, review portals and BI tools.
+- [Supabase pgvector RAG with n8n](https://imawais.engineer/projects/multi-query-rag-supabase-openai): Multi-query RAG case study.
 - [About](https://imawais.engineer/about): Background, stack and working method.
 - [Contact](https://imawais.engineer/contact): Project enquiry form and direct links.
 

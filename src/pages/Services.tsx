@@ -15,11 +15,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { getProject } from "@/data/projects";
+import { getProject, projects } from "@/data/projects";
 import { deliverables, proofStats, site } from "@/data/site";
 import { SITE_URL } from "@/lib/seo";
 import { getPageJsonLd } from "@/data/structuredData";
 import { modernServices, serviceGroups, servicesFaqs as faqs } from "@/data/serviceContent";
+import { routeMeta } from "@/data/routeMeta";
 
 const problemMap = [
   {
@@ -65,7 +66,7 @@ const toolGroups = [
 
 const whyItems = [
   "5.0 / 5.0 Upwork rating across delivered automation work",
-  "12 automation systems shipped and documented on this site",
+  `${projects.length} automation systems documented on this site, each with its architecture`,
   "Real paid client engagements, not tutorial rebuilds",
   "Repeat and referral work from clients who came back for the next system",
   "Production-minded workflows: error handling, retries, logging and monitoring",
@@ -86,8 +87,8 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       <Seo
-        title="AI Automation Services | n8n Workflow Automation | Muhammad Awais"
-        description="Hire a freelance n8n workflow automation engineer and AI specialist. Fixed-scope automation services for agencies and SaaS teams — n8n, Make.com, AI agents, CRM automation."
+        title={routeMeta["/services"].title}
+        description={routeMeta["/services"].description}
         path="/services"
         jsonLd={jsonLd}
       />
@@ -104,13 +105,17 @@ const Services = () => {
             Engineering Services
           </p>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            <span className="gradient-text-primary">Agentic Systems &amp; MCP Engineering</span> for Scalable AI
+            <span className="gradient-text-primary">AI Workflow Automation</span> &amp; n8n Services
           </h1>
           <p className="text-lg text-muted-foreground">
-            I&apos;m Muhammad Awais, an Agentic AI Systems Engineer and Full-Stack Architect. I design
-            and deploy state graph workflows, Model Context Protocol (MCP) servers, full-stack Next.js
-            intelligence dashboards, and production workflow pipelines — engineered with deterministic
-            data governance and automated self-healing.
+            I&apos;m Muhammad Awais, an AI Automation Engineer and n8n expert. I build{" "}
+            <Link to="/services/n8n-workflow-automation" className="system-link">n8n workflow automation</Link>,{" "}
+            <Link to="/services/lead-qualification-crm-automation" className="system-link">AI lead qualification and CRM automation</Link>,{" "}
+            <Link to="/services/agentic-systems" className="system-link">multi-agent AI systems</Link>,{" "}
+            <Link to="/services/mcp-engineering" className="system-link">custom MCP servers</Link> and{" "}
+            <Link to="/services/full-stack-ai-apps" className="system-link">full-stack AI tools</Link>. I also{" "}
+            <Link to="/services/hybrid-automation" className="system-link">migrate Zapier and Make.com workflows to n8n</Link>{" "}
+            and extend them with Python. Every build ships with error handling, retries and documentation.
           </p>
           <p className="text-muted-foreground">
             From high-velocity startups to enterprise teams, I replace fragile prompt chains and manual
@@ -121,7 +126,7 @@ const Services = () => {
               <Link to="/contact">Discuss Your System</Link>
             </Button>
             <Button asChild variant="outline">
-              <Link to="/projects">View Agentic Case Studies</Link>
+              <Link to="/projects">View AI Automation Case Studies</Link>
             </Button>
           </div>
         </motion.header>
@@ -132,8 +137,8 @@ const Services = () => {
             Specialized Software &amp; Agent Engineering
           </h2>
           <p className="mt-3 max-w-3xl text-muted-foreground">
-            Four specialized engineering domains. Each engagement is delivered with typed schemas, comprehensive
-            error handling, and production deployment harnesses.
+            Six services, from n8n workflows to custom MCP servers. Each engagement is delivered with
+            error handling, documentation and a handover walkthrough.
           </p>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {modernServices.map((service) => (

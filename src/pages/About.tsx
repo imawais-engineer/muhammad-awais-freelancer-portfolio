@@ -9,13 +9,16 @@ import BrandLogo from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { about, process, site } from "@/data/site";
 import profileImage from "@/assets/profile.webp";
+import { routeMeta } from "@/data/routeMeta";
+import { getPageJsonLd } from "@/data/structuredData";
 
 const About = () => (
   <div className="min-h-screen">
     <Seo
-      title="About Muhammad Awais | AI Automation Engineer & n8n Expert"
-      description="Muhammad Awais is a freelance AI automation engineer in Pakistan building n8n, Make.com and AI agent workflows for agencies and SaaS teams worldwide."
+      title={routeMeta["/about"].title}
+      description={routeMeta["/about"].description}
       path="/about"
+      jsonLd={getPageJsonLd("/about")}
     />
     <SiteHeader />
 
@@ -30,7 +33,7 @@ const About = () => (
           >
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">About</p>
             <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-              About <span className="gradient-text-primary">Muhammad Awais</span> — AI Automation Engineer
+              About <span className="gradient-text-primary">Muhammad Awais</span>, AI Automation Engineer &amp; n8n Expert
             </h1>
             <p className="text-lg text-muted-foreground">{about.intro}</p>
             <p className="flex items-center gap-2 font-mono text-sm text-muted-foreground">

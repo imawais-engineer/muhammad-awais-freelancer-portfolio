@@ -1,8 +1,5 @@
-import { readFileSync } from "node:fs";
-
 import { routeMeta } from "@/data/routeMeta";
-
-const xml = readFileSync("public/sitemap.xml", "utf8");
+import xml from "../../public/sitemap.xml?raw";
 const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 
 describe("sitemap", () => {

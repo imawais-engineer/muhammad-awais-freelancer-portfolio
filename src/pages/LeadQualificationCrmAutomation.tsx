@@ -19,12 +19,12 @@ import { getProject } from "@/data/projects";
 import { deliverables, site } from "@/data/site";
 import { SITE_URL } from "@/lib/seo";
 import { getPageJsonLd } from "@/data/structuredData";
+import { routeMeta } from "@/data/routeMeta";
+import { getServicePage } from "@/data/seoPages";
 import { leadFaqs as faqs } from "@/data/serviceContent";
 
-const TITLE = "AI Lead Qualification & CRM Automation | Muhammad Awais";
-const DESCRIPTION =
-  "Lead qualification automation, AI lead scoring, CRM and sales pipeline automation, lead routing and automated follow-up — built and documented by freelance AI Automation Engineer Muhammad Awais.";
 const PATH = "/services/lead-qualification-crm-automation";
+const { title: TITLE, description: DESCRIPTION } = routeMeta[PATH];
 
 const problems = [
   "Inquiries arrive across a web form, email, WhatsApp and social, and nobody owns the whole list",
@@ -101,12 +101,7 @@ const toolGroups = [
   { label: "Notifications", tools: ["Slack", "Telegram", "Email"] },
 ];
 
-const caseStudySlugs = [
-  "ai-lead-qualification-real-estate",
-  "lead-reply-sync-gohighlevel-clickup",
-  "client-intake-onboarding-automation",
-  "real-estate-lead-generation-browseract-make",
-];
+const { caseStudies: caseStudySlugs } = getServicePage(PATH);
 
 const LeadQualificationCrmAutomation = () => {
   const caseStudies = caseStudySlugs.map((slug) => getProject(slug)).filter(Boolean);
@@ -132,7 +127,7 @@ const LeadQualificationCrmAutomation = () => {
             / Lead &amp; CRM
           </p>
           <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-            AI Lead Qualification &amp; CRM Automation
+            AI Lead Qualification Automation &amp; CRM Routing
           </h1>
           <p className="text-lg text-muted-foreground">
             I&apos;m Muhammad Awais, a freelance AI Automation Engineer. I build the system between

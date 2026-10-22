@@ -47,6 +47,8 @@ export interface Project {
   logic: string[];
   output: string[];
   results: string[];
+  /** Engineering takeaways: design decisions and why they were made. */
+  lessons?: string[];
   proof: string[];
 }
 
@@ -903,6 +905,32 @@ export const projects: Project[] = [
       "Client acts on viral content within hours instead of days.",
       "Scalable — accounts are added or removed via a Google Sheet.",
     ],
+    // Node-level detail reconstructed from the documented 18-step workflow above.
+    // TODO(Awais): confirm node names match the production canvas; add a redacted
+    // Telegram alert screenshot and the client's permission to name the agency if possible.
+    engineeringFlow: [
+      { title: "Schedule Trigger", detail: "Starts the run every 2 days at 11 AM, so new Reels are reviewed while they are still trending." },
+      { title: "Google Sheets: read accounts", detail: "Loads the Instagram handles and their industry category, skipping accounts already marked as processed in this cycle." },
+      { title: "Loop Over Items + Wait", detail: "Processes one account at a time with a 4-second delay between API calls to stay inside SocialCrawl rate limits." },
+      { title: "HTTP Request: SocialCrawl", detail: "Fetches the 12 most recent Reels for the account. Private accounts and rate-limit errors are caught and skipped instead of failing the run." },
+      { title: "Code: normalise and score", detail: "Flattens the response, computes the account's median view count, and calculates each Reel's performance factor (views ÷ median)." },
+      { title: "IF: outlier filter", detail: "Keeps only Reels with a factor of 3.0× or higher that were published in the last 14 days." },
+      { title: "Google Sheets: deduplicate", detail: "Checks the Reel ID against the Reels log so the same Reel is never notified twice." },
+      { title: "Telegram: send alert", detail: "Posts the industry hashtag, account handle, publish date, formatted views, performance factor and a direct link to the Reel." },
+      { title: "Google Sheets: log and mark processed", detail: "Appends the Reel to the log and flags the account as processed, so an interrupted run resumes where it stopped." },
+    ],
+    failureHandling: [
+      "Private accounts, missing data and API rate limits are caught per account and skipped, so one bad handle never stops the other 49.",
+      "Fixed 4-second delays between requests keep a ~600-request run inside the scraping API's limits.",
+      "Processed flags in the accounts sheet make reruns safe: finished accounts are not scraped again in the same cycle.",
+      "Reel IDs are stored before notifying, so a retried run cannot send duplicate Telegram alerts.",
+    ],
+    lessons: [
+      "Use the median, not the average: one viral Reel inflates an account's average and hides the next outlier, while the median of the last 12 Reels stays stable.",
+      "Relative thresholds work across account sizes: 3× the median flags breakout content for a small account and a large one alike, with no per-account tuning.",
+      "Keep deduplication state in a durable store (the Reels sheet), not in workflow memory, so reruns and schedule changes never double-notify.",
+      "Let the client own the inputs: adding or removing an account is a row in a Google Sheet, not a workflow edit.",
+    ],
     proof: [
       "5-star review (referral from a previous client)",
       "Running in production, smoothly",
@@ -1564,6 +1592,20 @@ export const projects: Project[] = [
       "Faster, more accurate responses through targeted sub-queries.",
       "Scales to knowledge bases with millions of vectors.",
       "Reusable template adaptable to courses, company docs, support KBs, and research tools.",
+    ],
+    engineeringFlow: [
+      { title: "Supabase Postgres + pgvector", detail: "Document chunks and their NVIDIA embeddings live in a Supabase Postgres table with the pgvector extension, queried through n8n's Supabase Vector Store node." },
+      { title: "Decomposer agent", detail: "GPT-5-mini with conversational memory splits a complex question into 1–5 targeted sub-queries." },
+      { title: "Parallel vector search", detail: "Each sub-query runs its own similarity search against pgvector, so every part of the question gets its own context." },
+      { title: "Relevance filter", detail: "Chunks scoring below 0.4 similarity are dropped before they can reach the model." },
+      { title: "Aggregate + 'Think' step", detail: "Surviving chunks are merged into one context and a dedicated reasoning step synthesises them before the answer is written." },
+      { title: "Grounded answer", detail: "The final answer uses only the knowledge base, with optional source references. With no relevant chunks, it says so instead of guessing." },
+    ],
+    lessons: [
+      "Decomposition beats a bigger top-k: several narrow pgvector searches return more relevant chunks for multi-part questions than one broad search.",
+      "A similarity floor (0.4 here) is the cheapest hallucination control: irrelevant context never reaches the model.",
+      "Keeping retrieval in a sub-workflow decoupled from the agent makes it easy to swap the embedding model or vector store later.",
+      "Supabase pgvector keeps vectors next to the rest of the app's Postgres data, so there is no separate vector database to run.",
     ],
     proof: ["Published on Upwork/Freelancer profile", "Live production deployment"],
   },

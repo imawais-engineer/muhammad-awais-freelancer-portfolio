@@ -1,23 +1,19 @@
 import aaronAvatar from "@/assets/aaron-auf-der-maur.jpg.asset.json";
 import { projects } from "@/data/projects";
+import { identity } from "@/data/identity";
 
 export const site = {
   name: "Muhammad Awais",
-  title: "Forward Deployed AI Engineer — n8n Workflow Automation",
-  shortTitle: "Forward Deployed AI Engineer",
+  title: "AI Automation Engineer & n8n Expert",
+  shortTitle: "AI Automation Engineer & n8n Expert",
   tagline:
     "Helping agencies, SaaS teams, and small businesses cut 20+ hours of manual work a week with smart automations.",
   positioning:
     "As an AI Automation Engineer and n8n Expert, I help agencies, SaaS teams, and small businesses cut 20+ hours of manual work a week. I specialise in n8n workflow automation, AI integrations, and custom APIs — turning manual processes into clean, reliable systems that save time, reduce errors, and keep your tools connected.",
   location: "Pakistan — working remotely with clients worldwide",
-  email: "alpha.se.awais@gmail.com",
+  email: identity.email,
   website: "https://imawais.engineer",
-  links: {
-    upwork: "https://www.upwork.com/freelancers/awaisai",
-    fiverr: "https://www.fiverr.com/mawais_pk",
-    linkedin: "https://linkedin.com/in/imawais-engineer",
-    github: "https://github.com/imawais-engineer",
-  },
+  links: identity.links,
 };
 
 export const proofStats = [

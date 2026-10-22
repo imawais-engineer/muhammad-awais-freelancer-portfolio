@@ -15,6 +15,7 @@ import { SITE_URL, absoluteUrl, faqPageJsonLd } from "@/lib/seo";
 import { getRouteMeta } from "@/data/routeMeta";
 import { projectFaqs } from "@/data/faqs";
 import { getPageJsonLd } from "@/data/structuredData";
+import { serviceForProject } from "@/data/seoPages";
 import StickyWorkflowCta from "@/components/StickyWorkflowCta";
 import FaqSection from "@/components/FaqSection";
 
@@ -78,6 +79,7 @@ const ProjectDetail = () => {
 
   const route = getRouteMeta(`/projects/${project.slug}`);
   const faqs = projectFaqs(project);
+  const service = serviceForProject(project);
   const url = `${SITE_URL}/projects/${project.slug}`;
   const jsonLd = getPageJsonLd(`/projects/${project.slug}`);
 
@@ -130,7 +132,7 @@ const ProjectDetail = () => {
             )}
           </div>
           <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            {project.name}
+            {seo?.h1 ?? project.name}
           </h1>
           <p className="text-lg leading-relaxed text-muted-foreground">{project.summary}</p>
           <div className="pt-1">
@@ -310,6 +312,12 @@ const ProjectDetail = () => {
               <BulletList items={project.results} tone="success" />
             </Block>
 
+            {project.lessons && (
+              <Block title="Lessons learned">
+                <BulletList items={project.lessons} />
+              </Block>
+            )}
+
             {project.feedback && (
               <figure className="node-card p-6">
                 <Quote className="h-5 w-5 text-primary" aria-hidden="true" />
@@ -371,6 +379,13 @@ const ProjectDetail = () => {
           <p className="mt-3 max-w-2xl text-muted-foreground">
             I design, build and maintain systems like this one end to end. Tell me how your process
             works today and I&apos;ll map what an automated version would look like.
+          </p>
+          <p className="mt-3 max-w-2xl text-muted-foreground">
+            This build is part of my{" "}
+            <Link to={service.path} className="system-link">
+              {service.label}
+            </Link>{" "}
+            service: scope, deliverables, tools and FAQs.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Button asChild className="bg-gradient-cta border-0 text-white shadow-glow-sm hover:opacity-95 transition-opacity">
