@@ -1,4 +1,4 @@
-/** Canonical production origin. No trailing slash, www host (Vercel redirects apex to www), HTTPS only. */
+/** Canonical production origin. Apex host, no trailing slash, HTTPS only. www is not canonical. */
 export const SITE_URL = "https://imawais.engineer";
 
 /** Turns a root-relative path into an absolute canonical URL. */

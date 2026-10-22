@@ -1,11 +1,11 @@
 import { Suspense, lazy } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
-import { Analytics } from "@vercel/analytics/react";
 import Index from "./pages/Index.tsx";
 
 const Projects = lazy(() => import("./pages/Projects.tsx"));
@@ -25,8 +25,20 @@ const MediaKit = lazy(() => import("./pages/MediaKit.tsx"));
 
 const queryClient = new QueryClient();
 
+/** Send /About/ and /about/ to the sitemap URL before a route renders. */
+const NormalizePath = () => {
+  const { pathname, search, hash } = useLocation();
+  const stripped = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  const next = stripped.toLowerCase();
+  if (next !== pathname) {
+    return <Navigate to={`${next}${search}${hash}`} replace />;
+  }
+  return <Outlet />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
+    <HelmetProvider>
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -34,6 +46,7 @@ const App = () => (
         <ScrollToTop />
         <Suspense fallback={<div className="min-h-screen" />}>
         <Routes>
+          <Route element={<NormalizePath />}>
           <Route path="/" element={<Index />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
@@ -50,11 +63,12 @@ const App = () => (
           <Route path="/media-kit" element={<MediaKit />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
         </Suspense>
-        <Analytics />
       </BrowserRouter>
     </TooltipProvider>
+    </HelmetProvider>
   </QueryClientProvider>
 );
 

@@ -3,34 +3,46 @@
  * route's own <title>, description, canonical, Open Graph and Twitter tags.
  *
  * Social scrapers don't run JavaScript, so without this every shared link
- * would show the homepage preview. Vercel serves `dist/about.html` for
- * `/about` via `cleanUrls: true` before the SPA rewrite kicks in.
+ * would show the homepage preview.
+ *
+ * Lovable's host (html handling off, SPA fallback on) serves these files only
+ * at their real paths (`/about.html`), not at `/about`. `dist/_redirects`
+ * asks a Cloudflare-style asset server to rewrite the clean URL to that file.
+ * Lovable may ignore `_redirects`; the in-app <Seo> tags still cover crawlers
+ * that run JavaScript.
  */
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { pathToFileURL } from "node:url";
 
 import { OG_HEIGHT, OG_WIDTH, routeMeta } from "../src/data/routeMeta";
 import { SITE_URL } from "../src/lib/seo";
 import { getPageJsonLd } from "../src/data/structuredData";
 import { projects } from "../src/data/projects";
+import { projectSeo } from "../src/data/projectSeo";
 
-/** Visible <h1> per static route (matches the rendered page; "/" keeps the index.html fallback). */
-const staticH1: Record<string, string> = {
-  "/projects": "n8n & AI Automation Case Studies",
-  "/services": "AI Automation & Agentic Systems Services",
-  "/services/agentic-systems": "Agentic Systems & State Graph Architecture",
-  "/services/mcp-engineering": "Model Context Protocol (MCP) Server Engineering",
-  "/services/full-stack-ai-apps": "Full-Stack AI Products & Internal Tools",
-  "/services/hybrid-automation": "Deterministic Automation & Hybrid Orchestration",
-  "/services/n8n-workflow-automation": "n8n Workflow Automation Engineer",
-  "/services/lead-qualification-crm-automation": "AI Lead Qualification & CRM Automation",
-  "/about": "About Muhammad Awais — AI Automation Engineer",
-  "/contact": "Start an AI automation project",
-  "/media-kit": "Muhammad Awais",
-  "/terms": "Terms of Service",
+/**
+ * Head copy comes from route modules, not from strings in this file:
+ * - src/data/routeMeta.ts — title, description, robots, Open Graph image, article dates
+ * - src/data/structuredData.ts — per-route JSON-LD via getPageJsonLd
+ * - src/data/projectSeo.ts — optional case-study h1 (projectSeo[slug].h1)
+ * - src/data/projects.ts — case-study h1 fallback (project.name) when no h1 field exists yet
+ * - src/data/seoPages.ts — optional pageH1 map, used when that module is present
+ * - src/lib/seo.ts — canonical origin
+ * Canonical path is the route key itself (apex, no trailing slash).
+ */
+const seoPagesFile = join(process.cwd(), "src/data/seoPages.ts");
+const pageH1: Record<string, string> = seoPagesFile && existsSync(seoPagesFile)
+  ? ((await import(pathToFileURL(seoPagesFile).href)) as { pageH1?: Record<string, string> }).pageH1 ?? {}
+  : {};
+
+const h1For = (path: string) => {
+  if (pageH1[path]) return pageH1[path];
+  const slug = path.startsWith("/projects/") ? path.slice("/projects/".length) : "";
+  if (!slug) return undefined;
+  const seo = projectSeo[slug] as { h1?: string } | undefined;
+  return seo?.h1 || projects.find((p) => p.slug === slug)?.name;
 };
-const h1For = (path: string) =>
-  staticH1[path] ?? projects.find((p) => `/projects/${p.slug}` === path)?.name;
 
 /** Workflow screenshot URL per project, read from the asset pointers imported by projectImages.ts. */
 const projectImageUrl = (() => {
@@ -49,7 +61,70 @@ const projectImageUrl = (() => {
 const PROFILE_PRELOAD = /<link\s+rel="preload"\s+as="image"[\s\S]*?\/>\s*/i;
 
 const DIST = join(process.cwd(), "dist");
-const template = readFileSync(join(DIST, "index.html"), "utf8");
+const built = readFileSync(join(DIST, "index.html"), "utf8");
+
+/**
+ * Lovable serves this one shell for every URL that is not an exact file.
+ * The inline script fixes the head for crawlers that run it, including
+ * unknown URLs (noindex, homepage canonical removed) and slash/case variants
+ * (canonical stays the lowercase sitemap URL). A root 404.html is not emitted:
+ * on this host that file is served for every miss, which would replace real
+ * routes such as /about.
+ */
+const headRoutes = Object.fromEntries(
+  Object.entries(routeMeta).map(([path, m]) => [
+    path,
+    {
+      title: m.title,
+      description: m.description,
+      robots: m.noindex ? "noindex, follow" : "index, follow, max-image-preview:large",
+    },
+  ]),
+);
+const routeHeadScript = `<script id="route-head">
+(function () {
+  var routes = ${JSON.stringify(headRoutes).replace(/</g, "\\u003c")};
+  var path = location.pathname || "/";
+  if (path.length > 1) path = path.replace(/\\/+$/, "");
+  path = path.toLowerCase();
+  if (path.endsWith("/index.html")) path = path.slice(0, -"/index.html".length) || "/";
+  else if (path.endsWith(".html")) path = path.slice(0, -5) || "/";
+  if (!path) path = "/";
+  var set = function (sel, value) {
+    var el = document.head.querySelector(sel);
+    if (el) el.setAttribute("content", value);
+  };
+  var page = routes[path];
+  if (!page) {
+    set('meta[name="robots"]', "noindex, follow");
+    var stale = document.head.querySelector('link[rel="canonical"]');
+    if (stale) stale.remove();
+    var og = document.head.querySelector('meta[property="og:url"]');
+    if (og) og.remove();
+    document.title = "Page not found | Muhammad Awais";
+    return;
+  }
+  var url = ${JSON.stringify(SITE_URL)} + (path === "/" ? "/" : path);
+  document.title = page.title;
+  set('meta[name="description"]', page.description);
+  set('meta[name="robots"]', page.robots);
+  var link = document.head.querySelector('link[rel="canonical"]');
+  if (!link) {
+    link = document.createElement("link");
+    link.rel = "canonical";
+    document.head.appendChild(link);
+  }
+  link.href = url;
+  set('meta[property="og:url"]', url);
+  set('meta[property="og:title"]', page.title);
+  set('meta[property="og:description"]', page.description);
+  set('meta[name="twitter:title"]', page.title);
+  set('meta[name="twitter:description"]', page.description);
+})();
+</script>`;
+const template = built.includes('id="route-head"')
+  ? built
+  : built.replace("</head>", `  ${routeHeadScript}\n  </head>`);
 
 const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -60,7 +135,8 @@ const strip = (html: string) =>
     .replace(/<title>[\s\S]*?<\/title>\s*/i, "")
     .replace(/<meta\s+name="(description|robots)"[^>]*>\s*/gi, "")
     .replace(/<meta\s+(property|name)="(og:[^"]+|twitter:[^"]+|article:[^"]+)"[^>]*>\s*/gi, "")
-    .replace(/<link\s+rel="canonical"[^>]*>\s*/gi, "");
+    .replace(/<link\s+rel="canonical"[^>]*>\s*/gi, "")
+    .replace(/<script\s+type="application\/ld\+json"[\s\S]*?<\/script>\s*/gi, "");
 
 let count = 0;
 for (const [path, m] of Object.entries(routeMeta)) {
@@ -126,4 +202,11 @@ for (const [path, m] of Object.entries(routeMeta)) {
   writeFileSync(file, html);
   count++;
 }
-console.log(`prerender-head: wrote ${count} route files`);
+
+// Exact clean URL → that route's HTML, and a slash URL → the sitemap URL.
+// 200 keeps the browser URL. No catch-all, so unknown paths still use the SPA shell.
+const redirectLines = Object.keys(routeMeta)
+  .filter((path) => path !== "/")
+  .flatMap((path) => [`${path}/ ${path} 301`, `${path} ${path}.html 200`]);
+writeFileSync(join(DIST, "_redirects"), `${redirectLines.join("\n")}\n`);
+console.log(`prerender-head: wrote ${count} route files and ${redirectLines.length} redirect rules`);

@@ -1,7 +1,15 @@
 # Deployment
 
-Two targets share one codebase: **Lovable** (preview/publish) and **Vercel** (production, from
-the connected GitHub repo).
+The live site `https://imawais.engineer` is published from **Lovable** (this repo, two-way
+Git sync). Lovable runs `npm run build` and hosts `dist/`. DNS for the apex is an A
+record to Lovable (`185.158.133.1`). `vercel.json` is not on that request path, so it
+does not control the www redirect or which HTML file a clean URL receives.
+
+`www.imawais.engineer` 302s to the apex from Lovable's domain layer (Settings → Domains,
+apex set as primary). Lovable does not support a 301/308 between connected domains.
+A permanent redirect has to be created in front of Lovable (Cloudflare Redirect Rule).
+
+**Vercel** settings below apply only if the project is also deployed there.
 
 ## Vercel — build settings
 

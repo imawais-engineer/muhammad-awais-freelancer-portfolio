@@ -34,9 +34,7 @@
     <meta name="theme-color" content="#0b1220" />
     <meta name="application-name" content="Muhammad Awais" />
 
-    <!-- Font Preloads & Google Fonts (Syne + JetBrains Mono) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Self-hosted fonts. Syne 700 is the heading face used in the hero. -->
     <link
       rel="preload"
       as="font"
@@ -45,8 +43,11 @@
       crossorigin
     />
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/syne-latin.woff2"
+      crossorigin
     />
 
     <!-- LCP Image Preload -->
@@ -79,64 +80,6 @@
     <meta name="twitter:image" content="https://imawais.engineer/og/home.jpg" />
     <meta name="twitter:image:alt" content="Muhammad Awais, AI Automation Engineer — I build smart systems that automate work" />
 
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Person",
-            "@id": "https://imawais.engineer/#person",
-            "name": "Muhammad Awais",
-            "alternateName": ["Awais", "imawais", "imawais.engineer"],
-            "jobTitle": "AI Automation Engineer",
-            "url": "https://imawais.engineer/",
-            "image": {
-              "@type": "ImageObject",
-              "@id": "https://imawais.engineer/#primaryimage",
-              "url": "https://imawais.engineer/profile.webp",
-              "contentUrl": "https://imawais.engineer/profile.webp",
-              "width": 512,
-              "height": 512,
-              "caption": "Muhammad Awais, freelance AI Automation Engineer"
-            },
-            "description": "AI Automation Engineer specialising in n8n workflow automation, AI integrations and business process automation.",
-            "knowsAbout": [
-              "AI automation",
-              "n8n workflow automation",
-              "business process automation",
-              "AI integrations",
-              "lead qualification automation",
-              "CRM automation",
-              "software engineering"
-            ],
-            "sameAs": [
-              "https://www.upwork.com/freelancers/awaisai",
-              "https://www.fiverr.com/mawais_pk",
-              "https://linkedin.com/in/imawais-engineer"
-            ]
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://imawais.engineer/#webpage",
-            "url": "https://imawais.engineer/",
-            "name": "Muhammad Awais | AI Automation Engineer & n8n Workflow Automation",
-            "about": { "@id": "https://imawais.engineer/#person" },
-            "primaryImageOfPage": { "@id": "https://imawais.engineer/#primaryimage" },
-            "isPartOf": { "@id": "https://imawais.engineer/#website" }
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://imawais.engineer/#website",
-            "url": "https://imawais.engineer/",
-            "name": "Muhammad Awais",
-            "alternateName": "Muhammad Awais — AI Automation Engineer",
-            "inLanguage": "en",
-            "publisher": { "@id": "https://imawais.engineer/#person" }
-          }
-        ]
-      }
-    </script>
   </head>
 
   <body>
