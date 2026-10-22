@@ -16,6 +16,7 @@ import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 
 import { OG_HEIGHT, OG_WIDTH, routeMeta } from "../src/data/routeMeta";
+import { routeHeadJs } from "../src/lib/routeHead";
 import { SITE_URL } from "../src/lib/seo";
 import { getPageJsonLd } from "../src/data/structuredData";
 import { projects } from "../src/data/projects";
@@ -64,12 +65,14 @@ const DIST = join(process.cwd(), "dist");
 const built = readFileSync(join(DIST, "index.html"), "utf8");
 
 /**
- * Lovable serves this one shell for every URL that is not an exact file.
- * The inline script fixes the head for crawlers that run it, including
- * unknown URLs (noindex, homepage canonical removed) and slash/case variants
- * (canonical stays the lowercase sitemap URL). A root 404.html is not emitted:
- * on this host that file is served for every miss, which would replace real
- * routes such as /about.
+ * Lovable serves dist/index.html for every URL that is not an exact file.
+ * `_redirects` is published (it returns 200) and not applied. Each route is
+ * therefore also written to `<route>/index.html` in case a directory index is
+ * used. The head script rewrites title, canonical, description, robots and
+ * og:url from the route map, and noindexes unknown paths. It is the first
+ * script, inlined and loaded from /route-head.js, because a previous publish
+ * omitted the inline copy. A root 404.html is not emitted: on this host that
+ * file is served for every miss, which would replace real routes such as /about.
  */
 const headRoutes = Object.fromEntries(
   Object.entries(routeMeta).map(([path, m]) => [
@@ -81,50 +84,15 @@ const headRoutes = Object.fromEntries(
     },
   ]),
 );
-const routeHeadScript = `<script id="route-head">
-(function () {
-  var routes = ${JSON.stringify(headRoutes).replace(/</g, "\\u003c")};
-  var path = location.pathname || "/";
-  if (path.length > 1) path = path.replace(/\\/+$/, "");
-  path = path.toLowerCase();
-  if (path.endsWith("/index.html")) path = path.slice(0, -"/index.html".length) || "/";
-  else if (path.endsWith(".html")) path = path.slice(0, -5) || "/";
-  if (!path) path = "/";
-  var set = function (sel, value) {
-    var el = document.head.querySelector(sel);
-    if (el) el.setAttribute("content", value);
-  };
-  var page = routes[path];
-  if (!page) {
-    set('meta[name="robots"]', "noindex, follow");
-    var stale = document.head.querySelector('link[rel="canonical"]');
-    if (stale) stale.remove();
-    var og = document.head.querySelector('meta[property="og:url"]');
-    if (og) og.remove();
-    document.title = "Page not found | Muhammad Awais";
-    return;
-  }
-  var url = ${JSON.stringify(SITE_URL)} + (path === "/" ? "/" : path);
-  document.title = page.title;
-  set('meta[name="description"]', page.description);
-  set('meta[name="robots"]', page.robots);
-  var link = document.head.querySelector('link[rel="canonical"]');
-  if (!link) {
-    link = document.createElement("link");
-    link.rel = "canonical";
-    document.head.appendChild(link);
-  }
-  link.href = url;
-  set('meta[property="og:url"]', url);
-  set('meta[property="og:title"]', page.title);
-  set('meta[property="og:description"]', page.description);
-  set('meta[name="twitter:title"]', page.title);
-  set('meta[name="twitter:description"]', page.description);
-})();
-</script>`;
-const template = built.includes('id="route-head"')
-  ? built
-  : built.replace("</head>", `  ${routeHeadScript}\n  </head>`);
+const routeHeadSource = routeHeadJs(headRoutes, SITE_URL);
+writeFileSync(join(DIST, "route-head.js"), routeHeadSource);
+const routeHeadTags = `<script id="route-head">\n${routeHeadSource}</script>\n    <script src="/route-head.js"></script>`;
+const withRouteHead = (html: string) =>
+  html
+    .replace(/<script id="route-head">[\s\S]*?<\/script>\s*/gi, "")
+    .replace(/<script src="\/route-head\.js"><\/script>\s*/gi, "")
+    .replace(/<meta\s+charset[^>]*>/i, (tag) => `${tag}\n    ${routeHeadTags}`);
+const template = built;
 
 const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -197,9 +165,15 @@ for (const [path, m] of Object.entries(routeMeta)) {
       `$1<h1>${esc(h1)}</h1>\n      <p>${esc(m.description)}</p>`,
     );
   }
+  html = withRouteHead(html);
   const file = path === "/" ? join(DIST, "index.html") : join(DIST, `${path.slice(1)}.html`);
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, html);
+  if (path !== "/") {
+    const directoryIndex = join(DIST, path.slice(1), "index.html");
+    mkdirSync(dirname(directoryIndex), { recursive: true });
+    writeFileSync(directoryIndex, html);
+  }
   count++;
 }
 
@@ -209,4 +183,6 @@ const redirectLines = Object.keys(routeMeta)
   .filter((path) => path !== "/")
   .flatMap((path) => [`${path}/ ${path} 301`, `${path} ${path}.html 200`]);
 writeFileSync(join(DIST, "_redirects"), `${redirectLines.join("\n")}\n`);
-console.log(`prerender-head: wrote ${count} route files and ${redirectLines.length} redirect rules`);
+console.log(
+  `prerender-head: wrote ${count} route files, ${count - 1} directory indexes and ${redirectLines.length} redirect rules`,
+);

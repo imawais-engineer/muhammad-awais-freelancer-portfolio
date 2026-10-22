@@ -25,11 +25,14 @@ const MediaKit = lazy(() => import("./pages/MediaKit.tsx"));
 
 const queryClient = new QueryClient();
 
-/** Send /About/ and /about/ to the sitemap URL before a route renders. */
+/** Send slash, case, .html and /index.html variants to the sitemap URL before a route renders. */
 const NormalizePath = () => {
   const { pathname, search, hash } = useLocation();
-  const stripped = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
-  const next = stripped.toLowerCase();
+  let next = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  next = next.toLowerCase();
+  if (next.endsWith("/index.html")) next = next.slice(0, -"/index.html".length) || "/";
+  else if (next.endsWith(".html")) next = next.slice(0, -".html".length) || "/";
+  if (!next) next = "/";
   if (next !== pathname) {
     return <Navigate to={`${next}${search}${hash}`} replace />;
   }
