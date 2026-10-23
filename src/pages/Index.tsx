@@ -169,6 +169,9 @@ const Index = () => {
           <div className="grid items-center gap-5 md:gap-6 md:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_260px]">
             <div>
               <h1 className="max-w-3xl font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+                <span className="mb-2 block font-mono text-sm font-semibold uppercase tracking-[0.16em] text-primary md:text-base">
+                  Muhammad Awais
+                </span>
                 <span className="gradient-text">AI Automation Engineer &amp; n8n Expert</span>{" "}
                 <span className="text-foreground">building systems that eliminate repetitive work.</span>
               </h1>

@@ -179,7 +179,7 @@ export const serviceForProject = (p: Pick<Project, "slug" | "category">): Servic
 /** Static pages: visible <h1> + keyword targets. */
 export const staticPageSeo: Record<string, { h1: string; keywords: KeywordTarget }> = {
   "/": {
-    h1: POSITIONING,
+    h1: "Muhammad Awais, AI Automation Engineer & n8n Expert",
     keywords: {
       primary: "freelance AI automation engineer",
       secondary: ["AI automation engineer for hire", "n8n expert for hire", "Muhammad Awais AI automation"],
