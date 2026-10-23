@@ -4,7 +4,7 @@
  */
 export const identity = {
   name: "Muhammad Awais",
-  alternateName: ["Muhammad Awais – AI Automation Engineer", "Awais", "imawais", "imawais.engineer"],
+  alternateName: ["Muhammad Awais – AI Automation Engineer", "Awais", "imawais"],
   /** Separates this Muhammad Awais from others doing n8n/AI work (e.g. avais.cloud). */
   disambiguatingDescription:
     "Muhammad Awais of imawais.engineer: Pakistan-based freelance AI automation engineer and n8n expert, GitHub imawais-engineer.",

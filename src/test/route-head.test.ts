@@ -56,6 +56,7 @@ describe("route head script", () => {
     expect(document.querySelector('meta[property="og:url"]')?.getAttribute("content")).toBe(
       "https://imawais.engineer/about",
     );
+    expect(document.querySelector('meta[property="og:site_name"]')?.getAttribute("content")).toBe("Muhammad Awais");
     expect(ld()).toEqual([]);
   });
 
@@ -73,6 +74,7 @@ describe("route head script", () => {
     expect(canon()).toBeNull();
     expect(document.querySelector('meta[property="og:url"]')).toBeNull();
     expect(document.querySelector('meta[name="robots"]')?.getAttribute("content")).toBe("noindex, follow");
+    expect(document.querySelector('meta[property="og:site_name"]')?.getAttribute("content")).toBe("Muhammad Awais");
     expect(ld()).toEqual([]);
   });
 

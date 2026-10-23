@@ -10,9 +10,10 @@ export interface RouteHeadEntry {
  * so the same source is also written to `/route-head.js` and loaded with a
  * blocking `src`.
  */
-export const routeHeadJs = (routes: Record<string, RouteHeadEntry>, siteUrl: string) => {
+export const routeHeadJs = (routes: Record<string, RouteHeadEntry>, siteUrl: string, siteName = "Muhammad Awais") => {
   const payload = JSON.stringify(routes).replace(/</g, "\\u003c");
   const origin = JSON.stringify(siteUrl);
+  const name = JSON.stringify(siteName);
   return `(function () {
   var routes = ${payload};
   var path = location.pathname || "/";
@@ -53,6 +54,7 @@ export const routeHeadJs = (routes: Record<string, RouteHeadEntry>, siteUrl: str
       if ((fitting[i].textContent || "").indexOf("\\n") === -1) prefer.push(fitting[i]);
     }
   }
+  ensure("property", "og:site_name", ${name});
   var page = routes[path];
   for (i = 0; i < nodes.length; i++) {
     var keep = page && prefer.length ? prefer.indexOf(nodes[i]) !== -1 : page && !prefer.length && fitting.indexOf(nodes[i]) !== -1;

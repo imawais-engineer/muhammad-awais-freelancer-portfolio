@@ -36,6 +36,16 @@ describe("on-page SEO", () => {
     for (const p of projects) expect(servicePages).toContain(serviceForProject(p));
   });
 
+  it("uses Muhammad Awais as the site name on every route", () => {
+    for (const path of Object.keys(routeMeta)) {
+      const sites = (getPageJsonLd(path)?.["@graph"] ?? []).filter((node) => node["@type"] === "WebSite");
+      expect(sites, path).toHaveLength(1);
+      expect(sites[0].name, path).toBe("Muhammad Awais");
+      expect(sites[0].url, path).toBe("https://imawais.engineer/");
+      expect(JSON.stringify(sites[0].alternateName), path).not.toContain("imawais.engineer");
+    }
+  });
+
   it("emits the expected JSON-LD entities", () => {
     expect(types("/")).toEqual(expect.arrayContaining(["WebSite", "Person", "ProfessionalService", "FAQPage"]));
     expect(types("/about")).toEqual(expect.arrayContaining(["ProfilePage", "Person", "BreadcrumbList"]));

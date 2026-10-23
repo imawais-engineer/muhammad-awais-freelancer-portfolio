@@ -51,14 +51,19 @@ export const personNode: Node = {
   sameAs,
 };
 
+/**
+ * Preferred Google site name for the whole domain. `name` is what Search should
+ * show instead of the hostname; `alternateName` is only the short form. The
+ * domain is not listed, so it is not offered as a display name.
+ */
 export const websiteNode: Node = {
   "@type": "WebSite",
   "@id": WEBSITE_ID,
   url: abs("/"),
   name: identity.name,
-  alternateName: `${identity.name} — ${identity.jobTitle}`,
+  alternateName: ["Awais"],
   inLanguage: "en",
-  publisher: personRef,
+  publisher: { ...personRef, "@type": "Person", name: identity.name },
 };
 
 const offerCatalog = {

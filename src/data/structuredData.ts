@@ -24,6 +24,7 @@ import {
   personNode,
   personRef,
   webPage,
+  websiteNode,
   websiteRef,
 } from "./jsonLdCore";
 import { projects } from "./projects";
@@ -163,5 +164,14 @@ const projectGraph = (slug: string): Graph | undefined => {
   ]);
 };
 
-export const getPageJsonLd = (path: string): Graph | undefined =>
-  staticGraphs[path] ?? (path.startsWith("/projects/") ? projectGraph(path.slice("/projects/".length)) : undefined);
+/** One WebSite node, same name and homepage URL, on every route graph. */
+const withWebsite = (page: Graph): Graph =>
+  page["@graph"].some((node) => node["@type"] === "WebSite") ? page : graph([websiteNode, ...page["@graph"]]);
+
+export const getPageJsonLd = (path: string): Graph | undefined => {
+  const page =
+    staticGraphs[path] ??
+    (path.startsWith("/projects/") ? projectGraph(path.slice("/projects/".length)) : undefined) ??
+    (routeMeta[path] ? graph([webPage(path)]) : undefined);
+  return page ? withWebsite(page) : undefined;
+};
