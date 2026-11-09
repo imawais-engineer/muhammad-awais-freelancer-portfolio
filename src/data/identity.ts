@@ -16,7 +16,7 @@ export const identity = {
   image: "/profile.webp",
   country: { code: "PK", name: "Pakistan" },
   links: {
-    upwork: "https://www.upwork.com/freelancers/awaisai",
+    upwork: "https://www.upwork.com/freelancers/~01838e4fc5162aaf52",
     fiverr: "https://www.fiverr.com/mawais_pk",
     linkedin: "https://linkedin.com/in/imawais-engineer",
     github: "https://github.com/imawais-engineer",
