@@ -61,7 +61,7 @@ export const websiteNode: Node = {
   "@id": WEBSITE_ID,
   url: abs("/"),
   name: identity.name,
-  alternateName: ["Awais"],
+  alternateName: ["Muhammad Awais Portfolio", "Awais"],
   inLanguage: "en",
   publisher: { ...personRef, "@type": "Person", name: identity.name },
 };

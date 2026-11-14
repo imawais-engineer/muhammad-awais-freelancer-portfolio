@@ -345,6 +345,9 @@ const MediaKit = () => {
                   src={project.image}
                   alt={`${project.name} preview`}
                   loading="lazy"
+                  decoding="async"
+                  width={960}
+                  height={440}
                   className="h-44 w-full rounded-xl border border-panel-border bg-panel object-cover object-top"
                 />
                 <div className="mt-4 flex flex-wrap items-start justify-between gap-3">

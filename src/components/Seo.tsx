@@ -17,8 +17,8 @@ interface SeoProps {
 }
 
 /**
- * Lovable's host serves one `index.html` for every extensionless URL, so the
- * shell's homepage canonical stays in the raw response. These tags are what
+ * Unknown paths (and dev) fall back to the SPA `index.html`, so the
+ * shell's homepage canonical can stay in the response. These tags are what
  * Google sees after it runs JavaScript. react-helmet-async only manages
  * elements it created (`data-rh`); the shell copies are removed here so the
  * page does not publish two canonicals.

@@ -5,10 +5,10 @@ export interface RouteHeadEntry {
 }
 
 /**
- * Runs during HTML parse, before the deferred module bundle. Lovable serves
- * one shell for every clean URL and has dropped this inline script on publish,
- * so the same source is also written to `/route-head.js` and loaded with a
- * blocking `src`.
+ * Runs during HTML parse, before the deferred module bundle. It corrects the
+ * head when a route falls back to the shared SPA shell. The same source is also
+ * written to `/route-head.js` and loaded with a blocking `src` in case the
+ * inline copy is stripped.
  */
 export const routeHeadJs = (routes: Record<string, RouteHeadEntry>, siteUrl: string, siteName = "Muhammad Awais") => {
   const payload = JSON.stringify(routes).replace(/</g, "\\u003c");

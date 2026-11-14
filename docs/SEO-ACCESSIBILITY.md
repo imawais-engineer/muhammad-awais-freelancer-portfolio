@@ -169,3 +169,13 @@ built with the existing `/services` design system (`node-card`, `TechTag`,
 - Platform accuracy: case studies keep their real platform (e.g. Real Estate
   Lead Generation is Make.com), and client vs demonstration status is stated on
   each project page.
+
+### Google site name (the "Muhammad Awais" label above the URL)
+- Signals kept identical on the homepage: `<title>` leads with "Muhammad Awais",
+  `og:site_name`, `application-name`, WebSite JSON-LD `name` ("Muhammad Awais",
+  `alternateName` "Muhammad Awais Portfolio" and "Awais", `url` `https://imawais.engineer/`)
+  and the static `<h1>`. `src/test/seo-site-name.test.ts` guards this.
+- Google refreshes site names only after it recrawls the homepage, which takes days to
+  weeks. After deploying, open Search Console, URL Inspection, enter
+  `https://imawais.engineer/`, then "Request indexing". Check again over the next weeks.
+- Site names are chosen by Google and not guaranteed; consistent signals are the only lever.
