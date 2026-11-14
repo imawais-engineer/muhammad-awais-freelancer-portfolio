@@ -52,4 +52,18 @@ describe("site name and per-route discovery", () => {
     expect(html).toContain(`<meta property="og:title" content="${esc}" />`);
     expect(html).toMatch(/<h1>Muhammad Awais/);
   });
+
+  it("ships a crawlable favicon with a multiple-of-48 size and no robots block", () => {
+    const html = readFileSync(join(root, "index.html"), "utf8");
+    expect(html).toContain('<link rel="icon" href="/favicon.ico" sizes="any" />');
+    expect(html).toContain('href="/favicon-48.png"');
+    const png = readFileSync(join(root, "public/favicon-48.png"));
+    expect(png.readUInt32BE(16)).toBe(48);
+    expect(png.readUInt32BE(20)).toBe(48);
+    const ico = readFileSync(join(root, "public/favicon.ico"));
+    const sizes = Array.from({ length: ico.readUInt16LE(4) }, (_, i) => ico[6 + 16 * i] || 256);
+    expect(sizes.some((s) => s % 48 === 0)).toBe(true);
+    const robots = readFileSync(join(root, "public/robots.txt"), "utf8");
+    expect(robots).not.toMatch(/Disallow:\s*\/(favicon|icon)/i);
+  });
 });
