@@ -2,6 +2,8 @@
 - Per-route head tags live in `src/data/routeMeta.ts`; `scripts/prerender-head.ts` (postbuild) writes `dist/<route>.html` so non-JS scrapers get correct previews. Why: SPA has no SSR.
 - Share images are 2400x1260 HD JPGs (<350KB) in `public/og/`, rendered by scripts/og/render_og.py (regenerate when projects change). Why: scrapers reject mismatched or webp images.
 - Page JSON-LD is built only in `src/data/structuredData.ts` (no asset imports/aliases); pages and `scripts/prerender-head.ts` both use it. Why: non-JS crawlers see the same labels as the live page.
-- No Vercel Web Analytics on this site. The component requested `/_vercel/insights` and 404s on Lovable hosting. Why: the live site is Lovable, not Vercel.
+- No Vercel Web Analytics on this site. The site is deployed on Vercel, but the analytics component was never wired up and requested `/_vercel/insights`, which 404s. Why: avoid a failing request on every page until analytics is deliberately enabled.
 - Derive portfolio totals from the shared projects catalog rather than fixed marketing counts. Why: homepage totals stay consistent as projects are added.
 - Render platform marks through BrandLogo using self-hosted SVG masks and currentColor, with a neutral icon for unsupported tools. Why: logos remain available, theme-aligned, and consistent across pages.
+- Production hosting is Vercel (`vercel.json`, `cleanUrls: true`), which serves `dist/<route>.html` at `/<route>`; `dist/_redirects` is a leftover from Lovable hosting and is ignored by Vercel. Why: prerendered per-route heads reach crawlers without any redirect rules.
+- Homepage title, `og:site_name`, WebSite JSON-LD `name` and static `<h1>` all lead with "Muhammad Awais", and `index.html` copies the `/` entry of `routeMeta.ts`. Why: Google derives the site name from these signals, and mismatches make it fall back to the bare domain.

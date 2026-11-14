@@ -5,11 +5,10 @@
  * Social scrapers don't run JavaScript, so without this every shared link
  * would show the homepage preview.
  *
- * Lovable's host (html handling off, SPA fallback on) serves these files only
- * at their real paths (`/about.html`), not at `/about`. `dist/_redirects`
- * asks a Cloudflare-style asset server to rewrite the clean URL to that file.
- * Lovable may ignore `_redirects`; the in-app <Seo> tags still cover crawlers
- * that run JavaScript.
+ * Production is Vercel with `cleanUrls: true` (vercel.json), which serves
+ * `dist/<route>.html` at `/<route>` natively. `dist/_redirects` is only a
+ * leftover for Cloudflare-style hosts and is ignored by Vercel; it is harmless.
+ * The in-app <Seo> tags still cover crawlers that run JavaScript.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -65,14 +64,12 @@ const DIST = join(process.cwd(), "dist");
 const built = readFileSync(join(DIST, "index.html"), "utf8");
 
 /**
- * Lovable serves dist/index.html for every URL that is not an exact file.
- * `_redirects` is published (it returns 200) and not applied. Each route is
- * therefore also written to `<route>/index.html` in case a directory index is
- * used. The head script rewrites title, canonical, description, robots and
+ * Vercel serves `<route>.html` for `/<route>` (cleanUrls). Each route is also
+ * written to `<route>/index.html` for hosts that use directory indexes. The head script rewrites title, canonical, description, robots and
  * og:url from the route map, and noindexes unknown paths. It is the first
  * script, inlined and loaded from /route-head.js, because a previous publish
- * omitted the inline copy. A root 404.html is not emitted: on this host that
- * file is served for every miss, which would replace real routes such as /about.
+ * omitted the inline copy. A root 404.html is not emitted so unknown paths fall back to the SPA shell,
+ * which noindexes them.
  */
 const headRoutes = Object.fromEntries(
   Object.entries(routeMeta).map(([path, m]) => [

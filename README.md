@@ -4,7 +4,7 @@ Production portfolio website presenting automation case studies, services, proce
 contact routes for **Muhammad Awais** — AI Automation Engineer specializing in n8n, Make.com,
 and AI-powered workflow systems.
 
-Live preview: managed by Lovable. Production deploy: Vercel (from the connected GitHub repo).
+Production deploy: Vercel (from the connected GitHub repo, see `vercel.json`). The project was originally scaffolded with Lovable.
 
 ---
 

@@ -7,7 +7,7 @@ import { getRouteMeta } from "@/data/routeMeta";
 
 const shell = () => {
   document.head.innerHTML = `
-    <title>Muhammad Awais | AI Automation Engineer &amp; n8n Expert</title>
+    <title>Muhammad Awais – AI Automation Engineer &amp; n8n Expert</title>
     <meta name="description" content="homepage description">
     <link rel="canonical" href="https://imawais.engineer/">
     <meta property="og:url" content="https://imawais.engineer/">
